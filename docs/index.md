@@ -4,10 +4,10 @@ hide:
 ---
 
 <div class="hero">
-  <img src="assets/images/profile.png" alt="Aarav Sharma" class="profile-photo">
-  <h1>Aarav Sharma</h1>
-  <p><strong>Geospatial Data Scientist</strong></p>
-  <p><em>Turning spatial data into sustainable insights | GeoAI | Remote Sensing | Python</em></p>
+  <img src="assets/images/profile.png" alt="Somdeep Kundu" class="profile-photo">
+  <h1>Somdeep Kundu</h1>
+  <p><strong>PhD Scholar, IIT Bombay | RuDRA Lab</strong></p>
+  <p><em>Advanced Geospatial Analysis | Machine Learning | Earth Observation</em></p>
 </div>
 
 ---
@@ -17,12 +17,12 @@ hide:
 <div class="about-section" markdown>
 <div class="about-text" markdown>
 
-I am a geospatial data scientist based in Mumbai with a strong background in remote sensing and spatial machine learning. I specialize in transforming raw satellite and drone imagery into actionable insights for urban planning and climate resilience. Using tools like Python, Google Earth Engine, and PostGIS, I build scalable data pipelines to monitor land-use changes and environmental metrics. I am currently seeking senior roles in the climate-tech space where I can leverage GeoAI to drive impactful environmental decisions.
+I am a PhD Scholar at the Centre for Technology Alternatives for Rural Areas (CTARA) at IIT Bombay, and an active member of the RuDRA Lab. With a foundation in Civil Engineering and a post-graduate diploma in Disaster Management with Remote Sensing and GIS from IIRS, ISRO, I specialize in extracting insights from complex satellite data. My research bridges advanced spatial machine learning, including Graph Neural Networks and Random Forest classification, with climate science and ancient agrometeorology. I leverage tools like Google Earth Engine, QGIS, and Python to build dynamic dashboards and analyze orbital data from missions like NISAR and Sentinel. 
 
 </div>
 
 <div class="about-image">
-  <img src="assets/images/about.png" alt="Field work mapping">
+  <img src="assets/images/about.png" alt="About">
 </div>
 
 </div>
@@ -30,7 +30,8 @@ I am a geospatial data scientist based in Mumbai with a strong background in rem
 ---
 
 [View My Projects :material-arrow-right:](projects/index.md){ .md-button .md-button--primary }
-[Download CV :material-download:](assets/Aarav-Sharma-CV.pdf){ .md-button }
+[Download CV :material-download:](assets/Somdeep-Kundu-CV.pdf){ .md-button }
+
 
 ---
 
@@ -42,53 +43,37 @@ I am a geospatial data scientist based in Mumbai with a strong background in rem
 
     ---
 
-    - QGIS, ArcGIS Pro, Google Earth Engine
-    - GDAL / OGR, GRASS GIS
-    - Multispectral and SAR image analysis
-    - Cloud Native Geospatial (COG, STAC, Zarr)
+    - Google Earth Engine, QGIS
+    - GDAL / OGR
+    - STAC API for satellite data integration
+    - Orbital pass tracking (NISAR, Sentinel, CelesTrak)
 
 -   :material-code-braces:{ .lg .middle } **Programming**
 
     ---
 
-    - Python — GeoPandas, NumPy, Pandas, Matplotlib
-    - R — sf, terra, ggplot2
-    - JavaScript — Leaflet, MapLibre GL
-    - SQL, PostgreSQL + PostGIS
+    - Python — Machine Learning & Automation
+    - R — Spatial Data Analysis
+    - JavaScript — Web mapping & GEE
+    - Natural Language / Vibe Coding
 
 -   :material-star-four-points:{ .lg .middle } **Machine Learning & GeoAI**
 
     ---
 
-    - Supervised classification — Random Forest, XGBoost
-    - Deep learning for image segmentation — U-Net, SAM
-    - scikit-learn, PyTorch, TensorFlow
-    - Object detection in satellite imagery
+    - Graph Neural Networks (GNN)
+    - Supervised classification (Random Forest)
+    - Time-series satellite data processing
+    - Chaos Theory applications in agrometeorology
 
--   :material-earth:{ .lg .middle } **Web Mapping & Data**
-
-    ---
-
-    - Leaflet.js, Folium, MapLibre GL JS
-    - Cloud storage — AWS S3, Google Cloud Storage
-    - Data formats — GeoTIFF, GeoParquet, NetCDF
-    - Streamlit for data-driven web apps
-
--   :material-database:{ .lg .middle } **Data & Cloud**
+-   :material-earth:{ .lg .middle } **Web Mapping & Applications**
 
     ---
 
-    - PostgreSQL + PostGIS
-    - Cloud storage: AWS S3, Google Cloud Storage
-    - Data formats: GeoJSON, GeoTIFF, NetCDF, Zarr, GeoParquet
-
--   :material-airplane:{ .lg .middle } **Drone / UAV Data Processing**
-
-    ---
-
-    - Mission planning and flight operations
-    - Photogrammetry: Agisoft Metashape, OpenDroneMap
-    - Point cloud processing: CloudCompare, PDAL
+    - Streamlit for data-driven web apps and dashboards
+    - Interactive web-based application development
+    - Integrating indigenous knowledge systems with spatial data
+    - Remote sensing visualization
 
 </div>
 
@@ -96,5 +81,5 @@ I am a geospatial data scientist based in Mumbai with a strong background in rem
 
 ## Connect
 
-[GitHub](https://github.com/aaravsharma-geo){ .md-button }
-[LinkedIn](https://linkedin.com/in/aaravsharma-spatial){ .md-button }
+[GitHub](https://github.com/somdeepkundu){ .md-button }
+[LinkedIn](https://linkedin.com/in/somdeepkundu){ .md-button }
