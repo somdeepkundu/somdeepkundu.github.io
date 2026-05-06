@@ -8,9 +8,10 @@ This is the repository for my portfolio website. The portfolio is hosted at http
 * GitHub Pages
 * GitHub Actions
 
-* ```
+```
 ghello("world")
 ```
+* 
 
 > [!TIP]
 > You can get the portfolio template from [Spatial Thoughts](https://github.com/spatialthoughts/portfolio-website-template)
