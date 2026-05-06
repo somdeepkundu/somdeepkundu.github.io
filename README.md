@@ -1,4 +1,4 @@
-# [Somdeep]'s Portfolio
+# Somdeep's Portfolio
 
 This is the repository for my portfolio website. The portfolio is hosted at https://<your-username>.github.io/
 
