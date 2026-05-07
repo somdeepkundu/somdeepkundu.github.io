@@ -22,7 +22,7 @@ A high-octane arcade shooter with procedural difficulty scaling. Pilot your spac
 </div>
 
 <div class="project-card" markdown>
-![](https://impact.indiaai.gov.in/static/images/logo.png)
+![](../assets/images/india-ai-impact-summit.jpg)
 
 **[India AI Impact Summit 2026](../assets/files/IndiaAI-ImpactSummit-Somdeep.pdf)**
 
