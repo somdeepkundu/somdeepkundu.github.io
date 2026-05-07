@@ -6,8 +6,8 @@ hide:
 <div class="hero">
   <img src="assets/images/profile.png" alt="Somdeep Kundu" class="profile-photo">
   <h1>Somdeep Kundu</h1>
-  <p><strong>PhD Scholar, IIT Bombay | RuDRA Lab<, C-TARA</strong></p>
-  <p><em>Generalised Abstract Spacio-temporal madness</em></p>
+  <p><strong>PhD Scholar, IIT Bombay | RuDRA Lab, C-TARA</strong></p>
+  <p><em>Generalised Abstract Spatio-temporal madness</em></p>
 </div>
 
 ---
