@@ -2,18 +2,10 @@
 hide:
   - toc
 ---
-<!--
-CHECKLIST FOR THIS PAGE:
-- [x] Replace the two placeholder cards (marked [YOUR PROJECT ...]) with your real projects
-- [x] For each project: add a thumbnail image to docs/assets/images/ and update the path below
-- [x] For each project: create a project page by copying sample-project.md
-- [x] For each project: add a nav entry in mkdocs.yml (see the comments there)
-- [ ] Delete placeholder cards you don't need yet
--->
 
 # Projects
 
-A selection of my geospatial projects. Click any card to see the full write-up.
+A selection of my geospatial and AI projects. Click any card to explore.
 
 <div class="grid" markdown>
 
@@ -30,16 +22,15 @@ A high-octane arcade shooter with procedural difficulty scaling. Pilot your spac
 </div>
 
 <div class="project-card" markdown>
-![](../assets/images/placeholder-notebook.png)
+![](https://impact.indiaai.gov.in/static/images/logo.png)
 
-**[Sample Notebook](sample-notebook.ipynb)**
+**[India AI Impact Summit 2026](../assets/files/IndiaAI-ImpactSummit-Somdeep.pdf)**
 
-[YOUR PROJECT DESCRIPTION — one or two sentences: what you did, what data you used,
-and what you found or built.]
+Participated in 3 pre-summit events. Selected for HSBC Pune's Deccan Digital Dialogue on AI, Talent, and the GCC Ascent. Presented research poster at IIT Bombay on Conclave for AI in Science (Jan 8, 2026).
 
-`Python` `pandas` `Folium`
+`AI Research` `India AI` `HSBC` `IIT Bombay`
 
-[View Project →](sample-notebook.ipynb){ .md-button }
+[View Poster →](../assets/files/IndiaAI-ImpactSummit-Somdeep.pdf){ .md-button }
 </div>
 
 </div>
