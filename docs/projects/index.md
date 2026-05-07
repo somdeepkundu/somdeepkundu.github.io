@@ -18,16 +18,15 @@ A selection of my geospatial projects. Click any card to see the full write-up.
 <div class="grid" markdown>
 
 <div class="project-card" markdown>
-![](../assets/images/placeholder-project.png)
+![](../assets/images/bombay-asteroids-preview.png)
 
-**[Sample Project](sample-project.md)**
+**[Bombay Asteroids](bombay-asteroids.md)**
 
-[YOUR PROJECT DESCRIPTION — one or two sentences: what you did, what data you used,
-and what you found or built.]
+A high-octane arcade shooter with procedural difficulty scaling. Pilot your spaceship above Mumbai, dodge and destroy asteroids with real-time leaderboard tracking!
 
-`[TOOL 1]` `[TOOL 2]` `[TOOL 3]`
+`HTML5` `Canvas` `Web Audio` `Firestore` `PWA`
 
-[View Project →](sample-project.md){ .md-button }
+[View Project →](bombay-asteroids.md){ .md-button }
 </div>
 
 <div class="project-card" markdown>
