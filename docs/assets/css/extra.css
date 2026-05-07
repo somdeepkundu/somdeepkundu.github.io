@@ -1,18 +1,10 @@
-/* Header / nav bar color — sage green for earthy aesthetic */
+/* Header / nav bar color (light mode) — terracotta to match hero gradient */
 [data-md-color-primary="custom"] {
-  --md-primary-fg-color: #6b8e71;
-  --md-primary-fg-color--light: #8aae8f;
-  --md-primary-fg-color--dark: #4a6b53;
+  --md-primary-fg-color: #5c3e37;
+  --md-primary-fg-color--light: #7c5e57;
+  --md-primary-fg-color--dark: #3a251f;
   --md-primary-bg-color: #ffffff;
   --md-primary-bg-color--light: #ffffffb3;
-}
-
-[data-md-color-scheme="slate"] [data-md-color-primary="custom"] {
-  --md-primary-fg-color: #6b8e71;
-  --md-primary-fg-color--light: #8aae8f;
-  --md-primary-fg-color--dark: #4a6b53;
-  --md-primary-bg-color: #1e1e1e;
-  --md-primary-bg-color--light: #1e1e1eb3;
 }
 
 /* Profile photo on the Home page */
@@ -68,16 +60,6 @@
 
 .hero + hr {
   margin-top: 0.5rem;
-}
-
-/* Dark mode adjustments */
-[data-md-color-scheme="slate"] .hero {
-  background: linear-gradient(135deg, #3a2a24 0%, #4a3a34 50%, #2a1a14 100%);
-}
-
-[data-md-color-scheme="slate"] .hero h1,
-[data-md-color-scheme="slate"] .hero p {
-  color: #e8dcd0;
 }
 
 /* About Me section on the Home page */
@@ -142,11 +124,6 @@
   background: linear-gradient(135deg, #f5ebde 0%, #fffdf0 50%, #b0776a 100%);
 }
 
-[data-md-color-scheme="slate"] .md-typeset .grid.cards > ul > li {
-  background: linear-gradient(135deg, #3a2a24 0%, #4a3a34 50%, #2a1a14 100%);
-  color: #e8dcd0;
-}
-
 /* Project cards on the Projects gallery page */
 .project-card {
   border: 1px solid var(--md-default-fg-color--lightest);
@@ -154,11 +131,6 @@
   padding: 1rem;
   background: linear-gradient(135deg, #f5ebde 0%, #fffdf0 50%, #b0776a 100%);
   transition: box-shadow 0.2s;
-}
-
-[data-md-color-scheme="slate"] .project-card {
-  background: linear-gradient(135deg, #3a2a24 0%, #4a3a34 50%, #2a1a14 100%);
-  color: #e8dcd0;
 }
 
 .project-card:hover {
