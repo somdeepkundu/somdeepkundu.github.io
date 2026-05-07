@@ -1,8 +1,8 @@
 /* Header / nav bar color (light mode) — terracotta to match hero gradient */
 [data-md-color-primary="custom"] {
-  --md-primary-fg-color: #b0776a;
-  --md-primary-fg-color--light: #c69288;
-  --md-primary-fg-color--dark: #8e5a4f;
+  --md-primary-fg-color: #5c3e37;
+  --md-primary-fg-color--light: #7c5e57;
+  --md-primary-fg-color--dark: #3a251f;
   --md-primary-bg-color: #ffffff;
   --md-primary-bg-color--light: #ffffffb3;
 }
