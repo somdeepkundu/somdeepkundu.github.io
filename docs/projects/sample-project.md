@@ -58,5 +58,5 @@ CHECKLIST FOR THIS PAGE (copy this file for each new project):
 
 ## Links
 
-[View Code on GitHub](https://github.com/[YOUR-GITHUB-USERNAME]/[YOUR-REPO-NAME]){ .md-button }
+[View Code on GitHub](https://github.com/somdeepkundu/[YOUR-REPO-NAME]){ .md-button }
 [View Data Source](https://example.com){ .md-button }

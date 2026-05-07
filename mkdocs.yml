@@ -4,8 +4,8 @@
 # ============================================================
 
 site_name: "Somdeep Kundu - Geospatial Portfolio"
-site_description: "Portfolio of [YOUR NAME] — GIS, Remote Sensing, and Spatial Data Science"
-site_author: "[YOUR NAME]"
+site_description: "Portfolio of Somdeep Kundu — GIS, Remote Sensing, and Spatial Data Science"
+site_author: "Somdeep Kundu"
 # After your site is live, uncomment and set this to your actual GitHub Pages URL:
 # site_url: "https://your-username.github.io/your-repo-name"
 
@@ -55,16 +55,16 @@ markdown_extensions:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
-copyright: "Copyright &copy; [YOUR NAME]"
+copyright: "Copyright &copy; Somdeep Kundu"
 
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/[YOUR-GITHUB-USERNAME]
+      link: https://github.com/somdeepkundu
     - icon: fontawesome/brands/linkedin
-      link: https://linkedin.com/in/[YOUR-LINKEDIN-USERNAME]
+      link: https://linkedin.com/in/somdeep-kundu
     - icon: material/email
-      link: mailto:[YOUR-EMAIL-ADDRESS]
+      link: mailto:somdeepkundu@gmail.com
 
 
 plugins:

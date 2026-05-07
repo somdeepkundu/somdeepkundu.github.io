@@ -2,44 +2,29 @@
 hide:
   - toc
 ---
-<!--
-CHECKLIST FOR THIS PAGE:
-- [ ] Replace each [YOUR ...] placeholder with your actual information
-- [ ] Add or remove entries in each section as needed
-- [ ] Remove sections that are not applicable (e.g., Theses, Conference Presentations)
-- [ ] Add DOI or URL links where available
--->
 
 # Publications
 
-## Journal Articles
+## Book Chapters
 
-1. [YOUR NAME], [CO-AUTHOR NAME], and [CO-AUTHOR NAME] ([YEAR]). "[Your paper title here]." *[Journal Name]*, [Volume] [Issue], [Page range]. [DOI link or URL]
+1. Kundu, S. and Chakraborty, A. (2023). "Chapter 14 — Geospatial Technique to Study Forest Cover using ALOS/PALSAR Data." [View on ResearchGate](https://www.researchgate.net/profile/Somdeep-Kundu-2)
 
-2. [YOUR NAME] and [CO-AUTHOR NAME] ([YEAR]). "[Your paper title here]." *[Journal Name]*, [Volume] [Issue], [Page range]. [DOI link or URL]
+2. Chakraborty, A. and Kundu, S. (2023). "Chapter 8 — Symbiotic Nitrogen Fixation and Soil Fertility." [View on ResearchGate](https://www.researchgate.net/profile/Somdeep-Kundu-2)
 
-3. [YOUR NAME] ([YEAR]). "[Your paper title here]." *[Journal Name]*, [Volume] [Issue], [Page range]. [DOI link or URL]
+3. Chakraborty, A., Kundu, S., and Barat, S. (2023). "Future of Agricultural Statistical Modelling." [View on ResearchGate](https://www.researchgate.net/profile/Somdeep-Kundu-2)
 
 ---
 
-## Conference Papers & Presentations
+## Posters & Conference Presentations
 
-1. [YOUR NAME] and [CO-AUTHOR NAME] ([YEAR]). "[Your presentation title]." *[Conference Name]*, [City, Country].
-
-2. [YOUR NAME] ([YEAR]). "[Your presentation title]." *[Conference Name]*, [City, Country].
+1. Kundu, S. (2023). *HindiSAR — Polarimetry, Forests and NISAR.* Poster presented at Indian Institute of Remote Sensing (ISRO), Dehradun. [View on ResearchGate](https://www.researchgate.net/profile/Somdeep-Kundu-2)
 
 ---
 
 ## Theses
 
-- [YOUR NAME] ([YEAR]). *[Your thesis title]*. [Degree type] thesis. [University Name].
+- Kundu, S. (2023). *Model-Based Polarimetric Decomposition and Soil Moisture Retrieval from Fully Polarimetric L-band SAR Data.* Post Graduate Diploma thesis, Indian Institute of Remote Sensing (ISRO Centre), Dehradun.
 
 ---
 
-## Reports & Technical Documents
-
-- [YOUR NAME] et al. ([YEAR]). *[Report title]*. [Organization Name]. [URL or DOI if available]
-
----
-
-*For citation counts and a full list, see [Google Scholar](https://scholar.google.com) or [ResearchGate](https://www.researchgate.net).*
+*For citation counts and a full list, see [ResearchGate](https://www.researchgate.net/profile/Somdeep-Kundu-2).*
