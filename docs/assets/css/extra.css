@@ -1,3 +1,12 @@
+/* Header / nav bar color (light mode) — terracotta to match hero gradient */
+[data-md-color-primary="custom"] {
+  --md-primary-fg-color: #b0776a;
+  --md-primary-fg-color--light: #c69288;
+  --md-primary-fg-color--dark: #8e5a4f;
+  --md-primary-bg-color: #ffffff;
+  --md-primary-bg-color--light: #ffffffb3;
+}
+
 /* Profile photo on the Home page */
 .profile-photo {
   border-radius: 50%;
