@@ -6,8 +6,8 @@ hide:
 <div class="hero">
   <img src="assets/images/profile.png" alt="Somdeep Kundu" class="profile-photo">
   <h1>Somdeep Kundu</h1>
-  <p><strong>PhD Scholar, IIT Bombay | RuDRA Lab</strong></p>
-  <p><em>Advanced Geospatial Analysis | Machine Learning | Earth Observation</em></p>
+  <p><strong>PhD Scholar, IIT Bombay | RuDRA Lab<, C-TARA/strong></p>
+  <p><em>Generalised Abstract Spacio-temporal madness</em></p>
 </div>
 
 ---
@@ -17,7 +17,7 @@ hide:
 <div class="about-section" markdown>
 <div class="about-text" markdown>
 
-I am a PhD Scholar at the Centre for Technology Alternatives for Rural Areas (C-TARA) at Indian Institute of Technology, Bombay, and an active member of the RuDRA (Rural Data Research Analysis) Lab. Building on my background in Civil Engineering and a PG diploma in Disaster Management with Remote Sensing & GIS from IIRS, ISRO, my work addresses agricultural water optimization for rural Maharashtra. My methodology centers on field-operationalizable approaches and site-specific hydrological modeling rather than purely theoretical machine learning. By integrating ancient agrometeorology with multimodal satellite data (such as NISAR and Sentinel) and rigorous ground-truthing, I utilize Python, QGIS, and Google Earth Engine to translate complex geospatial data into actionable rural applications.
+I am a PhD Scholar at the Centre for Technology Alternatives for Rural Areas (C-TARA) at Indian Institute of Technology, Bombay, and an active member of the RuDRA (Rural Data Research Analysis) Lab. Building on my background in Civil Engineering and a PG diploma in Disaster Management with Remote Sensing & GIS from IIRS, ISRO, my work addresses agricultural water optimization for rural Maharashtra. My methodology centers on field-operationalizable approaches and site-specific hydrological modeling rather than purely theoretical machine learning. By integrating ancient agrometeorology with multimodal satellite data (such as NISAR and Sentinel) and multi-temporal ground-truthing, I utilize Python, QGIS, and Google Earth Engine to translate complex geospatial data into actionable rural applications.
 
 </div>
 
