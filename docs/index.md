@@ -17,7 +17,7 @@ hide:
 <div class="about-section" markdown>
 <div class="about-text" markdown>
 
-I am a PhD Scholar at the Centre for Technology Alternatives for Rural Areas (CTARA) at IIT Bombay, and an active member of the RuDRA Lab. With a foundation in Civil Engineering and a post-graduate diploma in Disaster Management with Remote Sensing and GIS from IIRS, ISRO, I specialize in extracting insights from complex satellite data. My research bridges advanced spatial machine learning, including Graph Neural Networks and Random Forest classification, with climate science and ancient agrometeorology. I leverage tools like Google Earth Engine, QGIS, and Python to build dynamic dashboards and analyze orbital data from missions like NISAR and Sentinel. 
+I am a PhD Scholar at the Centre for Technology Alternatives for Rural Areas (CTARA) at IIT Bombay, and an active member of the RuDRA (Rural Data Research Analysis) Lab. With a foundation in Civil Engineering and a post-graduate diploma in Disaster Management with Remote Sensing and GIS from IIRS, ISRO, I specialize in extracting insights from complex satellite data. My research bridges advanced spatial machine learning, including Graph Neural Networks and Random Forest classification, with climate science and ancient agrometeorology. I leverage tools like Google Earth Engine, QGIS, and Python to build dynamic dashboards and analyze orbital data from missions like NISAR and Sentinel. 
 
 </div>
 
@@ -82,4 +82,4 @@ I am a PhD Scholar at the Centre for Technology Alternatives for Rural Areas (CT
 ## Connect
 
 [GitHub](https://github.com/somdeepkundu){ .md-button }
-[LinkedIn](https://linkedin.com/in/somdeepkundu){ .md-button }
+[LinkedIn](https://linkedin.com/in/somdeep-kundu){ .md-button }
