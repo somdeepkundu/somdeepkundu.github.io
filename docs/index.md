@@ -17,7 +17,7 @@ hide:
 <div class="about-section" markdown>
 <div class="about-text" markdown>
 
-I am a PhD Scholar at the Centre for Technology Alternatives for Rural Areas (CTARA) at IIT Bombay, and an active member of the RuDRA (Rural Data Research Analysis) Lab. With a foundation in Civil Engineering and a post-graduate diploma in Disaster Management with Remote Sensing and GIS from IIRS, ISRO, I specialize in extracting insights from complex satellite data. My research bridges advanced spatial machine learning, including Graph Neural Networks and Random Forest classification, with climate science and ancient agrometeorology. I leverage tools like Google Earth Engine, QGIS, and Python to build dynamic dashboards and analyze orbital data from missions like NISAR and Sentinel. 
+I am a PhD Scholar at the Centre for Technology Alternatives for Rural Areas (C-TARA) at Indian Institute of Technology, Bombay, and an active member of the RuDRA (Rural Data Research Analysis) Lab. Building on my background in Civil Engineering and a PG diploma in Disaster Management with Remote Sensing & GIS from IIRS, ISRO, my work addresses agricultural water optimization for rural Maharashtra. My methodology centers on field-operationalizable approaches and site-specific hydrological modeling rather than purely theoretical machine learning. By integrating ancient agrometeorology with multimodal satellite data (such as NISAR and Sentinel) and rigorous ground-truthing, I utilize Python, QGIS, and Google Earth Engine to translate complex geospatial data into actionable rural applications.
 
 </div>
 
