@@ -33,4 +33,16 @@ Participated in 3 pre-summit events. Selected for HSBC Pune's Deccan Digital Dia
 [View Poster →](../assets/files/IndiaAI-ImpactSummit-Somdeep.pdf){ .md-button }
 </div>
 
+<div class="project-card" markdown>
+![](../assets/images/alok-kriti-techconnect.jpg)
+
+**[Alok Kriti 2.0](https://ee-kundusomdeeo.projects.earthengine.app/view/alokkriti20)**
+
+A geospatial app for night lights analysis using Google Earth Engine. Compare years, generate GIF animations of urban growth, and visualize global luminosity changes over time. Presented at TechConnect, IIT Bombay.
+
+`Google Earth Engine` `JavaScript` `Geospatial` `Remote Sensing`
+
+[Launch App →](https://ee-kundusomdeeo.projects.earthengine.app/view/alokkriti20){ .md-button } [Slides →](../assets/files/Alok-Kriti-2.0.pptx){ .md-button }
+</div>
+
 </div>
