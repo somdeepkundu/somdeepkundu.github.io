@@ -89,7 +89,7 @@
 
 /* Skills grid cards on the Home page */
 .md-typeset .grid.cards > ul > li {
-  background-color: #f0f7ff;
+  background: linear-gradient(135deg, #f5ebde 0%, #fffdf0 50%, #b0776a 100%);
 }
 
 /* Project cards on the Projects gallery page */
@@ -97,7 +97,7 @@
   border: 1px solid var(--md-default-fg-color--lightest);
   border-radius: 8px;
   padding: 1rem;
-  background-color: #f0f7ff;
+  background: linear-gradient(135deg, #f5ebde 0%, #fffdf0 50%, #b0776a 100%);
   transition: box-shadow 0.2s;
 }
 
