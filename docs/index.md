@@ -25,6 +25,8 @@ I am a PhD Scholar at the Centre for Technology Alternatives for Rural Areas (C-
 
 <div class="about-image">
   <img src="assets/images/about.png" alt="About">
+  
+  [See the poster :material-file-pdf-box:](https://somdeepkundu.github.io/assets/files/IndiaAI-ImpactSummit-Somdeep.pdf){ .md-button target="_blank" }
 </div>
 
 </div>
