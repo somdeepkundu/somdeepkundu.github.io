@@ -14,16 +14,7 @@ CHECKLIST FOR THIS PAGE:
 
 # Contact
 
-I am open to work opportunities, collaborations, and project discussions.
-Feel free to reach out through any of the channels below.
-
----
-
-| | |
-|---|---|
-# Contact
-
-I am open to work opportunities, collaborations, and project discussions.
+I am open to collaborations and project discussions.
 Feel free to reach out through any of the channels below.
 
 ---
