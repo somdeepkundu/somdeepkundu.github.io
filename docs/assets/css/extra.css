@@ -62,6 +62,12 @@
   margin-top: 0.5rem;
 }
 
+/* Dark mode adjustments */
+[data-md-color-scheme="slate"] .hero h1,
+[data-md-color-scheme="slate"] .hero p {
+  color: #2a1810 !important;
+}
+
 /* About Me section on the Home page */
 .about-section {
   display: flex;
@@ -124,6 +130,14 @@
   background: linear-gradient(135deg, #f5ebde 0%, #fffdf0 50%, #b0776a 100%);
 }
 
+[data-md-color-scheme="slate"] .md-typeset .grid.cards > ul > li {
+  background: linear-gradient(135deg, #3a2a24 0%, #4a3a34 50%, #2a1a14 100%);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .grid.cards > ul > li * {
+  color: #d4c5b9 !important;
+}
+
 /* Project cards on the Projects gallery page */
 .project-card {
   border: 1px solid var(--md-default-fg-color--lightest);
@@ -131,6 +145,14 @@
   padding: 1rem;
   background: linear-gradient(135deg, #f5ebde 0%, #fffdf0 50%, #b0776a 100%);
   transition: box-shadow 0.2s;
+}
+
+[data-md-color-scheme="slate"] .project-card {
+  background: linear-gradient(135deg, #3a2a24 0%, #4a3a34 50%, #2a1a14 100%);
+}
+
+[data-md-color-scheme="slate"] .project-card * {
+  color: #d4c5b9 !important;
 }
 
 .project-card:hover {
