@@ -10,6 +10,8 @@ CHECKLIST FOR THIS PAGE:
 - [ ] Add or remove certifications
 -->
 
+---
+
 # Experience & Education
 
 ## Work Experience
@@ -18,23 +20,23 @@ CHECKLIST FOR THIS PAGE:
 
 <div class="timeline-entry" markdown>
 
-### [YOUR JOB TITLE] — [YOUR COMPANY / ORGANIZATION]
-*[Month Year] – [Month Year or Present] | [City, Country]*
+### Civil Site Engineer — Progressive Endeavors Pvt. Ltd.
+*January 2019 – December 2020 | Haringhata, West Bengal*
 
-- [Describe your main responsibility or achievement in one sentence]
-- [Describe another key task, project, or result]
-- [Describe a tool, method, or skill you applied regularly]
+- Led soil and road-related works as subcontractor for Flipkart's 100-acre warehouse project at Haringhata Industrial Park near Kalyani
+- Managed construction site operations and quality assurance for the Shapoorji Pallonji Group project
+- Coordinated with multiple teams to ensure project timeline and safety standards compliance
 
 </div>
 
 <div class="timeline-entry" markdown>
 
-### [YOUR PREVIOUS JOB TITLE] — [YOUR PREVIOUS COMPANY]
-*[Month Year] – [Month Year] | [City, Country]*
+### Construction Site Engineer — RITES Limited
+*January 2017 – February 2017 | Salt Lake Sector V, Kolkata*
 
-- [Describe your main responsibility or achievement in one sentence]
-- [Describe another key task, project, or result]
-- [Describe a tool, method, or skill you applied regularly]
+- Oversaw construction of Bose Institute New Campus building (G+16) at Salt Lake Sector V
+- Monitored structural integrity and construction quality for high-rise residential project
+- Applied technical knowledge in civil engineering best practices and site management
 
 </div>
 
@@ -44,22 +46,32 @@ CHECKLIST FOR THIS PAGE:
 
 ## Education
 
-### [YOUR DEGREE] in [YOUR FIELD]
-**[YOUR UNIVERSITY]** | *[Year of Graduation]*
+### Post Graduate Diploma in Remote Sensing and Geographic Information System (GIS)
+**Indian Institute of Remote Sensing (ISRO Centre), Dehradun** | *2023*
 
-[Optional: one sentence about your thesis, specialization, or coursework if relevant]
+Specialization in Natural Hazards & Disaster Risk Management. Completed project on Model Based Polarimetric Decomposition and Soil Moisture Retrieval from Fully Polarimetric L-band SAR data. Active participant in Cloud-Based Google Earth Engine Workshop and ISRO Akash Tatva Conference.
+
+### Bachelor of Technology in Civil Engineering
+**Calcutta Institute of Technology, Howrah** | *2018*
+
+Overall DGPA: 7.97. Completed final year green building project incorporating rainwater harvesting system with 4-star GRIHA rating. Final year project included AutoCAD 3D modeling and sustainable design principles.
+
+### Secondary & Higher Secondary Education
+**South Eastern Railway Boys' Higher Secondary School, Adra** | *2012 & 2014*
+
+Secondary (WBBSE) – 2012 | Score: 85.14%
+Higher Secondary (WBCHSE) – 2014 | Score: 66.20%
 
 ---
 
-### [YOUR PREVIOUS DEGREE] in [YOUR FIELD]
-**[YOUR UNIVERSITY]** | *[Year of Graduation]*
+## Certifications & Training
 
----
+- Certificate Course in AutoCAD (2D & 3D) — Quick Career / ISO 1901 Certified, 2017
+- Cloud Computing Workshop & Google Earth Engine Certification — Spatial Thoughts / Ujaval Gandhi, 2023
+- Lifetime Member — Indian Society of Remote Sensing, Dehradun Chapter
 
-## Certifications
+## Technical Skills
 
-- [Certification Name] — [Issuing Organization], [Year]
-- [Certification Name] — [Issuing Organization], [Year]
-- [Certification Name] — [Issuing Organization], [Year]
+**Software & Tools:** AutoCAD 2D & 3D, Blender 3D, Python, JavaScript (Google Earth Engine), QGIS, SNAP, PolSARPro, MIDAS
 
-*Examples: QGIS Certification, PMP Certification, AWS Certified Cloud Practitioner*
+**Specializations:** Remote Sensing, GIS, SAR Polarimetry, Disaster Risk Management, BIM
