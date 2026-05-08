@@ -85,6 +85,15 @@ I am a PhD Scholar at the Centre for Technology Alternatives for Rural Areas (C-
     - Multiband spatiotemporal remote sensing data visualization
     - Static and dynamic web development
 
+-   :material-account-group:{ .lg .middle } **Social & Emotional Skills**
+
+    ---
+
+    - Highly motivated
+    - Communication skills and leadership experience
+    - Evidence-based policy evaluation studies
+    - Qualitative research, Auto-Ethnography
+
 </div>
 
 ---
