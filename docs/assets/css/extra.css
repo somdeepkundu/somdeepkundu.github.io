@@ -292,6 +292,103 @@
   color: var(--terra-deep);
 }
 
+/* ─── Project detail page ───────────────────────────────────── */
+.project-hero {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.project-hero-text { flex: 1; }
+
+.project-hero-img {
+  flex: 0 0 340px;
+}
+
+.project-hero-img img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 6px 6px 0 var(--terra-light), 0 8px 32px var(--terra-shadow);
+}
+
+@media (max-width: 768px) {
+  .project-hero { flex-direction: column; }
+  .project-hero-img { flex: none; width: 100%; }
+}
+
+/* Tech badges */
+.tech-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.6rem 0 1rem;
+}
+
+.badge {
+  background: var(--terra-pale);
+  border: 1px solid var(--terra-light);
+  color: var(--terra-deep);
+  font-size: 0.72rem;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+}
+
+[data-md-color-scheme="slate"] .badge {
+  background: #3a2a24;
+  border-color: var(--terra-mid);
+  color: #d4c5b9;
+}
+
+.project-cta-row {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 1.25rem;
+}
+
+/* Feature grid */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin: 1rem 0;
+}
+
+.feature-item {
+  background: linear-gradient(145deg, var(--terra-pale), var(--terra-cream));
+  border: 1px solid rgba(176, 119, 106, 0.25);
+  border-top: 3px solid var(--terra-light);
+  border-radius: 10px;
+  padding: 1.25rem 1.25rem 1rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.feature-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px var(--terra-shadow);
+  border-top-color: var(--terra-deep);
+}
+
+.feature-item h3 {
+  margin-top: 0;
+  font-size: 0.95rem;
+  color: var(--terra-deep);
+}
+
+[data-md-color-scheme="slate"] .feature-item {
+  background: linear-gradient(145deg, #3a2a24, #2a1a14);
+  border-top-color: var(--terra-mid);
+}
+
+[data-md-color-scheme="slate"] .feature-item * {
+  color: #d4c5b9 !important;
+}
+
 /* ─── Buttons ───────────────────────────────────────────────── */
 .md-typeset .md-button {
   border-radius: 6px;
