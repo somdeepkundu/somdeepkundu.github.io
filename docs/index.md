@@ -65,9 +65,13 @@ I am a PhD Scholar at the Centre for Technology Alternatives for Rural Areas (C-
 
     ---
 
-    - Graph Neural Networks (GNN)
-    - Supervised classification (Random Forest)
-    - Time-series satellite data processing
+    - Linear Algebra, Bayesian Statistics
+    - Classical and non-Markovian hybrid approach
+    - Post-classification accuracy assessment
+    - Time-series spatial data processing and gap filling
+    - Foundational Model (Alpha Earth)
+    - Graph Neural Networks (GNN), Knowledge Graph
+    - Sustainable and Trustworthy AI
     - Chaos Theory applications in agrometeorology
 
 -   :material-earth:{ .lg .middle } **Web Mapping & Applications**
