@@ -56,6 +56,10 @@ Higher Secondary (WBCHSE) – 2014 | Score: 66.20%
 
 ## Outreach & Community
 
+- **Presenter, Raisina Hackathon 2025** — Represented RuDRA Lab, IIT Bombay at the Raisina Dialogue (co-hosted by the Ministry of External Affairs and Observer Research Foundation). Presented on leveraging geospatial cloud computing with ISRO satellite datasets to transform India's remote sensing landscape and advance the National Geospatial Policy 2022 as a global public good. *(January 2025)* [Read on CTARA](https://www.ctara.iitb.ac.in/en/breaking-news/team-rudras-participation-raisina-hackathon-2025)
+
+- **Host & Coordinator** — Led the Nepali Youth Parliamentarian delegation visit to IIT Bombay campus, organized by the Observer Research Foundation (ORF). *(August 9, 2025)*
+
 - **Session Moderator** — First-ever NISAR Data Workflow Workshop, organized by IEEE GRSS Young Professionals, IEEE GRSS BIT Mesra Student Branch Chapter, and IEEE Local Group Data Science Climate Risk Management. The session drew 1000+ global expressions of interest from 40+ countries, covering dual L- & S-band SAR capabilities, polarimetric processing, ISCE3 workflows, and applications in disaster risk reduction, agriculture, and hydrology. *(February 17, 2026)* [View on LinkedIn](https://www.linkedin.com/posts/ieee-grss-bit-mesra-student-branch-chapter-b08b75346_nisar-nasa-isro-ugcPost-7429470681484120064-tYtB)
 
 ---
