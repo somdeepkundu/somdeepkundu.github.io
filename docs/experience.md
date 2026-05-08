@@ -21,12 +21,12 @@ hide:
 
 <div class="timeline-entry" markdown>
 
-### Construction Site Engineer — RITES Limited
-*January 2017 – February 2017 | Salt Lake Sector V, Kolkata*
+### <small>Training — Construction Site Engineer, RITES Limited</small>
+<small>*January 2017 – February 2017 | Salt Lake Sector V, Kolkata*
 
 - Oversaw construction of Bose Institute New Campus building (G+16) at Salt Lake Sector V
 - Monitored structural integrity and construction quality for high-rise residential project
-- Applied technical knowledge in civil engineering best practices and site management
+- Applied technical knowledge in civil engineering best practices and site management</small>
 
 </div>
 
