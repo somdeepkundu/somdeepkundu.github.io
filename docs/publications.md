@@ -19,6 +19,8 @@ hide:
 
 1. Kundu, S. (2023). *HindiSAR — Polarimetry, Forests and NISAR.* Poster presented at Indian Institute of Remote Sensing (ISRO), Dehradun. [View on ResearchGate](https://www.researchgate.net/profile/Somdeep-Kundu-2)
 
+2. Kundu, S. and Chinnasamy, P. (2025). *Bridging the Epistemic Gap: A Graph Neural Network Approach to Ancient Agrometeorology and Chaos Theory.* Oral presentation at SANKET 2025 (Sustainability through Ancient Knowledge and Emerging Technologies), IIT Bombay, December 13, 2025. [Slides (PDF)](assets/files/sanket25_somdeep_v1.4.pdf) | [Watch on YouTube](https://youtu.be/kV3k38ctI20?si=v6xXFgKp2CcUo5lE)
+
 ---
 
 ## Theses
