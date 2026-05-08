@@ -27,4 +27,12 @@ hide:
 
 ---
 
+## Blog Articles
+
+1. Kundu, S. (2023). *False Colour Composites: Unveiling Nature's Spectrum — From a Biomimicking Perspective towards Abstraction of Human Imagination for Better Information Extraction.* Medium. [Read on Medium](https://medium.com/@somdeepkundu/false-colour-composites-unveiling-natures-spectrum-e9f5690753f0)
+
+2. Kundu, S. (2024). *Seeing the World Through Short Wave Infrared False Color Composite (SWIR-FCC).* Medium. [Read on Medium](https://medium.com/@somdeepkundu/seeing-the-world-through-short-wave-infrared-false-color-composite-swir-fcc-fa92d0ef693d)
+
+---
+
 *For citation counts and a full list, see [ResearchGate](https://www.researchgate.net/profile/Somdeep-Kundu-2).*
