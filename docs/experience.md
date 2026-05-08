@@ -21,6 +21,17 @@ hide:
 
 <div class="timeline-entry" markdown>
 
+### CAD Design Engineer — Modern Home Planner
+*2017 – 2022 | Adra, West Bengal*
+
+- Produced architectural and structural CAD drawings for residential projects
+- Collaborated with clients on design requirements and delivered AutoCAD 2D/3D plans
+- [View on Facebook](https://www.facebook.com/share/18V1DdR7ab/)
+
+</div>
+
+<div class="timeline-entry" markdown>
+
 ### <small>Training — Construction Site Engineer, RITES Limited</small>
 <small>*January 2017 – February 2017 | Salt Lake Sector V, Kolkata*
 
