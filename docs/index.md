@@ -50,6 +50,8 @@ I am a PhD Scholar at the Centre for Technology Alternatives for Rural Areas (C-
     - GDAL / OGR
     - STAC API for satellite data integration
     - Orbital pass tracking (NISAR, Sentinel, CelesTrak)
+    - Drone data spatial analysis with open-source tools
+    - DGCA-approved certified drone pilot (Rotorcraft, VLOS, Small)
 
 -   :material-code-braces:{ .lg .middle } **Programming**
 
@@ -59,6 +61,7 @@ I am a PhD Scholar at the Centre for Technology Alternatives for Rural Areas (C-
     - R — Spatial Data Analysis
     - JavaScript — Web mapping & GEE
     - Natural Language / Vibe Coding
+    - Parallel processing using Dask and XArray
 
 -   :material-star-four-points:{ .lg .middle } **Machine Learning & GeoAI**
 
