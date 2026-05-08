@@ -79,8 +79,19 @@ Higher Secondary (WBCHSE) – 2014 | Score: 66.20%
 
 ## Certifications & Training
 
-- Certificate Course in AutoCAD (2D & 3D) — Quick Career / ISO 1901 Certified, 2017
-- Cloud Computing Workshop & Google Earth Engine Certification — Spatial Thoughts / Ujaval Gandhi, 2023
+- **Teaching Assistant, NPTEL Online Certification Course** — Indian Institute of Technology, Bombay *(Jun 2025)*
+- **GeoSpatial Intelligence: Applications and Challenges in the Big Data Era** — IIIT SriCity / ANRF *(Jun 2025)*
+- **Advanced QGIS: Modeling, Automation, Time Series & 3D Data** — Spatial Thoughts *(Mar 2025)* · ID: QGIS-7060
+- **InspireTalk: Radar Polarimetry and Beyond** — IEEE GRSS BIT Mesra Student Branch Chapter *(Jan 2025)*
+- **Women in Optics and Photonics in India-Asia (WOPI) 2024** — IIT Bombay *(Dec 2024)*
+- **Advances in High-Dimensional Statistical Learning Conference** — North Carolina State University *(Dec 2024)*
+- **Mapping and Data Visualization with Python** — Spatial Thoughts *(Jul 2024)* · ID: ST-PYTHON-722
+- **New Horizons in Remote Sensing: Basics and Beyond** — IEEE Geoscience and Remote Sensing Society (GRSS) Summer School *(Aug 2023)*
+- **Creating Publication Quality Charts with Google Earth Engine** — Spatial Thoughts *(Aug 2023)* · ID: ST-GEE-601
+- **Workshop in Remote Sensing of Cryosphere** — IIT Bombay *(Mar 2023)*
+- **Cloud Computing & Google Earth Engine Certification** — Spatial Thoughts / Ujaval Gandhi *(2023)*
+- **Certificate Course in AutoCAD (2D & 3D)** — Quick Career / ISO 9001 Certified *(2017)*
+- **AI Appreciate & AI Aware Badges — AI For All** — CBSE and Intel *(Nov 2021)*
 - Lifetime Member — Indian Society of Remote Sensing, Dehradun Chapter
 
 ## Technical Skills
