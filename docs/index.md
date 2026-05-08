@@ -59,7 +59,7 @@ I am a PhD Scholar at the Centre for Technology Alternatives for Rural Areas (C-
     - R — Spatial Data Analysis
     - JavaScript — Web mapping & GEE
     - HTML, CSS — Web Development
-    - Natural Language / Vibe Coding
+    - Natural Language / Vibe Coding — Agentic Workflow
     - Parallel processing using Dask and XArray
 
 -   :material-star-four-points:{ .lg .middle } **Machine Learning & GeoAI**
