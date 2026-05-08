@@ -80,9 +80,10 @@ I am a PhD Scholar at the Centre for Technology Alternatives for Rural Areas (C-
     ---
 
     - Streamlit for data-driven web apps and dashboards
-    - Interactive web-based application development
+    - Interactive web-based application development (GEE apps, GitHub.io)
     - Integrating indigenous knowledge systems with spatial data
-    - Remote sensing visualization
+    - Multiband spatiotemporal remote sensing data visualization
+    - Static and dynamic web development
 
 </div>
 
