@@ -46,7 +46,7 @@ A geospatial app for night lights analysis using Google Earth Engine. Compare ye
 </div>
 
 <div class="project-card" markdown>
-![](../assets/images/nfhs-spatiotemporal.png)
+![](https://github.com/user-attachments/assets/de6b3637-2caf-42c2-9252-329435c065c0)
 
 **[NFHS Spatio-Temporal Data Analysis](https://github.com/somdeepkundu/lisa-moran-nss77)**
 
@@ -58,7 +58,7 @@ Local and Global Moran's I analysis on NFHS (NSS 77th round) data to uncover spa
 </div>
 
 <div class="project-card" markdown>
-![](../assets/images/spatial-process-modelling.png)
+![](https://opengraph.githubassets.com/1/somdeepkundu/space-time-statistics)
 
 **[Spatial Process Modelling](https://github.com/somdeepkundu/space-time-statistics)**
 
