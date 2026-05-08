@@ -60,6 +60,8 @@ Higher Secondary (WBCHSE) – 2014 | Score: 66.20%
 
 - **Host & Coordinator** — Led the Nepali Youth Parliamentarian delegation visit to IIT Bombay campus, organized by the Observer Research Foundation (ORF). *(August 9, 2025)*
 
+- **Participant, ORF Fellows Seminar** — Represented C-TARA, RuDRA Lab, and IIT Bombay at the Observer Research Foundation Fellows Seminar on *"Regenerating Water Bodies to Build Resilient Cities in India"*, exploring the role of urban water bodies in climate resilience and water security in Indian cities. Held at ORF Mumbai, ONE BKC, Bandra Kurla Complex. *(March 17, 2026)* [Read the Paper](https://www.orfonline.org/research/regenerating-water-bodies-to-build-resilient-cities-in-india)
+
 - **Session Moderator** — First-ever NISAR Data Workflow Workshop, organized by IEEE GRSS Young Professionals, IEEE GRSS BIT Mesra Student Branch Chapter, and IEEE Local Group Data Science Climate Risk Management. The session drew 1000+ global expressions of interest from 40+ countries, covering dual L- & S-band SAR capabilities, polarimetric processing, ISCE3 workflows, and applications in disaster risk reduction, agriculture, and hydrology. *(February 17, 2026)* [View on LinkedIn](https://www.linkedin.com/posts/ieee-grss-bit-mesra-student-branch-chapter-b08b75346_nisar-nasa-isro-ugcPost-7429470681484120064-tYtB)
 
 ---
