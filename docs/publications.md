@@ -31,6 +31,14 @@ hide:
 
 ---
 
+## Lectures & Tutorials
+
+1. Kundu, S. (2023–2024). *GEE with Som* — YouTube tutorial playlist on Google Earth Engine covering spatial analysis, satellite data processing, and cloud-based geospatial workflows. [Watch Playlist](https://www.youtube.com/playlist?list=PLmDrCR69nIGS4H8gJV0caEfaMIrbZyYll)
+
+2. Kundu, S. (2024). *SAR Polarimetry: Concepts and Applications* — Guest lecture delivered for IEEE Student Branch on Synthetic Aperture Radar polarimetry, decomposition techniques, and remote sensing applications. [Watch on YouTube](https://youtu.be/nUBxxrK5MQA?si=AFDbseBCFxPzOTBy)
+
+---
+
 ## Blog Articles
 
 1. Kundu, S. (2023). *False Colour Composites: Unveiling Nature's Spectrum — From a Biomimicking Perspective towards Abstraction of Human Imagination for Better Information Extraction.* Medium. [Read on Medium](https://medium.com/@somdeepkundu/false-colour-composites-unveiling-natures-spectrum-e9f5690753f0)
