@@ -47,10 +47,8 @@ I am a PhD Scholar at the Centre for Technology Alternatives for Rural Areas (C-
     ---
 
     - Google Earth Engine, QGIS
-    - GDAL / OGR
+    - GDAL / OGR — Drone data spatial analysis with open-source tools
     - STAC API for satellite data integration
-    - Orbital pass tracking (NISAR, Sentinel, CelesTrak)
-    - Drone data spatial analysis with open-source tools
     - DGCA-approved certified drone pilot (Rotorcraft, VLOS, Small)
 
 -   :material-code-braces:{ .lg .middle } **Programming**
