@@ -312,6 +312,16 @@
   box-shadow: 6px 6px 0 var(--terra-light), 0 8px 32px var(--terra-shadow);
 }
 
+/* Full-width showcase image on project detail pages */
+.md-typeset .project-showcase img,
+.md-content__inner > p > img[alt*="Showcase"],
+.md-content__inner > p > img[alt*="showcase"] {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 8px 40px var(--terra-shadow);
+  margin: 1.5rem 0;
+}
+
 @media (max-width: 768px) {
   .project-hero { flex-direction: column; }
   .project-hero-img { flex: none; width: 100%; }

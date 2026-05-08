@@ -3,10 +3,6 @@ hide:
   - toc
 ---
 
-<div class="project-hero" markdown>
-
-<div class="project-hero-text" markdown>
-
 # Bombay Asteroids
 
 <div class="tech-badges">
@@ -24,13 +20,7 @@ A retro arcade shooter set above Mumbai — pilot your spaceship through 10 icon
 [📂 Source Code](https://github.com/somdeepkundu/bombay-asteroids){ .md-button target="_blank" }
 </div>
 
-</div>
-
-<div class="project-hero-img">
-  <img src="../assets/images/bombay-asteroids-preview.png" alt="Bombay Asteroids gameplay preview">
-</div>
-
-</div>
+![Bombay Asteroids Showcase](../assets/images/bombay-asteroids-showcase.jpg)
 
 ---
 
