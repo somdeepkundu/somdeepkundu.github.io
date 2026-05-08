@@ -39,4 +39,4 @@ hide:
 
 ---
 
-*For citation counts and a full list, see [ResearchGate](https://www.researchgate.net/profile/Somdeep-Kundu-2).*
+*For citation counts and a full list, see [ResearchGate](https://www.researchgate.net/profile/Somdeep-Kundu-2). Blog articles are published as interactive, web-native pieces on [Medium](https://medium.com/@somdeepkundu).*
