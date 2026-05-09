@@ -552,3 +552,14 @@
   background: #f07898;
   border-color: #f07898;
 }
+
+[data-md-color-scheme="slate"] .md-typeset .md-button:not(.md-button--primary) {
+  color: #f0dce8;
+  border-color: rgba(232, 96, 138, 0.5);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .md-button:not(.md-button--primary):hover {
+  color: #ffffff;
+  border-color: #e8608a;
+  background: rgba(232, 96, 138, 0.1);
+}
