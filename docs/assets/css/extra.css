@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   PORTFOLIO — v1.1.1
+   PORTFOLIO — v1.1.3.1
    Light:  Desert Rose   — dusty pink, warm sand, deep wine
    Dark:   Dark Rose Tech — deep plum-black with rose-gold glow
    Fonts:  DM Serif Display (headings) + DM Sans (body)
@@ -562,4 +562,62 @@
   color: #ffffff;
   border-color: #e8608a;
   background: rgba(232, 96, 138, 0.1);
+}
+
+/* ─── Inline links — themed, accessible contrast ────────────── */
+:root {
+  --md-typeset-a-color: #8c4a6e;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-typeset-a-color: #f07898;
+}
+
+/* light mode: rose-mid with visible underline */
+.md-typeset a:not(.md-button):not(.md-tabs__link):not(.md-nav__link):not(.md-footer__link):not(.md-source__link):not(.md-header__button) {
+  color: #8c4a6e !important;
+  text-decoration: underline;
+  text-decoration-color: rgba(140, 74, 110, 0.35);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  transition: color 0.18s ease, text-decoration-color 0.18s ease;
+}
+
+.md-typeset a:not(.md-button):not(.md-tabs__link):not(.md-nav__link):not(.md-footer__link):not(.md-source__link):not(.md-header__button):hover {
+  color: #b53664 !important;
+  text-decoration-color: #b53664;
+}
+
+/* dark mode: bright rose-pink so links are clearly visible on plum */
+[data-md-color-scheme="slate"] .md-typeset a:not(.md-button):not(.md-tabs__link):not(.md-nav__link):not(.md-footer__link):not(.md-source__link):not(.md-header__button) {
+  color: #f07898 !important;
+  text-decoration-color: rgba(240, 120, 152, 0.5);
+}
+
+[data-md-color-scheme="slate"] .md-typeset a:not(.md-button):not(.md-tabs__link):not(.md-nav__link):not(.md-footer__link):not(.md-source__link):not(.md-header__button):hover {
+  color: #ffb0c4 !important;
+  text-decoration-color: #ffb0c4;
+}
+
+/* ─── Version badge in footer ───────────────────────────────── */
+.md-copyright::after {
+  content: "v1.1.3.1";
+  margin-left: 0.65rem;
+  opacity: 0.38;
+  font-size: 0.68em;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.07em;
+}
+
+/* ─── Keyboard focus — visible on every interactive element ─── */
+.md-typeset a:focus-visible,
+.md-typeset .md-button:focus-visible {
+  outline: 2px solid #b06878;
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+[data-md-color-scheme="slate"] .md-typeset a:focus-visible,
+[data-md-color-scheme="slate"] .md-typeset .md-button:focus-visible {
+  outline-color: #f07898;
 }
