@@ -139,9 +139,29 @@
 }
 
 /* ─── Dark mode hero ────────────────────────────────────────── */
-[data-md-color-scheme="slate"] .hero h1,
+[data-md-color-scheme="slate"] .hero {
+  background: linear-gradient(135deg, #2a1208, #3d1f12, #5c2e18, #3d1f12, #2a1208);
+  background-size: 300% 300%;
+  border-color: rgba(201, 98, 46, 0.35);
+  box-shadow: 0 4px 36px rgba(61, 31, 18, 0.6), 0 0 60px rgba(201, 98, 46, 0.08);
+}
+
+[data-md-color-scheme="slate"] .hero h1 {
+  color: #f0d8c8 !important;
+}
+
 [data-md-color-scheme="slate"] .hero p {
-  color: #2a1208 !important;
+  color: #d4a882 !important;
+}
+
+[data-md-color-scheme="slate"] .hero p em {
+  color: #e8a76a !important;
+}
+
+[data-md-color-scheme="slate"] .profile-photo {
+  border-color: #3d1f12;
+  outline-color: #c9622e;
+  box-shadow: 0 8px 28px rgba(61, 31, 18, 0.7);
 }
 
 /* ─── About Me section ──────────────────────────────────────── */
