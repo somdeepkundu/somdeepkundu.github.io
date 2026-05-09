@@ -52,6 +52,15 @@
   overflow: hidden;
 }
 
+/* disable shimmer on mobile — too heavy for low-end browsers */
+@media (max-width: 899px) {
+  .hero {
+    animation: none;
+    background: linear-gradient(135deg, #fde8d4, #fef7f0, #f5c9a0);
+    background-size: 100% 100%;
+  }
+}
+
 .hero::before {
   content: '';
   position: absolute;
