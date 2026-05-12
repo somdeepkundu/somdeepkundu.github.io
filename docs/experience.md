@@ -17,7 +17,7 @@ hide:
 - Gained hands-on experience in advanced surveying techniques using Total Stations for precision measurement and site layout
 - Coordinated with multiple teams to ensure project timeline and safety standards compliance on this mega-structure connecting lakhs of sellers to pan-India market
 
-[Watch: Flipkart #BigBox Warehouse](https://youtu.be/AiO38ERgP6k){ .md-button }
+[Watch: Flipkart #BigBox Warehouse](https://youtu.be/AiO38ERgP6k){ .md-button .video-button }
 
 </div>
 
