@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   PORTFOLIO — v1.1.3.1
+   PORTFOLIO — v1.1.4
    Light:  Desert Rose   — dusty pink, warm sand, deep wine
    Dark:   Dark Rose Tech — deep plum-black with rose-gold glow
    Fonts:  DM Serif Display (headings) + DM Sans (body)
@@ -7,7 +7,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap');
 
-/* ─── Desert Rose tokens (light) ────────────────────────────── */
+/* ─── Desert rose tokens (light) ────────────────────────────── */
 :root {
   --rose-deep:   #3d1f2d;
   --rose-mid:    #8c4a6e;
@@ -564,6 +564,13 @@
   background: rgba(232, 96, 138, 0.1);
 }
 
+/* ─── Video buttons ─────────────────────────────────────────── */
+.md-typeset .md-button.video-button {
+  font-size: 16px;
+  padding: 10px 20px !important;
+  min-width: 280px;
+}
+
 /* ─── Inline links — themed, accessible contrast ────────────── */
 :root {
   --md-typeset-a-color: #8c4a6e;
@@ -601,7 +608,7 @@
 
 /* ─── Version badge in footer ───────────────────────────────── */
 .md-copyright::after {
-  content: "v1.1.3.1";
+  content: "v1.1.4";
   margin-left: 0.65rem;
   opacity: 0.38;
   font-size: 0.68em;
