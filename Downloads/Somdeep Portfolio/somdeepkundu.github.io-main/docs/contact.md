@@ -24,6 +24,5 @@ Feel free to reach out through any of the channels below.
 | :fontawesome-brands-youtube: **YouTube (Poetry)** | [@somdeepkundu2506](https://www.youtube.com/@somdeepkundu2506) |
 
 ---
----
 
 [Download CV :material-download:](assets/Somdeep-Kundu-CV.pdf){ .md-button .md-button--primary }
