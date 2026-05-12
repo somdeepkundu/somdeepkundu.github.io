@@ -13,9 +13,11 @@ hide:
 ### Civil Site Engineer — Progressive Endeavors Pvt. Ltd.
 *January 2019 – December 2020 | Haringhata, West Bengal*
 
-- Led soil and road-related works as subcontractor for Flipkart's 100-acre warehouse project at Haringhata Industrial Park near Kalyani
-- Managed construction site operations and quality assurance for the Shapoorji Pallonji Group project
-- Coordinated with multiple teams to ensure project timeline and safety standards compliance
+- Managed earth moving and road compaction works for Flipkart's 100-acre #BigBox warehouse—India's largest e-commerce facility and first provisionally certified Platinum-rated warehouse by the Indian Green Buildings Council
+- Gained hands-on experience in advanced surveying techniques using Total Stations for precision measurement and site layout
+- Coordinated with multiple teams to ensure project timeline and safety standards compliance on this mega-structure connecting lakhs of sellers to pan-India market
+
+[Watch: Flipkart #BigBox Warehouse](https://youtu.be/AiO38ERgP6k){ .md-button }
 
 </div>
 
@@ -25,7 +27,7 @@ hide:
 *2017 – 2022 | Adra, West Bengal*
 
 - Produced architectural and structural CAD drawings for residential projects
-- Collaborated with clients on design requirements and delivered AutoCAD 2D/3D plans
+- Experimented with SketchUp and Blender 3D for realistic surface modeling and 3D visualization
 - [View on Facebook](https://www.facebook.com/share/18V1DdR7ab/)
 
 </div>
@@ -35,9 +37,11 @@ hide:
 ### <small>Training — Construction Site Engineer, RITES Limited</small>
 <small>*January 2017 – February 2017 | Salt Lake Sector V, Kolkata*
 
-- Oversaw construction of Bose Institute New Campus building (G+16) at Salt Lake Sector V
-- Monitored structural integrity and construction quality for high-rise residential project
-- Applied technical knowledge in civil engineering best practices and site management</small>
+- 1.5-month intensive training overseeing construction of Bose Institute New Campus building (G+16) at the heart of College More
+- Monitored RCC structure integrity, bar bending schedules, and construction quality for high-rise residential project
+- Applied technical knowledge in civil engineering best practices and site management
+
+[Watch: Bose Institute Construction](https://youtu.be/GtqxI5XHIJY){ .md-button }</small>
 
 </div>
 
@@ -50,7 +54,15 @@ hide:
 ### Post Graduate Diploma in Remote Sensing and Geographic Information System (GIS)
 **Indian Institute of Remote Sensing (ISRO Centre), Dehradun** | *2023*
 
-Specialization in Natural Hazards & Disaster Risk Management. Completed project on Model Based Polarimetric Decomposition and Soil Moisture Retrieval from Fully Polarimetric L-band SAR data. Active participant in Cloud-Based Google Earth Engine Workshop and ISRO Akash Tatva Conference.
+Specialization in Natural Hazards & Disaster Risk Management. Completed project on Model Based Polarimetric Decomposition and Soil Moisture Retrieval from Fully Polarimetric L-band SAR data using false colour composite techniques.
+
+**Google Earth Engine & Cloud Computing**
+
+Introduced to cloud-enabled geospatial analysis through Google Earth Engine, transforming how we process satellite imagery at scale. Discovered the power of geospatial data as a philosophy for building a more just society aligned with the UN 2030 Sustainable Development Agenda.
+
+Active participant in ISRO YUVIKA—a curious school student program—and the Cloud-Based Google Earth Engine Workshop. Attended ISRO Akash Tatva Conference exploring emerging technologies in Earth observation.
+
+[ISRO YUVIKA Program](https://www.isro.gov.in/YUVIKA.html){ .md-button } [UN 2030 Agenda](https://sdgs.un.org/2030agenda){ .md-button }
 
 ### Bachelor of Technology in Civil Engineering
 **Calcutta Institute of Technology, Howrah** | *2018*
@@ -60,8 +72,8 @@ Overall DGPA: 7.97. Completed final year green building project incorporating ra
 ### Secondary & Higher Secondary Education
 **South Eastern Railway Boys' Higher Secondary School, Adra** | *2012 & 2014*
 
-Secondary (WBBSE) – 2012 | Score: 85.14%
-Higher Secondary (WBCHSE) – 2014 | Score: 66.20%
+Secondary (WBBSE) – 2012 <!-- | Score: 85.14% -->
+Higher Secondary (WBCHSE) – 2014 <!-- | Score: 66.20% -->
 
 ---
 
@@ -77,7 +89,7 @@ Higher Secondary (WBCHSE) – 2014 | Score: 66.20%
 
 ---
 
-## Certifications & Training
+## Certifications
 
 - **Teaching Assistant, NPTEL Online Certification Course** — Indian Institute of Technology, Bombay *(Jun 2025)*
 - **GeoSpatial Intelligence: Applications and Challenges in the Big Data Era** — IIIT SriCity / ANRF *(Jun 2025)*
@@ -94,8 +106,10 @@ Higher Secondary (WBCHSE) – 2014 | Score: 66.20%
 - **AI Appreciate & AI Aware Badges — AI For All** — CBSE and Intel *(Nov 2021)*
 - Lifetime Member — Indian Society of Remote Sensing, Dehradun Chapter
 
+[View certifications on LinkedIn →](https://www.linkedin.com/in/somdeep-kundu/details/certifications/){ .md-button }
+
 ## Technical Skills
 
-**Software & Tools:** AutoCAD 2D & 3D, Blender 3D, Python, JavaScript (Google Earth Engine), QGIS, SNAP, PolSARPro, MIDAS
+**Software & Tools:** AutoCAD 2D & 3D, Blender 3D, SketchUp, Python, JavaScript (Google Earth Engine), QGIS, SNAP, PolSARPro, MIDAS
 
-**Specializations:** Remote Sensing, GIS, SAR Polarimetry, Disaster Risk Management, BIM
+**Specializations:** Remote Sensing, GIS, SAR Polarimetry, Disaster Risk Management, BIM, Cloud Computing
