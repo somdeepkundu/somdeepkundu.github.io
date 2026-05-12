@@ -77,7 +77,9 @@ Higher Secondary (WBCHSE) – 2014 | Score: 66.20%
 
 ---
 
-## Certifications & Training
+## Certifications
+
+[View all certifications on LinkedIn →](https://www.linkedin.com/in/somdeep-kundu/details/certifications/){ .md-button }
 
 - **Teaching Assistant, NPTEL Online Certification Course** — Indian Institute of Technology, Bombay *(Jun 2025)*
 - **GeoSpatial Intelligence: Applications and Challenges in the Big Data Era** — IIIT SriCity / ANRF *(Jun 2025)*
