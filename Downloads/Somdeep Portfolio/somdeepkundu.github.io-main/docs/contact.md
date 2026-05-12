@@ -4,8 +4,6 @@ hide:
 ---
 # Contact
 
-<!-- Updated: 2026-05-12 -->
-
 I am open to collaborations and project discussions.
 Feel free to reach out through any of the channels below.
 
