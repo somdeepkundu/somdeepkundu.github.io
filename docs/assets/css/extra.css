@@ -566,7 +566,7 @@
 
 /* ─── Video buttons ─────────────────────────────────────────── */
 .md-typeset .md-button.video-button {
-  font-size: 9px;
+  font-size: 12px;
   padding: 10px 20px !important;
   min-width: 280px;
 }
