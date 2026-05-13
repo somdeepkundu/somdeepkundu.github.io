@@ -62,7 +62,8 @@ Introduced to cloud-enabled geospatial analysis through Google Earth Engine, tra
 
 Active participant in ISRO YUVIKA—a curious school student program—and the Cloud-Based Google Earth Engine Workshop. Attended ISRO Akash Tatva Conference exploring emerging technologies in Earth observation.
 
-[ISRO YUVIKA Program](https://www.isro.gov.in/YUVIKA.html){ .md-button } [UN 2030 Agenda](https://sdgs.un.org/2030agenda){ .md-button }
+<!-- | [ISRO YUVIKA Program](https://www.isro.gov.in/YUVIKA.html){ .md-button } [UN 2030 Agenda](https://sdgs.un.org/2030agenda){ .md-button }-->
+[ISRO YUVIKA Program](https://www.isro.gov.in/YUVIKA.html){ .md-button .video-button } [UN 2030 Agenda](https://sdgs.un.org/2030agenda){ .md-button .video-button } [ISRO Akash Tatva Conference](https://youtu.be/2P8I3dVNlGM){ .md-button .video-button }
 
 ### Bachelor of Technology in Civil Engineering
 **Calcutta Institute of Technology, Howrah** | *2018*
