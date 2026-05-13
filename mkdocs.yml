@@ -8,6 +8,7 @@ site_description: "Portfolio of Somdeep Kundu — GIS, Remote Sensing, and Spati
 site_author: "Somdeep Kundu"
 # After your site is live, uncomment and set this to your actual GitHub Pages URL:
 # site_url: "https://your-username.github.io/your-repo-name"
+site_url: "https://somdeepkundu.github.io/"
 
 theme:
   name: material
