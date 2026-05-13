@@ -1,6 +1,9 @@
 ---
 hide:
   - toc
+og:
+  image: assets/images/portfolio-preview.png
+  image_alt: "Somdeep Kundu - Geospatial Portfolio"
 ---
 
 <div class="hero">
