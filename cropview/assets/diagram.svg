@@ -1,0 +1,152 @@
+<svg viewBox="0 0 860 400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="sk">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="1.3" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <marker id="a1" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0,9 3.5,0 7" fill="#2d6a2d"/></marker>
+    <marker id="a2" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0,9 3.5,0 7" fill="#2a5a96"/></marker>
+    <marker id="a3" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0,9 3.5,0 7" fill="#8a5a00"/></marker>
+  </defs>
+
+  <!-- paper bg -->
+  <rect width="860" height="400" fill="#fdfaf3" rx="10"/>
+  <!-- ruled lines -->
+  <g stroke="#ece6d6" stroke-width="0.7">
+    <line x1="0" y1="55"  x2="860" y2="55"/>
+    <line x1="0" y1="110" x2="860" y2="110"/>
+    <line x1="0" y1="165" x2="860" y2="165"/>
+    <line x1="0" y1="220" x2="860" y2="220"/>
+    <line x1="0" y1="275" x2="860" y2="275"/>
+    <line x1="0" y1="330" x2="860" y2="330"/>
+    <line x1="0" y1="385" x2="860" y2="385"/>
+  </g>
+  <!-- red margin -->
+  <line x1="50" y1="0" x2="50" y2="400" stroke="#f5c0c0" stroke-width="1.2"/>
+
+  <!-- TITLE -->
+  <text x="430" y="35" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="20" fill="#1a3a1a" font-weight="bold">CropView — How the 3 Layers Work Together</text>
+  <path d="M160,42 Q430,48 700,42" stroke="#4a8a4a" stroke-width="1.8" fill="none" stroke-linecap="round" filter="url(#sk)"/>
+
+  <!-- ══ PHONE (left) ══ -->
+  <g filter="url(#sk)">
+    <rect x="68" y="90" width="54" height="88" rx="8" fill="#222" stroke="#555" stroke-width="2"/>
+    <rect x="73" y="98" width="44" height="65" rx="2" fill="#0a180a"/>
+    <!-- map on screen -->
+    <line x1="95" y1="107" x2="95" y2="155" stroke="#1e3e1e" stroke-width="0.8"/>
+    <line x1="73" y1="131" x2="117" y2="131" stroke="#1e3e1e" stroke-width="0.8"/>
+    <polygon points="95,112 84,150 106,150" fill="rgba(76,255,114,0.2)" stroke="#4cff72" stroke-width="1.2"/>
+    <circle cx="95" cy="112" r="2.5" fill="#4cff72"/>
+    <circle cx="95" cy="167" r="4" fill="#2a2a2a" stroke="#444" stroke-width="1"/>
+    <circle cx="95" cy="93"  r="2.5" fill="#111" stroke="#444" stroke-width="1"/>
+  </g>
+  <text x="95" y="196" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="13" fill="#1a3a1a" font-weight="bold">Your Phone</text>
+  <text x="95" y="212" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#4a7a4a">GPS · Compass · Camera</text>
+
+  <!-- GPS waves -->
+  <path d="M135,115 Q148,104 161,115" stroke="#c8a000" stroke-width="2" fill="none" stroke-linecap="round" filter="url(#sk)"/>
+  <path d="M131,107 Q148,91  165,107" stroke="#c8a000" stroke-width="1.5" fill="none" stroke-linecap="round" filter="url(#sk)" opacity="0.6"/>
+  <text x="170" y="108" font-family="Georgia,serif" font-style="italic" font-size="12" fill="#8a6a00">GPS fix</text>
+
+  <!-- arrow phone → FOV -->
+  <path d="M122,148 Q175,158 215,178" stroke="#2d6a2d" stroke-width="2" fill="none" stroke-linecap="round" marker-end="url(#a1)" filter="url(#sk)"/>
+
+  <!-- ══ FOV TRAPEZOID (center-left) ══ -->
+  <polygon points="218,175 270,290 430,290 248,175" fill="rgba(76,160,76,0.1)" stroke="#3a8a3a" stroke-width="2" stroke-dasharray="6,3" filter="url(#sk)"/>
+  <text x="322" y="252" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="12" fill="#2a6a2a">Camera FOV</text>
+  <text x="322" y="268" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="11" fill="#3a8a3a">ground footprint</text>
+
+  <!-- ground / crop area -->
+  <ellipse cx="340" cy="308" rx="130" ry="24" fill="#e4f2e4" stroke="#5aaa5a" stroke-width="1.5" stroke-dasharray="5,3" filter="url(#sk)"/>
+  <!-- crop tufts -->
+  <g stroke="#3a7a3a" stroke-width="1.4" fill="none" stroke-linecap="round">
+    <path d="M270,308 Q273,299 276,308"/><path d="M282,305 Q285,296 288,305"/>
+    <path d="M296,309 Q299,300 302,309"/><path d="M310,306 Q313,297 316,306"/>
+    <path d="M326,309 Q329,300 332,309"/><path d="M342,306 Q345,297 348,306"/>
+    <path d="M358,309 Q361,300 364,309"/><path d="M374,306 Q377,297 380,306"/>
+    <path d="M390,308 Q393,299 396,308"/>
+  </g>
+  <text x="340" y="338" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="12" fill="#2a5a1a">Crop field</text>
+
+  <!-- FOV polygon on ground -->
+  <polygon points="270,290 430,290 415,310 285,310" fill="rgba(245,200,66,0.25)" stroke="#b8860b" stroke-width="2" stroke-dasharray="4,2" filter="url(#sk)"/>
+  <text x="350" y="304" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#7a5800">FOV polygon (GeoJSON)</text>
+
+  <!-- Layer 1 badge -->
+  <rect x="190" y="362" width="130" height="24" rx="12" fill="#1a3a1a" filter="url(#sk)"/>
+  <text x="255" y="378" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#4cff72" font-weight="bold">① LAYER 1 — done ✓</text>
+
+  <!-- ══ SATELLITE (top center-right) ══ -->
+  <g filter="url(#sk)">
+    <!-- body -->
+    <rect x="530" y="72" width="48" height="26" rx="5" fill="#cce0f5" stroke="#2a5a96" stroke-width="2"/>
+    <!-- panels -->
+    <rect x="492" y="78" width="34" height="13" rx="3" fill="#4a8ad4" stroke="#2a5a96" stroke-width="1.5"/>
+    <rect x="582" y="78" width="34" height="13" rx="3" fill="#4a8ad4" stroke="#2a5a96" stroke-width="1.5"/>
+    <!-- antenna -->
+    <line x1="554" y1="72" x2="554" y2="60" stroke="#2a5a96" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="554" cy="57" r="4" fill="#4a8ad4" stroke="#2a5a96" stroke-width="1.5"/>
+  </g>
+  <text x="554" y="115" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="13" fill="#1a3a6a" font-weight="bold">Sentinel-2 Satellite</text>
+  <text x="554" y="131" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#4a6aaa">free · 10m resolution · every 5 days</text>
+
+  <!-- sat scan lines -->
+  <line x1="520" y1="98"  x2="350" y2="285" stroke="#4a8ad4" stroke-width="1.2" stroke-dasharray="7,4" opacity="0.5" marker-end="url(#a2)"/>
+  <line x1="588" y1="98"  x2="430" y2="285" stroke="#4a8ad4" stroke-width="1.2" stroke-dasharray="7,4" opacity="0.5"/>
+
+  <!-- Layer 2 badge -->
+  <rect x="475" y="150" width="158" height="24" rx="12" fill="#1a3060" filter="url(#sk)"/>
+  <text x="554" y="166" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#88ccff" font-weight="bold">② LAYER 2 — satellite match</text>
+
+  <!-- NDVI box -->
+  <rect x="475" y="185" width="158" height="56" rx="8" fill="#f0f8ff" stroke="#4a8ad4" stroke-width="1.8" filter="url(#sk)"/>
+  <text x="554" y="204" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="12" fill="#1a3a6a" font-weight="bold">NDVI Calculation</text>
+  <text x="554" y="220" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#3a6aaa">NIR − Red / NIR + Red</text>
+  <text x="554" y="234" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#5a8acc">sampled at FOV polygon</text>
+
+  <!-- arrow FOV poly → sat match -->
+  <path d="M430,295 Q460,270 475,240" stroke="#2a5a96" stroke-width="1.8" fill="none" stroke-linecap="round" marker-end="url(#a2)" filter="url(#sk)"/>
+
+  <!-- ══ Kc STAGES (right) ══ -->
+  <rect x="680" y="85" width="162" height="240" rx="10" fill="#f4faf4" stroke="#3a8a3a" stroke-width="2" filter="url(#sk)"/>
+  <text x="761" y="106" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="13" fill="#1a4a1a" font-weight="bold">Kc Growth Stages</text>
+  <line x1="692" y1="112" x2="830" y2="112" stroke="#3a8a3a" stroke-width="1" stroke-dasharray="3,2"/>
+
+  <!-- stage rows -->
+  <rect x="690" y="118" width="144" height="40" rx="6" fill="#f9f9f9" stroke="#ccc" stroke-width="1.2" filter="url(#sk)"/>
+  <text x="762" y="135" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#888" font-weight="bold">Kc¹ Initial</text>
+  <text x="762" y="151" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#aaa">Kc 0.3–0.4 · bare soil</text>
+
+  <rect x="690" y="164" width="144" height="40" rx="6" fill="#e8f5e8" stroke="#7ac07a" stroke-width="1.5" filter="url(#sk)"/>
+  <text x="762" y="181" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#2a6a2a" font-weight="bold">Kc² Development</text>
+  <text x="762" y="197" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#4a8a4a">Kc 0.4–0.9 · growing</text>
+
+  <rect x="690" y="210" width="144" height="40" rx="6" fill="#c8eec8" stroke="#3aaa3a" stroke-width="2" filter="url(#sk)"/>
+  <text x="762" y="227" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#1a4a1a" font-weight="bold">Kc³ Mid-Season ★</text>
+  <text x="762" y="243" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#2a6a2a">Kc 0.9–1.2 · peak canopy</text>
+
+  <rect x="690" y="256" width="144" height="40" rx="6" fill="#f5f0d8" stroke="#c8a040" stroke-width="1.5" filter="url(#sk)"/>
+  <text x="762" y="273" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" fill="#6a4a00" font-weight="bold">Kc⁴ Late-Season</text>
+  <text x="762" y="289" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#8a6a20">Kc 0.6–0.9 · senescence</text>
+
+  <!-- arrow NDVI → Kc -->
+  <path d="M634,213 Q660,213 680,213" stroke="#2d6a2d" stroke-width="2" fill="none" stroke-linecap="round" marker-end="url(#a1)" filter="url(#sk)"/>
+  <text x="657" y="207" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="10" fill="#3a8a3a">NDVI</text>
+  <text x="657" y="220" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="10" fill="#3a8a3a">→ Kc</text>
+
+  <!-- Layer 3 badge -->
+  <rect x="685" y="312" width="152" height="24" rx="12" fill="#4a3a00" filter="url(#sk)"/>
+  <text x="761" y="328" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" fill="#ffd060" font-weight="bold">③ LAYER 3 — intelligence</text>
+
+  <!-- mismatch alert -->
+  <rect x="685" y="344" width="152" height="38" rx="8" fill="#fff8e8" stroke="#c8a040" stroke-width="1.8" filter="url(#sk)"/>
+  <text x="761" y="360" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="11" fill="#7a5000">⚠ Stage Mismatch Alert</text>
+  <text x="761" y="375" text-anchor="middle" font-family="Arial,sans-serif" font-size="10" fill="#9a6a00">observed vs satellite Kc</text>
+
+  <!-- bottom flow arrow -->
+  <path d="M400,352 Q480,370 560,352" stroke="#8a8a8a" stroke-width="1.5" fill="none" stroke-dasharray="5,3" stroke-linecap="round" marker-end="url(#a3)" filter="url(#sk)"/>
+  <text x="480" y="382" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="11" fill="#6a6a6a">field data feeds satellite analysis</text>
+
+  <!-- credit -->
+  <text x="430" y="396" text-anchor="middle" font-family="Arial,sans-serif" font-size="9" fill="#aaa">© Somdeep Kundu · RuDRA Lab · C-TARA · IIT Bombay · RGSTC Maharashtra</text>
+</svg>
