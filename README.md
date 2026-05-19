@@ -1,6 +1,8 @@
 # Somdeep's Portfolio
 
-This is the repository for my portfolio website. The portfolio is hosted at https://<your-username>.github.io/
+This is the repository for my portfolio website. The portfolio is hosted at https://somdeepkundu.github.io/
+
+
 
  This website is built using the following tools
  
@@ -8,6 +10,7 @@ This is the repository for my portfolio website. The portfolio is hosted at http
 * GitHub Pages
 * GitHub Actions
 
+<!---
 ```python
 hello("world")
 ```
@@ -15,3 +18,4 @@ hello("world")
 
 > [!TIP]
 > You can get the portfolio template from [Spatial Thoughts](https://github.com/spatialthoughts/portfolio-website-template)
+--->
