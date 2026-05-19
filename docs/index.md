@@ -106,8 +106,5 @@ I am a PhD Scholar at the Centre for Technology Alternatives for Rural Areas (C-
 
 [GitHub](https://github.com/somdeepkundu){ .md-button }
 [LinkedIn](https://linkedin.com/in/somdeep-kundu){ .md-button }
-[ResearchGate](https://www.researchgate.net/profile/Somdeep-Kundu-2){ .md-button }
-[GitHub](https://github.com/somdeepkundu){ .md-button }
-[LinkedIn](https://linkedin.com/in/somdeep-kundu){ .md-button }
 [ResearchGate](https://www.researchgate.net/profile/Somdeep-Kundu-2){ .md-button } 
 [Website](https://www.somdeepkundu.in/){ .md-button }
