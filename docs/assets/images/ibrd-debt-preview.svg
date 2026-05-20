@@ -1,0 +1,52 @@
+<svg width="400" height="250" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="400" height="250" fill="#0a0e27"/>
+
+  <!-- Grid lines -->
+  <line x1="50" y1="200" x2="350" y2="200" stroke="#1a2a4a" stroke-width="1"/>
+  <line x1="50" y1="150" x2="350" y2="150" stroke="#1a2a4a" stroke-width="1"/>
+  <line x1="50" y1="100" x2="350" y2="100" stroke="#1a2a4a" stroke-width="1"/>
+  <line x1="50" y1="50" x2="350" y2="50" stroke="#1a2a4a" stroke-width="1"/>
+
+  <!-- Axes -->
+  <line x1="50" y1="200" x2="350" y2="200" stroke="#ffffff" stroke-width="2"/>
+  <line x1="50" y1="200" x2="50" y2="30" stroke="#ffffff" stroke-width="2"/>
+
+  <!-- Data lines representing debt trajectories -->
+  <!-- India (orange) - rising -->
+  <path d="M 60 180 Q 120 170 180 150 T 300 80" stroke="#FFA500" stroke-width="4" fill="none" opacity="0.9"/>
+
+  <!-- Pakistan (green) - moderate rise -->
+  <path d="M 60 185 Q 120 175 180 165 T 300 120" stroke="#00FF00" stroke-width="3" fill="none" opacity="0.7"/>
+
+  <!-- Bangladesh (cyan) - rising -->
+  <path d="M 60 190 Q 120 180 180 160 T 300 100" stroke="#00FFFF" stroke-width="3" fill="none" opacity="0.7"/>
+
+  <!-- Russia (red) - declining -->
+  <path d="M 60 120 Q 120 130 180 140 T 300 160" stroke="#FF4444" stroke-width="3" fill="none" opacity="0.6"/>
+
+  <!-- USA (purple) - moderate -->
+  <path d="M 60 100 Q 120 110 180 120 T 300 135" stroke="#9933FF" stroke-width="3" fill="none" opacity="0.8"/>
+
+  <!-- Axis labels -->
+  <text x="35" y="210" font-size="12" fill="#ffffff" font-family="sans-serif">1946</text>
+  <text x="320" y="210" font-size="12" fill="#ffffff" font-family="sans-serif">2025</text>
+  <text x="15" y="205" font-size="12" fill="#ffffff" font-family="sans-serif">$0</text>
+  <text x="15" y="35" font-size="12" fill="#ffffff" font-family="sans-serif">$40B</text>
+
+  <!-- Title -->
+  <text x="200" y="25" font-size="20" font-weight="bold" fill="#FFFFFF" font-family="sans-serif" text-anchor="middle">IBRD Debt Visualization</text>
+
+  <!-- Legend -->
+  <circle cx="60" cy="235" r="3" fill="#FFA500"/>
+  <text x="75" y="240" font-size="11" fill="#FFFFFF" font-family="sans-serif">India</text>
+
+  <circle cx="150" cy="235" r="3" fill="#00FF00"/>
+  <text x="165" y="240" font-size="11" fill="#FFFFFF" font-family="sans-serif">Pakistan</text>
+
+  <circle cx="250" cy="235" r="3" fill="#00FFFF"/>
+  <text x="265" y="240" font-size="11" fill="#FFFFFF" font-family="sans-serif">Bangladesh</text>
+
+  <!-- Info text -->
+  <text x="200" y="260" font-size="10" fill="#aaaaaa" font-family="sans-serif" text-anchor="middle">World Bank Debt 1946–2025 | Multi-currency Support</text>
+</svg>

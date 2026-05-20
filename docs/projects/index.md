@@ -45,4 +45,16 @@ A geospatial app for night lights analysis using Google Earth Engine. Compare ye
 [Launch App →](https://ee-kundusomdeeo.projects.earthengine.app/view/alokkriti20){ .md-button } [Slides →](../assets/files/Alok-Kriti-2.0.pptx){ .md-button }
 </div>
 
+<div class="project-card" markdown>
+![](../assets/images/ibrd-debt-preview.png)
+
+**[IBRD Debt Visualization](ibrd-debt-visualization.md)**
+
+Interactive exploration of World Bank debt trajectories (1946–2025) with slope-weighted visualizations, regional groupings, and multi-currency support (USD / ₹ Lakh-Crore). Touch-responsive, data-driven design.
+
+`D3.js` `Data Visualization` `Economics` `Interactive` `Responsive`
+
+[Explore Now →](ibrd-debt-visualization.md){ .md-button } [GitHub →](https://github.com/somdeepkundu/ibrd-debt-visualization){ .md-button }
+</div>
+
 </div>
