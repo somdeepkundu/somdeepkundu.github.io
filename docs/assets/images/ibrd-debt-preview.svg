@@ -1,52 +1,93 @@
 <svg width="400" height="250" xmlns="http://www.w3.org/2000/svg">
-  <!-- Background -->
-  <rect width="400" height="250" fill="#0a0e27"/>
+  <defs>
+    <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0e27;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a2a4a;stop-opacity:1" />
+    </linearGradient>
 
-  <!-- Grid lines -->
-  <line x1="50" y1="200" x2="350" y2="200" stroke="#1a2a4a" stroke-width="1"/>
-  <line x1="50" y1="150" x2="350" y2="150" stroke="#1a2a4a" stroke-width="1"/>
-  <line x1="50" y1="100" x2="350" y2="100" stroke="#1a2a4a" stroke-width="1"/>
-  <line x1="50" y1="50" x2="350" y2="50" stroke="#1a2a4a" stroke-width="1"/>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFA500;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF6B6B;stop-opacity:0.6" />
+    </linearGradient>
+
+    <linearGradient id="grad2" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00FF00;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00FFFF;stop-opacity:0.6" />
+    </linearGradient>
+
+    <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00FFFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#667eea;stop-opacity:0.6" />
+    </linearGradient>
+
+    <linearGradient id="grad4" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#9933FF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF4444;stop-opacity:0.6" />
+    </linearGradient>
+
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="250" fill="url(#bg1)"/>
+
+  <!-- Subtle grid -->
+  <line x1="50" y1="60" x2="350" y2="60" stroke="#ffffff" stroke-width="0.5" opacity="0.1"/>
+  <line x1="50" y1="110" x2="350" y2="110" stroke="#ffffff" stroke-width="0.5" opacity="0.1"/>
+  <line x1="50" y1="160" x2="350" y2="160" stroke="#ffffff" stroke-width="0.5" opacity="0.1"/>
+
+  <!-- Flowing debt trajectories with curves and glow -->
+  <!-- Line 1: Rising trajectory (Orange) -->
+  <path d="M 40 180 Q 100 160 160 130 T 300 60"
+        stroke="url(#grad1)" stroke-width="5" fill="none"
+        stroke-linecap="round" filter="url(#glow)" opacity="0.95"/>
+
+  <!-- Line 2: Moderate rise (Green-Cyan) -->
+  <path d="M 40 190 Q 110 170 180 150 T 320 90"
+        stroke="url(#grad2)" stroke-width="4.5" fill="none"
+        stroke-linecap="round" filter="url(#glow)" opacity="0.85"/>
+
+  <!-- Line 3: Climbing trajectory (Cyan-Blue) -->
+  <path d="M 40 195 Q 120 175 190 160 T 330 110"
+        stroke="url(#grad3)" stroke-width="4" fill="none"
+        stroke-linecap="round" filter="url(#glow)" opacity="0.8"/>
+
+  <!-- Line 4: Declining trajectory (Purple-Red) -->
+  <path d="M 40 120 Q 110 135 180 145 T 320 170"
+        stroke="url(#grad4)" stroke-width="4" fill="none"
+        stroke-linecap="round" filter="url(#glow)" opacity="0.75"/>
+
+  <!-- Accent circles at key points -->
+  <circle cx="300" cy="60" r="3" fill="#FFA500" opacity="0.9" filter="url(#glow)"/>
+  <circle cx="320" cy="90" r="3" fill="#00FF00" opacity="0.9" filter="url(#glow)"/>
+  <circle cx="330" cy="110" r="3" fill="#00FFFF" opacity="0.9" filter="url(#glow)"/>
+  <circle cx="320" cy="170" r="3" fill="#9933FF" opacity="0.8" filter="url(#glow)"/>
 
   <!-- Axes -->
-  <line x1="50" y1="200" x2="350" y2="200" stroke="#ffffff" stroke-width="2"/>
-  <line x1="50" y1="200" x2="50" y2="30" stroke="#ffffff" stroke-width="2"/>
-
-  <!-- Data lines representing debt trajectories -->
-  <!-- India (orange) - rising -->
-  <path d="M 60 180 Q 120 170 180 150 T 300 80" stroke="#FFA500" stroke-width="4" fill="none" opacity="0.9"/>
-
-  <!-- Pakistan (green) - moderate rise -->
-  <path d="M 60 185 Q 120 175 180 165 T 300 120" stroke="#00FF00" stroke-width="3" fill="none" opacity="0.7"/>
-
-  <!-- Bangladesh (cyan) - rising -->
-  <path d="M 60 190 Q 120 180 180 160 T 300 100" stroke="#00FFFF" stroke-width="3" fill="none" opacity="0.7"/>
-
-  <!-- Russia (red) - declining -->
-  <path d="M 60 120 Q 120 130 180 140 T 300 160" stroke="#FF4444" stroke-width="3" fill="none" opacity="0.6"/>
-
-  <!-- USA (purple) - moderate -->
-  <path d="M 60 100 Q 120 110 180 120 T 300 135" stroke="#9933FF" stroke-width="3" fill="none" opacity="0.8"/>
+  <line x1="40" y1="200" x2="350" y2="200" stroke="#ffffff" stroke-width="1.5" opacity="0.3"/>
+  <line x1="40" y1="200" x2="40" y2="40" stroke="#ffffff" stroke-width="1.5" opacity="0.3"/>
 
   <!-- Axis labels -->
-  <text x="35" y="210" font-size="12" fill="#ffffff" font-family="sans-serif">1946</text>
-  <text x="320" y="210" font-size="12" fill="#ffffff" font-family="sans-serif">2025</text>
-  <text x="15" y="205" font-size="12" fill="#ffffff" font-family="sans-serif">$0</text>
-  <text x="15" y="35" font-size="12" fill="#ffffff" font-family="sans-serif">$40B</text>
+  <text x="30" y="215" font-size="11" fill="#ffffff" font-family="sans-serif" opacity="0.6">1946</text>
+  <text x="340" y="215" font-size="11" fill="#ffffff" font-family="sans-serif" opacity="0.6">2025</text>
+  <text x="12" y="205" font-size="10" fill="#ffffff" font-family="sans-serif" opacity="0.5">$0</text>
+  <text x="12" y="50" font-size="10" fill="#ffffff" font-family="sans-serif" opacity="0.5">$40B</text>
 
-  <!-- Title -->
-  <text x="200" y="25" font-size="20" font-weight="bold" fill="#FFFFFF" font-family="sans-serif" text-anchor="middle">IBRD Debt Visualization</text>
+  <!-- Center text overlay -->
+  <text x="200" y="28" font-size="16" font-weight="bold" fill="#FFFFFF" font-family="sans-serif" text-anchor="middle" opacity="0.95">IBRD Debt</text>
+  <text x="200" y="45" font-size="16" font-weight="bold" fill="#FFFFFF" font-family="sans-serif" text-anchor="middle" opacity="0.95">Visualization</text>
 
-  <!-- Legend -->
-  <circle cx="60" cy="235" r="3" fill="#FFA500"/>
-  <text x="75" y="240" font-size="11" fill="#FFFFFF" font-family="sans-serif">India</text>
+  <!-- Decorative elements -->
+  <circle cx="370" cy="20" r="8" fill="none" stroke="#667eea" stroke-width="1.5" opacity="0.4"/>
+  <circle cx="375" cy="25" r="6" fill="none" stroke="#764ba2" stroke-width="1.5" opacity="0.4"/>
 
-  <circle cx="150" cy="235" r="3" fill="#00FF00"/>
-  <text x="165" y="240" font-size="11" fill="#FFFFFF" font-family="sans-serif">Pakistan</text>
-
-  <circle cx="250" cy="235" r="3" fill="#00FFFF"/>
-  <text x="265" y="240" font-size="11" fill="#FFFFFF" font-family="sans-serif">Bangladesh</text>
-
-  <!-- Info text -->
-  <text x="200" y="260" font-size="10" fill="#aaaaaa" font-family="sans-serif" text-anchor="middle">World Bank Debt 1946–2025 | Multi-currency Support</text>
+  <!-- Info badge -->
+  <rect x="40" y="220" width="320" height="20" rx="3" fill="#ffffff" opacity="0.08" stroke="#667eea" stroke-width="0.5" opacity="0.3"/>
+  <text x="200" y="232" font-size="9" fill="#aaaaaa" font-family="sans-serif" text-anchor="middle">79 Years of Global Debt Patterns | Interactive Data Visualization</text>
 </svg>
