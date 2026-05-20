@@ -46,7 +46,7 @@ A geospatial app for night lights analysis using Google Earth Engine. Compare ye
 </div>
 
 <div class="project-card" markdown>
-![](../assets/images/ibrd-debt-preview.png)
+![](../assets/images/ibrd-debt-preview.svg)
 
 **[IBRD Debt Visualization](ibrd-debt-visualization.md)**
 
@@ -55,6 +55,30 @@ Interactive exploration of World Bank debt trajectories (1946–2025) with slope
 `D3.js` `Data Visualization` `Economics` `Interactive` `Responsive`
 
 [Explore Now →](ibrd-debt-visualization.md){ .md-button } [GitHub →](https://github.com/somdeepkundu/ibrd-debt-visualization){ .md-button }
+</div>
+
+<div class="project-card" markdown>
+![](https://github.com/user-attachments/assets/de6b3637-2caf-42c2-9252-329435c065c0)
+
+**[NFHS Spatio-Temporal Data Analysis](https://github.com/somdeepkundu/lisa-moran-nss77)**
+
+Local and Global Moran's I analysis on NFHS (NSS 77th round) data to uncover spatial autocorrelation and clustering patterns in health and socioeconomic indicators across India.
+
+`Python` `LISA` `Moran's I` `Spatial Statistics` `NFHS`
+
+[View on GitHub →](https://github.com/somdeepkundu/lisa-moran-nss77){ .md-button }
+</div>
+
+<div class="project-card" markdown>
+![](https://opengraph.githubassets.com/1/somdeepkundu/space-time-statistics)
+
+**[Spatial Process Modelling](https://github.com/somdeepkundu/space-time-statistics)**
+
+Exploration of space-time statistical methods including variogram modelling, kriging, and spatial regression for analysing geospatial processes across temporal dimensions.
+
+`R` `Python` `Spatial Statistics` `Geostatistics` `Space-Time`
+
+[View on GitHub →](https://github.com/somdeepkundu/space-time-statistics){ .md-button }
 </div>
 
 </div>

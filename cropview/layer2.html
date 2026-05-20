@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>CropView · Layer 2 — Sentinel-2 NDVI Tester</title>
+
+<script src="https://cdn.jsdelivr.net/npm/geotiff@2.1.3/dist-browser/geotiff.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/proj4@2.11.0/dist/proj4.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg:#0c0e0c; --panel2:#1a1f1a; --border:#2a3026; --border2:#404840;
+    --text:#d8dcd0; --muted:#7a847a; --dim:#5a645a;
+    --green:#5cc05c; --green2:#3a803a; --amber:#d8a040; --red:#e06060;
+    --mono:"Space Mono",monospace; --sans:"DM Sans",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    background:var(--bg);
+    background-image:
+      radial-gradient(circle at 12% 18%,rgba(92,192,92,.04) 0%,transparent 35%),
+      radial-gradient(circle at 88% 82%,rgba(216,160,64,.03) 0%,transparent 40%);
+    color:var(--text);font-family:var(--sans);font-size:14px;line-height:1.5;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--green2);color:var(--bg)}
+
+  header{
+    border-bottom:1px solid var(--border);padding:14px 20px;
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    background:linear-gradient(180deg,#0e110d 0%,#0c0e0c 100%);
+    position:sticky;top:0;z-index:10;
+  }
+  .brand{font-family:var(--mono);font-size:13px;letter-spacing:.04em}
+  .brand .s1{color:var(--green);font-weight:700}
+  .brand .s2{color:var(--muted)}
+  .brand .s3{color:var(--text)}
+  .badge{
+    display:inline-block;padding:3px 8px;border:1px solid var(--border2);
+    border-radius:3px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;
+    color:var(--muted);text-transform:uppercase;
+  }
+  .badge.live{color:var(--green);border-color:var(--green2)}
+  .badge.run{color:var(--amber);border-color:var(--amber)}
+
+  main{
+    max-width:1280px;margin:0 auto;padding:24px 20px 80px;
+    display:grid;grid-template-columns:1fr;gap:20px;
+  }
+  @media (min-width:960px){
+    main{
+      grid-template-columns:360px 1fr;
+      grid-template-areas:"input results" "log results";
+    }
+    .p-in{grid-area:input}.p-log{grid-area:log}.p-res{grid-area:results}
+  }
+  .panel{background:var(--panel2);border:1px solid var(--border);border-radius:4px;padding:18px}
+  .panel h2{
+    font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--green);margin-bottom:14px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .panel h2::before{content:"▸";color:var(--green2)}
+
+  .field{margin-bottom:14px}
+  .field label{
+    display:block;font-family:var(--mono);font-size:10px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--muted);margin-bottom:6px;
+  }
+  .field input{
+    width:100%;background:var(--bg);border:1px solid var(--border);border-radius:3px;
+    padding:8px 10px;color:var(--text);font-family:var(--mono);font-size:12px;outline:none;
+  }
+  .field input:focus{border-color:var(--green2)}
+  .frow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .filezone{
+    border:1px dashed var(--border2);border-radius:3px;padding:22px 12px;
+    text-align:center;cursor:pointer;transition:border-color .15s,background .15s;
+    display:block;
+  }
+  .filezone:hover{border-color:var(--green2);background:#14181408}
+  .filezone.has{border-color:var(--green2);border-style:solid;background:rgba(92,192,92,.04)}
+  .filezone .ic{font-size:24px;color:var(--muted);margin-bottom:6px}
+  .filezone.has .ic{color:var(--green)}
+  .filezone .lab{font-family:var(--mono);font-size:11px;color:var(--muted)}
+  .filezone.has .lab{color:var(--text)}
+  .filezone input{display:none}
+
+  .btn{
+    background:var(--bg);border:1px solid var(--border2);color:var(--text);
+    padding:8px 14px;border-radius:3px;font-family:var(--mono);font-size:11px;
+    letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .15s;
+  }
+  .btn:hover:not(:disabled){border-color:var(--green2);color:var(--green)}
+  .btn:disabled{opacity:.4;cursor:not-allowed}
+  .btn-pri{background:var(--green2);border-color:var(--green2);color:#0a100a;font-weight:700}
+  .btn-pri:hover:not(:disabled){background:var(--green);border-color:var(--green);color:#0a100a}
+  .btn-row{display:flex;gap:8px;margin-top:16px}
+  .btn-row .btn{flex:1}
+
+  .log{
+    background:var(--bg);border:1px solid var(--border);border-radius:3px;padding:12px;
+    height:240px;overflow-y:auto;font-family:var(--mono);font-size:11px;line-height:1.55;
+  }
+  .ll{display:flex;gap:8px;padding:1px 0}
+  .ll .t{color:var(--dim);flex-shrink:0}
+  .ll .m{color:var(--text);word-break:break-word}
+  .ll.ok    .m{color:var(--green)}
+  .ll.warn  .m{color:var(--amber)}
+  .ll.err   .m{color:var(--red)}
+  .ll.muted .m{color:var(--muted)}
+
+  .empty{
+    padding:60px 20px;text-align:center;color:var(--muted);
+    font-family:var(--mono);font-size:12px;
+  }
+  .empty .ic{font-size:48px;margin-bottom:14px;color:var(--dim)}
+
+  .fp{border:1px solid var(--border);border-radius:4px;margin-bottom:14px;overflow:hidden}
+  .fp-h{
+    background:#1d221c;padding:12px 14px;border-bottom:1px solid var(--border);
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;
+  }
+  .fp-id{font-family:var(--mono);font-size:12px;color:var(--green)}
+  .fp-meta{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.04em}
+  .fp-st{
+    font-family:var(--mono);font-size:10px;padding:2px 7px;border-radius:2px;
+    text-transform:uppercase;letter-spacing:.08em;
+  }
+  .fp-st.running{background:#3a3010;color:var(--amber)}
+  .fp-st.done   {background:#143a14;color:var(--green)}
+  .fp-st.err    {background:#3a1414;color:var(--red)}
+  .fp-st.pending{background:#1a1f1a;color:var(--muted)}
+
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border)}
+  @media (min-width:720px){.grid{grid-template-columns:repeat(4,1fr)}}
+  .comp{background:var(--panel2);padding:14px 12px;min-height:110px}
+  .comp .k{
+    font-family:var(--mono);font-size:9px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--muted);margin-bottom:4px;
+  }
+  .comp .l{
+    font-family:var(--sans);font-size:12px;color:var(--text);
+    margin-bottom:12px;line-height:1.3;
+  }
+  .comp .v{font-family:var(--mono);font-size:26px;font-weight:700;line-height:1}
+  .comp .sub{font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:6px}
+  .v.pend{color:var(--dim)}
+  .v.na{color:var(--dim);font-size:18px}
+  .bar{
+    height:4px;border-radius:2px;margin-top:10px;position:relative;overflow:hidden;
+    background:linear-gradient(90deg,#5a4030 0%,#a87850 25%,#c8b048 45%,#88b870 65%,#4a9a3a 85%,#1c6018 100%);
+  }
+  .bar .mk{
+    position:absolute;top:-2px;width:2px;height:8px;background:var(--text);
+    border-radius:1px;box-shadow:0 0 0 1px var(--bg);
+  }
+  .delta{
+    background:var(--panel2);padding:12px 14px;border-top:1px solid var(--border);
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;
+  }
+  .dl{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+  .dv{font-family:var(--mono);font-size:16px;font-weight:700}
+  .dv.up{color:var(--green)}
+  .dv.down{color:var(--red)}
+  .dv.flat{color:var(--muted)}
+
+  footer{
+    border-top:1px solid var(--border);padding:18px 20px;text-align:center;
+    font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:.04em;
+  }
+  footer a{color:var(--muted);text-decoration:none}
+  footer a:hover{color:var(--green)}
+
+  ::-webkit-scrollbar{width:8px;height:8px}
+  ::-webkit-scrollbar-track{background:var(--bg)}
+  ::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px}
+  ::-webkit-scrollbar-thumb:hover{background:var(--muted)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <span class="s1">CROPVIEW</span><span class="s2"> / </span><span class="s3">LAYER 2 · SENTINEL-2 NDVI</span>
+  </div>
+  <span id="status-badge" class="badge">IDLE</span>
+</header>
+
+<main>
+
+  <section class="panel p-in">
+    <h2>Input · Footprints</h2>
+
+    <label for="fileinput" class="filezone" id="filezone">
+      <div class="ic">⊕</div>
+      <div class="lab" id="filelabel">DROP OR TAP TO LOAD<br>footprints.geojson</div>
+      <input type="file" id="fileinput" accept=".geojson,.json,application/geo+json,application/json">
+    </label>
+
+    <div style="margin:14px 0;text-align:center">
+      <button class="btn" id="demo-btn">USE DEMO FOOTPRINT</button>
+    </div>
+
+    <div class="frow">
+      <div class="field"><label>Cloud cover max %</label><input type="number" id="cloud" value="20" min="0" max="100"></div>
+      <div class="field"><label>Window radius (m)</label><input type="number" id="windowM" value="30" min="10" max="200"></div>
+    </div>
+    <div class="frow">
+      <div class="field"><label>Year window ± days</label><input type="number" id="windowDays" value="15" min="3" max="60"></div>
+      <div class="field"><label>Multi-year span</label><input type="number" id="multiYears" value="3" min="1" max="5"></div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-pri" id="run-btn" disabled>▸ RUN PIPELINE</button>
+      <button class="btn" id="export-btn" disabled>EXPORT</button>
+    </div>
+  </section>
+
+  <section class="panel p-log">
+    <h2>STAC Log</h2>
+    <div class="log" id="log"></div>
+  </section>
+
+  <section class="panel p-res">
+    <h2>NDVI Dashboard</h2>
+    <div id="results">
+      <div class="empty">
+        <div class="ic">🛰</div>
+        Load a footprints GeoJSON or run the demo<br>to see the four-composite dashboard.
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  CropView Layer 2 · MIT · STAC: Element84 Earth Search · Bands: B04/B08 · Computed in browser via geotiff.js +
+  <a href="https://github.com/somdeepkundu/cropview" target="_blank" rel="noopener">github</a>
+</footer>
+
+<script>
+// ════════ CONFIG ════════
+const STAC_URL = 'https://earth-search.aws.element84.com/v1/search';
+const COLLECTION = 'sentinel-2-l2a';
+
+// ════════ STATE ════════
+const S = { footprints: [], results: [], running: false };
+
+// ════════ LOG ════════
+const logEl = document.getElementById('log');
+function log(msg, type = 'info') {
+  const t = new Date().toISOString().substr(11, 8);
+  const row = document.createElement('div');
+  row.className = 'll ' + type;
+  const ts = document.createElement('span'); ts.className = 't'; ts.textContent = t;
+  const ms = document.createElement('span'); ms.className = 'm'; ms.textContent = msg;
+  row.appendChild(ts); row.appendChild(ms);
+  logEl.appendChild(row);
+  logEl.scrollTop = logEl.scrollHeight;
+}
+
+// ════════ PROJ ════════
+function utmEpsg(lon, lat) {
+  const zone = Math.floor((lon + 180) / 6) + 1;
+  return (lat >= 0 ? 32600 : 32700) + zone;
+}
+function ensureProj(epsg) {
+  const key = 'EPSG:' + epsg;
+  if (proj4.defs(key)) return key;
+  if (epsg >= 32601 && epsg <= 32660) {
+    proj4.defs(key, `+proj=utm +zone=${epsg - 32600} +datum=WGS84 +units=m +no_defs`);
+  } else if (epsg >= 32701 && epsg <= 32760) {
+    proj4.defs(key, `+proj=utm +zone=${epsg - 32700} +south +datum=WGS84 +units=m +no_defs`);
+  } else throw new Error('Unsupported EPSG: ' + epsg);
+  return key;
+}
+function toUTM(lon, lat, epsg) {
+  const key = ensureProj(epsg);
+  return proj4('EPSG:4326', key, [lon, lat]);
+}
+
+// ════════ STAC ════════
+async function stacSearch({ bbox, range, cloud = 20, limit = 50 }) {
+  const body = {
+    collections: [COLLECTION],
+    bbox,
+    datetime: `${range[0]}T00:00:00Z/${range[1]}T23:59:59Z`,
+    query: { 'eo:cloud_cover': { lt: cloud } },
+    limit,
+    sortby: [{ field: 'properties.datetime', direction: 'desc' }]
+  };
+  const r = await fetch(STAC_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  });
+  if (!r.ok) throw new Error(`STAC ${r.status}`);
+  const data = await r.json();
+  return data.features || [];
+}
+
+// ════════ NDVI from one scene at polygon centroid ════════
+async function ndviForScene(scene, polygon, windowM) {
+  const c = turf.centroid(turf.polygon([polygon])).geometry.coordinates;
+  const [lon, lat] = c;
+  const epsg = scene.properties['proj:epsg'] || utmEpsg(lon, lat);
+  const [x, y] = toUTM(lon, lat, epsg);
+  const bbox = [x - windowM, y - windowM, x + windowM, y + windowM];
+
+  const redUrl = scene.assets.red?.href;
+  const nirUrl = scene.assets.nir?.href;
+  if (!redUrl || !nirUrl) throw new Error('Missing red/nir assets');
+
+  const [redTiff, nirTiff] = await Promise.all([
+    GeoTIFF.fromUrl(redUrl),
+    GeoTIFF.fromUrl(nirUrl),
+  ]);
+  const [redImg, nirImg] = await Promise.all([redTiff.getImage(), nirTiff.getImage()]);
+  const [redData, nirData] = await Promise.all([
+    redImg.readRasters({ bbox, samples: [0] }),
+    nirImg.readRasters({ bbox, samples: [0] }),
+  ]);
+
+  const red = redData[0], nir = nirData[0];
+  let sum = 0, n = 0;
+  const len = Math.min(red.length, nir.length);
+  for (let i = 0; i < len; i++) {
+    const r = red[i] / 10000;
+    const v = nir[i] / 10000;
+    if (r > 0 && v > 0 && r < 2 && v < 2) {
+      sum += (v - r) / (v + r);
+      n++;
+    }
+  }
+  return n > 0 ? sum / n : null;
+}
+
+// ════════ STATS / DATES ════════
+function median(arr) {
+  const a = arr.filter(v => v !== null && Number.isFinite(v)).sort((x, y) => x - y);
+  if (!a.length) return null;
+  const m = Math.floor(a.length / 2);
+  return a.length % 2 ? a[m] : (a[m - 1] + a[m]) / 2;
+}
+function iso(d) { return d.toISOString().split('T')[0]; }
+function addDays(d, n) { const r = new Date(d); r.setUTCDate(r.getUTCDate() + n); return r; }
+function addYears(d, n) { const r = new Date(d); r.setUTCFullYear(r.getUTCFullYear() + n); return r; }
+
+function makeWindows(captureDate, opt) {
+  const d = new Date(captureDate);
+  const ly = addYears(d, -1);
+  const multi = [];
+  for (let i = 1; i <= opt.multiYears; i++) {
+    const past = addYears(d, -i);
+    multi.push([iso(addDays(past, -opt.windowDays)), iso(addDays(past, opt.windowDays))]);
+  }
+  return {
+    latest:   [iso(addDays(d, -60)), iso(d)],
+    lastYear: [iso(addDays(ly, -opt.windowDays)), iso(addDays(ly, opt.windowDays))],
+    multi,
+    recent30: [iso(addDays(d, -30)), iso(d)],
+  };
+}
+
+// ════════ PIPELINE per footprint ════════
+async function processFootprint(fp, idx, opt) {
+  setStatus(idx, 'running'); renderCard(idx);
+
+  const polygon = fp.geometry.coordinates[0];
+  const bbox = turf.bbox(fp);
+  const captureDate = fp.properties?.timestamp || fp.properties?.datetime || new Date().toISOString();
+
+  log(`▸ [${idx + 1}/${S.footprints.length}] ${fp.properties?.id || 'fp-' + idx} · capture ${captureDate.split('T')[0]}`, 'info');
+
+  const w = makeWindows(captureDate, opt);
+  const result = { id: fp.properties?.id || 'fp-' + idx, captureDate, composites: {}, _status: 'running' };
+  S.results[idx] = result;
+
+  // 1. Latest scene
+  try {
+    log(`  · latest scene (${w.latest[0]} → ${w.latest[1]})`, 'muted');
+    const sc = await stacSearch({ bbox, range: w.latest, cloud: opt.cloud, limit: 10 });
+    if (!sc.length) {
+      log('    no scenes found', 'warn');
+      result.composites.latest = { ndvi: null, n: 0 };
+    } else {
+      const best = sc[0];
+      log(`    using ${best.id} (cloud ${best.properties['eo:cloud_cover'].toFixed(1)}%)`, 'ok');
+      const ndvi = await ndviForScene(best, polygon, opt.windowM);
+      result.composites.latest = { ndvi, n: 1, date: best.properties.datetime, scene: best.id, cloud: best.properties['eo:cloud_cover'] };
+      log(`    NDVI = ${ndvi !== null ? ndvi.toFixed(3) : 'n/a'}`, ndvi !== null ? 'ok' : 'warn');
+    }
+  } catch (e) {
+    log(`    latest failed: ${e.message}`, 'err');
+    result.composites.latest = { ndvi: null, error: e.message };
+  }
+  renderCard(idx);
+
+  // 2. Last year same window
+  try {
+    log(`  · last year ±${opt.windowDays}d (${w.lastYear[0]} → ${w.lastYear[1]})`, 'muted');
+    const sc = await stacSearch({ bbox, range: w.lastYear, cloud: opt.cloud, limit: 30 });
+    log(`    ${sc.length} scenes`, sc.length ? 'ok' : 'warn');
+    const vals = [];
+    for (const s of sc) {
+      const v = await ndviForScene(s, polygon, opt.windowM).catch(() => null);
+      if (v !== null) vals.push(v);
+    }
+    const med = median(vals);
+    result.composites.lastYear = { ndvi: med, n: vals.length };
+    log(`    median NDVI over ${vals.length} = ${med !== null ? med.toFixed(3) : 'n/a'}`, vals.length ? 'ok' : 'warn');
+  } catch (e) {
+    log(`    lastYear failed: ${e.message}`, 'err');
+    result.composites.lastYear = { ndvi: null, error: e.message };
+  }
+  renderCard(idx);
+
+  // 3. Multi-year same-season median
+  try {
+    log(`  · ${opt.multiYears}-year same-season median`, 'muted');
+    const allVals = [];
+    for (let i = 0; i < w.multi.length; i++) {
+      const wr = w.multi[i];
+      const sc = await stacSearch({ bbox, range: wr, cloud: opt.cloud, limit: 20 });
+      log(`    year -${i + 1}: ${sc.length} scenes`, 'muted');
+      for (const s of sc) {
+        const v = await ndviForScene(s, polygon, opt.windowM).catch(() => null);
+        if (v !== null) allVals.push(v);
+      }
+    }
+    const med = median(allVals);
+    result.composites.multiYear = { ndvi: med, n: allVals.length };
+    log(`    median NDVI over ${allVals.length} = ${med !== null ? med.toFixed(3) : 'n/a'}`, allVals.length ? 'ok' : 'warn');
+  } catch (e) {
+    log(`    multiYear failed: ${e.message}`, 'err');
+    result.composites.multiYear = { ndvi: null, error: e.message };
+  }
+  renderCard(idx);
+
+  // 4. Recent 30-day median
+  try {
+    log(`  · recent 30-day median (${w.recent30[0]} → ${w.recent30[1]})`, 'muted');
+    const sc = await stacSearch({ bbox, range: w.recent30, cloud: Math.max(opt.cloud, 30), limit: 20 });
+    log(`    ${sc.length} scenes`, sc.length ? 'ok' : 'warn');
+    const vals = [];
+    for (const s of sc) {
+      const v = await ndviForScene(s, polygon, opt.windowM).catch(() => null);
+      if (v !== null) vals.push(v);
+    }
+    const med = median(vals);
+    result.composites.recent30 = { ndvi: med, n: vals.length };
+    log(`    median NDVI over ${vals.length} = ${med !== null ? med.toFixed(3) : 'n/a'}`, vals.length ? 'ok' : 'warn');
+  } catch (e) {
+    log(`    recent30 failed: ${e.message}`, 'err');
+    result.composites.recent30 = { ndvi: null, error: e.message };
+  }
+
+  // Delta vs last year
+  const cur = result.composites.latest?.ndvi;
+  const ly = result.composites.lastYear?.ndvi;
+  result.deltaPctVsLastYear = (cur !== null && cur !== undefined && ly !== null && ly !== undefined && ly !== 0)
+    ? ((cur - ly) / ly) * 100 : null;
+
+  result._status = 'done';
+  renderCard(idx);
+  log(`  ✓ done · Δ vs last year: ${result.deltaPctVsLastYear !== null ? result.deltaPctVsLastYear.toFixed(1) + '%' : 'n/a'}`, 'ok');
+}
+
+function setStatus(idx, status) {
+  if (!S.results[idx]) S.results[idx] = { _status: status };
+  else S.results[idx]._status = status;
+}
+
+// ════════ RUNNER ════════
+async function runPipeline() {
+  if (S.running || S.footprints.length === 0) return;
+  S.running = true;
+  document.getElementById('run-btn').disabled = true;
+  document.getElementById('export-btn').disabled = true;
+  const sb = document.getElementById('status-badge');
+  sb.textContent = 'RUNNING';
+  sb.classList.add('run');
+
+  S.results = new Array(S.footprints.length).fill(null);
+  renderResults();
+
+  const opt = {
+    cloud: parseFloat(document.getElementById('cloud').value) || 20,
+    windowM: parseFloat(document.getElementById('windowM').value) || 30,
+    windowDays: parseInt(document.getElementById('windowDays').value) || 15,
+    multiYears: parseInt(document.getElementById('multiYears').value) || 3,
+  };
+
+  log(`══ pipeline start · ${S.footprints.length} fp · cloud<${opt.cloud}% · window=${opt.windowM}m ══`, 'info');
+
+  for (let i = 0; i < S.footprints.length; i++) {
+    try { await processFootprint(S.footprints[i], i, opt); }
+    catch (e) {
+      log(`fp ${i + 1} failed: ${e.message}`, 'err');
+      setStatus(i, 'err'); renderCard(i);
+    }
+  }
+
+  log('══ pipeline complete ══', 'ok');
+  S.running = false;
+  document.getElementById('run-btn').disabled = false;
+  document.getElementById('export-btn').disabled = false;
+  sb.textContent = 'DONE';
+  sb.classList.remove('run');
+  sb.classList.add('live');
+}
+
+// ════════ RESULT CARDS ════════
+const COMPOSITES = [
+  { key: 'latest',    label: 'Latest scene' },
+  { key: 'lastYear',  label: 'Last year, same window' },
+  { key: 'multiYear', label: 'Multi-year median' },
+  { key: 'recent30',  label: 'Recent 30-day median' },
+];
+
+function renderResults() {
+  const root = document.getElementById('results');
+  if (S.footprints.length === 0) {
+    root.innerHTML = '<div class="empty"><div class="ic">🛰</div>Load a footprints GeoJSON or run the demo<br>to see the four-composite dashboard.</div>';
+    return;
+  }
+  root.innerHTML = '';
+  S.footprints.forEach((_, i) => {
+    const card = document.createElement('div');
+    card.className = 'fp'; card.id = 'fp-' + i;
+    root.appendChild(card);
+    renderCard(i);
+  });
+}
+
+function ndviColor(v) {
+  if (v === null || v === undefined) return 'var(--dim)';
+  if (v < 0.10) return '#a87850';
+  if (v < 0.25) return '#c8a060';
+  if (v < 0.45) return '#d8c048';
+  if (v < 0.65) return '#88b870';
+  return '#5cc05c';
+}
+
+function renderCard(idx) {
+  const fp = S.footprints[idx];
+  const r = S.results[idx] || {};
+  const card = document.getElementById('fp-' + idx);
+  if (!card) return;
+
+  const id = fp.properties?.id || 'fp-' + idx;
+  const kc = fp.properties?.kc_stage ? `Kc${fp.properties.kc_stage}` : '—';
+  const date = (fp.properties?.timestamp || '').split('T')[0] || '—';
+  const c = turf.centroid(turf.polygon([fp.geometry.coordinates[0]])).geometry.coordinates;
+  const coord = `${c[1].toFixed(4)}, ${c[0].toFixed(4)}`;
+
+  const status = r._status || 'pending';
+  const statusLabel = status === 'running' ? '◌ RUNNING'
+                    : status === 'done'    ? '✓ DONE'
+                    : status === 'err'     ? '✕ ERROR'
+                    : 'PENDING';
+
+  const cells = COMPOSITES.map(co => {
+    const d = r.composites?.[co.key];
+    const v = d?.ndvi;
+    const pct = v !== null && v !== undefined ? ((v + 0.2) / 1.2) * 100 : null;
+    const hasVal = v !== null && v !== undefined;
+    const valHTML = !hasVal
+      ? `<div class="v ${status === 'running' ? 'pend' : 'na'}">${status === 'running' ? '···' : '—'}</div>`
+      : `<div class="v" style="color:${ndviColor(v)}">${v.toFixed(3)}</div>`;
+    const subHTML = d?.n !== undefined
+      ? `<div class="sub">${d.n} scene${d.n === 1 ? '' : 's'}</div>` : '';
+    const barHTML = hasVal
+      ? `<div class="bar"><div class="mk" style="left:${Math.max(0, Math.min(100, pct))}%"></div></div>` : '';
+    return `<div class="comp">
+      <div class="k">${co.key}</div>
+      <div class="l">${co.label}</div>
+      ${valHTML}${subHTML}${barHTML}
+    </div>`;
+  }).join('');
+
+  const dPct = r.deltaPctVsLastYear;
+  const dCls = (dPct === null || dPct === undefined) ? 'flat'
+             : dPct > 2  ? 'up'
+             : dPct < -2 ? 'down' : 'flat';
+  const dText = (dPct === null || dPct === undefined) ? '—'
+              : `${dPct > 0 ? '+' : ''}${dPct.toFixed(1)}%`;
+
+  card.innerHTML = `
+    <div class="fp-h">
+      <div>
+        <div class="fp-id">${id}</div>
+        <div class="fp-meta">${coord} · ${date} · ${kc}</div>
+      </div>
+      <div class="fp-st ${status}">${statusLabel}</div>
+    </div>
+    <div class="grid">${cells}</div>
+    <div class="delta">
+      <div class="dl">NDVI vs same window last year</div>
+      <div class="dv ${dCls}">${dText}</div>
+    </div>
+  `;
+}
+
+// ════════ INPUT ════════
+function loadFootprints(fc) {
+  if (!fc || fc.type !== 'FeatureCollection' || !Array.isArray(fc.features)) {
+    log('Invalid GeoJSON: need FeatureCollection of polygons', 'err'); return false;
+  }
+  const polys = fc.features.filter(f => f.geometry?.type === 'Polygon');
+  if (polys.length === 0) {
+    log('No Polygon features in input', 'err'); return false;
+  }
+  S.footprints = polys;
+  S.results = [];
+  document.getElementById('filelabel').innerHTML =
+    `✓ Loaded <b>${polys.length}</b> footprint${polys.length === 1 ? '' : 's'}<br>${fc.metadata?.project || 'unnamed project'}`;
+  document.getElementById('filezone').classList.add('has');
+  document.getElementById('run-btn').disabled = false;
+  log(`Loaded ${polys.length} footprint polygon(s)`, 'ok');
+  renderResults();
+  return true;
+}
+
+document.getElementById('fileinput').addEventListener('change', e => {
+  const file = e.target.files?.[0];
+  if (!file) return;
+  log(`Reading ${file.name} (${(file.size / 1024).toFixed(1)} KB)`, 'info');
+  const reader = new FileReader();
+  reader.onload = ev => {
+    try { loadFootprints(JSON.parse(ev.target.result)); }
+    catch (err) { log(`JSON parse error: ${err.message}`, 'err'); }
+  };
+  reader.readAsText(file);
+});
+
+document.getElementById('demo-btn').addEventListener('click', () => {
+  const demo = {
+    type: 'FeatureCollection',
+    metadata: { project: 'demo-pune-agri', app: 'CropView Layer 2 demo' },
+    features: [{
+      type: 'Feature',
+      geometry: {
+        type: 'Polygon',
+        coordinates: [[
+          [73.8567, 18.5200],
+          [73.8573, 18.5200],
+          [73.8573, 18.5206],
+          [73.8567, 18.5206],
+          [73.8567, 18.5200],
+        ]]
+      },
+      properties: {
+        id: 'DEMO-PUNE-001',
+        timestamp: new Date().toISOString(),
+        kc_stage: 3,
+        azimuth_deg: 142,
+        hfov_deg: 65,
+      }
+    }]
+  };
+  loadFootprints(demo);
+  log('Loaded demo footprint near Pune (18.52°N, 73.86°E)', 'ok');
+});
+
+document.getElementById('run-btn').addEventListener('click', runPipeline);
+
+document.getElementById('export-btn').addEventListener('click', () => {
+  if (!S.results.length) return;
+  const enriched = {
+    type: 'FeatureCollection',
+    metadata: { app: 'CropView Layer 2', exported: new Date().toISOString(), total: S.footprints.length },
+    features: S.footprints.map((fp, i) => {
+      const r = S.results[i] || {};
+      return {
+        ...fp,
+        properties: {
+          ...fp.properties,
+          ndvi_latest: r.composites?.latest?.ndvi ?? null,
+          ndvi_latest_date: r.composites?.latest?.date ?? null,
+          ndvi_latest_scene: r.composites?.latest?.scene ?? null,
+          ndvi_lastyear_median: r.composites?.lastYear?.ndvi ?? null,
+          ndvi_lastyear_n: r.composites?.lastYear?.n ?? 0,
+          ndvi_multiyear_median: r.composites?.multiYear?.ndvi ?? null,
+          ndvi_multiyear_n: r.composites?.multiYear?.n ?? 0,
+          ndvi_recent30_median: r.composites?.recent30?.ndvi ?? null,
+          ndvi_recent30_n: r.composites?.recent30?.n ?? 0,
+          ndvi_delta_pct_vs_lastyear: r.deltaPctVsLastYear ?? null,
+        }
+      };
+    })
+  };
+  const blob = new Blob([JSON.stringify(enriched, null, 2)], { type: 'application/geo+json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `cropview_layer2_enriched_${Date.now()}.geojson`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+  log('Exported enriched GeoJSON with NDVI fields', 'ok');
+});
+
+// ════════ BOOT ════════
+log('CropView Layer 2 ready · Element84 STAC · geotiff.js · proj4js', 'ok');
+log('Bands: B04 (Red) + B08 (NIR) · NDVI = (NIR - Red) / (NIR + Red)', 'muted');
+log('Sampling: mean of pixels in window around polygon centroid', 'muted');
+</script>
+</body>
+</html>

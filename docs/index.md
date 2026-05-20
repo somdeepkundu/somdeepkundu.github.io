@@ -1,13 +1,18 @@
 ---
 hide:
   - toc
+og:
+  image: assets/images/portfolio-preview.png
+  image_alt: "Somdeep Kundu - Geospatial Portfolio"
 ---
 
 <div class="hero">
   <img src="assets/images/profile.png" alt="Somdeep Kundu" class="profile-photo">
-  <h1>Somdeep Kundu</h1>
-  <p><strong>PhD Scholar, IIT Bombay | RuDRA Lab, C-TARA</strong></p>
-  <p><em>Generalised Abstract Spatio-temporal madness</em></p>
+  <div>
+    <h1>Somdeep Kundu</h1>
+    <p><strong>PhD Scholar, IIT Bombay | RuDRA Lab, C-TARA</strong></p>
+    <p><em>Generalised Abstract Spatio-temporal madness</em></p>
+  </div>
 </div>
 
 ---
@@ -23,6 +28,7 @@ I am a PhD Scholar at the Centre for Technology Alternatives for Rural Areas (C-
 
 <div class="about-image">
   <img src="assets/images/about.png" alt="About">
+  <p><a href="https://somdeepkundu.github.io/assets/files/IndiaAI-ImpactSummit-Somdeep.pdf" target="_blank" rel="noopener">View IndiaAI Summit poster →</a></p>
 </div>
 
 </div>
@@ -44,9 +50,9 @@ I am a PhD Scholar at the Centre for Technology Alternatives for Rural Areas (C-
     ---
 
     - Google Earth Engine, QGIS
-    - GDAL / OGR
+    - GDAL / OGR — Drone data spatial analysis with open-source tools
     - STAC API for satellite data integration
-    - Orbital pass tracking (NISAR, Sentinel, CelesTrak)
+    - DGCA-approved certified drone pilot (Rotorcraft, VLOS, Small)
 
 -   :material-code-braces:{ .lg .middle } **Programming**
 
@@ -55,15 +61,21 @@ I am a PhD Scholar at the Centre for Technology Alternatives for Rural Areas (C-
     - Python — Machine Learning & Automation
     - R — Spatial Data Analysis
     - JavaScript — Web mapping & GEE
-    - Natural Language / Vibe Coding
+    - HTML, CSS — Web Development
+    - Natural Language / Vibe Coding — Agentic Workflow
+    - Parallel processing using Dask and XArray
 
 -   :material-star-four-points:{ .lg .middle } **Machine Learning & GeoAI**
 
     ---
 
-    - Graph Neural Networks (GNN)
-    - Supervised classification (Random Forest)
-    - Time-series satellite data processing
+    - Linear Algebra, Bayesian Statistics
+    - Classical and non-Markovian hybrid approach
+    - Post-classification accuracy assessment
+    - Time-series spatial data processing and gap filling
+    - Foundational Model (Alpha Earth)
+    - Graph Neural Networks (GNN), Knowledge Graph
+    - Sustainable and Trustworthy AI
     - Chaos Theory applications in agrometeorology
 
 -   :material-earth:{ .lg .middle } **Web Mapping & Applications**
@@ -71,9 +83,20 @@ I am a PhD Scholar at the Centre for Technology Alternatives for Rural Areas (C-
     ---
 
     - Streamlit for data-driven web apps and dashboards
-    - Interactive web-based application development
+    - Interactive web-based application development (GEE apps, GitHub.io)
     - Integrating indigenous knowledge systems with spatial data
-    - Remote sensing visualization
+    - Multiband spatiotemporal remote sensing data visualization
+    - Static and dynamic web development
+
+-   :material-account-group:{ .lg .middle } **Social & Emotional Skills**
+
+    ---
+
+    - Highly motivated
+    - Working on technology alternative for Rural Areas
+    - Communication skills and active leadership experiences
+    - Evidence-based policy evaluation studies
+    - Qualitative research, Auto-Ethnography
 
 </div>
 
@@ -83,3 +106,5 @@ I am a PhD Scholar at the Centre for Technology Alternatives for Rural Areas (C-
 
 [GitHub](https://github.com/somdeepkundu){ .md-button }
 [LinkedIn](https://linkedin.com/in/somdeep-kundu){ .md-button }
+[ResearchGate](https://www.researchgate.net/profile/Somdeep-Kundu-2){ .md-button } 
+[Website](https://www.somdeepkundu.in/){ .md-button }

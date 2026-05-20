@@ -4,10 +4,11 @@
 # ============================================================
 
 site_name: "Somdeep Kundu - Geospatial Portfolio"
-site_description: "Portfolio of [YOUR NAME] — GIS, Remote Sensing, and Spatial Data Science"
-site_author: "[YOUR NAME]"
+site_description: "Portfolio of Somdeep Kundu — GIS, Remote Sensing, and Spatial Data Science"
+site_author: "Somdeep Kundu"
 # After your site is live, uncomment and set this to your actual GitHub Pages URL:
 # site_url: "https://your-username.github.io/your-repo-name"
+site_url: "https://somdeepkundu.github.io/"
 
 theme:
   name: material
@@ -22,13 +23,13 @@ theme:
     # Available colors: red, pink, purple, deep purple, indigo, blue, light blue,
     # cyan, teal, green, light green, lime, yellow, amber, orange, deep orange
     - scheme: default            # Light mode
-      primary: indigo
+      primary: custom
       accent: blue
       toggle:
-        icon: material/brightness-7
+        icon: material/brightness-3
         name: Switch to dark mode
     - scheme: slate              # Dark mode
-      primary: indigo
+      primary: custom
       accent: blue
       toggle:
         icon: material/brightness-4
@@ -55,16 +56,16 @@ markdown_extensions:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
-copyright: "Copyright &copy; [YOUR NAME]"
+copyright: "Copyright &copy; Somdeep Kundu"
 
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/[YOUR-GITHUB-USERNAME]
+      link: https://github.com/somdeepkundu
     - icon: fontawesome/brands/linkedin
-      link: https://linkedin.com/in/[YOUR-LINKEDIN-USERNAME]
+      link: https://linkedin.com/in/somdeep-kundu
     - icon: material/email
-      link: mailto:[YOUR-EMAIL-ADDRESS]
+      link: mailto:somdeepkundu@gmail.com
 
 
 plugins:
@@ -76,14 +77,15 @@ nav:
   - Home: index.md
   - Projects:
     - "All Projects": projects/index.md
-    - "Sample Project": projects/sample-project.md
-    - "Jupyter Notebook Project": projects/sample-notebook.ipynb
+    - "Bombay Asteroids": projects/bombay-asteroids-gallery.md
+    - "India AI Impact Summit": projects/india-ai-summit.md
+    - "Alok Kriti 2.0": projects/alok-kriti.md
+    - "NFHS Data Analysis": projects/nfhs-analysis.md
+    - "Spatial Process Modelling": projects/spatial-modelling.md
     # HOW TO ADD A NEW PROJECT:
-    # 1. Copy docs/projects/sample-project.md to docs/projects/your-project-name.md
-    #    (or drop an .ipynb file into docs/projects/ for a Jupyter notebook project)
-    # 2. Edit the new file with your project content
-    # 3. Add a line below (same format): - "Your Project Title": projects/your-project-name.md
-    # 4. Add a project card on docs/projects/index.md
+    # 1. Create markdown file: docs/projects/your-project-name.md
+    # 2. Add line in nav above with your project title and file path
+    # 3. Add project card on docs/projects/index.md
   - Publications: publications.md
   - Experience: experience.md
   - Contact: contact.md
