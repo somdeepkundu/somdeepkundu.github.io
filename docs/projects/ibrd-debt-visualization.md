@@ -4,6 +4,13 @@
 
 🌍 **[Explore Now](https://somdeepkundu.github.io/ibrd-debt-visualization/IBRD_VelocityMap_v3_responsive.html)** | 📂 **[GitHub Repo](https://github.com/somdeepkundu/ibrd-debt-visualization)** | 📊 **[All Visualizations](https://somdeepkundu.github.io/ibrd-debt-visualization/)**
 
+<details>
+<summary>📸 Click to view the interactive debt visualization screenshot</summary>
+
+<img width="490" height="568" alt="image" src="https://github.com/user-attachments/assets/14637174-9c11-468d-be3f-7f54495c91e5" />
+
+</details>
+
 ---
 
 ## 🎯 Overview
