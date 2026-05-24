@@ -18,6 +18,7 @@ A retro arcade shooter set above Mumbai — pilot your spaceship through 10 icon
 <div class="project-cta-row" markdown>
 [🎮 Play Now](https://somdeepkundu.github.io/bombay-asteroids/){ .md-button .md-button--primary target="_blank" }
 [📂 Source Code](https://github.com/somdeepkundu/bombay-asteroids){ .md-button target="_blank" }
+[📺 Watch Interview](http://www.youtube.com/watch?v=4pejCuZ3O9o){ .md-button target="_blank" }
 </div>
 
 ![Bombay Asteroids Showcase](../assets/images/bombay-asteroids-showcase.jpg)
