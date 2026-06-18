@@ -1,13 +1,6 @@
-# ============================================================
-# PORTFOLIO CONFIGURATION
-# Edit all lines marked [YOUR ...] to customize your site
-# ============================================================
-
 site_name: "Somdeep Kundu - Geospatial Portfolio"
 site_description: "Portfolio of Somdeep Kundu — GIS, Remote Sensing, and Spatial Data Science"
 site_author: "Somdeep Kundu"
-# After your site is live, uncomment and set this to your actual GitHub Pages URL:
-# site_url: "https://your-username.github.io/your-repo-name"
 site_url: "https://somdeepkundu.github.io/"
 
 theme:
@@ -77,6 +70,7 @@ nav:
   - Home: index.md
   - Projects:
     - "All Projects": projects/index.md
+    - "EM Visualizer": projects/electromagnetic-spectrum.md
     - "Bombay Asteroids": projects/bombay-asteroids-gallery.md
     - "India AI Impact Summit": projects/india-ai-summit.md
     - "Alok Kriti 2.0": projects/alok-kriti.md
