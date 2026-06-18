@@ -3,7 +3,7 @@ hide:
   - toc
 ---
 # Electromagnetic Spectrum
-![Electromagnetic Spectrum](../assets/images/electromagnetic-spectrum.jpg)
+![Electromagnetic Spectrum](../assets/images/electromagnetic-spectrum.png)
 
 ## Overview
 An interactive zoomable visualization of the electromagnetic spectrum focusing on satellite navigation and microwave bands. Explore GNSS constellations (GPS, GLONASS, Galileo, BeiDou, NavIC) across L, C, Ku, and Ka bands with real-time frequency-wavelength calculations and constellation details.
