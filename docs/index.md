@@ -2,8 +2,8 @@
 hide:
   - toc
 og:
-  image: assets/images/portfolio-preview.png
-  image_alt: "Somdeep Kundu - Geospatial Portfolio"
+  image: assets/images/social-card.jpg
+  image_alt: "Somdeep Kundu: geospatial portfolio, map layers of terrain, crops and night lights"
 ---
 
 <style>
