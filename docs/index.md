@@ -6,6 +6,29 @@ og:
   image_alt: "Somdeep Kundu - Geospatial Portfolio"
 ---
 
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
+/* home page only: CropView announcement pill, in the app's navy + cyan */
+.cv-announce{display:flex;justify-content:center;margin:0 0 1.1rem}
+.md-typeset .cv-announce a.cv-pill:not(.md-button):not(.md-tabs__link):not(.md-nav__link):not(.md-footer__link):not(.md-source__link):not(.md-header__button),
+.md-typeset .cv-announce a.cv-pill:not(.md-button):not(.md-tabs__link):not(.md-nav__link):not(.md-footer__link):not(.md-source__link):not(.md-header__button):hover{display:inline-flex;align-items:center;gap:.55rem;max-width:100%;padding:.28rem .9rem .28rem .3rem;border-radius:999px;background:#0b1222;border:1px solid rgba(34,211,238,.35);color:#e8f0fe!important;font-family:'Comfortaa',system-ui,sans-serif;font-size:.66rem;font-weight:700;line-height:1.35;text-decoration:none;box-shadow:0 4px 18px rgba(8,13,26,.18);transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.md-typeset .cv-announce a.cv-pill:not(.md-button):not(.md-tabs__link):not(.md-nav__link):not(.md-footer__link):not(.md-source__link):not(.md-header__button):hover{transform:translateY(-1px);border-color:#22d3ee;box-shadow:0 8px 24px rgba(34,211,238,.18)}
+.cv-pill img{width:22px;height:22px;border-radius:7px;flex:none;margin:0}
+.cv-pill .cv-tag{flex:none;background:#22d3ee;color:#080d1a;border-radius:999px;padding:.08rem .5rem;font-size:.56rem;letter-spacing:.08em;text-transform:uppercase}
+.cv-pill .cv-arrow{flex:none;color:#22d3ee;transition:transform .2s ease}
+.cv-pill:hover .cv-arrow{transform:translateX(3px)}
+@media (max-width:520px){.md-typeset .cv-announce a.cv-pill:not(.md-button){font-size:.6rem;border-radius:16px}}
+</style>
+
+<div class="cv-announce">
+  <a class="cv-pill" href="projects/cropview/">
+    <img src="assets/images/cropview-icon.png" alt="">
+    <span class="cv-tag">New</span>
+    <span class="cv-msg">CropView v3.4 LTR: every field photo, mapped as a footprint</span>
+    <span class="cv-arrow">→</span>
+  </a>
+</div>
+
 <div class="hero">
   <img src="assets/images/profile.png" alt="Somdeep Kundu" class="profile-photo">
   <div>
