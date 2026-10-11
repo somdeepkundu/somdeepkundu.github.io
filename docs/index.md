@@ -8,6 +8,23 @@ og:
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap');
+/* home page only: subtle paper grain + warm earthy mottling.
+   ~1.5 KB of CSS, no image requests: the grain is a 240px SVG noise tile the browser
+   draws once and repeats; it scrolls with the page (no fixed layer, no blend modes,
+   no animation), so scrolling and painting cost nothing extra. Regenerate the tile
+   strength via the feColorMatrix alpha row and the g opacity. */
+body[data-md-color-scheme="default"]{--md-default-bg-color:#f9f5ee;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='a' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.329 0 0 0 0 0.243 0 0 0 0 0.157 1.3 0 0 0 -0.58'/%3E%3C/filter%3E%3Cfilter id='b' x='0' y='0'%3E%3CfeTurbulence type='turbulence' baseFrequency='.006 .32' numOctaves='2' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.329 0 0 0 0 0.243 0 0 0 0 0.157 2.0 0 0 0 -1.3'/%3E%3C/filter%3E%3Cg opacity='0.4'%3E%3Crect width='240' height='240' filter='url(%23a)'/%3E%3Crect width='240' height='240' filter='url(%23b)'/%3E%3C/g%3E%3C/svg%3E"),
+    radial-gradient(1100px 700px at 8% -5%,rgba(208,180,138,.16),transparent 65%),
+    radial-gradient(900px 800px at 105% 30%,rgba(176,138,104,.10),transparent 60%),
+    radial-gradient(800px 600px at 25% 85%,rgba(160,140,96,.08),transparent 60%);
+  background-repeat:repeat,no-repeat,no-repeat,no-repeat}
+body[data-md-color-scheme="slate"]{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='a' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1.000 0 0 0 0 0.957 0 0 0 0 0.894 1.3 0 0 0 -0.58'/%3E%3C/filter%3E%3Cfilter id='b' x='0' y='0'%3E%3CfeTurbulence type='turbulence' baseFrequency='.006 .32' numOctaves='2' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1.000 0 0 0 0 0.957 0 0 0 0 0.894 2.0 0 0 0 -1.3'/%3E%3C/filter%3E%3Cg opacity='0.22'%3E%3Crect width='240' height='240' filter='url(%23a)'/%3E%3Crect width='240' height='240' filter='url(%23b)'/%3E%3C/g%3E%3C/svg%3E"),
+    radial-gradient(1100px 700px at 8% -5%,rgba(196,154,110,.07),transparent 65%),
+    radial-gradient(900px 800px at 105% 30%,rgba(176,120,96,.05),transparent 60%);
+  background-repeat:repeat,no-repeat,no-repeat}
+@media print,(prefers-contrast:more),(forced-colors:active){body[data-md-color-scheme]{background-image:none}}
 /* home page only: CropView announcement pill, in the app's navy + cyan */
 .cv-announce{display:flex;justify-content:center;margin:0 0 1.1rem}
 .md-typeset .cv-announce a.cv-pill:not(.md-button):not(.md-tabs__link):not(.md-nav__link):not(.md-footer__link):not(.md-source__link):not(.md-header__button),
