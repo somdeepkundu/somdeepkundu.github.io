@@ -8,7 +8,7 @@
 Right side: an isometric stack of three map layers drawn from the kind of
 work on the site, bottom to top: terrain contours + a river, a satellite
 crop-pixel mosaic with a CropView ground footprint, and night-time lights.
-Left side: CMY logo, name, tagline, affiliation, topic chips.
+Left side: RGB logo, name, tagline, affiliation, topic chips.
 """
 import math, random, sys, os
 import numpy as np
@@ -138,8 +138,8 @@ h1{{font:400 82px/0.98 'DM Serif Display',serif;letter-spacing:-.01em;color:#fbe
 .chips{{margin-top:30px;display:flex;flex-wrap:wrap;gap:9px;max-width:520px}}
 .chips span{{font:500 14px 'DM Sans',sans-serif;color:#f5e4ec;border:1px solid rgba(232,96,138,.45);
   background:rgba(232,96,138,.08);border-radius:999px;padding:6px 14px}}
-.cmy{{position:absolute;left:72px;bottom:0;width:120px;height:5px;display:flex}}
-.cmy i{{flex:1}}
+.rgb{{position:absolute;left:72px;bottom:0;width:120px;height:5px;display:flex}}
+.rgb i{{flex:1}}
 </style></head><body>
 {stack}
 <div class="left">
@@ -149,7 +149,7 @@ h1{{font:400 82px/0.98 'DM Serif Display',serif;letter-spacing:-.01em;color:#fbe
   <div class="aff">PhD Scholar · RuDRA Lab, C-TARA, IIT Bombay</div>
   <div class="chips"><span>Remote Sensing</span><span>Crop Water</span><span>Night Lights</span><span>Field Apps</span><span>Spatial Statistics</span></div>
 </div>
-<div class="cmy"><i style="background:#009ee1"></i><i style="background:#e3007a"></i><i style="background:#ffed00"></i></div>
+<div class="rgb"><i style="background:#ff1e1e"></i><i style="background:#1edc3c"></i><i style="background:#1e3cff"></i></div>
 </body></html>'''
 hp = os.path.join(S, "card.html"); open(hp, "w").write(html)
 with sync_playwright() as p:

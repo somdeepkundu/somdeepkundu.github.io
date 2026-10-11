@@ -6,7 +6,7 @@ site_url: "https://somdeepkundu.github.io/"
 theme:
   name: material
   custom_dir: overrides   # adds link-preview (Open Graph) tags, see overrides/main.html
-  # Site logo (header) and browser-tab icon: the CMY circles mark.
+  # Site logo (header) and browser-tab icon: the RGB additive circles mark.
   # Vector source: docs/assets/images/logo.svg (favicon.svg is a copy).
   # PNG fallbacks for older browsers / iOS are linked in overrides/main.html.
   logo: assets/images/logo.svg
