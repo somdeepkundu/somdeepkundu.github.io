@@ -88,6 +88,6 @@
   <circle cx="375" cy="25" r="6" fill="none" stroke="#764ba2" stroke-width="1.5" opacity="0.4"/>
 
   <!-- Info badge -->
-  <rect x="40" y="220" width="320" height="20" rx="3" fill="#ffffff" opacity="0.08" stroke="#667eea" stroke-width="0.5" opacity="0.3"/>
+  <rect x="40" y="220" width="320" height="20" rx="3" fill="#ffffff" fill-opacity="0.08" stroke="#667eea" stroke-width="0.5" stroke-opacity="0.3"/>
   <text x="200" y="232" font-size="9" fill="#aaaaaa" font-family="sans-serif" text-anchor="middle">79 Years of Global Debt Patterns | Interactive Data Visualization</text>
 </svg>
