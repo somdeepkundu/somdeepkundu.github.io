@@ -2,55 +2,132 @@
 hide:
   - toc
 ---
-# CropView
 
-![CropView](../assets/images/cropview-hero.png)
+<div class="cv-hero" markdown>
 
-*Let the place speak in coordinates and geometries.*
+![CropView logo](../assets/images/cropview-icon.png){ .cv-logo }
 
-A geo-tagged field capture app. Point your phone at a crop, or anything you want to record, and every photo is saved with its location, look direction, tilt and ground footprint on the map.
+<div class="cv-hero-text" markdown>
 
-**Requires:** Camera · GPS · Compass  
-**Version:** v3.4 LTR · RGSTC Project · MIT License
+# CropView { .cv-wordmark }
 
-[Launch App →](https://somdeepkundu.github.io/cropview-v3/){ .md-button .md-button--primary } [Data Explorer →](https://somdeepkundu.github.io/cropview-v3/cropview-viewer-v2.html){ .md-button } [Field Manual (PDF) →](../assets/files/CropView_Field_Manual_v3.4.pdf){ .md-button } [GitHub →](https://github.com/somdeepkundu/cropview-v3){ .md-button }
+<p class="cv-tagline">Let the place speak in coordinates and geometries.</p>
 
-## How to use
+<p class="cv-pills"><span>Camera · GPS · Compass</span><span>v3.4 LTR</span><span>Web + Android</span></p>
 
-1. **Open & allow.** Open CropView. Tap “Grant Permissions & Continue” and allow camera, location and compass.
-2. **Start a session.** Type a project name. If you are standing, keep the camera height at 1.5 m. Tap **START SESSION**.
-3. **Wait for GPS.** Stand in the open until the GPS button turns blue. Direction looks wrong? Tap the compass.
-4. **Aim.** Point the phone at what you want to photograph. Tilt it until the side bar shows **✓ GOOD**.
-5. **Take the photo.** Hold still and tap **CAPTURE**. Location, look direction and tilt are saved with every photo.
-6. **Map tab.** See your camera POV and footprint on the map.
-7. **Save your work.** Before closing the app, open the **DATA** tab, scroll to the bottom and tap **EXPORT ZIP**.
-8. **Explore.** Open the ZIP in the [Data Explorer](https://somdeepkundu.github.io/cropview-v3/cropview-viewer-v2.html).
+</div>
+</div>
 
-!!! note "Crop surveys only"
-    First pick the crop stage (Kc stage) in the **DATA** tab.
+A field capture app that turns every photo into a mapped ground footprint, with its location, look direction and tilt.
 
-## Camera tilt (from nadir)
+<div class="cv-links" markdown>
+[Launch App →](https://somdeepkundu.github.io/cropview-v3/){ .md-button .md-button--primary }
+[Data Explorer](https://somdeepkundu.github.io/cropview-v3/cropview-viewer-v2.html){ .md-button }
+[Field Manual (PDF)](../assets/files/CropView_Field_Manual_v3.4.pdf){ .md-button }
+[GitHub](https://github.com/somdeepkundu/cropview-v3){ .md-button }
+</div>
 
-![Camera tilt from nadir](../assets/images/cropview-camera-tilt.png){ width="460" }
+## How it works
 
-Hold the phone at chest level and aim at the target. A tilt of 28–55° from nadir shows **✓ GOOD**.
+<div class="cv-steps" markdown>
 
-## Anatomy of a capture
+<div class="cv-step" markdown>
+<span class="cv-num">01</span> :material-cellphone-check:
 
-![Anatomy of a capture](../assets/images/cropview-capture-anatomy.png){ width="600" }
+**Open & allow**
 
-*h* is the camera height and *θ* is the tilt from straight down (nadir).
+Tap “Grant Permissions & Continue” and allow camera, location and compass.
+</div>
 
-**Every frame carries:** `lat` `lon` `azimuth` `tilt` `altitude` `acc_h` `fp_w_m` `fp_d_m` `heading_source`
+<div class="cv-step" markdown>
+<span class="cv-num">02</span> :material-clipboard-text-outline:
 
-**Filename structure:** `ProjectName_ID_YYYYMMDDHHMMSS_lat_lon.jpg`
+**Start a session**
 
-## Field manual
+Name the project. Standing? Keep the camera height at 1.5 m.
+</div>
 
-A printable two-page manual, with the steps in English, हिन्दी, मराठी, தமிழ் and বাংলা.
+<div class="cv-step" markdown>
+<span class="cv-num">03</span> :material-crosshairs-gps:
 
-[Download Field Manual (PDF) →](../assets/files/CropView_Field_Manual_v3.4.pdf){ .md-button }
+**Wait for GPS**
+
+Stand in the open until the GPS button turns blue. Direction off? Tap the compass.
+</div>
+
+<div class="cv-step" markdown>
+<span class="cv-num">04</span> :material-sprout-outline:
+
+**Aim**
+
+Tilt until the side bar shows ✓ GOOD. Crop surveys: pick the Kc stage in DATA first.
+</div>
+
+<div class="cv-step" markdown>
+<span class="cv-num">05</span> :material-camera-iris:
+
+**Capture**
+
+Hold still and tap CAPTURE. Location, look direction and tilt are saved.
+</div>
+
+<div class="cv-step" markdown>
+<span class="cv-num">06</span> :material-map-outline:
+
+**Map**
+
+See your camera POV and ground footprint on the map.
+</div>
+
+<div class="cv-step" markdown>
+<span class="cv-num">07</span> :material-package-variant-closed:
+
+**Export**
+
+Before closing, open DATA, scroll down and tap EXPORT ZIP.
+</div>
+
+<div class="cv-step" markdown>
+<span class="cv-num">08</span> :material-map-search-outline:
+
+**Explore**
+
+Open the ZIP in the [Data Explorer](https://somdeepkundu.github.io/cropview-v3/cropview-viewer-v2.html).
+</div>
+
+</div>
+
+## Capture geometry
+
+<div class="cv-figs" markdown>
+
+<figure markdown>
+![Ground footprint of a capture](../assets/images/cropview-hero.png)
+<figcaption>Each photo is mapped as a ground footprint.</figcaption>
+</figure>
+
+<figure markdown>
+![Camera tilt from nadir](../assets/images/cropview-camera-tilt.png)
+<figcaption>Phone at chest, 28–55° from nadir reads ✓ GOOD.</figcaption>
+</figure>
+
+<figure markdown>
+![Anatomy of a capture](../assets/images/cropview-capture-anatomy.png)
+<figcaption>h: camera height · θ: tilt from nadir.</figcaption>
+</figure>
+
+</div>
+
+<div class="cv-data" markdown>
+<span class="cv-label">Every frame carries</span>
+`lat` `lon` `azimuth` `tilt` `altitude` `acc_h` `fp_w_m` `fp_d_m` `heading_source`
+
+<span class="cv-label">Filename</span>
+`ProjectName_ID_YYYYMMDDHHMMSS_lat_lon.jpg`
+</div>
+
+<p class="cv-note">The <a href="../../assets/files/CropView_Field_Manual_v3.4.pdf">field manual</a> is a two-page print, with the steps in English, हिन्दी, मराठी, தமிழ் and বাংলা.</p>
 
 ---
 
-Made by [Somdeep Kundu](https://somdeepkundu.github.io/) with ❤️ at RuDRA Lab, C-TARA, IIT Bombay
+Made by [Somdeep Kundu](https://somdeepkundu.github.io/) with ❤️ at RuDRA Lab, C-TARA, IIT Bombay · RGSTC Project · MIT License
