@@ -1,6 +1,10 @@
 ---
 hide:
   - toc
+description: "CropView: a field capture app that maps every photo as a ground footprint, with its location, look direction and tilt."
+og:
+  image: assets/images/cropview-card.png
+  image_alt: "CropView: geo-tagged field capture app"
 ---
 
 <style>

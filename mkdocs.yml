@@ -5,6 +5,7 @@ site_url: "https://somdeepkundu.github.io/"
 
 theme:
   name: material
+  custom_dir: overrides   # adds link-preview (Open Graph) tags, see overrides/main.html
   # Icon used as both the site logo (header) and browser favicon.
   # Browse icons at https://squidfunk.github.io/mkdocs-material/reference/icons-emojis/
   # and replace "material/earth" with any "material/..." icon name you prefer.

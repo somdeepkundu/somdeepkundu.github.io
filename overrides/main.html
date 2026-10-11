@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{#
+  Link previews (WhatsApp, LinkedIn, Slack, X…) read Open Graph tags.
+  Per page, set in the Markdown front matter:
+    description: one-line summary
+    og:
+      image: assets/images/your-image.png   (path from the site root)
+      image_alt: short alt text
+  Pages without their own image fall back to the portfolio preview.
+#}
+{% block extrahead %}
+  {%- set og = page.meta.og if page.meta and page.meta.og else {} -%}
+  {%- if page.is_homepage -%}
+    {%- set og_title = config.site_name -%}
+  {%- else -%}
+    {%- set og_title = (page.meta.title if page.meta and page.meta.title else page.title) ~ " · " ~ config.site_author -%}
+  {%- endif -%}
+  {%- set og_desc = page.meta.description if page.meta and page.meta.description else config.site_description -%}
+  {%- set og_image = config.site_url ~ (og.image if og.image else "assets/images/portfolio-preview.png") -%}
+  {%- set og_alt = og.image_alt if og.image_alt else og_title -%}
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ config.site_name | e }}">
+  <meta property="og:title" content="{{ og_title | e }}">
+  <meta property="og:description" content="{{ og_desc | e }}">
+  <meta property="og:url" content="{{ page.canonical_url | e }}">
+  <meta property="og:image" content="{{ og_image | e }}">
+  <meta property="og:image:alt" content="{{ og_alt | e }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ og_title | e }}">
+  <meta name="twitter:description" content="{{ og_desc | e }}">
+  <meta name="twitter:image" content="{{ og_image | e }}">
+{% endblock %}
