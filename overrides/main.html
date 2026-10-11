@@ -10,6 +10,9 @@
   Pages without their own image fall back to the portfolio preview.
 #}
 {% block extrahead %}
+  {#- logo fallbacks: PNG tab icon for browsers without SVG favicons, iOS home-screen icon -#}
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ 'assets/images/favicon-32.png' | url }}">
+  <link rel="apple-touch-icon" href="{{ 'assets/images/apple-touch-icon.png' | url }}">
   {%- set og = page.meta.og if page.meta and page.meta.og else {} -%}
   {%- if page.is_homepage -%}
     {%- set og_title = config.site_name -%}

@@ -6,11 +6,11 @@ site_url: "https://somdeepkundu.github.io/"
 theme:
   name: material
   custom_dir: overrides   # adds link-preview (Open Graph) tags, see overrides/main.html
-  # Icon used as both the site logo (header) and browser favicon.
-  # Browse icons at https://squidfunk.github.io/mkdocs-material/reference/icons-emojis/
-  # and replace "material/earth" with any "material/..." icon name you prefer.
-  icon:
-    logo: material/earth
+  # Site logo (header) and browser-tab icon: the CMY circles mark.
+  # Vector source: docs/assets/images/logo.svg (favicon.svg is a copy).
+  # PNG fallbacks for older browsers / iOS are linked in overrides/main.html.
+  logo: assets/images/logo.svg
+  favicon: assets/images/favicon.svg
   palette:
     # To change the color, edit the 'primary' and 'accent' values below for both
     # the 'default' (light) and 'slate' (dark) schemes.
