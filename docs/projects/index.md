@@ -10,6 +10,18 @@ A selection of my geospatial and AI projects. Click any card to explore.
 <div class="grid" markdown>
 
 <div class="project-card" markdown>
+![](../assets/images/cropview-hero.png)
+
+**[CropView](cropview.md)**
+
+Geo-tagged field capture app. Every photo carries its location, look direction, tilt and ground footprint. Export a session as a ZIP and explore it on a map. Built for the RGSTC project, now at v3.4 LTR.
+
+`PWA` `Android` `GPS` `Compass` `Field Survey` `Leaflet`
+
+[View Project →](cropview.md){ .md-button } [Launch App →](https://somdeepkundu.github.io/cropview-v3/){ .md-button }
+</div>
+
+<div class="project-card" markdown>
 ![](../assets/images/ibrd-debt-preview.svg)
 
 **[IBRD Debt Visualization](ibrd-debt-visualization.md)**

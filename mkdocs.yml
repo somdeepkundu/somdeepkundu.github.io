@@ -70,6 +70,7 @@ nav:
   - Home: index.md
   - Projects:
     - "All Projects": projects/index.md
+    - "CropView": projects/cropview.md
     - "EM Visualizer": projects/electromagnetic-spectrum.md
     - "Bombay Asteroids": projects/bombay-asteroids-gallery.md
     - "India AI Impact Summit": projects/india-ai-summit.md
