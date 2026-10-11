@@ -225,9 +225,9 @@ Colour points by project, azimuth, tilt, altitude or index. Arrows look off? Tur
 <div class="cv-step" markdown>
 <span class="cv-num">04</span> :material-image-multiple-outline:
 
-**Browse photos**
+**Browse & zoom photos**
 
-Open any image full screen and step through the set with the keyboard.
+Open any photo full screen. Pinch, scroll or double-tap to zoom, and drag to look around. On phones, swipe for the next photo.
 </div>
 
 <div class="cv-step" markdown>
@@ -248,7 +248,7 @@ Export Annotated GeoJSON; it opens in QGIS. Import it later to pick up where you
 
 </div>
 
-<p class="cv-keys">Photo viewer: <kbd>←</kbd> <kbd>→</kbd> move · <kbd>Space</kbd> next · <kbd>I</kbd> info · <kbd>Esc</kbd> close</p>
+<p class="cv-keys">Photo viewer: <kbd>←</kbd> <kbd>→</kbd> move · <kbd>Space</kbd> next · <kbd>+</kbd> <kbd>−</kbd> zoom · <kbd>0</kbd> fit · <kbd>I</kbd> info · <kbd>Esc</kbd> close</p>
 
 <p class="cv-note">The <a href="../../assets/files/CropView_Field_Manual_v3.4.pdf">field manual</a> is a two-page print, with the field steps in English, हिन्दी, मराठी, தமிழ் and বাংলা.</p>
 
