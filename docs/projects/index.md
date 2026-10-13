@@ -10,6 +10,18 @@ A selection of my geospatial and AI projects. Click any card to explore.
 <div class="grid" markdown>
 
 <div class="project-card" markdown>
+![](../assets/images/floodview-card.png)
+
+**[FloodView](floodview.md)**
+
+A field camera for flood ground truthing. One tap saves a photo labelled flooded, waterlogged or dry, with water depth, flow and the spot under the crosshair, so the waterline can be traced from dry ground. Works offline.
+
+`PWA` `Flood mapping` `Ground truth` `GPS` `Compass` `Leaflet`
+
+[View Project →](floodview.md){ .md-button } [Launch App →](https://somdeepkundu.github.io/floodview/){ .md-button }
+</div>
+
+<div class="project-card" markdown>
 ![](../assets/images/cropview-card.png)
 
 **[CropView](cropview.md)**
