@@ -1,10 +1,11 @@
 ---
 hide:
   - toc
-description: "FloodView: a field camera for flood ground truthing. One tap saves a geo-tagged photo labelled flooded, waterlogged or dry, with its look direction, footprint and the spot under the crosshair."
+title: "FloodView, launched on DRR Day 2026"
+description: "Launched on the International Day for Disaster Risk Reduction (13 Oct 2026): FloodView, a free field camera for flood ground truthing. One tap labels a geo-tagged photo flooded, waterlogged or dry, with depth, flow and the waterline."
 og:
-  image: assets/images/floodview-card.png
-  image_alt: "FloodView: geo-tagged flood ground truthing"
+  image: assets/images/floodview-drr-card.jpg
+  image_alt: "FloodView launching on International Day for Disaster Risk Reduction, 13 October 2026"
 ---
 
 <style>
@@ -84,6 +85,22 @@ og:
 .md-typeset .fv-page .fv-note{font-size:.7rem;line-height:1.65;color:var(--fv-mute)}
 .md-typeset .fv-page .fv-foot{font-size:.7rem;color:var(--fv-mute)}
 .md-typeset .fv-page hr{border-bottom-color:var(--fv-line)}
+/* DRR Day 2026 announcement */
+.fv-announce{position:relative;margin:0 0 1.1rem;padding:.9rem 1.05rem .85rem 1.25rem;border-radius:14px;background:var(--fv-glass);border:1px solid rgba(217,119,6,.28);box-shadow:var(--fv-shine),var(--fv-gdrop);overflow:hidden}
+.fv-announce::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,#fbbf24,#38bdf8)}
+[data-md-color-scheme="slate"] .fv-announce{border-color:rgba(251,191,36,.25)}
+.md-typeset .fv-announce p{margin:.45rem 0 0;font-size:.74rem;line-height:1.65}
+.md-typeset .fv-announce p.fv-kicker{margin:0;display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#9a5b05}
+[data-md-color-scheme="slate"] .md-typeset .fv-announce p.fv-kicker{color:#fcd34d}
+.fv-kicker span{background:#fbbf24;color:#070d1c;border-radius:999px;padding:.12rem .55rem;letter-spacing:.1em}
+.md-typeset .fv-announce details.fv-why{margin:.6rem 0 0;border:none;box-shadow:none;background:none;padding:0;font-size:.72rem}
+.md-typeset .fv-announce details.fv-why>summary{display:inline-flex;align-items:center;gap:.4rem;cursor:pointer;list-style:none;padding:.3rem .8rem;border-radius:999px;border:1px solid var(--fv-gedge);background:var(--fv-glass);box-shadow:var(--fv-shine);font-size:.66rem;font-weight:700;color:var(--fv-ink)}
+.md-typeset .fv-announce details.fv-why>summary::-webkit-details-marker{display:none}
+.md-typeset .fv-announce details.fv-why>summary::before,.md-typeset .fv-announce details.fv-why>summary::after{display:none}
+.md-typeset .fv-announce details.fv-why>summary .fv-chev{display:inline-block;transition:transform .2s ease;color:var(--fv-river)}
+.md-typeset .fv-announce details.fv-why[open]>summary .fv-chev{transform:rotate(90deg)}
+.md-typeset .fv-announce details.fv-why ul{margin:.6rem 0 0 1rem}
+.md-typeset .fv-announce details.fv-why li{font-size:.7rem;line-height:1.6;margin-bottom:.3rem}
 @media (prefers-reduced-transparency:reduce){.fv-pills span{-webkit-backdrop-filter:none;backdrop-filter:none}}
 </style>
 
@@ -99,9 +116,27 @@ og:
 
 <p class="fv-tagline">Ground truth for flood maps, from where you stand.</p>
 
-<p class="fv-pills"><span>Camera · GPS · Compass</span><span>v1.0</span><span>Works offline</span></p>
+<p class="fv-pills"><span>Camera · GPS · Compass</span><span>v1.0</span><span>Works offline</span><span>DRR Day 2026</span></p>
 
 </div>
+</div>
+
+<div class="fv-announce" markdown>
+<p class="fv-kicker"><span>13 Oct 2026</span> International Day for Disaster Risk Reduction</p>
+
+**We are pleased to announce FloodView** on this year's DRR Day, themed [Resilience Starts at Home](https://www.undrr.org/news/undrr-announces-resilience-starts-home-theme-2026-international-day-disaster-risk-reduction). In a flood, the first people to see the water are the people at home. FloodView lets them record it as data that a flood map can be checked against.
+
+**Why it's needed.** Satellite flood maps come fast, but they often miss water in built-up areas, under trees and beneath clouds, and are rarely checked on the ground. Field photos exist, but they sit in phones and chat groups without position or direction. FloodView turns each one into a mapped, labelled observation.
+
+<details class="fv-why" markdown>
+<summary><span class="fv-chev">▸</span> Why it matters</summary>
+
+- **Checks the map.** Points labelled flooded, waterlogged or dry show where a flood map is right and where it is wrong.
+- **Marks the edge safely.** The crosshair records where the water starts, so nobody has to stand in it.
+- **Works when networks fail.** Capture offline, keep full-size photos on the phone, and share one ZIP when the signal returns.
+- **Open by default.** Free and open source. GeoJSON and CSV open in QGIS, with no account or server.
+
+</details>
 </div>
 
 <p class="fv-intro">A field camera for flood ground truthing. One tap saves a geo-tagged photo labelled flooded, waterlogged or dry, with its look direction, ground footprint and the exact spot under the crosshair, so you can mark the waterline from dry ground.</p>
