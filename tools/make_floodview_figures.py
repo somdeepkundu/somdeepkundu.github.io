@@ -6,7 +6,8 @@
 """Figures for the FloodView project page, in the same line-sketch style as the
 CropView page (teal ink on paper, Comfortaa labels):
 
-  floodview-card.png        1024x500  project card + link-preview image
+  floodview-card.png        1024x500  project card on the Projects page
+  floodview-drr-card.jpg    1200x630  link preview (WhatsApp etc.): launch on DRR Day 2026
   floodview-aim.png         side view: camera height, tilt, crosshair point on the waterline
   floodview-edge-trace.png  top view: crosshair points along the waterline joined into an edge
   floodview-depth.png       the body-scale depth guide
@@ -155,6 +156,27 @@ def card():
   </div>
 </div>"""
 
+def drr_card():
+    W, H = 1200, 630
+    waves = ''.join(f'<path d="M0 {y} ' + ' '.join(f'Q{x+37} {y-14} {x+75} {y} T{x+150} {y}' for x in range(0, W, 150)) + f'" fill="none" stroke="rgba({c},.{o})" stroke-width="3"/>'
+                    for y, c, o in ((70, '186,230,253', 45), (104, '125,211,252', 30)))
+    return W, H, f"""<div style="width:{W}px;height:{H}px;position:relative;overflow:hidden;background:radial-gradient(120% 140% at 0% 0%,#16274d 0%,#0b1430 50%,#070d1c 100%);font-family:Comfortaa,sans-serif">
+  <div style="position:absolute;left:0;right:0;top:0;height:76px;display:flex;align-items:center;gap:16px;padding:0 64px;background:linear-gradient(90deg,rgba(251,191,36,.16),rgba(251,191,36,.04));border-bottom:1px solid rgba(251,191,36,.35)">
+    <span style="font-size:15px;font-weight:700;letter-spacing:.14em;color:#070d1c;background:#fbbf24;border-radius:999px;padding:7px 16px">13 OCT 2026</span>
+    <span style="font-size:22px;font-weight:700;color:#fde68a;letter-spacing:.01em">International Day for Disaster Risk Reduction</span>
+  </div>
+  <svg width="{W}" height="150" viewBox="0 0 {W} 150" style="position:absolute;left:0;bottom:0;opacity:.6"><path d="M0 70 {' '.join(f'Q{x+37} 56 {x+75} 70 T{x+150} 70' for x in range(0, W, 150))} V150 H0Z" fill="rgba(56,189,248,.10)"/>{waves}</svg>
+  <div style="position:absolute;left:84px;top:178px;width:240px;height:240px;border-radius:54px;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.12),0 24px 60px -20px rgba(56,189,248,.55)">{icon.replace('<svg ', '<svg width="240" height="240" ')}</div>
+  <div style="position:absolute;left:380px;top:162px;right:60px">
+    <div style="font-size:21px;font-weight:700;letter-spacing:.12em;color:#7dd3fc;text-transform:uppercase">Launching today</div>
+    <div style="margin-top:12px;font-size:96px;font-weight:700;color:#38bdf8;line-height:1">Flood<span style="color:#e0f2fe">View</span></div>
+    <div style="margin-top:24px;font-size:29px;color:#d5e6f3;line-height:1.35">Flood ground truth, from where you stand.</div>
+    <div style="margin-top:10px;font-size:21px;color:#8fb3cc">Free · open source · works offline</div>
+    <div style="margin-top:34px;font-size:17px;color:#fcd34d">Theme 2026: <b>Resilience Starts at Home</b></div>
+  </div>
+  <div style="position:absolute;right:60px;bottom:28px;font-size:15px;color:#7f9bb4;letter-spacing:.05em">Somdeep Kundu · RuDRA Lab · C-TARA · IIT Bombay</div>
+</div>"""
+
 with sync_playwright() as p:
     b = p.chromium.launch()
     pg = b.new_page(device_scale_factor=1.6)
@@ -169,6 +191,10 @@ with sync_playwright() as p:
     W, H, body = card()
     pg2.set_viewport_size({'width': W, 'height': H}); pg2.set_content(HEAD + body); pg2.wait_for_timeout(300)
     pg2.screenshot(path=os.path.join(OUT, 'floodview-card.png'))
+    W, H, body = drr_card()
+    pg2.set_viewport_size({'width': W, 'height': H}); pg2.set_content(HEAD + body); pg2.wait_for_timeout(300)
+    tmp = os.path.join(OUT, '_drr.png'); pg2.screenshot(path=tmp)
+    Image.open(tmp).convert('RGB').save(os.path.join(OUT, 'floodview-drr-card.jpg'), quality=88, optimize=True, progressive=True); os.remove(tmp)
     b.close()
 Image.open(os.path.join(FV, 'icons/icon-192.png')).save(os.path.join(OUT, 'floodview-icon.png'), optimize=True)
 for f in sorted(os.listdir(OUT)):
