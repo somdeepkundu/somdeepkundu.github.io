@@ -116,7 +116,7 @@ og:
 
 <p class="fv-tagline">Ground truth for flood maps, from where you stand.</p>
 
-<p class="fv-pills"><span>Camera · GPS · Compass</span><span>v1.0</span><span>Works offline</span><span>DRR Day 2026</span></p>
+<p class="fv-pills"><span>Camera · GPS · Compass</span><span>v1.1</span><span>During + after flood</span><span>Works offline</span><span>DRR Day 2026</span></p>
 
 </div>
 </div>
@@ -139,7 +139,7 @@ og:
 </details>
 </div>
 
-<p class="fv-intro">A field camera for flood ground truthing. One tap saves a geo-tagged photo labelled flooded, waterlogged or dry, with its look direction, ground footprint and the exact spot under the crosshair, so you can mark the waterline from dry ground.</p>
+<p class="fv-intro">A field camera for flood ground truthing. One tap saves a geo-tagged photo labelled flooded, waterlogged or dry, with its look direction, ground footprint and the exact spot under the crosshair, so you can mark the waterline from dry ground. After the flood, it records flood marks and damage.</p>
 
 <div class="fv-links" markdown>
 [Launch App →](https://somdeepkundu.github.io/floodview/){ .md-button .md-button--primary }
@@ -223,6 +223,40 @@ Tap EXPORT ZIP, or SHARE ZIP straight to WhatsApp or Drive. Then open it in the 
 </div>
 
 </div>
+
+## After the flood
+
+<p class="fv-sub">Pick <b>After flood</b> when you start a survey. The buttons change to:</p>
+
+<div class="fv-steps fv-3" markdown>
+
+<div class="fv-step" markdown>
+<span class="fv-num">📏</span> :material-ruler:
+
+**Flood mark**
+
+The water line left on walls and trees. Note its height above the ground.
+</div>
+
+<div class="fv-step" markdown>
+<span class="fv-num">🏚</span> :material-home-alert-outline:
+
+**Damage**
+
+What is damaged (house, road, bridge, crops, embankment, well, power line…) and how bad: minor, major or destroyed.
+</div>
+
+<div class="fv-step" markdown>
+<span class="fv-num">✅</span> :material-check-circle-outline:
+
+**Not flooded**
+
+Places that stayed dry. Just as useful for checking a flood map.
+</div>
+
+</div>
+
+<p class="fv-note">You can also note the mud left behind and how long the water stayed. Every point gets a simple <code>was_flooded</code> yes/no, so during- and after-flood surveys go on one map.</p>
 
 ## Capture geometry
 
