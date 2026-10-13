@@ -69,6 +69,23 @@ og:
 .md-typeset .cv-page .cv-note{font-size:.68rem;color:var(--cv-mute)}
 .md-typeset .cv-page .cv-foot{font-size:.7rem;color:var(--cv-mute)}
 .md-typeset .cv-page hr{border-bottom-color:var(--cv-line)}
+/* glass (matches app v3.6) — kept subtle: translucent tiles with a top highlight, a faint sky/leaf glow, frosted pills in the hero */
+.cv-page{position:relative;isolation:isolate;--cv-glass:linear-gradient(180deg,rgba(255,255,255,.78),rgba(255,255,255,.52));--cv-gedge:rgba(122,92,62,.14);--cv-shine:inset 0 1px 0 rgba(255,255,255,.9);--cv-gdrop:0 10px 28px -20px rgba(60,45,25,.45)}
+[data-md-color-scheme="slate"] .cv-page{--cv-glass:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.02));--cv-gedge:rgba(255,255,255,.09);--cv-shine:inset 0 1px 0 rgba(255,255,255,.07);--cv-gdrop:0 14px 30px -22px rgba(0,0,0,.9)}
+.cv-page::before{content:"";position:absolute;inset:0 0 auto;height:min(70vh,640px);z-index:-1;pointer-events:none;-webkit-mask-image:radial-gradient(80% 70% at 50% 40%,#000,transparent);mask-image:radial-gradient(80% 70% at 50% 40%,#000,transparent);
+  background:radial-gradient(60% 50% at 10% 0%,rgba(34,211,238,.07),transparent 70%),radial-gradient(55% 45% at 95% 30%,rgba(127,156,111,.07),transparent 70%)}
+[data-md-color-scheme="slate"] .cv-page::before{background:radial-gradient(60% 50% at 10% 0%,rgba(34,211,238,.09),transparent 70%),radial-gradient(55% 45% at 95% 30%,rgba(52,211,153,.06),transparent 70%)}
+.cv-hero{box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 18px 40px -26px rgba(8,13,26,.8)}
+.cv-hero-text::before{content:"";position:absolute;inset:-3rem -40vw auto auto;width:22rem;height:14rem;z-index:-1;border-radius:50%;background:radial-gradient(closest-side,rgba(34,211,238,.10),transparent);pointer-events:none}
+.cv-pills span{background:rgba(255,255,255,.06);box-shadow:inset 0 1px 0 rgba(255,255,255,.1);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.md-typeset .cv-hero img.cv-logo{box-shadow:0 0 0 1px rgba(255,255,255,.14),inset 0 1px 0 rgba(255,255,255,.3),0 10px 28px -6px rgba(34,211,238,.35)}
+.cv-step,.md-typeset .cv-figs figure{background:var(--cv-glass);border-color:var(--cv-gedge);box-shadow:var(--cv-shine),var(--cv-gdrop)}
+.cv-step:hover{box-shadow:var(--cv-shine),0 16px 32px -20px rgba(34,211,238,.35)}
+[data-md-color-scheme="slate"] .md-typeset .cv-figs figure{background:linear-gradient(180deg,rgba(248,250,253,.96),rgba(240,244,250,.92))}
+.md-typeset .cv-page .md-button:not(.md-button--primary),[data-md-color-scheme="slate"] .md-typeset .cv-page .md-button:not(.md-button--primary){background:var(--cv-glass);border-color:var(--cv-gedge);box-shadow:var(--cv-shine)}
+.md-typeset .cv-page .md-button--primary,[data-md-color-scheme="slate"] .md-typeset .cv-page .md-button--primary{background:linear-gradient(180deg,#15203a,#080d1a);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 8px 20px -10px rgba(34,211,238,.45)}
+.md-typeset .cv-page code,.md-typeset .cv-page kbd{background:var(--cv-glass);border-color:var(--cv-gedge)}
+@media (prefers-reduced-transparency:reduce){.cv-pills span{-webkit-backdrop-filter:none;backdrop-filter:none}}
 </style>
 
 <div class="cv-page" markdown>
@@ -83,7 +100,7 @@ og:
 
 <p class="cv-tagline">Let the place speak in coordinates and geometries.</p>
 
-<p class="cv-pills"><span>Camera · GPS · Compass</span><span>v3.4 LTR</span><span>Web + Android</span></p>
+<p class="cv-pills"><span>Camera · GPS · Compass</span><span>v3.6</span><span>Web + Android</span></p>
 
 </div>
 </div>
