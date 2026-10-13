@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   PORTFOLIO — v1.1.4
+   PORTFOLIO — v1.2.0
    Light:  Desert Rose   — dusty pink, warm sand, deep wine
    Dark:   Dark Rose Tech — deep plum-black with rose-gold glow
    Fonts:  DM Serif Display (headings) + DM Sans (body)
@@ -608,7 +608,7 @@
 
 /* ─── Version badge in footer ───────────────────────────────── */
 .md-copyright::after {
-  content: "v1.1.4";
+  content: "v1.2.0";
   margin-left: 0.65rem;
   opacity: 0.38;
   font-size: 0.68em;
