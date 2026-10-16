@@ -2415,6 +2415,27 @@
      19.249046
     ]
    }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "not on list",
+    "name": "Marol Durga Puja Association",
+    "venue": "Vasant Oasis, Makwana Road",
+    "locality": "Marol, Andheri East",
+    "region": "Western Suburbs",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "Not on your list; found while searching. The pin is the association's listed address.",
+    "on_your_list": false
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.885147,
+     19.114892
+    ]
+   }
   }
  ]
 }
