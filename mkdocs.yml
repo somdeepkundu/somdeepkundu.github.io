@@ -71,6 +71,7 @@ nav:
   - Home: index.md
   - Projects:
     - "All Projects": projects/index.md
+    - "Mumbai Durga Pujo Map": projects/pujo-map.md
     - "CropView": projects/cropview.md
     - "FloodView": projects/floodview.md
     - "EM Visualizer": projects/electromagnetic-spectrum.md
