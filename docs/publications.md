@@ -37,7 +37,7 @@ hide:
 
 2. Kundu, S. (2024). *SAR Polarimetry: Concepts and Applications* — Guest lecture delivered for IEEE Student Branch on Synthetic Aperture Radar polarimetry, decomposition techniques, and remote sensing applications. [Watch on YouTube](https://youtu.be/nUBxxrK5MQA?si=AFDbseBCFxPzOTBy)
 
-3. Kundu, S. (2026). *Summer of Core '26* — Seven-part lecture series delivered for CEA, IIT Bombay, published on the GIS with Somdeep YouTube channel. [Watch Playlist](https://www.youtube.com/playlist?list=PLKxQxu_Vi2bo)
+3. Kundu, S. (2026). *Summer of Core (SoC) '26* — Lecture series delivered for the Civil Engineering Association (CEA), IIT Bombay, published on the GIS with Somdeep YouTube channel. [Watch Playlist](https://www.youtube.com/playlist?list=PLKxQxu_Vi2bo)
 
 ---
 
