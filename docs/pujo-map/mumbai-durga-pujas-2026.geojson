@@ -2140,30 +2140,6 @@
   {
    "type": "Feature",
    "properties": {
-    "list_numbers": "104",
-    "name": "Sarbojonin Kharghar Durgotsav",
-    "venue": "Behind Kharghar fire station, Sector 12",
-    "locality": "Kharghar",
-    "region": "Navi Mumbai",
-    "pin_type": "venue",
-    "pin_type_meaning": "Venue named in list",
-    "note": "Pin is the fire station named in the list.",
-    "on_your_list": true,
-    "instagram": null,
-    "facebook": null,
-    "website": null
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     73.06346,
-     19.038814
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
     "list_numbers": "105",
     "name": "Bengali Cultural Association, CBD Belapur",
     "venue": "Kali Mata Mandir Road, Sector 8B (list says near YMCA, Sector 3A)",
