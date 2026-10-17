@@ -31,7 +31,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600&family=Tiro+Bangla&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600&family=Tiro+Bangla&family=Galada&family=Anek+Bangla:wght@400;500;600&display=swap">
 <style>
 /* required styles */
 
@@ -713,6 +713,9 @@ svg.leaflet-image-layer.leaflet-interactive path {
   --glass-edge: rgba(36, 30, 31, 0.08);
   --font: "Hind Siliguri", "Noto Sans Bengali", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-bn: "Tiro Bangla", "Noto Serif Bengali", Georgia, serif;
+  /* Bengali lettering: Galada, a brush hand like a pandal banner, for display; Anek Bangla for reading */
+  --font-deco: "Galada", "Tiro Bangla", serif;
+  --font-bn-ui: "Anek Bangla", "Hind Siliguri", system-ui, sans-serif;
   --gutter-l: max(16px, env(safe-area-inset-left, 0px));
   --gutter-r: max(16px, env(safe-area-inset-right, 0px));
 }
@@ -786,8 +789,12 @@ button, input, select { font: inherit; color: inherit; }
 h1 { margin: 0; font-family: var(--font-bn); font-weight: 400; font-size: clamp(17px, 4.9vw, 20px); line-height: 1.15; letter-spacing: -0.012em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 @media (min-width: 900px) { .brand { gap: 8px; } .mark { width: 38px; height: 38px; } h1 { font-size: 21px; } }
 .today { margin: 2px 0 0; font-size: 13.5px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.today [lang="bn"] { font-family: var(--font-bn); color: var(--ink); font-size: 15px; margin-right: 4px; }
-html[lang="bn"] .today { font-family: var(--font-bn); font-size: 15px; color: var(--ink); }
+.today [lang="bn"] { font-family: var(--font-deco); color: var(--ink); font-size: 16px; margin-right: 4px; line-height: 1; }
+html[lang="bn"] .today { font-family: var(--font-deco); font-size: 16px; color: var(--ink); }
+html[lang="bn"] body { font-family: var(--font-bn-ui); }
+html[lang="bn"] h1 { font-family: var(--font-deco); font-size: clamp(19px, 5.4vw, 23px); letter-spacing: 0; }
+html[lang="bn"] .about h2 { font-family: var(--font-deco); font-size: 25px; }
+html[lang="bn"] .row-name { font-family: var(--font-bn); }
 
 /* the day: 24 hours of today in IST, coloured by tithi, darker before sunrise and after sunset */
 .day { position: relative; display: block; width: 100%; height: 25px; padding: 0; margin: -2px 0 0; border: 0; background: none; cursor: pointer; text-align: left; -webkit-tap-highlight-color: transparent; }
@@ -817,7 +824,7 @@ html[lang="bn"] .today { font-family: var(--font-bn); font-size: 15px; color: va
 }
 .tool svg { width: 18px; height: 18px; }
 .tool.icon { padding: 0; width: 34px; }
-#langBtn:lang(en), .lang-bn { font-family: var(--font-bn); font-weight: 400; font-size: 15px; }
+#langBtn.lang-bn { font-family: var(--font-deco); font-weight: 400; font-size: 16px; }
 
 .find { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 8px; min-width: 0; }
 .search { position: relative; min-width: 0; }
@@ -981,7 +988,7 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
 .about a { color: var(--alta); }
 .about .muted { color: var(--muted); font-size: 13px; }
 .days { display: grid; grid-template-columns: auto 1fr; gap: 8px 14px; margin: 0; font-size: 14px; }
-.days dt { font-family: var(--font-bn); font-size: 16px; line-height: 1.35; }
+.days dt { font-family: var(--font-deco); font-size: 18px; line-height: 1.25; }
 .days dd { margin: 0; font-variant-numeric: tabular-nums; }
 .days dd span { display: block; color: var(--muted); font-size: 13.5px; }
 .days .is-now { color: var(--alta); }
@@ -1127,7 +1134,7 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
       footAbout: "How these pujos were located", footRest: ", the puja days, and the data to download.",
       credit: "Developed by", creditName: "Somdeep Kundu", iitb: "IIT Bombay",
       soundOn: "Play the dhak", soundOff: "Mute the dhak",
-      artCredit: 'Alpona art by Parama Ghosh, traced from her hand-painted alponas. Dhak sound from <a href="https://youtu.be/VksCiC7qz2c" target="_blank" rel="noopener">this YouTube video</a>.',
+      artCredit: 'Bengali type: Galada (Black Foundry), Anek Bangla (Ek Type), Tiro Bangla (Tiro Typeworks) and Hind Siliguri (Indian Type Foundry), all under the SIL Open Font License. Alpona art by Parama Ghosh, traced from her hand-painted alponas. Dhak sound from <a href="https://youtu.be/VksCiC7qz2c" target="_blank" rel="noopener">this YouTube video</a>.',
       btnHome: "Pujos near IIT Bombay", btnAll: "Show every pujo", btnRoute: "Pandal-hopping route",
       route: function (n, d) { return "Pandal-hopping route: " + n + " pujos close by, about " + d + " in all."; },
       openGmaps: "Open in Google Maps", hide: "Hide",
@@ -1150,7 +1157,7 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
       srcTitle: "Sources and data",
       src: 'Google Maps listings, plus <a href="https://www.freepressjournal.in/mumbai/durga-puja-2025-mumbai-celebrates-bengals-biggest-festival-with-grand-pandals-culture-and-cuisine" target="_blank" rel="noopener">Free Press Journal</a>, <a href="https://www.boldsky.com/insync/durga-puja-pandals-mumbai-2026-7-stunning-celebrations-to-explore-from-matunga-to-juhu-173373.html" target="_blank" rel="noopener">Boldsky</a>, <a href="https://lbb.in/mumbai/durga-pandals-mumbai/" target="_blank" rel="noopener">LBB</a> and <a href="https://www.justdial.com/Mumbai/Aamra-Prabasi-Durga-Puja-Venue-Nerul-Nerul-Sector-27/022PXX22-XX22-220327111649-G8Q4_BZDET" target="_blank" rel="noopener">Justdial</a>. Instagram, Facebook and website links go to each pujo’s own pages, found by search. Map © OpenStreetMap contributors; Mumbai ward outline © DataMeet.',
       dl: 'Download every pin as <a href="mumbai-durga-pujas-2026.csv">CSV</a> or <a href="mumbai-durga-pujas-2026.geojson">GeoJSON</a>.',
-      version: 'Version 1.5; earlier: <a href="v1.4/">1.4</a>, <a href="v1.3/">1.3</a>, <a href="v1.2/">1.2</a>, <a href="v1.1/">1.1</a>, <a href="v1/">1</a>',
+      version: 'Version 1.6; earlier: <a href="v1.5/">1.5</a>, <a href="v1.4/">1.4</a>, <a href="v1.3/">1.3</a>, <a href="v1.2/">1.2</a>, <a href="v1.1/">1.1</a>, <a href="v1/">1</a>',
       sayTitle: "Suggestions",
       say: 'Know a pujo that is missing, a wrong pin, or its Instagram page? Or have an idea for the map? Write to me at <a href="mailto:somdeepkundu@gmail.com?subject=Mumbai%20Durga%20Pujo%20Map">somdeepkundu@gmail.com</a>, on <a href="https://www.linkedin.com/in/somdeep-kundu/" target="_blank" rel="noopener">LinkedIn</a> or on <a href="https://www.instagram.com/somdeeplearning/" target="_blank" rel="noopener">Instagram</a>.',
       close: "Close"
@@ -1175,7 +1182,7 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
       footAbout: "পুজোগুলো কীভাবে খোঁজা হয়েছে", footRest: ", পুজোর দিনক্ষণ আর ডেটা ডাউনলোড।",
       credit: "তৈরি করেছেন", creditName: "সোমদীপ কুণ্ডু", iitb: "আইআইটি বম্বে",
       soundOn: "ঢাক বাজান", soundOff: "ঢাক বন্ধ করুন",
-      artCredit: 'আলপনা: পরমা ঘোষ, তাঁর হাতে আঁকা আলপনা থেকে রেখায় তোলা। ঢাকের আওয়াজ: <a href="https://youtu.be/VksCiC7qz2c" target="_blank" rel="noopener">এই ইউটিউব ভিডিও</a> থেকে।',
+      artCredit: 'বাংলা হরফ: গালাদা (ব্ল্যাক ফাউন্ড্রি), অনেক বাংলা (এক টাইপ), তিরো বাংলা (তিরো টাইপওয়ার্কস) ও হিন্দ শিলিগুড়ি (ইন্ডিয়ান টাইপ ফাউন্ড্রি), সবই SIL Open Font License-এ। আলপনা: পরমা ঘোষ, তাঁর হাতে আঁকা আলপনা থেকে রেখায় তোলা। ঢাকের আওয়াজ: <a href="https://youtu.be/VksCiC7qz2c" target="_blank" rel="noopener">এই ইউটিউব ভিডিও</a> থেকে।',
       btnHome: "আইআইটি বম্বের কাছের পুজো", btnAll: "সব পুজো দেখুন", btnRoute: "ঠাকুর দেখার রুট",
       route: function (n, d) { return "ঠাকুর দেখার রুট: কাছাকাছি " + num(n) + "টি পুজো, মোট প্রায় " + d + "।"; },
       openGmaps: "গুগল ম্যাপে খুলুন", hide: "লুকান",
@@ -1198,7 +1205,7 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
       srcTitle: "তথ্যসূত্র ও ডেটা",
       src: 'গুগল ম্যাপের তথ্য, সঙ্গে <a href="https://www.freepressjournal.in/mumbai/durga-puja-2025-mumbai-celebrates-bengals-biggest-festival-with-grand-pandals-culture-and-cuisine" target="_blank" rel="noopener">Free Press Journal</a>, <a href="https://www.boldsky.com/insync/durga-puja-pandals-mumbai-2026-7-stunning-celebrations-to-explore-from-matunga-to-juhu-173373.html" target="_blank" rel="noopener">Boldsky</a>, <a href="https://lbb.in/mumbai/durga-pandals-mumbai/" target="_blank" rel="noopener">LBB</a> আর <a href="https://www.justdial.com/Mumbai/Aamra-Prabasi-Durga-Puja-Venue-Nerul-Nerul-Sector-27/022PXX22-XX22-220327111649-G8Q4_BZDET" target="_blank" rel="noopener">Justdial</a>। ইনস্টাগ্রাম, ফেসবুক ও ওয়েবসাইটের লিংক পুজোগুলোর নিজেদের, সার্চ করে পাওয়া। ম্যাপ © OpenStreetMap; মুম্বইয়ের ওয়ার্ড সীমানা © DataMeet।',
       dl: 'সব পিন <a href="mumbai-durga-pujas-2026.csv">CSV</a> বা <a href="mumbai-durga-pujas-2026.geojson">GeoJSON</a> ফাইলে ডাউনলোড করুন।',
-      version: 'সংস্করণ ১.৫; আগের: <a href="v1.4/">১.৪</a>, <a href="v1.3/">১.৩</a>, <a href="v1.2/">১.২</a>, <a href="v1.1/">১.১</a>, <a href="v1/">১</a>',
+      version: 'সংস্করণ ১.৬; আগের: <a href="v1.5/">১.৫</a>, <a href="v1.4/">১.৪</a>, <a href="v1.3/">১.৩</a>, <a href="v1.2/">১.২</a>, <a href="v1.1/">১.১</a>, <a href="v1/">১</a>',
       sayTitle: "পরামর্শ",
       say: 'কোনও পুজো বাদ পড়েছে, পিন ভুল জায়গায়, বা কোনও পুজোর ইনস্টাগ্রাম পেজ জানেন? ম্যাপ নিয়ে কোনও পরামর্শ আছে? <a href="mailto:somdeepkundu@gmail.com?subject=Mumbai%20Durga%20Pujo%20Map">somdeepkundu@gmail.com</a>-এ মেল করুন, অথবা <a href="https://www.linkedin.com/in/somdeep-kundu/" target="_blank" rel="noopener">LinkedIn</a> বা <a href="https://www.instagram.com/somdeeplearning/" target="_blank" rel="noopener">Instagram</a>-এ জানান।',
       close: "বন্ধ করুন"
