@@ -67,7 +67,7 @@ og:
 <div class="pm-feat" markdown>
 **Nearest first**
 
-Distances from IIT Bombay, or from you once you share your location. Each pujo opens in Google Maps.
+Distances from IIT Bombay, or from you. Each pujo opens in Google Maps, with its Instagram or Facebook page where it has one.
 </div>
 <div class="pm-feat" markdown>
 **Pandal-hopping route**
@@ -75,12 +75,12 @@ Distances from IIT Bombay, or from you once you share your location. Each pujo o
 The shortest walk through 4 pujos close by, drawn as a calm trail, ready to open in Google Maps.
 </div>
 <div class="pm-feat" markdown>
-**English and বাংলা**
+**Today, by the Bengali calendar**
 
-Light and dark themes. Built with Leaflet, with deck.gl layers that load after the map.
+A slim 24-hour strip shows the tithi now, when the next one begins, and sunrise and sunset, with the Bengali date. In English and বাংলা.
 </div>
 </div>
 
-<p class="pm-foot">Made by <a href="https://somdeepkundu.github.io/">Somdeep Kundu</a>, IIT Bombay · Durga Puja 2026 · <a href="https://somdeepkundu.github.io/pujo-map/v1/">Version 1</a></p>
+<p class="pm-foot">Made by <a href="https://somdeepkundu.github.io/">Somdeep Kundu</a>, IIT Bombay · Durga Puja 2026 · v1.2 · earlier: <a href="https://somdeepkundu.github.io/pujo-map/v1.1/">v1.1</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1/">v1</a></p>
 
 </div>
