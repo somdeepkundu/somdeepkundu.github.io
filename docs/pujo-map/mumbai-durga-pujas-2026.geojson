@@ -2773,9 +2773,9 @@
     "pin_type_meaning": "Venue named in list",
     "note": "Not on your list; found while searching. The pin is the association's listed address.",
     "on_your_list": false,
-    "instagram": null,
+    "instagram": "https://www.instagram.com/marol_durga_puja_association/",
     "facebook": null,
-    "website": null
+    "website": "https://maroldurgapuja.com/"
    },
    "geometry": {
     "type": "Point",
