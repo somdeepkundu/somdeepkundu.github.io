@@ -2406,12 +2406,12 @@
    "properties": {
     "list_numbers": "121",
     "name": "Sarbojonin Sharadiya Durgotsav, Bhandup",
-    "venue": "BMC ground near Pawar Public School, LBS Marg",
+    "venue": "Dreams Complex, LBS Marg, near Bhandup station",
     "locality": "Bhandup West",
     "region": "Eastern Suburbs",
-    "pin_type": "venue",
-    "pin_type_meaning": "Venue named in list",
-    "note": "Pin is the school named in the list.",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "Venue from the pujo's own Facebook page: Dreams Complex, LBS Road, Bhandup West.",
     "on_your_list": true,
     "instagram": null,
     "facebook": "https://www.facebook.com/100077455310739/",
@@ -2420,8 +2420,8 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     72.938767,
-     19.147979
+     72.938949,
+     19.146435
     ]
    }
   },
