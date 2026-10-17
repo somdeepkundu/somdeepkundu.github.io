@@ -81,6 +81,6 @@ A slim 24-hour strip shows the tithi now, when the next one begins, and sunrise 
 </div>
 </div>
 
-<p class="pm-foot">Made by <a href="https://somdeepkundu.github.io/">Somdeep Kundu</a>, IIT Bombay · Durga Puja 2026 · v1.2 · earlier: <a href="https://somdeepkundu.github.io/pujo-map/v1.1/">v1.1</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1/">v1</a></p>
+<p class="pm-foot">Made by <a href="https://somdeepkundu.github.io/">Somdeep Kundu</a>, IIT Bombay · Durga Puja 2026 · v1.3 · earlier: <a href="https://somdeepkundu.github.io/pujo-map/v1.2/">v1.2</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.1/">v1.1</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1/">v1</a></p>
 
 </div>

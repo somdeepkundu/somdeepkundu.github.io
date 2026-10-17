@@ -708,6 +708,9 @@ svg.leaflet-image-layer.leaflet-interactive path {
   --coast: #C5CBD0;
   --you: #1F5FD1;
   --tiles: grayscale(1) contrast(0.9) brightness(1.06);
+  --glass: rgba(255, 255, 255, 0.8);
+  --glass-soft: rgba(255, 255, 255, 0.7);
+  --glass-edge: rgba(36, 30, 31, 0.08);
   --font: "Hind Siliguri", "Noto Sans Bengali", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-bn: "Tiro Bangla", "Noto Serif Bengali", Georgia, serif;
   --gutter-l: max(16px, env(safe-area-inset-left, 0px));
@@ -719,6 +722,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
     --alta: #EA4A51; --on-alta: #1C0A0B; --tint: #2A1D1F;
     --land: #262021; --water: #151A1E; --coast: #3A4248; --you: #7FA6FF;
     --tiles: invert(1) grayscale(1) brightness(0.72) contrast(1.15);
+    --glass: rgba(28, 22, 23, 0.78); --glass-soft: rgba(28, 22, 23, 0.66); --glass-edge: rgba(255, 255, 255, 0.08);
     color-scheme: dark;
   }
 }
@@ -727,6 +731,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
   --alta: #EA4A51; --on-alta: #1C0A0B; --tint: #2A1D1F;
   --land: #262021; --water: #151A1E; --coast: #3A4248; --you: #7FA6FF;
   --tiles: invert(1) grayscale(1) brightness(0.72) contrast(1.15);
+  --glass: rgba(28, 22, 23, 0.78); --glass-soft: rgba(28, 22, 23, 0.66); --glass-edge: rgba(255, 255, 255, 0.08);
   color-scheme: dark;
 }
 
@@ -744,13 +749,16 @@ button, input, select { font: inherit; color: inherit; }
    dvh follows the address bar; the page's own top and bottom padding clears the notch and home bar */
 .app { position: relative; overflow: hidden; height: 100%; height: calc(100dvh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)); }
 .head {
-  position: absolute; top: 0; left: 0; right: 0; z-index: 800; background: var(--paper);
+  position: absolute; top: 0; left: 0; right: 0; z-index: 1100; background: var(--paper);
   padding-block: 10px; padding-left: var(--gutter-l); padding-right: var(--gutter-r);
   border-bottom: 4px solid var(--alta);
-  box-shadow: 0 2px 0 var(--paper), 0 3px 0 var(--alta);
   display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px;
 }
-.mapbox { position: absolute; left: 0; right: 0; bottom: 0; top: var(--head-h, 124px); }
+.head::after {
+  content: ""; position: absolute; left: var(--gutter-l); right: var(--gutter-r); bottom: -9px; height: 2px; border-radius: 1px;
+  background: repeating-linear-gradient(90deg, var(--alta) 0 8px, transparent 8px 14px); opacity: .85; pointer-events: none;
+}
+.mapbox { position: absolute; left: 0; right: 0; bottom: 0; top: 0; }
 .sheet {
   position: absolute; left: 0; right: 0; bottom: 0; z-index: 700; height: 46%;
   display: flex; flex-direction: column; background: var(--paper);
@@ -759,12 +767,13 @@ button, input, select { font: inherit; color: inherit; }
 }
 .sheet.dragging { transition: none; }
 .grab { flex: none; width: 100%; height: 26px; border: 0; padding: 0; background: none; display: grid; place-items: center; touch-action: none; cursor: grab; }
-.grab::before { content: ""; width: 44px; height: 5px; border-radius: 3px; background: var(--muted); opacity: 0.4; }
+.grab::before { content: ""; width: 58px; height: 3px; border-radius: 2px; background: repeating-linear-gradient(90deg, var(--muted) 0 7px, transparent 7px 12px); opacity: .6; }
 @media (prefers-reduced-motion: reduce) { .sheet { transition: none; } }
 
 /* desktop */
 @media (min-width: 900px) {
   .app { display: grid; grid-template-columns: 416px 1fr; grid-template-rows: auto minmax(0, 1fr); grid-template-areas: "head map" "list map"; border-top: 5px solid var(--alta); }
+  .head::after { display: none; }
   .head { position: relative; grid-area: head; box-shadow: none; border-bottom: 1px solid var(--line); padding-block: 18px 12px; gap: 12px; border-right: 1px solid var(--line); }
   .mapbox { position: relative; grid-area: map; top: auto; }
   .sheet { position: relative; grid-area: list; height: auto !important; border-radius: 0; box-shadow: none; transition: none; border-right: 1px solid var(--line); }
@@ -787,14 +796,18 @@ html[lang="bn"] .today { font-family: var(--font-bn); font-size: 15px; color: va
 .day-lab.cur { color: var(--alta); font-weight: 600; }
 .day-lab.now { color: var(--ink); font-weight: 600; }
 .day-lab.off { visibility: hidden; }
-.day-bar { position: absolute; left: 0; right: 0; top: 16px; height: 7px; border-radius: 4px; overflow: hidden; background: var(--line); }
+.day-bar { position: absolute; left: 0; right: 0; top: 15px; height: 9px; border-radius: 2px; overflow: hidden; background: var(--line); }
 .day-bar i { position: absolute; top: 0; bottom: 0; }
 .day-bar .seg { background: var(--alta); opacity: .3; }
-.day-bar .seg.cur { opacity: 1; }
+.day-bar .seg.cur { opacity: 1;
+  background-image: radial-gradient(circle at 50% 50%, var(--paper) 0 1px, transparent 1.4px), linear-gradient(var(--alta), var(--alta));
+  background-size: 7px 9px, auto; background-position: 2px 0, 0 0; }
+.day-bar .seg.cur::before, .day-bar .seg.cur::after { content: ""; position: absolute; left: 0; right: 0; height: 1px; background: var(--paper); opacity: .45; }
+.day-bar .seg.cur::before { top: 1.5px; } .day-bar .seg.cur::after { bottom: 1.5px; }
 .day-bar .night { background: #000; opacity: .2; }
 .day-bar .cut { width: 2px; margin-left: -1px; background: var(--paper); }
 .day-bar .tick { width: 1px; background: var(--paper); opacity: .55; }
-.day-now { position: absolute; top: 13.5px; width: 3px; height: 12px; margin-left: -1.5px; border-radius: 2px; background: var(--ink); box-shadow: 0 0 0 1.5px var(--paper); }
+.day-now { position: absolute; top: 12.5px; width: 3px; height: 14px; margin-left: -1.5px; border-radius: 2px; background: var(--ink); box-shadow: 0 0 0 1.5px var(--paper); }
 .day:hover .day-lab:not(.cur):not(.now) { color: var(--ink); }
 
 .tool {
@@ -858,7 +871,7 @@ html[lang="bn"] .today { font-family: var(--font-bn); font-size: 15px; color: va
 .leaflet-bar a, .leaflet-bar a:hover { background: var(--paper); color: var(--ink); border-bottom-color: var(--line); }
 .leaflet-control-attribution { background: var(--paper) !important; color: var(--muted); font-size: 10.5px; opacity: .85; }
 .leaflet-control-attribution a { color: var(--muted); }
-@media (max-width: 899px) { .leaflet-top.leaflet-right .leaflet-control-attribution { max-width: calc(100vw - 70px); } }
+@media (max-width: 899px) { .leaflet-top { top: calc(var(--head-h, 150px) + 14px); } .leaflet-top.leaflet-right .leaflet-control-attribution { max-width: calc(100vw - 70px); border-radius: 6px; } }
 .picking #map, .picking .leaflet-interactive { cursor: crosshair; }
 .leaflet-glow-pane, .leaflet-glow-pane * { pointer-events: none !important; }
 
@@ -873,6 +886,7 @@ html[lang="bn"] .today { font-family: var(--font-bn); font-size: 15px; color: va
 .list-head strong { color: var(--ink); font-weight: 600; }
 .list-head button { border: 0; background: none; padding: 0; color: var(--alta); font-weight: 600; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
 .notice { margin: 0; padding-block: 10px; padding-left: var(--gutter-l); padding-right: var(--gutter-r); background: var(--tint); font-size: 14px; border-bottom: 1px solid var(--line); }
+.notice [data-hide-route] { margin-left: 10px; }
 .notice button, .notice a { border: 0; background: none; color: var(--alta); font-weight: 600; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
 ol.rows { list-style: none; margin: 0; padding: 0; }
 .row { border-bottom: 1px solid var(--line); }
@@ -882,7 +896,7 @@ ol.rows { list-style: none; margin: 0; padding: 0; }
   padding-block: 12px; padding-left: var(--gutter-l); padding-right: var(--gutter-r);
   display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 12px; row-gap: 1px;
 }
-.row-name { font-weight: 600; font-size: 15.5px; line-height: 1.3; }
+.row-name { font-family: var(--font-bn); font-weight: 400; font-size: 17px; line-height: 1.25; letter-spacing: -0.003em; }
 .row-dist { font-size: 14px; font-weight: 600; color: var(--alta); font-variant-numeric: tabular-nums; white-space: nowrap; align-self: start; }
 .row-where { grid-column: 1 / -1; color: var(--muted); font-size: 13.5px; overflow-wrap: anywhere; }
 .approx { color: var(--alta); }
@@ -915,6 +929,26 @@ dialog {
   background: var(--paper); color: var(--ink); box-shadow: 0 10px 40px rgba(0,0,0,.3);
 }
 dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  @media (prefers-reduced-transparency: no-preference), (not (prefers-reduced-transparency)) {
+    .head, .list-head, .sheet, .list-wrap, .leaflet-bar a, .leaflet-bar a:hover, .leaflet-control-attribution, .name-tip, .toast {
+      -webkit-backdrop-filter: blur(14px) saturate(1.4); backdrop-filter: blur(14px) saturate(1.4);
+    }
+    @media (max-width: 899px) {
+      .head { background: var(--glass); }
+      .sheet { background: var(--glass); box-shadow: 0 -1px 0 var(--glass-edge), 0 -6px 24px rgba(0, 0, 0, 0.14); }
+      .list-wrap { background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; }
+      .list-head { background: var(--paper); -webkit-backdrop-filter: none; backdrop-filter: none; }
+    }
+    .leaflet-bar a, .leaflet-bar a:hover { background: var(--glass) !important; }
+    .map-btns a[aria-pressed="true"], .map-btns a[aria-pressed="true"]:hover { background: var(--alta) !important; color: var(--on-alta) !important; }
+    .leaflet-bar { border-color: var(--glass-edge) !important; }
+    .leaflet-control-attribution { background: var(--glass-soft) !important; opacity: 1; }
+    .name-tip { background: var(--glass); box-shadow: 0 0 0 1px var(--glass-edge), 0 2px 10px rgba(0, 0, 0, 0.16); }
+    .toast { background: rgba(36, 30, 31, 0.86); }
+    dialog::backdrop { background: rgba(20, 10, 12, 0.3); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+  }
+}
 .about { padding: 22px 22px 24px; display: grid; gap: 14px; font-size: 14.5px; }
 .about h2 { margin: 0; font-family: var(--font-bn); font-weight: 400; font-size: 22px; display: flex; gap: 10px; align-items: center; }
 .about h2 svg { width: 30px; height: 30px; color: var(--alta); }
@@ -1072,6 +1106,8 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
       openGmaps: "Open in Google Maps", hide: "Hide",
       grabMore: "Show more of the list", grabMap: "Show the map",
       km: function (v) { return v + " km"; }, m: function (v) { return v + " m"; },
+      nextAt: function (n, w) { return n + " from " + w; },
+      range: function (a, b) { return a + " to " + b; },
       sunrise: "Sunrise", sunset: "Sunset", since: "since", begins: "begins", openTimes: "See tithi times",
       aboutTitle: "About this map",
       counts: function (e, u, a, b, c) { return "The list has " + e + " entries. Some appear twice, so they come to " + u + " pujos: " + a + " with the venue confirmed, " + b + " placed at the venue the list names, and " + c + " placed only approximately."; },
@@ -1087,7 +1123,7 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
       srcTitle: "Sources and data",
       src: 'Google Maps listings, plus <a href="https://www.freepressjournal.in/mumbai/durga-puja-2025-mumbai-celebrates-bengals-biggest-festival-with-grand-pandals-culture-and-cuisine" target="_blank" rel="noopener">Free Press Journal</a>, <a href="https://www.boldsky.com/insync/durga-puja-pandals-mumbai-2026-7-stunning-celebrations-to-explore-from-matunga-to-juhu-173373.html" target="_blank" rel="noopener">Boldsky</a>, <a href="https://lbb.in/mumbai/durga-pandals-mumbai/" target="_blank" rel="noopener">LBB</a> and <a href="https://www.justdial.com/Mumbai/Aamra-Prabasi-Durga-Puja-Venue-Nerul-Nerul-Sector-27/022PXX22-XX22-220327111649-G8Q4_BZDET" target="_blank" rel="noopener">Justdial</a>. Instagram and Facebook links go to each pujo’s own page, found by search. Map © OpenStreetMap contributors; Mumbai ward outline © DataMeet.',
       dl: 'Download every pin as <a href="mumbai-durga-pujas-2026.csv">CSV</a> or <a href="mumbai-durga-pujas-2026.geojson">GeoJSON</a>.',
-      version: 'v1.2 · <a href="v1.1/">v1.1</a> · <a href="v1/">v1</a>',
+      version: 'Version 1.3; earlier: <a href="v1.2/">1.2</a>, <a href="v1.1/">1.1</a>, <a href="v1/">1</a>',
       close: "Close"
     },
     bn: {
@@ -1114,6 +1150,8 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
       openGmaps: "গুগল ম্যাপে খুলুন", hide: "লুকান",
       grabMore: "তালিকা আরও দেখুন", grabMap: "ম্যাপ দেখুন",
       km: function (v) { return num(v) + " কিমি"; }, m: function (v) { return num(v) + " মিটার"; },
+      nextAt: function (n, w) { return n + " " + w + " থেকে"; },
+      range: function (a, b) { return a + " থেকে " + b; },
       sunrise: "সূর্যোদয়", sunset: "সূর্যাস্ত", since: "শুরু", begins: "শুরু", openTimes: "তিথির সময় দেখুন",
       aboutTitle: "এই ম্যাপ সম্পর্কে",
       counts: function (e, u, a, b, c) { return "মূল তালিকায় " + num(e) + "টি নাম আছে। কয়েকটি নাম দুবার এসেছে, তাই মোট " + num(u) + "টি পুজো: " + num(a) + "টির মণ্ডপের জায়গা নিশ্চিত, " + num(b) + "টি তালিকায় দেওয়া জায়গায় বসানো, আর " + num(c) + "টির জায়গা আনুমানিক।"; },
@@ -1129,7 +1167,7 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
       srcTitle: "তথ্যসূত্র ও ডেটা",
       src: 'গুগল ম্যাপের তথ্য, সঙ্গে <a href="https://www.freepressjournal.in/mumbai/durga-puja-2025-mumbai-celebrates-bengals-biggest-festival-with-grand-pandals-culture-and-cuisine" target="_blank" rel="noopener">Free Press Journal</a>, <a href="https://www.boldsky.com/insync/durga-puja-pandals-mumbai-2026-7-stunning-celebrations-to-explore-from-matunga-to-juhu-173373.html" target="_blank" rel="noopener">Boldsky</a>, <a href="https://lbb.in/mumbai/durga-pandals-mumbai/" target="_blank" rel="noopener">LBB</a> আর <a href="https://www.justdial.com/Mumbai/Aamra-Prabasi-Durga-Puja-Venue-Nerul-Nerul-Sector-27/022PXX22-XX22-220327111649-G8Q4_BZDET" target="_blank" rel="noopener">Justdial</a>। ইনস্টাগ্রাম ও ফেসবুকের লিংক পুজোগুলোর নিজেদের পেজের, সার্চ করে পাওয়া। ম্যাপ © OpenStreetMap; মুম্বইয়ের ওয়ার্ড সীমানা © DataMeet।',
       dl: 'সব পিন <a href="mumbai-durga-pujas-2026.csv">CSV</a> বা <a href="mumbai-durga-pujas-2026.geojson">GeoJSON</a> ফাইলে ডাউনলোড করুন।',
-      version: 'সংস্করণ ১.২ · <a href="v1.1/">১.১</a> · <a href="v1/">১</a>',
+      version: 'সংস্করণ ১.৩; আগের: <a href="v1.2/">১.২</a>, <a href="v1.1/">১.১</a>, <a href="v1/">১</a>',
       close: "বন্ধ করুন"
     }
   };
@@ -1259,13 +1297,14 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
   if (phone.matches) map.attributionControl.setPosition("topright");
   map.createPane("land").style.zIndex = 250;
   var glowPane = map.createPane("glow"); glowPane.style.zIndex = 350; glowPane.style.pointerEvents = "none";
+  function headH() { return phone.matches ? headEl.offsetHeight : 0; }
   function showPoint(ll, z) {
-    var off = sheetH() / 2, target = off ? map.unproject(map.project(ll, z).add([0, off]), z) : L.latLng(ll);
+    var off = (sheetH() - headH()) / 2, target = off ? map.unproject(map.project(ll, z).add([0, off]), z) : L.latLng(ll);
     reduced() ? map.setView(target, z) : map.flyTo(target, z, { duration: 0.7 });
   }
   function showBounds(b, pad) {
     pad = pad || 28;
-    var o = { paddingTopLeft: [pad, pad], paddingBottomRight: [pad, sheetH() + pad], maxZoom: 15 };
+    var o = { paddingTopLeft: [pad, headH() + pad], paddingBottomRight: [pad, sheetH() + pad], maxZoom: 15 };
     if (reduced()) map.fitBounds(b, o); else { o.duration = 0.8; map.flyToBounds(b, o); }
   }
   var land = LAND ? L.geoJSON(LAND, { pane: "land", style: { className: "land", weight: 1, fillOpacity: 1, opacity: 1 }, interactive: false, attribution: phone.matches ? "© OpenStreetMap, DataMeet" : "© OpenStreetMap contributors, DataMeet" }).addTo(map) : null;
@@ -1490,7 +1529,7 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
     });
     if (!deckOK) routeFallback = L.polyline(routeData.path.map(function (c) { return [c[1], c[0]]; }), { className: "route-line", interactive: false }).addTo(map);
     var n = $("routeNote");
-    n.innerHTML = esc(t("route", routeData.stops.length, fmtKm(routeData.total))) + ' <a href="' + routeUrl(routeData) + '" target="_blank" rel="noopener">' + t("openGmaps") + '</a> · <button type="button" data-hide-route>' + t("hide") + "</button>";
+    n.innerHTML = esc(t("route", routeData.stops.length, fmtKm(routeData.total))) + ' <a href="' + routeUrl(routeData) + '" target="_blank" rel="noopener">' + t("openGmaps") + '</a> <button type="button" data-hide-route>' + t("hide") + "</button>";
     n.hidden = false;
     updateDeck(0);
     if (deckOK && !reduced()) {
@@ -1613,8 +1652,8 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
     var now = Date.now(), d0 = Math.floor((now + IST) / DAY) * DAY - IST, d1 = d0 + DAY, cur = tithiAt(now);
     var el = $("today"), bnDate = bDate(now);
     var dateTxt = wd(now) + " " + dmy(now);
-    if (LANG === "bn") el.innerHTML = (cur ? tName(cur.n) + " · " : "") + dateTxt + (bnDate ? " · " + bnDate : "");
-    else el.innerHTML = (cur ? '<span lang="bn">' + tName(cur.n, "bn") + "</span>" : "") + dateTxt + (bnDate ? ' · <span lang="bn" class="bd">' + bnDate + "</span>" : "");
+    if (LANG === "bn") el.innerHTML = (cur ? tName(cur.n) + ", " : "") + dateTxt + (bnDate ? ", " + bnDate : "");
+    else el.innerHTML = (cur ? '<span lang="bn">' + tName(cur.n, "bn") + "</span>" : "") + dateTxt + (bnDate ? ', <span lang="bn" class="bd">' + bnDate + "</span>" : "");
     var dayBtn = $("day");
     if (!cur) { dayBtn.hidden = true; return; }
     dayBtn.hidden = false;
@@ -1633,7 +1672,7 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
     /* labels, most important first; any that would collide are left out */
     var labs = [{ cls: "now", txt: hhmm(now), at: x(now), al: "c", p: 0 }];
     segs.slice(1).forEach(function (g) { labs.push({ cls: g[2] === cur.n ? "cur" : "", txt: tName(g[2]) + " " + hhmm(g[0]), at: x(g[0]), al: "se", p: 1 }); });
-    if (cur.end > d1) { var nx = tithiAt(cur.end); if (nx) labs.push({ cls: "", txt: "→ " + tName(nx.n) + " " + wd(cur.end) + " " + hhmm(cur.end), at: 100, al: "e", p: 2 }); }
+    if (cur.end > d1) { var nx = tithiAt(cur.end); if (nx) labs.push({ cls: "", txt: t("nextAt", tName(nx.n), wd(cur.end) + " " + hhmm(cur.end)), at: 100, al: "e", p: 2 }); }
     labs.push({ cls: segs[0][2] === cur.n ? "cur" : "", txt: tName(segs[0][2]), at: 0, al: "s", p: 3 });
     labs.push({ cls: "", txt: "☀︎ " + hhmm(sun[0]), at: x(sun[0]), al: "c", p: 4 });
     labs.push({ cls: "", txt: "☾ " + hhmm(sun[1]), at: x(sun[1]), al: "c", p: 4 });
@@ -1668,8 +1707,8 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
     TITHI.forEach(function (e, i) {
       if (e[0] < from || e[0] > to || e[1] < 6 || e[1] > 10 || !TITHI[i + 1]) return;
       var end = TITHI[i + 1][0], live = now >= e[0] && now < end, c = live ? ' class="is-now"' : "";
-      rows += '<dt lang="bn"' + c + ">" + tName(e[1], "bn") + "</dt><dd" + c + ">" + wd(e[0]) + " " + dmy(e[0]) + ", " + hhmm(e[0]) + " → " + wd(end) + " " + dmy(end) + ", " + hhmm(end) +
-        (live ? " · " + t("daysToday") : "") + "<span>" + RITE[e[1]][LANG === "bn" ? 1 : 0] + "</span></dd>";
+      rows += '<dt lang="bn"' + c + ">" + tName(e[1], "bn") + "</dt><dd" + c + ">" + t("range", wd(e[0]) + " " + dmy(e[0]) + ", " + hhmm(e[0]), wd(end) + " " + dmy(end) + ", " + hhmm(end)) +
+        (live ? ", " + t("daysToday") : "") + "<span>" + RITE[e[1]][LANG === "bn" ? 1 : 0] + "</span></dd>";
       if (e[1] === 8) sandhi = t("sandhi", wd(end) + " " + dmy(end), hhmm(end - 24 * 6e4), hhmm(end + 24 * 6e4));
     });
     return '<dl class="days">' + rows + "</dl>" + (sandhi ? "<p>" + sandhi + "</p>" : "");
@@ -1684,7 +1723,7 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
       "<h3>" + t("howTitle") + "</h3><ul><li>" + t("howExact") + "</li><li>" + t("howVenue") + "</li><li>" + t("howArea") + "</li></ul>" +
       "<p>" + t("notes", x) + "</p><p>" + t("layers") + "</p>" +
       "<h3>" + t("srcTitle") + "</h3><p>" + t("src") + "</p><p>" + t("dl") + "</p>" +
-      '<p class="muted">' + t("credit") + ' <a href="' + SITE + '" target="_blank" rel="noopener">' + t("creditName") + "</a>, " + t("iitb") + " · " + t("version") + "</p>" +
+      '<p class="muted">' + t("credit") + ' <a href="' + SITE + '" target="_blank" rel="noopener">' + t("creditName") + "</a>, " + t("iitb") + ". " + t("version") + "</p>" +
       '<button class="close" type="button" id="aboutClose">' + t("close") + "</button>";
   }
   function applyLang() {
@@ -1750,6 +1789,7 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
   $("foot").addEventListener("click", function (e) { if (e.target.closest("#aboutBtn")) openAbout(false); });
   $("day").addEventListener("click", function () { openAbout(true); });
   setInterval(paintDay, 30000);
+  try { document.fonts.ready.then(paintDay); } catch (e) {}
   dlg.addEventListener("click", function (e) { if (e.target === dlg || e.target.closest("#aboutClose")) { dlg.close ? dlg.close() : dlg.removeAttribute("open"); } });
 
   function fitShown() {
@@ -1765,7 +1805,7 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
   layout();
   var start = L.latLngBounds([[HOME.lat, HOME.lng]]);
   shown.slice(0, 8).forEach(function (p) { start.extend([p.y, p.x]); });
-  map.fitBounds(start, { paddingTopLeft: [28, 28], paddingBottomRight: [28, sheetH() + 28], maxZoom: 14 });
+  map.fitBounds(start, { paddingTopLeft: [28, headH() + 28], paddingBottomRight: [28, sheetH() + 28], maxZoom: 14 });
   syncPlaces();
   var rt;
   window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(layout, 120); });
