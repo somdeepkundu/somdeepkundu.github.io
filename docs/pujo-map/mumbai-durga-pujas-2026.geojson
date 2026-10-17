@@ -12,7 +12,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": "https://www.instagram.com/powaibengaliwelfareassociation/",
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -33,7 +35,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "Pin is the puja's own Google Maps listing. 2024–25 coverage names RCF Ground; your list also mentions Angan/Chandan Lawns on Sion–Trombay Road, an older venue.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/officialcdpa/"
    },
    "geometry": {
     "type": "Point",
@@ -54,7 +58,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "Traditional puja with Kumari Puja on Ashtami.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": "https://www.instagram.com/mumbairkm/",
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -75,7 +81,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "The Mukherjee family puja. Moved here from Tulip Star.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": "https://www.instagram.com/northbombaydurgapuja/",
+    "facebook": "https://www.facebook.com/NBDurgapuja/"
    },
    "geometry": {
     "type": "Point",
@@ -96,7 +104,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/BengalClub1922/"
    },
    "geometry": {
     "type": "Point",
@@ -117,7 +127,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "Organised by Abhijeet Bhattacharya and family.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": "https://www.instagram.com/lokhandwaladurgotsav/",
+    "facebook": "https://www.facebook.com/lokhandwaladurgapuja/"
    },
    "geometry": {
     "type": "Point",
@@ -138,7 +150,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "One of the oldest pujas in Mumbai.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": "https://www.instagram.com/bombaydurgabarisamiti/",
+    "facebook": "https://www.facebook.com/bombaydurgabari/"
    },
    "geometry": {
     "type": "Point",
@@ -159,7 +173,9 @@
     "pin_type": "area",
     "pin_type_meaning": "Area only (locality/station)",
     "note": "No listing found under this exact name. The pin is the nearest Malad West sarbojanin puja found (Maitree); it may be a different puja.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/mcamalad/"
    },
    "geometry": {
     "type": "Point",
@@ -180,7 +196,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": "https://www.instagram.com/vca.durgotsav/",
+    "facebook": "https://www.facebook.com/VCA4everyone/"
    },
    "geometry": {
     "type": "Point",
@@ -201,7 +219,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "Also known as the Shakti Samanta puja.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -222,7 +242,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "2025 coverage puts the puja at Evershine Club. The association's own pin is on Ram Singh Road (19.2037, 72.8762).",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -243,7 +265,9 @@
     "pin_type": "area",
     "pin_type_meaning": "Area only (locality/station)",
     "note": "Listed without details. The pin marks Thane station only.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -264,7 +288,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "Venue confirmed in 2026 listings. Entries #13 and #25 are the same puja.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -285,7 +311,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "Housing-society puja; the pin is the township.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -306,7 +334,9 @@
     "pin_type": "area",
     "pin_type_meaning": "Area only (locality/station)",
     "note": "Exact venue not found; pin is the Beverly Park locality.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -327,7 +357,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "Visitors confirm a yearly Bengali Durga Puja in this hall. Entries #16 and #110 are the same.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -348,7 +380,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "One of the oldest pujas in Mira Road.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/bwamirard/"
    },
    "geometry": {
     "type": "Point",
@@ -369,7 +403,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -390,7 +426,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "Entries #19 (Bhoomi Park) and #52 (Matribhoomi) are the same puja.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -411,7 +449,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/1099108206851509/"
    },
    "geometry": {
     "type": "Point",
@@ -432,7 +472,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -453,7 +495,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "2025 coverage confirms CIDCO Exhibition Centre. The association's office is at Sector 6. Entries #22 and #112 are the same.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": "https://www.instagram.com/nmba.vashi/",
+    "facebook": "https://www.facebook.com/navimumbaibengaliassociation/"
    },
    "geometry": {
     "type": "Point",
@@ -474,7 +518,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -495,7 +541,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "Entries #24 (Nare Park) and #70 (opp. railway workshop) point to the same ground.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -516,7 +564,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -537,7 +587,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "One of the older pujas in Mumbai. Entries #27 and #91 are the same.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": "https://www.instagram.com/bangamaitrisansad/",
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -558,7 +610,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "Your list gives Sector 40 and Sector 38; the current pin is listed under Sector 26, close to Seawoods station.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/SWCWASeawoods/"
    },
    "geometry": {
     "type": "Point",
@@ -579,7 +633,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -600,7 +656,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "Entry #30 ('Seven bungalows') has no organiser, so it is grouped here.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/juhudurgapuja/"
    },
    "geometry": {
     "type": "Point",
@@ -621,7 +679,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "Entries #31 and #119 are the same venue.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/MulundDurgaPuja/"
    },
    "geometry": {
     "type": "Point",
@@ -642,7 +702,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "Google's own pin for this puja (19.0258, 72.8702) is reported wrong by visitors, so the community centre is used. Entries #32 and #86 are the same.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -663,7 +725,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "Shifted here in 2025.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": "https://www.instagram.com/newbengalclub/",
+    "facebook": "https://www.facebook.com/newbengalclub/"
    },
    "geometry": {
     "type": "Point",
@@ -684,7 +748,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "Over 60 years old.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/bangiyaparishad.thane/"
    },
    "geometry": {
     "type": "Point",
@@ -705,7 +771,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -726,7 +794,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/msdss/"
    },
    "geometry": {
     "type": "Point",
@@ -747,7 +817,9 @@
     "pin_type": "area",
     "pin_type_meaning": "Area only (locality/station)",
     "note": "No listing found. The pin marks Santacruz station. It may be the same as #4 or #27.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -768,7 +840,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "Venue from 2026 listings; the pin is the Sai Baba Mandir next to the ground.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/VikhroliDurgapuja/"
    },
    "geometry": {
     "type": "Point",
@@ -789,7 +863,9 @@
     "pin_type": "area",
     "pin_type_meaning": "Area only (locality/station)",
     "note": "No listing found. The pin marks Palghar station.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -810,7 +886,9 @@
     "pin_type": "area",
     "pin_type_meaning": "Area only (locality/station)",
     "note": "No listing found. The pin marks Kharghar station.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -831,7 +909,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/AikatanCultural/"
    },
    "geometry": {
     "type": "Point",
@@ -852,7 +932,9 @@
     "pin_type": "area",
     "pin_type_meaning": "Area only (locality/station)",
     "note": "No listing found. The pin marks Yari Road, Versova.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -873,7 +955,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -894,7 +978,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "Entries #44 and #56 are the same.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/ndsdpm/"
    },
    "geometry": {
     "type": "Point",
@@ -915,7 +1001,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/airolibengaliassociation/"
    },
    "geometry": {
     "type": "Point",
@@ -936,7 +1024,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -957,7 +1047,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -978,7 +1070,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -999,7 +1093,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1020,7 +1116,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "Entries #50 and #53 are the same.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1041,7 +1139,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": "https://www.instagram.com/bmtpf/",
+    "facebook": "https://www.facebook.com/bmtpf/"
    },
    "geometry": {
     "type": "Point",
@@ -1062,7 +1162,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "The organiser's Google pin is in Motilal Nagar I, Goregaon West (19.1585, 72.8426). Check which venue is current.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1083,7 +1185,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "Pin is the trust's listed address.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/UlweBengaliWelfareTrustNaviMumbai/"
    },
    "geometry": {
     "type": "Point",
@@ -1104,7 +1208,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1125,7 +1231,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "Running since 1953.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/borivalisanskriti/"
    },
    "geometry": {
     "type": "Point",
@@ -1146,7 +1254,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1167,7 +1277,9 @@
     "pin_type": "area",
     "pin_type_meaning": "Area only (locality/station)",
     "note": "Justdial lists the puja venue in Nerul Sector 27; the pin is the sector centre.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1188,7 +1300,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "Entries #61 and #109 are the same.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1209,7 +1323,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1230,7 +1346,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "Moved from Khewra Circle to this auditorium.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1251,7 +1369,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "Thane's largest puja by area.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": "https://www.instagram.com/aamraprabashithane/",
+    "facebook": "https://www.facebook.com/AamraPrabashiThane/"
    },
    "geometry": {
     "type": "Point",
@@ -1272,7 +1392,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "Entries #65 and #102 are the same.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1293,7 +1415,9 @@
     "pin_type": "area",
     "pin_type_meaning": "Area only (locality/station)",
     "note": "No listing found. The pin marks Kandivali station (West).",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1314,7 +1438,9 @@
     "pin_type": "area",
     "pin_type_meaning": "Area only (locality/station)",
     "note": "No listing found. The pin marks Kalyan station. Entries #67 and #76 are the same.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1335,7 +1461,9 @@
     "pin_type": "area",
     "pin_type_meaning": "Area only (locality/station)",
     "note": "No listing found. The pin marks Kalyan station. Entries #68 and #77 are the same.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1356,7 +1484,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "The club's own address is Sector 13 (18.9956, 73.1272); visitors say the puja is held at the school ground by the post office. Entries #69 and #100 are the same.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1377,7 +1507,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1398,7 +1530,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1419,7 +1553,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "Same organiser as #80, listed at two venues.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1440,7 +1576,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1461,7 +1599,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1482,7 +1622,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1503,7 +1645,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1524,7 +1668,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "Same organiser as #73, listed at two venues.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1545,7 +1691,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "Visitors report the puja is inside the Anushaktinagar campus, so outside entry may be restricted.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1566,7 +1714,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1587,7 +1737,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "Entries #83 (Javerbaug) and #84 (Nar Narayan Temple) share this address.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1608,7 +1760,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "Pin is the street.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1629,7 +1783,9 @@
     "pin_type": "area",
     "pin_type_meaning": "Area only (locality/station)",
     "note": "No listing found. The pin marks Sion station.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1650,7 +1806,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "Pin is the station named in the list.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1671,7 +1829,9 @@
     "pin_type": "area",
     "pin_type_meaning": "Area only (locality/station)",
     "note": "Pin is Jarimari; the exact compound was not found.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1692,7 +1852,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1713,7 +1875,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1734,7 +1898,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1755,7 +1921,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "10–15 minutes' walk from Versova metro.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1776,7 +1944,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1797,7 +1967,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1818,7 +1990,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1839,7 +2013,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "Entries #101 and #108 are the same.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1860,7 +2036,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "Parking is tight; temples across the road draw crowds too.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1881,7 +2059,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "Pin is the fire station named in the list.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1902,7 +2082,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "Pin is the association's listed address.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1923,7 +2105,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1944,7 +2128,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1965,7 +2151,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "Assamese community puja next to Vashi station.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -1986,7 +2174,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -2007,7 +2197,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -2028,7 +2220,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/kalyanbengalculturalassociation/"
    },
    "geometry": {
     "type": "Point",
@@ -2049,7 +2243,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "Housing-complex puja; the pin is the estate.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -2070,7 +2266,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "The NCH Colony puja has run for over 50 years.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -2091,7 +2289,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "Free khichuri bhog reported during the puja.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -2112,7 +2312,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "Pin is the school named in the list.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -2133,7 +2335,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -2154,7 +2358,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -2175,7 +2381,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -2196,7 +2404,9 @@
     "pin_type": "area",
     "pin_type_meaning": "Area only (locality/station)",
     "note": "Pin is the Unique Gardens locality.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -2217,7 +2427,9 @@
     "pin_type": "area",
     "pin_type_meaning": "Area only (locality/station)",
     "note": "Pin is the Shivar Garden locality.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -2238,7 +2450,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "Housing-complex puja; the pin is the complex.",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -2259,7 +2473,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -2280,7 +2496,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/Pushpanjali.Borivali/"
    },
    "geometry": {
     "type": "Point",
@@ -2301,7 +2519,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "",
-    "on_your_list": true
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -2322,7 +2542,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "Not on your list; found while searching.",
-    "on_your_list": false
+    "on_your_list": false,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/kebaconnect/"
    },
    "geometry": {
     "type": "Point",
@@ -2343,7 +2565,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "Not on your list; named in 2025 news coverage.",
-    "on_your_list": false
+    "on_your_list": false,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -2364,7 +2588,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "Not on your list; named in 2026 listings.",
-    "on_your_list": false
+    "on_your_list": false,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -2385,7 +2611,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "Not on your list; found while searching.",
-    "on_your_list": false
+    "on_your_list": false,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -2406,7 +2634,9 @@
     "pin_type": "exact",
     "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
     "note": "Not on your list; found while searching.",
-    "on_your_list": false
+    "on_your_list": false,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
@@ -2427,7 +2657,9 @@
     "pin_type": "venue",
     "pin_type_meaning": "Venue named in list",
     "note": "Not on your list; found while searching. The pin is the association's listed address.",
-    "on_your_list": false
+    "on_your_list": false,
+    "instagram": null,
+    "facebook": null
    },
    "geometry": {
     "type": "Point",
