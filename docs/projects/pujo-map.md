@@ -1,7 +1,7 @@
 ---
 hide:
   - toc
-description: "Mumbai Durga Pujo Map: 116 Durga Pujos across Mumbai, Thane and Navi Mumbai, nearest first, with directions. In English and Bangla."
+description: "Mumbai Durga Pujo Map: 115 Durga Pujos across Mumbai, Thane and Navi Mumbai, nearest first, with directions. In English and Bangla."
 og:
   image: assets/images/pujo-map-card.jpg
   image_alt: "Ma Durga's eyes drawn in red, with the words Mumbai Durga Pujo Map"
@@ -44,7 +44,7 @@ og:
 <div>
 <h1>Mumbai Durga Pujo Map</h1>
 <p class="pm-bn" lang="bn">মুম্বই দুর্গাপুজো ম্যাপ</p>
-<p class="pm-tag">116 Durga Pujos across Mumbai, Thane and Navi Mumbai. Nearest first, with directions.</p>
+<p class="pm-tag">115 Durga Pujos across Mumbai, Thane and Navi Mumbai. Nearest first, with directions.</p>
 </div>
 </div>
 
@@ -85,6 +85,6 @@ A slim 24-hour strip shows the tithi now and when the next begins, by the tradit
 
 <p class="pm-foot">Bengali fonts from <a href="https://github.com/fahimscirex/bangla-fonts">bangla-fonts</a>. Alpona art by Parama Ghosh, traced from her hand-painted alponas. Dhak sound from <a href="https://youtu.be/VksCiC7qz2c">this YouTube video</a>.</p>
 
-<p class="pm-foot">Made by <a href="https://somdeepkundu.github.io/">Somdeep Kundu</a>, IIT Bombay · Durga Puja 2026 · v1.6.1 · earlier: <a href="https://somdeepkundu.github.io/pujo-map/v1.5/">v1.5</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.4/">v1.4</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.3/">v1.3</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.2/">v1.2</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.1/">v1.1</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1/">v1</a></p>
+<p class="pm-foot">Made by <a href="https://somdeepkundu.github.io/">Somdeep Kundu</a>, IIT Bombay · Durga Puja 2026 · v1.6.2 · earlier: <a href="https://somdeepkundu.github.io/pujo-map/v1.5/">v1.5</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.4/">v1.4</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.3/">v1.3</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.2/">v1.2</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.1/">v1.1</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1/">v1</a></p>
 
 </div>
