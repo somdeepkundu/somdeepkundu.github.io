@@ -907,6 +907,11 @@ ol.rows { list-style: none; margin: 0; padding: 0; }
 .follow a { display: inline-flex; align-items: center; gap: 5px; color: var(--ink); text-decoration: none; font-weight: 600; min-height: 32px; }
 .follow a:hover { color: var(--alta); }
 .follow svg { width: 16px; height: 16px; color: var(--alta); }
+.ask { margin: 0; font-weight: 600; }
+.route-ask { display: grid; gap: 8px; margin-top: 8px; }
+.route-ask .go, .route-ask .copy { text-decoration: none; }
+.notice .route-ask a.go { color: var(--on-alta); }
+.notice .route-ask a.copy { color: var(--ink); }
 .acts { display: flex; gap: 8px; flex-wrap: wrap; }
 .go, .copy {
   display: inline-flex; align-items: center; gap: 7px; border-radius: 999px; min-height: 44px; padding: 0 17px;
@@ -1032,9 +1037,9 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
   function num(x) { var s = String(x); return LANG === "bn" ? s.replace(/[0-9]/g, function (d) { return BN_DIGITS[+d]; }) : s; }
 
   /* ---------- the Bengali calendar ----------
-     Tithi changes come from the Sun and Moon positions (the modern Bisuddha Siddhanta method, as at Belur Math);
-     the instant is the same everywhere, shown here in IST. Bengali dates follow the printed West Bengal calendar. */
-  var TITHI = [[1788228740000,20],[1788309779000,21],[1788389789000,22],[1788468950000,23],[1788547438000,24],[1788625444000,25],[1788703176000,26],[1788780872000,27],[1788858800000,28],[1788937269000,29],[1789016620000,30],[1789097211000,1],[1789179404000,2],[1789263527000,3],[1789349840000,4],[1789438475000,5],[1789529386000,6],[1789622297000,7],[1789716689000,8],[1789811840000,9],[1789906912000,10],[1790001074000,11],[1790093618000,12],[1790184052000,13],[1790272127000,14],[1790357830000,15],[1790441334000,16],[1790522942000,17],[1790603038000,18],[1790682035000,19],[1790760342000,20],[1790838337000,21],[1790916337000,22],[1790994602000,23],[1791073326000,24],[1791152648000,25],[1791232673000,26],[1791313494000,27],[1791395215000,28],[1791477979000,29],[1791561968000,30],[1791647396000,1],[1791734483000,2],[1791823417000,3],[1791914286000,4],[1792007021000,5],[1792101334000,6],[1792196684000,7],[1792292313000,8],[1792387329000,9],[1792480847000,10],[1792572133000,11],[1792660705000,12],[1792746375000,13],[1792829233000,14],[1792909587000,15],[1792987899000,16],[1793064719000,17],[1793140634000,18],[1793216225000,19],[1793292031000,20],[1793368519000,21],[1793446062000,22],[1793524925000,23],[1793605253000,24],[1793687095000,25],[1793770419000,26],[1793855160000,27],[1793941260000,28],[1794028696000,29],[1794117495000,30],[1794207719000,1],[1794299430000,2],[1794392627000,3],[1794487183000,4],[1794582775000,5],[1794678863000,6],[1794774694000,7],[1794869401000,8],[1794962132000,9],[1795052194000,10],[1795139161000,11],[1795222913000,12],[1795303612000,13],[1795381649000,14],[1795457570000,15],[1795532009000,16],[1795605640000,17],[1795679136000,18],[1795753135000,19],[1795828213000,20],[1795904852000,21],[1795983417000,22],[1796064127000,23],[1796147056000,24],[1796232146000,25],[1796319234000,26],[1796408107000,27],[1796498541000,28],[1796590346000,29],[1796683376000,30],[1796777505000,1],[1796872588000,2],[1796968403000,3],[1797064602000,4],[1797160680000,5],[1797255986000,6],[1797349787000,7],[1797441374000,8],[1797530181000,9],[1797615875000,10],[1797698386000,11],[1797777898000,12],[1797854805000,13],[1797929647000,14],[1798003050000,15],[1798075690000,16],[1798148247000,17],[1798221385000,18],[1798295724000,19],[1798371816000,20],[1798450109000,21],[1798530921000,22],[1798614412000,23],[1798700572000,24]];
+     Tithi changes follow the traditional Surya Siddhanta panjika (computed with its own rules; they match
+     bengalicalendar.com to the minute). The instant is the same everywhere, shown here in IST. Bengali dates follow the printed West Bengal calendar. */
+  var TITHI = [[1787615835000,13],[1787708015000,14],[1787798770000,15],[1787887839000,16],[1787975072000,17],[1788060470000,18],[1788144149000,19],[1788226225000,20],[1788306908000,21],[1788386463000,22],[1788465111000,23],[1788543137000,24],[1788620794000,25],[1788698377000,26],[1788776234000,27],[1788854597000,28],[1788933751000,29],[1789013971000,30],[1789095488000,1],[1789178513000,2],[1789263236000,3],[1789349773000,4],[1789438177000,5],[1789528342000,6],[1789620079000,7],[1789713039000,8],[1789806737000,9],[1789900604000,10],[1789993955000,11],[1790086314000,12],[1790177228000,13],[1790266465000,14],[1790353846000,15],[1790439413000,16],[1790523239000,17],[1790605431000,18],[1790686241000,19],[1790765923000,20],[1790844687000,21],[1790922818000,22],[1791000559000,23],[1791078247000,24],[1791156199000,25],[1791234658000,26],[1791313917000,27],[1791394221000,28],[1791475844000,29],[1791558974000,30],[1791643813000,1],[1791730487000,2],[1791819018000,3],[1791909320000,4],[1792001183000,5],[1792094291000,6],[1792188158000,7],[1792282163000,8],[1792375650000,9],[1792468115000,10],[1792559166000,11],[1792648498000,12],[1792735984000,13],[1792821646000,14],[1792905546000,15],[1792987822000,16],[1793068717000,17],[1793148472000,18],[1793227310000,19],[1793305526000,20],[1793383383000,21],[1793461166000,22],[1793539224000,23],[1793617798000,24],[1793697184000,25],[1793777646000,26],[1793859406000,27],[1793942694000,28],[1794027734000,29],[1794114577000,30],[1794203297000,1],[1794293800000,2],[1794385863000,3],[1794479151000,4],[1794573144000,5],[1794667286000,6],[1794760879000,7],[1794853396000,8],[1794944479000,9],[1795033853000,10],[1795121339000,11],[1795207011000,12],[1795290891000,13],[1795373199000,14],[1795454114000,15],[1795533891000,16],[1795612760000,17],[1795691029000,18],[1795768949000,19],[1795846817000,20],[1795924969000,21],[1796003670000,22],[1796083214000,23],[1796163824000,24],[1796245763000,25],[1796329262000,26],[1796414502000,27],[1796501556000,28],[1796590508000,29],[1796681233000,30],[1796773476000,1],[1796866921000,2],[1796961062000,3],[1797055278000,4],[1797148881000,5],[1797241398000,6],[1797332407000,7],[1797421697000,8],[1797509120000,9],[1797594697000,10],[1797678513000,11],[1797760758000,12],[1797841600000,13],[1797921345000,14],[1798000204000,15],[1798078483000,16],[1798156424000,17],[1798234344000,18],[1798312592000,19],[1798391387000,20],[1798471058000,21],[1798551805000,22],[1798633923000,23],[1798717613000,24],[1798803021000,25],[1798890318000,26],[1798979460000,27],[1799070374000,28]];
   var IST = 19800000, DAY = 864e5;
   var T_BN = ["প্রতিপদ", "দ্বিতীয়া", "তৃতীয়া", "চতুর্থী", "পঞ্চমী", "ষষ্ঠী", "সপ্তমী", "অষ্টমী", "নবমী", "দশমী", "একাদশী", "দ্বাদশী", "ত্রয়োদশী", "চতুর্দশী", "পূর্ণিমা"];
   var T_EN = ["Pratipad", "Dwitiya", "Tritiya", "Chaturthi", "Panchami", "Shashthi", "Saptami", "Ashtami", "Navami", "Dashami", "Ekadashi", "Dwadashi", "Trayodashi", "Chaturdashi", "Purnima"];
@@ -1093,7 +1098,7 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
       fromHome: "nearest to IIT Bombay", fromGps: "nearest to you", fromPick: "nearest to your spot",
       useLoc: "Use my location",
       approx: "approximate", follow: "Follow", website: "Website",
-      dirs: "Get directions", copy: "Copy location", copied: "Copied", copyFail: "Copying isn't allowed here. The location is",
+      dirs: "Get directions", howGo: "How are you going?", walk: "Walking", drive: "By car or auto", copy: "Copy location", copied: "Copied", copyFail: "Copying isn't allowed here. The location is",
       tapMap: "Tap the map where you are.", cancel: "Cancel",
       locOff: "Location is off for this page.", locNA: "Your location isn't available right now.",
       orKeep: 'Tap the map where you are, or <button type="button" data-cancel>keep IIT Bombay</button>.',
@@ -1119,11 +1124,11 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
       layers: "The soft red glow shows where pujos cluster, and the thin arcs join you, or IIT Bombay, to the nearest pujos.",
       daysTitle: "Tithi times in Mumbai, Durga Puja 2026", daysToday: "now",
       sandhi: function (d, a, b) { return "<strong>Sandhi Puja:</strong> " + d + ", " + a + " to " + b + "."; },
-      daysSrc: "Worked out from the Sun and Moon (the modern Bisuddha Siddhanta method, as at Belur Math), so the times are the same across Mumbai. Pandals that follow the Gupta Press or Benimadhab Sil panjika can differ by a few hours; check with yours. Bengali dates follow the West Bengal calendar. Sunrise and sunset are for IIT Bombay, or for your spot once you share it.",
+      daysSrc: "Times follow the traditional Bengali panjika (Surya Siddhanta), so they are the same across Mumbai. The Gupta Press and Benimadhab Sil panjikas print Sandhi Puja a little later, 07:25 to 08:13, and Belur Math, which follows the Bisuddha Siddhanta, holds it at 10:28 to 11:16; check with your pandal. Bengali dates follow the West Bengal calendar. Sunrise and sunset are for IIT Bombay, or for your spot once you share it.",
       srcTitle: "Sources and data",
       src: 'Google Maps listings, plus <a href="https://www.freepressjournal.in/mumbai/durga-puja-2025-mumbai-celebrates-bengals-biggest-festival-with-grand-pandals-culture-and-cuisine" target="_blank" rel="noopener">Free Press Journal</a>, <a href="https://www.boldsky.com/insync/durga-puja-pandals-mumbai-2026-7-stunning-celebrations-to-explore-from-matunga-to-juhu-173373.html" target="_blank" rel="noopener">Boldsky</a>, <a href="https://lbb.in/mumbai/durga-pandals-mumbai/" target="_blank" rel="noopener">LBB</a> and <a href="https://www.justdial.com/Mumbai/Aamra-Prabasi-Durga-Puja-Venue-Nerul-Nerul-Sector-27/022PXX22-XX22-220327111649-G8Q4_BZDET" target="_blank" rel="noopener">Justdial</a>. Instagram, Facebook and website links go to each pujo’s own pages, found by search. Map © OpenStreetMap contributors; Mumbai ward outline © DataMeet.',
       dl: 'Download every pin as <a href="mumbai-durga-pujas-2026.csv">CSV</a> or <a href="mumbai-durga-pujas-2026.geojson">GeoJSON</a>.',
-      version: 'Version 1.3.8; earlier: <a href="v1.2/">1.2</a>, <a href="v1.1/">1.1</a>, <a href="v1/">1</a>',
+      version: 'Version 1.4; earlier: <a href="v1.3/">1.3</a>, <a href="v1.2/">1.2</a>, <a href="v1.1/">1.1</a>, <a href="v1/">1</a>',
       sayTitle: "Suggestions",
       say: 'Know a pujo that is missing, a wrong pin, or its Instagram page? Or have an idea for the map? Write to me at <a href="mailto:somdeepkundu@gmail.com?subject=Mumbai%20Durga%20Pujo%20Map">somdeepkundu@gmail.com</a>, on <a href="https://www.linkedin.com/in/somdeep-kundu/" target="_blank" rel="noopener">LinkedIn</a> or on <a href="https://www.instagram.com/somdeeplearning/" target="_blank" rel="noopener">Instagram</a>.',
       close: "Close"
@@ -1139,7 +1144,7 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
       fromHome: "আইআইটি বম্বে থেকে দূরত্ব অনুযায়ী", fromGps: "আপনার থেকে দূরত্ব অনুযায়ী", fromPick: "বাছাই করা জায়গা থেকে দূরত্ব অনুযায়ী",
       useLoc: "আমার লোকেশন ব্যবহার করুন",
       approx: "আনুমানিক", follow: "ফলো করুন", website: "ওয়েবসাইট",
-      dirs: "পথ দেখুন", copy: "লোকেশন কপি করুন", copied: "কপি হয়েছে", copyFail: "এখানে কপি করা যাচ্ছে না। লোকেশন:",
+      dirs: "পথ দেখুন", howGo: "কীভাবে যাবেন?", walk: "হেঁটে", drive: "গাড়ি বা অটোতে", copy: "লোকেশন কপি করুন", copied: "কপি হয়েছে", copyFail: "এখানে কপি করা যাচ্ছে না। লোকেশন:",
       tapMap: "ম্যাপে আপনার জায়গায় ট্যাপ করুন।", cancel: "বাতিল",
       locOff: "এই পেজে লোকেশন বন্ধ আছে।", locNA: "এই মুহূর্তে আপনার লোকেশন পাওয়া যাচ্ছে না।",
       orKeep: 'ম্যাপে আপনার জায়গায় ট্যাপ করুন, অথবা <button type="button" data-cancel>আইআইটি বম্বে থেকেই দেখুন</button>।',
@@ -1165,11 +1170,11 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
       layers: "হালকা লাল আভা দেখায় কোথায় পুজো বেশি, আর সরু রেখাগুলো আপনার বা আইআইটি বম্বের সঙ্গে কাছের পুজোগুলো জুড়ে দেয়।",
       daysTitle: "মুম্বইয়ে তিথির সময়, দুর্গাপুজো ২০২৬", daysToday: "এখন",
       sandhi: function (d, a, b) { return "<strong>সন্ধিপুজো:</strong> " + d + ", " + a + " থেকে " + b + "।"; },
-      daysSrc: "সূর্য ও চাঁদের অবস্থান থেকে হিসাব করা (আধুনিক বিশুদ্ধ সিদ্ধান্ত মতে, বেলুড় মঠে যেমন), তাই গোটা মুম্বইয়ে সময় একই। গুপ্তপ্রেস বা বেণীমাধব শীলের পঞ্জিকা মানা মণ্ডপে সময় কয়েক ঘণ্টা আলাদা হতে পারে, নিজের মণ্ডপে জেনে নিন। বাংলা তারিখ পশ্চিমবঙ্গের ক্যালেন্ডার অনুযায়ী। সূর্যোদয় ও সূর্যাস্ত আইআইটি বম্বের, আর লোকেশন দিলে আপনার জায়গার।",
+      daysSrc: "সময়গুলো প্রচলিত বাংলা পঞ্জিকা (সূর্যসিদ্ধান্ত) মতে, তাই গোটা মুম্বইয়ে একই। গুপ্তপ্রেস ও বেণীমাধব শীলের পঞ্জিকায় সন্ধিপুজো একটু পরে, ০৭:২৫ থেকে ০৮:১৩, আর বিশুদ্ধ সিদ্ধান্ত মানা বেলুড় মঠে ১০:২৮ থেকে ১১:১৬; নিজের মণ্ডপে জেনে নিন। বাংলা তারিখ পশ্চিমবঙ্গের ক্যালেন্ডার অনুযায়ী। সূর্যোদয় ও সূর্যাস্ত আইআইটি বম্বের, আর লোকেশন দিলে আপনার জায়গার।",
       srcTitle: "তথ্যসূত্র ও ডেটা",
       src: 'গুগল ম্যাপের তথ্য, সঙ্গে <a href="https://www.freepressjournal.in/mumbai/durga-puja-2025-mumbai-celebrates-bengals-biggest-festival-with-grand-pandals-culture-and-cuisine" target="_blank" rel="noopener">Free Press Journal</a>, <a href="https://www.boldsky.com/insync/durga-puja-pandals-mumbai-2026-7-stunning-celebrations-to-explore-from-matunga-to-juhu-173373.html" target="_blank" rel="noopener">Boldsky</a>, <a href="https://lbb.in/mumbai/durga-pandals-mumbai/" target="_blank" rel="noopener">LBB</a> আর <a href="https://www.justdial.com/Mumbai/Aamra-Prabasi-Durga-Puja-Venue-Nerul-Nerul-Sector-27/022PXX22-XX22-220327111649-G8Q4_BZDET" target="_blank" rel="noopener">Justdial</a>। ইনস্টাগ্রাম, ফেসবুক ও ওয়েবসাইটের লিংক পুজোগুলোর নিজেদের, সার্চ করে পাওয়া। ম্যাপ © OpenStreetMap; মুম্বইয়ের ওয়ার্ড সীমানা © DataMeet।',
       dl: 'সব পিন <a href="mumbai-durga-pujas-2026.csv">CSV</a> বা <a href="mumbai-durga-pujas-2026.geojson">GeoJSON</a> ফাইলে ডাউনলোড করুন।',
-      version: 'সংস্করণ ১.৩.৮; আগের: <a href="v1.2/">১.২</a>, <a href="v1.1/">১.১</a>, <a href="v1/">১</a>',
+      version: 'সংস্করণ ১.৪; আগের: <a href="v1.3/">১.৩</a>, <a href="v1.2/">১.২</a>, <a href="v1.1/">১.১</a>, <a href="v1/">১</a>',
       sayTitle: "পরামর্শ",
       say: 'কোনও পুজো বাদ পড়েছে, পিন ভুল জায়গায়, বা কোনও পুজোর ইনস্টাগ্রাম পেজ জানেন? ম্যাপ নিয়ে কোনও পরামর্শ আছে? <a href="mailto:somdeepkundu@gmail.com?subject=Mumbai%20Durga%20Pujo%20Map">somdeepkundu@gmail.com</a>-এ মেল করুন, অথবা <a href="https://www.linkedin.com/in/somdeep-kundu/" target="_blank" rel="noopener">LinkedIn</a> বা <a href="https://www.instagram.com/somdeeplearning/" target="_blank" rel="noopener">Instagram</a>-এ জানান।',
       close: "বন্ধ করুন"
@@ -1212,6 +1217,8 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
     ig: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>',
     web: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.8 2.6 15.2 0 18M12 3c-2.6 2.8-2.6 15.2 0 18"/></svg>',
     fb: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M15.5 8H14a2 2 0 0 0-2 2v11M9.5 13h5"/></svg>',
+    walk: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13" cy="4.5" r="1.8"/><path d="M9.5 21l2.3-6.2L14 17v4M8 12.5l1.5-4.5 3.5-1 2.2 3.4 2.8 1.1M11.8 14.8l1.2-4.8"/></svg>',
+    car: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 16v-3.5L6 7h12l2 5.5V16"/><path d="M3 16h18v2.5H3z"/><circle cx="7.5" cy="16" r="1.6"/><circle cx="16.5" cy="16" r="1.6"/></svg>',
     copy: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>'
   };
 
@@ -1372,6 +1379,20 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
     var hay = (p.name + " " + p.venue + " " + p.area + " " + p.region + " " + (AREA_BN[p.region] || "")).toLowerCase();
     return q.split(/\s+/).every(function (w) { return hay.indexOf(w) !== -1; });
   }
+  var MODE = null;
+  try { MODE = localStorage.getItem("pujo-mode"); } catch (e) {}
+  function modeLinks(url, wrapCls) {
+    var opts = [["walking", ICON.walk, t("walk")], ["driving", ICON.car, t("drive")]];
+    if (MODE === "driving") opts.reverse();
+    return '<p class="ask">' + t("howGo") + '</p><div class="' + wrapCls + '">' + opts.map(function (o, k) {
+      return '<a class="' + (k ? "copy" : "go") + '" data-mode="' + o[0] + '" href="' + url + "&travelmode=" + o[0] + '" target="_blank" rel="noopener">' + o[1] + o[2] + "</a>";
+    }).join("") + "</div>";
+  }
+  function rememberMode(e) {
+    var a = e.target.closest("[data-mode]"); if (!a) return;
+    MODE = a.getAttribute("data-mode");
+    try { localStorage.setItem("pujo-mode", MODE); } catch (err) {}
+  }
   function dirUrl(p) {
     var u = "https://www.google.com/maps/dir/?api=1&destination=" + p.lat + "," + p.lng;
     if (state.me && state.me.source !== "gps") u += "&origin=" + state.me.lat.toFixed(6) + "," + state.me.lng.toFixed(6);
@@ -1391,7 +1412,7 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
         (p.fb ? '<a href="' + (/^https:\/\//.test(p.fb) ? esc(p.fb) : "https://www.facebook.com/" + encodeURIComponent(p.fb) + "/") + '" target="_blank" rel="noopener">' + ICON.fb + "Facebook</a>" : "") +
         (p.web ? '<a href="' + esc(p.web) + '" target="_blank" rel="noopener">' + ICON.web + t("website") + "</a>" : "");
       html += '<div class="row-more">' + (tip ? "<p>" + esc(tip) + "</p>" : "") + (follow ? '<p class="follow"><span>' + t("follow") + "</span>" + follow + "</p>" : "") +
-        '<div class="acts"><a class="go" href="' + dirUrl(p) + '" target="_blank" rel="noopener">' + ICON.go + t("dirs") + "</a>" +
+        '<div class="acts"><button class="go" type="button" data-go>' + ICON.go + t("dirs") + "</button>" +
         '<button class="copy" type="button" data-copy>' + ICON.copy + t("copy") + "</button></div></div>";
     }
     return html + "</li>";
@@ -1535,7 +1556,7 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
     });
     if (!deckOK) routeFallback = L.polyline(routeData.path.map(function (c) { return [c[1], c[0]]; }), { className: "route-line", interactive: false }).addTo(map);
     var n = $("routeNote");
-    n.innerHTML = esc(t("route", routeData.stops.length, fmtKm(routeData.total))) + ' <a href="' + routeUrl(routeData) + '" target="_blank" rel="noopener">' + t("openGmaps") + '</a> <button type="button" data-hide-route>' + t("hide") + "</button>";
+    n.innerHTML = esc(t("route", routeData.stops.length, fmtKm(routeData.total))) + ' <button type="button" data-route-go>' + t("openGmaps") + '</button> <button type="button" data-hide-route>' + t("hide") + "</button>";
     n.hidden = false;
     updateDeck(0);
     if (deckOK && !reduced()) {
@@ -1771,7 +1792,11 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
     if (e.target.closest("[data-cancel]")) { setPicking(false); notice(""); }
     if (e.target.closest("[data-pick]")) setPicking(true);
   });
-  $("routeNote").addEventListener("click", function (e) { if (e.target.closest("[data-hide-route]")) setRoute(false); });
+  $("routeNote").addEventListener("click", function (e) {
+    if (e.target.closest("[data-hide-route]")) setRoute(false);
+    else if (e.target.closest("[data-route-go]") && routeData) { e.target.closest("[data-route-go]").outerHTML = '<span class="route-ask">' + modeLinks(routeUrl(routeData), "acts") + "</span>"; }
+    else rememberMode(e);
+  });
   $("q").addEventListener("input", function (e) { state.q = e.target.value; render(); $("listWrap").scrollTop = 0; });
   $("q").addEventListener("focus", function () { if (sheetAt !== "full") setSheet("full"); });
   $("q").addEventListener("keydown", function (e) { if (e.key === "Enter") { e.target.blur(); setSheet("half"); fitShown(); } });
@@ -1779,6 +1804,11 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
   $("rows").addEventListener("click", function (e) {
     var row = e.target.closest(".row"); if (!row) return;
     var i = +row.getAttribute("data-i");
+    if (e.target.closest("[data-mode]")) { rememberMode(e); return; }
+    if (e.target.closest("[data-go]")) {
+      var box = row.querySelector(".acts"); box.outerHTML = modeLinks(dirUrl(PUJAS[i]), "acts");
+      return;
+    }
     if (e.target.closest("[data-copy]")) {
       var p = PUJAS[i], txt = p.lat.toFixed(6) + ", " + p.lng.toFixed(6);
       var fail = function () { toast(t("copyFail") + " <b>" + txt + "</b>", 6000); };

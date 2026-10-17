@@ -67,7 +67,7 @@ og:
 <div class="pm-feat" markdown>
 **Nearest first**
 
-Distances from IIT Bombay, or from you. Each pujo opens in Google Maps, with its Instagram or Facebook page where it has one.
+Distances from IIT Bombay, or from you. Directions open in Google Maps for walking or by car, with each pujo's Instagram or Facebook page where it has one.
 </div>
 <div class="pm-feat" markdown>
 **Pandal-hopping route**
@@ -77,12 +77,12 @@ The shortest walk through 4 pujos close by, drawn as a calm trail, ready to open
 <div class="pm-feat" markdown>
 **Today, by the Bengali calendar**
 
-A slim 24-hour strip shows the tithi now, when the next one begins, and sunrise and sunset, with the Bengali date. In English and বাংলা.
+A slim 24-hour strip shows the tithi now and when the next begins, by the traditional Bengali panjika, with sunrise, sunset and the Bengali date. In English and বাংলা.
 </div>
 </div>
 
 <p class="pm-foot">Know a missing pujo, a wrong pin or a pujo's Instagram page? Write to <a href="mailto:somdeepkundu@gmail.com?subject=Mumbai%20Durga%20Pujo%20Map">somdeepkundu@gmail.com</a> or message me on <a href="https://www.linkedin.com/in/somdeep-kundu/">LinkedIn</a> or <a href="https://www.instagram.com/somdeeplearning/">Instagram</a>.</p>
 
-<p class="pm-foot">Made by <a href="https://somdeepkundu.github.io/">Somdeep Kundu</a>, IIT Bombay · Durga Puja 2026 · v1.3.8 · earlier: <a href="https://somdeepkundu.github.io/pujo-map/v1.2/">v1.2</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.1/">v1.1</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1/">v1</a></p>
+<p class="pm-foot">Made by <a href="https://somdeepkundu.github.io/">Somdeep Kundu</a>, IIT Bombay · Durga Puja 2026 · v1.4 · earlier: <a href="https://somdeepkundu.github.io/pujo-map/v1.3/">v1.3</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.2/">v1.2</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.1/">v1.1</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1/">v1</a></p>
 
 </div>
