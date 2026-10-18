@@ -67,7 +67,7 @@ og:
 <div class="pm-feat" markdown>
 **Nearest first**
 
-Distances from IIT Bombay, or from you. Directions open in Google Maps for walking or by car, with each pujo's Instagram or Facebook page where it has one.
+Distances from IIT Bombay, or from you. Directions open in Google Maps for walking or by car, with each pujo's Instagram or Facebook page where it has one. Tap a pujo and its nearest neighbours' names appear beside it, or turn on pujo names for the whole map.
 </div>
 <div class="pm-feat" markdown>
 **Pandal-hopping route**
@@ -85,6 +85,6 @@ A slim 24-hour strip shows the tithi now and when the next begins, by the tradit
 
 <p class="pm-foot">Bengali fonts from <a href="https://github.com/fahimscirex/bangla-fonts">bangla-fonts</a>. Alpona art by <a href="https://www.instagram.com/the_nocturnal_mystic/">Parama Ghosh</a>, traced from her hand-painted alponas. Dhak sound from <a href="https://youtu.be/VksCiC7qz2c">this YouTube video</a>.</p>
 
-<p class="pm-foot">Made by <a href="https://somdeepkundu.github.io/">Somdeep Kundu</a>, IIT Bombay · Durga Puja 2026 · v1.6.3 · earlier: <a href="https://somdeepkundu.github.io/pujo-map/v1.5/">v1.5</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.4/">v1.4</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.3/">v1.3</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.2/">v1.2</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.1/">v1.1</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1/">v1</a></p>
+<p class="pm-foot">Made by <a href="https://somdeepkundu.github.io/">Somdeep Kundu</a>, IIT Bombay · Durga Puja 2026 · v1.7 · earlier: <a href="https://somdeepkundu.github.io/pujo-map/v1.6/">v1.6</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.5/">v1.5</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.4/">v1.4</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.3/">v1.3</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.2/">v1.2</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.1/">v1.1</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1/">v1</a></p>
 
 </div>

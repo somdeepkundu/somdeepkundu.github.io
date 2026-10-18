@@ -851,17 +851,35 @@ html[lang="bn"] .row-name { font-family: var(--font-bn); }
 
 /* map */
 #map { position: absolute; inset: 0; background: var(--water); }
-.hit { cursor: pointer; }
 .leaflet-container { font-family: var(--font); background: var(--water); }
 .leaflet-tile-pane { filter: var(--tiles); }
 .leaflet-left { left: env(safe-area-inset-left, 0px); }
 .leaflet-right { right: env(safe-area-inset-right, 0px); }
 .land { fill: var(--land); stroke: var(--coast); stroke-width: 1; }
-.pin { fill: var(--alta); stroke: var(--paper); stroke-width: 2; cursor: pointer; }
-.pin-approx { fill: var(--paper); stroke: var(--alta); stroke-dasharray: 2.5 2; stroke-width: 2; }
+/* pujo names on the map (toggle), and the neighbours of the selected pujo. Labels are placed by JS so they never overlap */
+.lbl-wrap { pointer-events: none; }
+html.names-on .place { opacity: .45; }
+.lp { position: absolute; white-space: nowrap; }
+.lp-r { left: var(--o); top: calc(var(--hh) * -.5); } .lp-l { right: var(--o); top: calc(var(--hh) * -.5); }
+.lp-t { left: 0; bottom: var(--o); transform: translateX(-50%); } .lp-b { left: 0; top: var(--o); transform: translateX(-50%); }
+.lbl { display: block; max-width: 190px; overflow: hidden; text-overflow: ellipsis; font-size: 11px; line-height: 16px; font-weight: 600; color: var(--ink);
+  text-shadow: 0 0 3px var(--paper), 0 0 3px var(--paper), 0 0 2px var(--paper); animation: lblIn .3s cubic-bezier(.2,.7,.2,1) both; animation-delay: calc(var(--i, 0) * 60ms); }
+.lbl-n { font-size: 11.5px; line-height: 20px; padding: 0 8px; border-radius: 999px; background: var(--glass); border: 1px solid var(--glass-edge); box-shadow: 0 1px 6px rgba(0,0,0,.14); text-shadow: none; }
+.lbl small { margin-left: 6px; font-size: 10.5px; font-weight: 500; color: var(--muted); }
+.lbl-wrap.out .lbl { animation: lblOut .2s ease forwards; animation-delay: 0s; }
+@keyframes lblIn { from { opacity: 0; transform: translateY(5px) scale(.92); } to { opacity: 1; transform: none; } }
+@keyframes lblOut { to { opacity: 0; transform: scale(.94); } }
+.nb-line { stroke: var(--alta); stroke-width: 2.2; stroke-linecap: round; stroke-dasharray: .1 7; fill: none; opacity: 0; animation: lineIn .5s ease .12s forwards; }
+.nb-line.out { animation: lineOut .2s ease forwards; }
+@keyframes lineIn { to { opacity: .75; } }
+@keyframes lineOut { from { opacity: .75; } to { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .lbl, .nb-line { animation-duration: .01s; animation-delay: 0s; } .lbl-wrap.out .lbl, .nb-line.out { animation-duration: .01s; } }
 .route-line { stroke: var(--alta); stroke-width: 3; stroke-dasharray: 6 7; fill: none; stroke-linecap: round; }
 .stop-num span { position: absolute; inset: 0; border-radius: 50%; background: var(--alta); color: var(--on-alta); font-size: 12px; font-weight: 600; display: grid; place-items: center; border: 2px solid var(--paper); box-shadow: 0 1px 4px rgba(0,0,0,.3); }
 .sel-icon { color: var(--alta); }
+.sel-icon::after { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 2px solid var(--alta); opacity: 0; pointer-events: none; animation: selPulse 1.8s ease-out 2; }
+@keyframes selPulse { 0% { opacity: .75; transform: scale(.9); } 100% { opacity: 0; transform: scale(1.9); } }
+@media (prefers-reduced-motion: reduce) { .sel-icon::after { animation: none; } }
 .sel-icon svg { width: 34px; height: 34px; display: block; background: var(--paper); border-radius: 50%; box-shadow: 0 1px 6px rgba(0,0,0,.28); }
 .me-icon span { position: absolute; inset: 0; border-radius: 50%; background: var(--you); border: 3px solid var(--paper); box-shadow: 0 1px 5px rgba(0,0,0,.35); }
 .home-icon span { position: absolute; inset: 0; border-radius: 50%; background: var(--ink); color: var(--paper); border: 2px solid var(--paper); box-shadow: 0 1px 5px rgba(0,0,0,.35); display: grid; place-items: center; }
@@ -881,6 +899,15 @@ html[lang="bn"] .row-name { font-family: var(--font-bn); }
 @media (max-width: 899px) { .leaflet-top { top: calc(var(--head-h, 150px) + 14px); } .leaflet-top.leaflet-right .leaflet-control-attribution { max-width: calc(100vw - 70px); border-radius: 6px; } }
 .picking #map, .picking .leaflet-interactive { cursor: crosshair; }
 .leaflet-glow-pane, .leaflet-glow-pane * { pointer-events: none !important; }
+/* smoothness: the glow canvas is only re-drawn when a move ends, so it fades out while zooming (instead of smearing), and the
+   frosted-glass blur, which has to be recomputed over the moving map on every frame, is paused while the map is moving */
+.leaflet-glow-pane { transition: opacity .28s ease; }
+html.zooming .leaflet-glow-pane { opacity: 0; transition-duration: .1s; }
+html.moving .leaflet-bar a, html.moving .leaflet-control-attribution, html.moving .name-tip { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+@media (max-width: 899px) {
+  html.moving .head, html.moving .sheet { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+  html.moving .head, html.moving .sheet { background: color-mix(in srgb, var(--paper) 90%, transparent) !important; }
+}
 
 /* list */
 .list-wrap { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; background: var(--paper); -webkit-overflow-scrolling: touch; }
@@ -1135,7 +1162,7 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
       credit: "Developed by", creditName: "Somdeep Kundu", iitb: "IIT Bombay",
       soundOn: "Play the dhak", soundOff: "Mute the dhak",
       artCredit: 'Bengali fonts from <a href="https://github.com/fahimscirex/bangla-fonts" target="_blank" rel="noopener">bangla-fonts</a>. Alpona art by <a href="https://www.instagram.com/the_nocturnal_mystic/" target="_blank" rel="noopener">Parama Ghosh</a>, traced from her hand-painted alponas. Dhak sound from <a href="https://youtu.be/VksCiC7qz2c" target="_blank" rel="noopener">this YouTube video</a>.',
-      btnHome: "Pujos near IIT Bombay", btnAll: "Show every pujo", btnRoute: "Pandal-hopping route",
+      btnHome: "Pujos near IIT Bombay", btnAll: "Show every pujo", btnRoute: "Pandal-hopping route", btnNames: "Show pujo names", btnNamesOff: "Hide pujo names",
       route: function (n, d) { return "Pandal-hopping route: " + n + " pujos close by, about " + d + " in all."; },
       openGmaps: "Open in Google Maps", hide: "Hide",
       grabMore: "Show more of the list", grabMap: "Show the map",
@@ -1157,7 +1184,7 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
       srcTitle: "Sources and data",
       src: 'Google Maps listings, plus <a href="https://www.freepressjournal.in/mumbai/durga-puja-2025-mumbai-celebrates-bengals-biggest-festival-with-grand-pandals-culture-and-cuisine" target="_blank" rel="noopener">Free Press Journal</a>, <a href="https://www.boldsky.com/insync/durga-puja-pandals-mumbai-2026-7-stunning-celebrations-to-explore-from-matunga-to-juhu-173373.html" target="_blank" rel="noopener">Boldsky</a>, <a href="https://lbb.in/mumbai/durga-pandals-mumbai/" target="_blank" rel="noopener">LBB</a> and <a href="https://www.justdial.com/Mumbai/Aamra-Prabasi-Durga-Puja-Venue-Nerul-Nerul-Sector-27/022PXX22-XX22-220327111649-G8Q4_BZDET" target="_blank" rel="noopener">Justdial</a>. Instagram, Facebook and website links go to each pujo’s own pages, found by search. Map © OpenStreetMap contributors; Mumbai ward outline © DataMeet.',
       dl: 'Download every pin as <a href="mumbai-durga-pujas-2026.csv">CSV</a> or <a href="mumbai-durga-pujas-2026.geojson">GeoJSON</a>.',
-      version: 'Version 1.6.3; earlier: <a href="v1.5/">1.5</a>, <a href="v1.4/">1.4</a>, <a href="v1.3/">1.3</a>, <a href="v1.2/">1.2</a>, <a href="v1.1/">1.1</a>, <a href="v1/">1</a>',
+      version: 'Version 1.7; earlier: <a href="v1.6/">1.6</a>, <a href="v1.5/">1.5</a>, <a href="v1.4/">1.4</a>, <a href="v1.3/">1.3</a>, <a href="v1.2/">1.2</a>, <a href="v1.1/">1.1</a>, <a href="v1/">1</a>',
       leftOff: "One, Sarbojonin Kharghar Durgotsav, is left off the map because its venue could not be confirmed.",
       sayTitle: "Suggestions",
       say: 'Know a pujo that is missing, a wrong pin, or its Instagram page? Or have an idea for the map? Write to me at <a href="mailto:somdeepkundu@gmail.com?subject=Mumbai%20Durga%20Pujo%20Map">somdeepkundu@gmail.com</a>, on <a href="https://www.linkedin.com/in/somdeep-kundu/" target="_blank" rel="noopener">LinkedIn</a> or on <a href="https://www.instagram.com/somdeeplearning/" target="_blank" rel="noopener">Instagram</a>.',
@@ -1184,7 +1211,7 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
       credit: "তৈরি করেছেন", creditName: "সোমদীপ কুণ্ডু", iitb: "আইআইটি বম্বে",
       soundOn: "ঢাক বাজান", soundOff: "ঢাক বন্ধ করুন",
       artCredit: 'বাংলা হরফ: <a href="https://github.com/fahimscirex/bangla-fonts" target="_blank" rel="noopener">bangla-fonts</a> থেকে। আলপনা: <a href="https://www.instagram.com/the_nocturnal_mystic/" target="_blank" rel="noopener">পরমা ঘোষ</a>, তাঁর হাতে আঁকা আলপনা থেকে রেখায় তোলা। ঢাকের আওয়াজ: <a href="https://youtu.be/VksCiC7qz2c" target="_blank" rel="noopener">এই ইউটিউব ভিডিও</a> থেকে।',
-      btnHome: "আইআইটি বম্বের কাছের পুজো", btnAll: "সব পুজো দেখুন", btnRoute: "ঠাকুর দেখার রুট",
+      btnHome: "আইআইটি বম্বের কাছের পুজো", btnAll: "সব পুজো দেখুন", btnRoute: "ঠাকুর দেখার রুট", btnNames: "পুজোর নাম দেখুন", btnNamesOff: "পুজোর নাম লুকান",
       route: function (n, d) { return "ঠাকুর দেখার রুট: কাছাকাছি " + num(n) + "টি পুজো, মোট প্রায় " + d + "।"; },
       openGmaps: "গুগল ম্যাপে খুলুন", hide: "লুকান",
       grabMore: "তালিকা আরও দেখুন", grabMap: "ম্যাপ দেখুন",
@@ -1206,7 +1233,7 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
       srcTitle: "তথ্যসূত্র ও ডেটা",
       src: 'গুগল ম্যাপের তথ্য, সঙ্গে <a href="https://www.freepressjournal.in/mumbai/durga-puja-2025-mumbai-celebrates-bengals-biggest-festival-with-grand-pandals-culture-and-cuisine" target="_blank" rel="noopener">Free Press Journal</a>, <a href="https://www.boldsky.com/insync/durga-puja-pandals-mumbai-2026-7-stunning-celebrations-to-explore-from-matunga-to-juhu-173373.html" target="_blank" rel="noopener">Boldsky</a>, <a href="https://lbb.in/mumbai/durga-pandals-mumbai/" target="_blank" rel="noopener">LBB</a> আর <a href="https://www.justdial.com/Mumbai/Aamra-Prabasi-Durga-Puja-Venue-Nerul-Nerul-Sector-27/022PXX22-XX22-220327111649-G8Q4_BZDET" target="_blank" rel="noopener">Justdial</a>। ইনস্টাগ্রাম, ফেসবুক ও ওয়েবসাইটের লিংক পুজোগুলোর নিজেদের, সার্চ করে পাওয়া। ম্যাপ © OpenStreetMap; মুম্বইয়ের ওয়ার্ড সীমানা © DataMeet।',
       dl: 'সব পিন <a href="mumbai-durga-pujas-2026.csv">CSV</a> বা <a href="mumbai-durga-pujas-2026.geojson">GeoJSON</a> ফাইলে ডাউনলোড করুন।',
-      version: 'সংস্করণ ১.৬.৩; আগের: <a href="v1.5/">১.৫</a>, <a href="v1.4/">১.৪</a>, <a href="v1.3/">১.৩</a>, <a href="v1.2/">১.২</a>, <a href="v1.1/">১.১</a>, <a href="v1/">১</a>',
+      version: 'সংস্করণ ১.৭; আগের: <a href="v1.6/">১.৬</a>, <a href="v1.5/">১.৫</a>, <a href="v1.4/">১.৪</a>, <a href="v1.3/">১.৩</a>, <a href="v1.2/">১.২</a>, <a href="v1.1/">১.১</a>, <a href="v1/">১</a>',
       leftOff: "এর মধ্যে সর্বজনীন খারঘর দুর্গোৎসব ম্যাপে নেই, কারণ মণ্ডপের জায়গা নিশ্চিত করা যায়নি।",
       sayTitle: "পরামর্শ",
       say: 'কোনও পুজো বাদ পড়েছে, পিন ভুল জায়গায়, বা কোনও পুজোর ইনস্টাগ্রাম পেজ জানেন? ম্যাপ নিয়ে কোনও পরামর্শ আছে? <a href="mailto:somdeepkundu@gmail.com?subject=Mumbai%20Durga%20Pujo%20Map">somdeepkundu@gmail.com</a>-এ মেল করুন, অথবা <a href="https://www.linkedin.com/in/somdeep-kundu/" target="_blank" rel="noopener">LinkedIn</a> বা <a href="https://www.instagram.com/somdeeplearning/" target="_blank" rel="noopener">Instagram</a>-এ জানান।',
@@ -1262,6 +1289,7 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
     sun: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>',
     house: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M3.5 11 12 4l8.5 7"/><path d="M6 9.5V20h12V9.5"/><path d="M10 20v-5.5h4V20"/></svg>',
     expand: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>',
+    names: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 12.2V4.5h7.7l9.3 9.3-7.7 7.7z"/><circle cx="8" cy="9" r="1.3"/></svg>',
     route: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="18.5" r="2.3"/><circle cx="18" cy="5.5" r="2.3"/><path d="M8.3 18.5H15a3.2 3.2 0 0 0 0-6.4H9a3.2 3.2 0 0 1 0-6.6h6.7"/></svg>',
     go: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M3 11 21 3l-8 18-2-8-8-2z"/></svg>',
     ig: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>',
@@ -1291,9 +1319,9 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
     var next = isDark() ? "light" : "dark";
     document.documentElement.setAttribute("data-theme", next);
     try { localStorage.setItem("pujo-theme", next); } catch (e) {}
-    paintThemeBtn(); updateDeck();
+    paintThemeBtn(); restylePins(); updateDeck();
   });
-  try { window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function () { paintThemeBtn(); updateDeck(); }); } catch (e) {}
+  try { window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function () { paintThemeBtn(); restylePins(); updateDeck(); }); } catch (e) {}
 
   /* ---------- data ---------- */
   PUJAS.forEach(function (p, i) { p.i = i; });
@@ -1366,9 +1394,9 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
     var off = (sheetH() - headH()) / 2, target = off ? map.unproject(map.project(ll, z).add([0, off]), z) : L.latLng(ll);
     reduced() ? map.setView(target, z) : map.flyTo(target, z, { duration: 0.7 });
   }
-  function showBounds(b, pad) {
+  function showBounds(b, pad, maxZ, topExtra) {
     pad = pad || 28;
-    var o = { paddingTopLeft: [pad, headH() + pad], paddingBottomRight: [pad, sheetH() + pad], maxZoom: 15 };
+    var o = { paddingTopLeft: [pad, headH() + pad + (topExtra || 0)], paddingBottomRight: [pad, sheetH() + pad], maxZoom: maxZ || 15 };
     if (reduced()) map.fitBounds(b, o); else { o.duration = 0.8; map.flyToBounds(b, o); }
   }
   var land = LAND ? L.geoJSON(LAND, { pane: "land", style: { className: "land", weight: 1, fillOpacity: 1, opacity: 1 }, interactive: false, attribution: phone.matches ? "© OpenStreetMap, DataMeet" : "© OpenStreetMap contributors, DataMeet" }).addTo(map) : null;
@@ -1382,6 +1410,14 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
   var tilesOn = false;
   function syncPlaces() { var show = !tilesOn && map.getZoom() >= 11; if (show !== map.hasLayer(places)) show ? places.addTo(map) : map.removeLayer(places); }
   map.on("zoomend", syncPlaces);
+  var rootEl = document.documentElement, movingT = 0;
+  map.on("movestart zoomstart", function () { clearTimeout(movingT); rootEl.classList.add("moving"); });
+  map.on("zoomstart", function () { rootEl.classList.add("zooming"); });
+  map.on("moveend", function () {
+    clearTimeout(movingT);
+    movingT = setTimeout(function () { rootEl.classList.remove("moving"); rootEl.classList.remove("zooming"); }, 120);
+  });
+  map.on("zoomend", function () { restylePins(); if (deckOK) updateDeck(); });
   function useTiles() {
     var tl = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 19, attribution: phone.matches ? "© OpenStreetMap" : "© OpenStreetMap contributors" });
     var ok = false, bad = 0;
@@ -1404,21 +1440,105 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
     var g = spots[k];
     g.forEach(function (p, j) { var a = 2 * Math.PI * j / g.length, r = g.length > 1 ? 0.0003 : 0; p.y = p.lat + r * Math.sin(a); p.x = p.lng + r * Math.cos(a); });
   });
-  var pins = L.featureGroup().addTo(map), hits = L.featureGroup().addTo(map);
-  var hitR = phone.matches ? 16 : 10;
+  /* one canvas draws every pin (instead of ~230 SVG shapes that were re-projected on every zoom frame); the renderer's
+     tolerance gives each pin a finger-sized tap target. Pins shrink gradually when zoomed out, down to a floor, so the
+     glow stays visible and neighbours stop overlapping */
+  var pinRenderer = L.canvas({ padding: 0.4, tolerance: phone.matches ? 11 : 6 });
+  var pins = L.featureGroup().addTo(map);
+  function ease(z, a, b) { var k = Math.max(0, Math.min(1, (z - a) / (b - a))); return k * k * (3 - 2 * k); }
+  function pinR(p, z) { return 2.8 + 3.7 * ease(z, 10, 15) - (p.conf === "area" ? 0.9 : 0); }
+  function pinStyle(p, z) {
+    var cs = getComputedStyle(document.documentElement), alta = cs.getPropertyValue("--alta").trim(), paper = cs.getPropertyValue("--paper").trim(), w = 1.3 + 0.7 * ease(z, 10, 15);
+    var st = p.conf === "area" ? { color: alta, fillColor: paper, dashArray: "2.5 2", weight: w } : { color: paper, fillColor: alta, weight: w };
+    st.fillOpacity = 1; st.opacity = 1; st.radius = pinR(p, z); return st;
+  }
   var markers = PUJAS.map(function (p) {
-    var dot = L.circleMarker([p.y, p.x], { radius: p.conf === "area" ? 5.5 : 6.5, className: p.conf === "area" ? "pin pin-approx" : "pin", fillOpacity: 1, opacity: 1, weight: 2, interactive: false });
-    var hit = L.circleMarker([p.y, p.x], { radius: hitR, className: "hit", stroke: false, fill: true, fillColor: "#000", fillOpacity: 0, bubblingMouseEvents: false });
-    if (!phone.matches) hit.bindTooltip(esc(p.name), { direction: "top", offset: [0, -6], className: "name-tip" });
-    hit.on("click", function () {
+    var dot = L.circleMarker([p.y, p.x], L.extend({ renderer: pinRenderer, bubblingMouseEvents: false }, pinStyle(p, 12)));
+    if (!phone.matches) dot.bindTooltip(esc(p.name), { direction: "top", offset: [0, -6], className: "name-tip" });
+    dot.on("click", function () {
       if (state.picking) { setMe(p.lat, p.lng, 0, "picked"); return; }
-      hit.closeTooltip();
+      dot.closeTooltip();
       openRow(p.i, { fromMap: true });
     });
-    dot.hit = hit;
     return dot;
   });
+  function restylePins() { var z = map._loaded ? map.getZoom() : 12; markers.forEach(function (m, i) { m.setStyle(pinStyle(PUJAS[i], z)); }); }
   var selMarker = null, meMarker = null, meAcc = null;
+
+  /* ---------- pujo names: an on/off toggle, plus the neighbours of the selected pujo.
+     Names are placed greedily (right, left, above, below) and skipped when they would cover a pin, a control or another name.
+     They are kept between moves and only faded in or out when they appear or go, so nothing flickers ---------- */
+  var namesOn = false;
+  try { namesOn = localStorage.getItem("pujo-names") === "on"; } catch (e) {}
+  rootEl.classList.toggle("names-on", namesOn);
+  var lblLayer = L.layerGroup().addTo(map), lblKeep = {}, nbKeep = {}, lblW = {}, lblRaf = 0;
+  map.createPane("nb").style.zIndex = 390;
+  var nbLines = L.layerGroup().addTo(map);
+  var measureCtx = document.createElement("canvas").getContext("2d");
+  function textW(str, px, wt) {
+    var k = str + "|" + px + "|" + wt; if (lblW[k] != null) return lblW[k];
+    measureCtx.font = wt + " " + px + "px " + (getComputedStyle(document.body).fontFamily || "sans-serif");
+    return (lblW[k] = measureCtx.measureText(str).width * 1.06);
+  }
+  function neighboursOf(p) {
+    var a = shown.filter(function (q) { return q !== p; }).map(function (q) { return { q: q, d: km(p, q) }; }).sort(function (x, y) { return x.d - y.d; });
+    var near = a.filter(function (o) { return o.d <= 2.5; }).slice(0, 4);
+    return near.length >= 2 ? near : a.filter(function (o) { return o.d <= 10; }).slice(0, 2);
+  }
+  function fadeOut(layer, grp, cls) { var el = layer.getElement && layer.getElement(); if (el) el.classList.add(cls || "out"); setTimeout(function () { grp.removeLayer(layer); }, 230); }
+  function layoutLabels() {
+    if (!map._loaded || !btnBox) return;
+    var z = map.getZoom(), size = map.getSize(), r = pinR({}, z) + 1, ph = phone.matches;
+    var vis = { x0: 6, y0: (ph ? headH() : 0) + 8, x1: size.x - 6, y1: size.y - (ph ? sheetH() : 0) - 8 }, placed = [];
+    function clash(a, b) { return a.x < b.x + b.w + 2 && a.x + a.w + 2 > b.x && a.y < b.y + b.h + 2 && a.y + a.h + 2 > b.y; }
+    function free(rc, skipDots) { if (rc.x < vis.x0 || rc.y < vis.y0 || rc.x + rc.w > vis.x1 || rc.y + rc.h > vis.y1) return false; for (var i = 0; i < placed.length; i++) if (!(skipDots && placed[i].dot) && clash(rc, placed[i])) return false; return true; }
+    function pt(p) { return map.latLngToContainerPoint([p.y, p.x]); }
+    var mb = map.getContainer().getBoundingClientRect();
+    map.getContainer().querySelectorAll(".leaflet-control").forEach(function (el) { var b = el.getBoundingClientRect(); if (b.width) placed.push({ x: b.left - mb.left, y: b.top - mb.top, w: b.width, h: b.height }); });
+    var sel = state.open !== null ? PUJAS[state.open] : null;
+    if (sel) { var sp = pt(sel), sw = Math.min(textW(sel.name, 13, 600), 260) + 20; placed.push({ x: sp.x - 17, y: sp.y - 17, w: 34, h: 34 }, { x: sp.x - sw / 2, y: sp.y - 48, w: sw, h: 30 }); }
+    var hp = map.latLngToContainerPoint(homeMarker.getLatLng()); placed.push({ x: hp.x - 48, y: hp.y - 44, w: 96, h: 60 });
+    if (meMarker) { var mp = map.latLngToContainerPoint(meMarker.getLatLng()); placed.push({ x: mp.x - 11, y: mp.y - 11, w: 22, h: 22 }); }
+    shown.forEach(function (p) { var c = pt(p); placed.push({ x: c.x - r, y: c.y - r, w: 2 * r, h: 2 * r, dot: 1 }); });
+    var want = {};
+    function place(p, kind, extra, idx) {
+      var c = pt(p); if (c.x < -40 || c.y < -40 || c.x > size.x + 40 || c.y > size.y + 40) return false;
+      var px = kind === "n" ? 11.5 : 11, h = kind === "n" ? 22 : 16;
+      var w = Math.min(textW(p.name, px, 600) + (extra ? textW(extra, 10.5, 500) + 6 : 0), 190) + (kind === "n" ? 16 : 3);
+      var sides = [["r", c.x + r + 4, c.y - h / 2], ["l", c.x - r - 4 - w, c.y - h / 2], ["t", c.x - w / 2, c.y - r - 4 - h], ["b", c.x - w / 2, c.y + r + 4]];
+      for (var k = 0; k < 4; k++) {
+        var rc = { x: sides[k][1], y: sides[k][2], w: w, h: h };
+        if (free(rc, kind === "n")) { placed.push(rc); want[p.i + ":" + sides[k][0] + ":" + kind + ":" + LANG] = { p: p, side: sides[k][0], kind: kind, extra: extra, idx: idx }; return true; }
+      }
+      return false;
+    }
+    var nb = sel ? neighboursOf(sel) : [], isNb = {};
+    nb = nb.filter(function (o, k) { isNb[o.q.i] = 1; return place(o.q, "n", fmtKm(o.d), k); });
+    if (namesOn && z >= 11) { var cnt = 0; for (var j = 0; j < shown.length && cnt < 70; j++) { var q = shown[j]; if (q !== sel && !isNb[q.i] && place(q, "a", "", 0)) cnt++; } }
+    Object.keys(lblKeep).forEach(function (k) { if (!want[k]) { var m = lblKeep[k]; delete lblKeep[k]; fadeOut(m, lblLayer); } });
+    Object.keys(want).forEach(function (k) {
+      if (lblKeep[k]) return;
+      var w = want[k], m = L.marker([w.p.y, w.p.x], { interactive: false, keyboard: false, zIndexOffset: w.kind === "n" ? 300 : -200,
+        icon: L.divIcon({ className: "lbl-wrap", iconSize: [0, 0], html: '<span class="lp lp-' + w.side + '" style="--o:' + (r + 4) + 'px;--hh:' + (w.kind === "n" ? 22 : 16) + 'px"><span class="lbl lbl-' + w.kind + '" style="--i:' + w.idx + '">' + esc(w.p.name) + (w.extra ? "<small>" + esc(w.extra) + "</small>" : "") + "</span></span>" }) });
+      lblLayer.addLayer(m); lblKeep[k] = m;
+    });
+    var wantL = {};
+    if (sel) nb.forEach(function (o) { wantL[sel.i + ">" + o.q.i] = [sel, o.q]; });
+    Object.keys(nbKeep).forEach(function (k) { if (!wantL[k]) { var l = nbKeep[k]; delete nbKeep[k]; fadeOut(l, nbLines); } });
+    Object.keys(wantL).forEach(function (k) {
+      if (nbKeep[k]) return;
+      var a = wantL[k][0], b = wantL[k][1];
+      var l = L.polyline([[a.y, a.x], [b.y, b.x]], { pane: "nb", className: "nb-line", interactive: false, weight: 2, opacity: 1 });
+      nbLines.addLayer(l); nbKeep[k] = l;
+    });
+  }
+  map.on("moveend", function () { cancelAnimationFrame(lblRaf); lblRaf = requestAnimationFrame(layoutLabels); });
+  function toggleNames() {
+    namesOn = !namesOn;
+    try { localStorage.setItem("pujo-names", namesOn ? "on" : "off"); } catch (e) {}
+    rootEl.classList.toggle("names-on", namesOn);
+    paintButtons(); layoutLabels();
+  }
 
   /* ---------- list ---------- */
   var shown = [];
@@ -1475,7 +1595,7 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
     shown.sort(state.me ? function (a, b) { return a.d - b.d; } : function (a, b) { return (a.n[0] || 999) - (b.n[0] || 999); });
     PUJAS.forEach(function (p) {
       var on = shown.indexOf(p) !== -1, m = markers[p.i];
-      if (on !== pins.hasLayer(m)) { if (on) { pins.addLayer(m); hits.addLayer(m.hit); } else { pins.removeLayer(m); hits.removeLayer(m.hit); } }
+      if (on !== pins.hasLayer(m)) { if (on) pins.addLayer(m); else pins.removeLayer(m); }
     });
     var from = !state.me ? "" : state.me.source === "gps" ? t("fromGps") : state.me.source === "home" ? t("fromHome") : t("fromPick");
     var where = state.area === "all" ? "" : ", " + esc(areaName(state.area));
@@ -1485,6 +1605,7 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
     $("rows").innerHTML = shown.length ? shown.map(rowHtml).join("") : '<li class="empty">' + (ART ? art("mandala", "deco-empty") : ALPONA) + "<span>" + esc(t("empty", state.q)) + "</span></li>";
     if (state.open !== null && shown.indexOf(PUJAS[state.open]) === -1) closeRow();
     if (state.route) drawRoute(); else updateDeck();
+    layoutLabels();
   }
   function openRow(i, o) {
     o = o || {};
@@ -1498,12 +1619,20 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
     selMarker.on("click", function () { closeRow(); render(); });
     if (o.fromMap) {
       if (sheetAt === "peek") setSheet("half");
-      setTimeout(function () { scrollToRow(i); }, 240);
+      setTimeout(function () { scrollToRow(i); frameWithNeighbours(p, true); }, 240);
     } else {
       if (sheetAt === "full") setSheet("half");
-      setTimeout(function () { showPoint([p.y, p.x], Math.max(map.getZoom(), 15)); }, sheetAt === "half" ? 240 : 0);
+      setTimeout(function () { frameWithNeighbours(p, false); }, sheetAt === "half" ? 240 : 0);
       if (phone.matches) scrollToRow(i);
     }
+  }
+  /* bring the selected pujo and its nearest neighbours into view, so their names can appear beside it */
+  function frameWithNeighbours(p, fromMap) {
+    var nb = neighboursOf(p).filter(function (o) { return o.d <= 6; }).slice(0, 3);
+    if (!nb.length) { if (!fromMap) showPoint([p.y, p.x], Math.max(map.getZoom(), 15)); return; }
+    var pts = [[p.y, p.x]].concat(nb.map(function (o) { return [o.q.y, o.q.x]; })), sz = map.getSize();
+    if (fromMap && pts.every(function (ll) { var c = map.latLngToContainerPoint(ll); return c.x > 50 && c.x < sz.x - 50 && c.y > headH() + 40 && c.y < sz.y - sheetH() - 40; })) return;
+    showBounds(L.latLngBounds(pts), 64, 16, 40);
   }
   function scrollToRow(i) {
     var row = document.querySelector('.row[data-i="' + i + '"]'), wrap = $("listWrap");
@@ -1511,7 +1640,7 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
     var top = wrap.scrollTop + row.getBoundingClientRect().top - wrap.getBoundingClientRect().top - $("listHead").offsetHeight;
     wrap.scrollTo({ top: Math.max(0, top), behavior: reduced() ? "auto" : "smooth" });
   }
-  function closeRow() { state.open = null; if (selMarker) { map.removeLayer(selMarker); selMarker = null; } }
+  function closeRow() { state.open = null; if (selMarker) { map.removeLayer(selMarker); selMarker = null; } layoutLabels(); }
 
   /* ---------- deck.gl: soft glow where pujos cluster, arcs to the nearest pujos, and a route trail on request.
      Loaded after the map is ready so the page stays quick; the map works the same without it ---------- */
@@ -1524,7 +1653,7 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
     loadScript("https://cdn.jsdelivr.net/npm/deck.gl@9.4.0/dist.min.js")
       .then(function () { return loadScript("https://cdn.jsdelivr.net/npm/deck.gl-leaflet@1.3.1/dist/deck.gl-leaflet.umd.min.js"); })
       .then(function () {
-        deckLayer = new DeckGlLeaflet.LeafletLayer({ layers: [] });
+        deckLayer = new DeckGlLeaflet.LeafletLayer({ layers: [], useDevicePixels: Math.min(window.devicePixelRatio || 1, 1.5) });
         deckLayer.options = L.extend({}, deckLayer.options, { pane: "glow" });
         map.addLayer(deckLayer);
         deckOK = true;
@@ -1536,9 +1665,8 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
     var dark = isDark();
     return {
       alta: dark ? [234, 74, 81] : [176, 21, 31],
-      glow: dark ? [[234, 74, 81, 0], [234, 74, 81, 50], [238, 96, 82, 90], [242, 128, 86, 125], [246, 160, 92, 155], [250, 190, 104, 180]]
-                 : [[176, 21, 31, 0], [176, 21, 31, 22], [186, 36, 38, 45], [198, 54, 46, 70], [208, 76, 56, 92], [218, 98, 66, 110]],
-      glowOpacity: dark ? 0.6 : 0.5
+      glow: dark ? [[234, 74, 81, 0], [234, 74, 81, 55], [238, 96, 82, 100], [242, 128, 86, 140], [246, 160, 92, 175], [250, 190, 104, 205]]
+                 : [[176, 21, 31, 0], [176, 21, 31, 60], [186, 36, 38, 98], [198, 54, 46, 136], [208, 76, 56, 172], [218, 98, 66, 208]]
     };
   }
   var baseLayers = [];
@@ -1552,12 +1680,16 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
     }));
     deckLayer.setProps({ layers: layers });
   }
+  /* the glow follows the zoom: tighter, stronger blobs when zoomed out (so clusters read clearly), softer and lighter when close */
+  function heatPos(p) { return [p.x, p.y]; }
+  function heatFor(z, dark) { var k = ease(z, 10, 15); return { r: Math.round(32 + 30 * k), o: (dark ? 0.95 : 0.95) - (dark ? 0.32 : 0.34) * k, k: 4.4 - 2.8 * k }; }
   function updateDeck(t0) {
     if (!deckOK || !deckLayer) return;
     var c = deckColors(), dark = isDark(), layers = [];
+    var hz = heatFor(map._loaded ? map.getZoom() : 12, dark);
     layers.push(new deck.HeatmapLayer({
-      id: "glow", data: shown, getPosition: function (p) { return [p.x, p.y]; }, getWeight: 1,
-      radiusPixels: 55, intensity: 1, threshold: 0.05, colorRange: c.glow, opacity: c.glowOpacity
+      id: "glow", data: shown, getPosition: heatPos, getWeight: 1,
+      radiusPixels: hz.r, intensity: hz.k, threshold: 0.02, colorRange: c.glow, opacity: hz.o, weightsTextureSize: 512, debounceTimeout: 60
     }));
     if (state.me && !state.route) {
       var o = [state.me.lng, state.me.lat];
@@ -1715,6 +1847,7 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
         if (a.hasAttribute("data-home")) goHome();
         else if (a.hasAttribute("data-all")) showAll();
         else if (a.hasAttribute("data-sound")) toggleSound();
+        else if (a.hasAttribute("data-names")) toggleNames();
         else setRoute(!state.route);
       });
       return btnBox;
@@ -1724,6 +1857,7 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
   function paintButtons() {
     btnBox.innerHTML = '<a href="#" role="button" data-home title="' + t("btnHome") + '" aria-label="' + t("btnHome") + '">' + ICON.house + "</a>" +
       '<a href="#" role="button" data-all title="' + t("btnAll") + '" aria-label="' + t("btnAll") + '">' + ICON.expand + "</a>" +
+      '<a href="#" role="button" data-names aria-pressed="' + namesOn + '" title="' + (namesOn ? t("btnNamesOff") : t("btnNames")) + '" aria-label="' + (namesOn ? t("btnNamesOff") : t("btnNames")) + '">' + ICON.names + "</a>" +
       '<a href="#" role="button" data-route aria-pressed="' + state.route + '" title="' + t("btnRoute") + '" aria-label="' + t("btnRoute") + '">' + ICON.route + "</a>" +
       '<a href="#" role="button" data-sound aria-pressed="' + soundOn + '" title="' + (soundOn ? t("soundOff") : t("soundOn")) + '" aria-label="' + (soundOn ? t("soundOff") : t("soundOn")) + '">' + (soundOn ? ICON.sound : ICON.mute) + "</a>";
   }
@@ -1847,7 +1981,7 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
       '<p class="credit">' + t("credit") + ' <a href="' + SITE + '" target="_blank" rel="noopener">' + t("creditName") + "</a>, " + t("iitb") + "</p>";
     map.attributionControl.setPrefix(t("credit") + ' <a href="' + SITE + '" target="_blank" rel="noopener">' + t("creditName") + "</a>, " + t("iitb"));
     homeMarker.setTooltipContent(t("iitb"));
-    paintButtons(); paintAbout();
+    paintButtons(); paintAbout(); layoutLabels();
     render();
     if (state.open !== null && phone.matches) scrollToRow(state.open);
     if (state.picking) setPicking(true); else if (state.me && state.me.source === "picked") notice(t("picked"));
