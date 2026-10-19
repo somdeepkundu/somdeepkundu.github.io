@@ -1028,6 +1028,31 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
   background: var(--ink); color: var(--paper); padding: 9px 14px; border-radius: 10px; font-size: 14px; max-width: calc(100% - 32px);
 }
 .toast b { user-select: all; font-weight: 600; }
+/* guided tour: a spotlight on the real control, and a small card beside it */
+.tour { position: fixed; inset: 0; z-index: 3000; }
+.tour[hidden] { display: none; }
+.tour-shield { position: absolute; inset: 0; }
+.tour-hole { position: absolute; pointer-events: none; box-shadow: 0 0 0 9999px rgba(22, 12, 14, 0.62); outline: 2px solid rgba(255, 255, 255, 0.92); outline-offset: -1px; transition: left .4s cubic-bezier(.2,.7,.2,1), top .4s cubic-bezier(.2,.7,.2,1), width .4s cubic-bezier(.2,.7,.2,1), height .4s cubic-bezier(.2,.7,.2,1), border-radius .4s; }
+.tour-hole.none { outline-color: transparent; }
+.tour-card { position: absolute; background: var(--paper); color: var(--ink); border: 1px solid var(--line); border-radius: 18px; padding: 16px 18px 24px; overflow: hidden; box-shadow: 0 14px 44px rgba(0, 0, 0, 0.38); transition: left .4s cubic-bezier(.2,.7,.2,1), top .4s cubic-bezier(.2,.7,.2,1); }
+.tour-step { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.tour-dots { display: flex; gap: 5px; margin: 0 0 11px; }
+.tour-dots i { display: block; width: 6px; height: 6px; border-radius: 3px; background: var(--line); transition: width .3s cubic-bezier(.2,.7,.2,1), background-color .3s; }
+.tour-dots i.is-done { background: color-mix(in srgb, var(--alta) 38%, var(--line)); }
+.tour-dots i.is-now { width: 22px; background: var(--alta); }
+.tour-card::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 10px; background: linear-gradient(var(--alta) 0 3px, transparent 3px 6px, var(--alta) 6px); }
+.tour-card h2 { margin: 0 0 6px; font-family: var(--font-bn); font-weight: 400; font-size: 21px; line-height: 1.2; }
+html[lang="bn"] .tour-card h2 { font-family: var(--font-deco); font-size: 23px; }
+.tour-text { margin: 0 0 13px; font-size: 14.5px; line-height: 1.5; color: var(--ink); }
+.tour-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.tour-nav { display: flex; gap: 8px; }
+.tour-card button { font: inherit; font-size: 14px; font-weight: 600; border-radius: 999px; min-height: 44px; padding: 8px 18px; cursor: pointer; border: 1.5px solid var(--line); background: var(--paper); color: var(--ink); }
+.tour-card .tour-next { background: var(--alta); border-color: var(--alta); color: var(--on-alta); }
+.tour-card .tour-skip { border-color: transparent; background: transparent; color: var(--muted); padding-left: 6px; padding-right: 10px; }
+.tour-card button:focus-visible { outline: 2px solid var(--alta); outline-offset: 2px; }
+.tour-card button[hidden] { display: none; }
+@media (prefers-reduced-motion: reduce) { .tour-hole, .tour-card, .tour-dots i { transition: none; } }
+#tourBtn { margin-top: 2px; }
 @media (prefers-reduced-motion: no-preference) { .row.is-open .row-more { animation: open .18s ease-out; } }
 @keyframes open { from { opacity: 0; transform: translateY(-4px); } }
 </style>
@@ -1076,6 +1101,19 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
 <audio id="dhak" src="dhak.mp3" loop preload="none"></audio>
 <dialog id="about" aria-labelledby="aboutTitle"><div class="about" id="aboutBody"></div></dialog>
 <div class="toast" id="toast" role="status" hidden></div>
+<div class="tour" id="tour" hidden>
+  <div class="tour-shield"></div>
+  <div class="tour-hole" id="tourHole"></div>
+  <div class="tour-card" id="tourCard" role="dialog" aria-modal="true" aria-labelledby="tourTitle" aria-describedby="tourText">
+    <div class="tour-dots" id="tourDots" aria-hidden="true"></div>
+    <div id="tourBody" aria-live="polite" aria-atomic="true">
+      <p class="tour-step" id="tourStep"></p>
+      <h2 id="tourTitle"></h2>
+      <p class="tour-text" id="tourText"></p>
+    </div>
+    <div class="tour-foot"><button type="button" class="tour-skip" id="tourSkip"></button><span class="tour-nav"><button type="button" class="tour-back" id="tourBack"></button><button type="button" class="tour-next" id="tourNext"></button></span></div>
+  </div>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
 <script>
@@ -1162,7 +1200,20 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
       credit: "Developed by", creditName: "Somdeep Kundu", iitb: "IIT Bombay",
       soundOn: "Play the dhak", soundOff: "Mute the dhak",
       artCredit: 'Bengali fonts from <a href="https://github.com/fahimscirex/bangla-fonts" target="_blank" rel="noopener">bangla-fonts</a>. Alpona art by <a href="https://www.instagram.com/the_nocturnal_mystic/" target="_blank" rel="noopener">Parama Ghosh</a>, traced from her hand-painted alponas. Dhak sound from <a href="https://youtu.be/VksCiC7qz2c" target="_blank" rel="noopener">this YouTube video</a>.',
-      btnHome: "Pujos near IIT Bombay", btnAll: "Show every pujo", btnRoute: "Pandal-hopping route", btnNames: "Show pujo names", btnNamesOff: "Hide pujo names",
+      btnHome: "Pujos near IIT Bombay", btnAll: "Show every pujo", btnRoute: "Pandal-hopping route", btnNames: "Show pujo names", btnNamesOff: "Hide pujo names", btnHelp: "How to use",
+      tourBtn: "How to use", tourNext: "Next", tourBack: "Back", tourSkip: "Skip", tourDone: "Start exploring",
+      tourOf: function (i, n) { return "Step " + i + " of " + n; },
+      tourSteps: [
+        ["Welcome to the map", "A one-minute look at what each control does. You can replay it any time from the ? button."],
+        ["Tap a pin", "Every dot is a pujo. Tap one to highlight it, and the names of its nearest neighbours appear beside it. The red glow shows where pujos cluster."],
+        ["Map buttons", "Home returns to IIT Bombay and the corners show every pujo. The tag shows pujo names, the trail draws a pandal-hopping route, and the speaker plays or mutes the dhak."],
+        ["Nearest first", "The list is sorted by distance. Drag the panel up for more. Tap a pujo for directions on foot or by car, and its Instagram or Facebook page."],
+        ["Near you", "Use your location, so distances and directions start from where you stand."],
+        ["Search and filter", "Search by name, area or number, or pick an area."],
+        ["Today, by the Bengali calendar", "This strip shows the tithi right now, with sunrise and sunset. Tap it for the puja days and the Sandhi Puja times."],
+        ["Language and theme", "Switch between English and বাংলা, and between light and dark."],
+        ["You're all set", "To see this again, tap the ? button on the map, or How to use at the bottom of the list."]
+      ],
       route: function (n, d) { return "Pandal-hopping route: " + n + " pujos close by, about " + d + " in all."; },
       openGmaps: "Open in Google Maps", hide: "Hide",
       grabMore: "Show more of the list", grabMap: "Show the map",
@@ -1184,7 +1235,7 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
       srcTitle: "Sources and data",
       src: 'Google Maps listings, plus <a href="https://www.freepressjournal.in/mumbai/durga-puja-2025-mumbai-celebrates-bengals-biggest-festival-with-grand-pandals-culture-and-cuisine" target="_blank" rel="noopener">Free Press Journal</a>, <a href="https://www.boldsky.com/insync/durga-puja-pandals-mumbai-2026-7-stunning-celebrations-to-explore-from-matunga-to-juhu-173373.html" target="_blank" rel="noopener">Boldsky</a>, <a href="https://lbb.in/mumbai/durga-pandals-mumbai/" target="_blank" rel="noopener">LBB</a> and <a href="https://www.justdial.com/Mumbai/Aamra-Prabasi-Durga-Puja-Venue-Nerul-Nerul-Sector-27/022PXX22-XX22-220327111649-G8Q4_BZDET" target="_blank" rel="noopener">Justdial</a>. Instagram, Facebook and website links go to each pujo’s own pages, found by search. Map © OpenStreetMap contributors; Mumbai ward outline © DataMeet.',
       dl: 'Download every pin as <a href="mumbai-durga-pujas-2026.csv">CSV</a> or <a href="mumbai-durga-pujas-2026.geojson">GeoJSON</a>.',
-      version: 'Version 1.7.1; earlier: <a href="v1.6/">1.6</a>, <a href="v1.5/">1.5</a>, <a href="v1.4/">1.4</a>, <a href="v1.3/">1.3</a>, <a href="v1.2/">1.2</a>, <a href="v1.1/">1.1</a>, <a href="v1/">1</a>',
+      version: 'Version 1.8; earlier: <a href="v1.7/">1.7</a>, <a href="v1.6/">1.6</a>, <a href="v1.5/">1.5</a>, <a href="v1.4/">1.4</a>, <a href="v1.3/">1.3</a>, <a href="v1.2/">1.2</a>, <a href="v1.1/">1.1</a>, <a href="v1/">1</a>',
       leftOff: "One, Sarbojonin Kharghar Durgotsav, is left off the map because its venue could not be confirmed.",
       sayTitle: "Suggestions",
       say: 'Know a pujo that is missing, a wrong pin, or its Instagram page? Or have an idea for the map? Write to me at <a href="mailto:somdeepkundu@gmail.com?subject=Mumbai%20Durga%20Pujo%20Map">somdeepkundu@gmail.com</a>, on <a href="https://www.linkedin.com/in/somdeep-kundu/" target="_blank" rel="noopener">LinkedIn</a> or on <a href="https://www.instagram.com/somdeeplearning/" target="_blank" rel="noopener">Instagram</a>.',
@@ -1211,7 +1262,20 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
       credit: "তৈরি করেছেন", creditName: "সোমদীপ কুণ্ডু", iitb: "আইআইটি বম্বে",
       soundOn: "ঢাক বাজান", soundOff: "ঢাক বন্ধ করুন",
       artCredit: 'বাংলা হরফ: <a href="https://github.com/fahimscirex/bangla-fonts" target="_blank" rel="noopener">bangla-fonts</a> থেকে। আলপনা: <a href="https://www.instagram.com/the_nocturnal_mystic/" target="_blank" rel="noopener">পরমা ঘোষ</a>, তাঁর হাতে আঁকা আলপনা থেকে রেখায় তোলা। ঢাকের আওয়াজ: <a href="https://youtu.be/VksCiC7qz2c" target="_blank" rel="noopener">এই ইউটিউব ভিডিও</a> থেকে।',
-      btnHome: "আইআইটি বম্বের কাছের পুজো", btnAll: "সব পুজো দেখুন", btnRoute: "ঠাকুর দেখার রুট", btnNames: "পুজোর নাম দেখুন", btnNamesOff: "পুজোর নাম লুকান",
+      btnHome: "আইআইটি বম্বের কাছের পুজো", btnAll: "সব পুজো দেখুন", btnRoute: "ঠাকুর দেখার রুট", btnNames: "পুজোর নাম দেখুন", btnNamesOff: "পুজোর নাম লুকান", btnHelp: "কীভাবে ব্যবহার করবেন",
+      tourBtn: "কীভাবে ব্যবহার করবেন", tourNext: "পরের", tourBack: "আগের", tourSkip: "বাদ দিন", tourDone: "শুরু করুন",
+      tourOf: function (i, n) { return "ধাপ " + num(i) + " / " + num(n); },
+      tourSteps: [
+        ["ম্যাপে স্বাগতম", "এক মিনিটে দেখে নিন কোন বোতাম কী করে। যখন খুশি ? বোতাম টিপে আবার দেখতে পারবেন।"],
+        ["পিনে ট্যাপ করুন", "প্রতিটি বিন্দু একটি পুজো। ট্যাপ করলে সেটি আলাদা করে দেখা যাবে, আর পাশে কাছের পুজোগুলোর নাম ভেসে উঠবে। লাল আভা দেখায় কোথায় পুজো বেশি জমে আছে।"],
+        ["ম্যাপের বোতাম", "বাড়ির চিহ্ন আইআইটি বম্বেতে ফেরায়, কোণের চিহ্ন সব পুজো দেখায়। ট্যাগ পুজোর নাম দেখায়, পথের চিহ্ন ঠাকুর দেখার রুট আঁকে, আর স্পিকার ঢাক বাজায় বা চুপ করায়।"],
+        ["কাছেরটা আগে", "তালিকা দূরত্ব অনুযায়ী সাজানো। আরও দেখতে প্যানেলটা উপরে টানুন। কোনো পুজোয় ট্যাপ করলে হেঁটে বা গাড়িতে যাওয়ার দিশা আর তাদের ইনস্টাগ্রাম বা ফেসবুক পাতা পাবেন।"],
+        ["আপনার কাছে", "আপনার অবস্থান ব্যবহার করুন, তাহলে দূরত্ব আর দিশা আপনি যেখানে আছেন সেখান থেকে শুরু হবে।"],
+        ["খুঁজুন ও বাছুন", "নাম, এলাকা বা নম্বর দিয়ে খুঁজুন, অথবা একটি এলাকা বেছে নিন।"],
+        ["আজ, বাংলা পঞ্জিকা মতে", "এই পট্টিতে এখনকার তিথি, সূর্যোদয় ও সূর্যাস্ত দেখা যায়। ট্যাপ করলে পুজোর দিন আর সন্ধিপুজোর সময় পাবেন।"],
+        ["ভাষা ও থিম", "ইংরেজি আর বাংলা, আলো আর অন্ধকার, যেটা চান বেছে নিন।"],
+        ["তৈরি!", "আবার দেখতে চাইলে ম্যাপের ? বোতাম বা তালিকার নিচের ‘কীভাবে ব্যবহার করবেন’ টিপুন।"]
+      ],
       route: function (n, d) { return "ঠাকুর দেখার রুট: কাছাকাছি " + num(n) + "টি পুজো, মোট প্রায় " + d + "।"; },
       openGmaps: "গুগল ম্যাপে খুলুন", hide: "লুকান",
       grabMore: "তালিকা আরও দেখুন", grabMap: "ম্যাপ দেখুন",
@@ -1233,7 +1297,7 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
       srcTitle: "তথ্যসূত্র ও ডেটা",
       src: 'গুগল ম্যাপের তথ্য, সঙ্গে <a href="https://www.freepressjournal.in/mumbai/durga-puja-2025-mumbai-celebrates-bengals-biggest-festival-with-grand-pandals-culture-and-cuisine" target="_blank" rel="noopener">Free Press Journal</a>, <a href="https://www.boldsky.com/insync/durga-puja-pandals-mumbai-2026-7-stunning-celebrations-to-explore-from-matunga-to-juhu-173373.html" target="_blank" rel="noopener">Boldsky</a>, <a href="https://lbb.in/mumbai/durga-pandals-mumbai/" target="_blank" rel="noopener">LBB</a> আর <a href="https://www.justdial.com/Mumbai/Aamra-Prabasi-Durga-Puja-Venue-Nerul-Nerul-Sector-27/022PXX22-XX22-220327111649-G8Q4_BZDET" target="_blank" rel="noopener">Justdial</a>। ইনস্টাগ্রাম, ফেসবুক ও ওয়েবসাইটের লিংক পুজোগুলোর নিজেদের, সার্চ করে পাওয়া। ম্যাপ © OpenStreetMap; মুম্বইয়ের ওয়ার্ড সীমানা © DataMeet।',
       dl: 'সব পিন <a href="mumbai-durga-pujas-2026.csv">CSV</a> বা <a href="mumbai-durga-pujas-2026.geojson">GeoJSON</a> ফাইলে ডাউনলোড করুন।',
-      version: 'সংস্করণ ১.৭.১; আগের: <a href="v1.6/">১.৬</a>, <a href="v1.5/">১.৫</a>, <a href="v1.4/">১.৪</a>, <a href="v1.3/">১.৩</a>, <a href="v1.2/">১.২</a>, <a href="v1.1/">১.১</a>, <a href="v1/">১</a>',
+      version: 'সংস্করণ ১.৮; আগের: <a href="v1.7/">১.৭</a>, <a href="v1.6/">১.৬</a>, <a href="v1.5/">১.৫</a>, <a href="v1.4/">১.৪</a>, <a href="v1.3/">১.৩</a>, <a href="v1.2/">১.২</a>, <a href="v1.1/">১.১</a>, <a href="v1/">১</a>',
       leftOff: "এর মধ্যে সর্বজনীন খারঘর দুর্গোৎসব ম্যাপে নেই, কারণ মণ্ডপের জায়গা নিশ্চিত করা যায়নি।",
       sayTitle: "পরামর্শ",
       say: 'কোনও পুজো বাদ পড়েছে, পিন ভুল জায়গায়, বা কোনও পুজোর ইনস্টাগ্রাম পেজ জানেন? ম্যাপ নিয়ে কোনও পরামর্শ আছে? <a href="mailto:somdeepkundu@gmail.com?subject=Mumbai%20Durga%20Pujo%20Map">somdeepkundu@gmail.com</a>-এ মেল করুন, অথবা <a href="https://www.linkedin.com/in/somdeep-kundu/" target="_blank" rel="noopener">LinkedIn</a> বা <a href="https://www.instagram.com/somdeeplearning/" target="_blank" rel="noopener">Instagram</a>-এ জানান।',
@@ -1289,6 +1353,7 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
     sun: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>',
     house: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M3.5 11 12 4l8.5 7"/><path d="M6 9.5V20h12V9.5"/><path d="M10 20v-5.5h4V20"/></svg>',
     expand: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>',
+    help: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.4 9.3a2.7 2.7 0 0 1 5.2.9c0 1.8-2.6 2.2-2.6 4"/><circle cx="12" cy="17.4" r=".7" fill="currentColor"/></svg>',
     names: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 12.2V4.5h7.7l9.3 9.3-7.7 7.7z"/><circle cx="8" cy="9" r="1.3"/></svg>',
     route: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="18.5" r="2.3"/><circle cx="18" cy="5.5" r="2.3"/><path d="M8.3 18.5H15a3.2 3.2 0 0 0 0-6.4H9a3.2 3.2 0 0 1 0-6.6h6.7"/></svg>',
     go: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M3 11 21 3l-8 18-2-8-8-2z"/></svg>',
@@ -1848,6 +1913,7 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
         else if (a.hasAttribute("data-all")) showAll();
         else if (a.hasAttribute("data-sound")) toggleSound();
         else if (a.hasAttribute("data-names")) toggleNames();
+        else if (a.hasAttribute("data-help")) startTour();
         else setRoute(!state.route);
       });
       return btnBox;
@@ -1859,7 +1925,8 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
       '<a href="#" role="button" data-all title="' + t("btnAll") + '" aria-label="' + t("btnAll") + '">' + ICON.expand + "</a>" +
       '<a href="#" role="button" data-names aria-pressed="' + namesOn + '" title="' + (namesOn ? t("btnNamesOff") : t("btnNames")) + '" aria-label="' + (namesOn ? t("btnNamesOff") : t("btnNames")) + '">' + ICON.names + "</a>" +
       '<a href="#" role="button" data-route aria-pressed="' + state.route + '" title="' + t("btnRoute") + '" aria-label="' + t("btnRoute") + '">' + ICON.route + "</a>" +
-      '<a href="#" role="button" data-sound aria-pressed="' + soundOn + '" title="' + (soundOn ? t("soundOff") : t("soundOn")) + '" aria-label="' + (soundOn ? t("soundOff") : t("soundOn")) + '">' + (soundOn ? ICON.sound : ICON.mute) + "</a>";
+      '<a href="#" role="button" data-sound aria-pressed="' + soundOn + '" title="' + (soundOn ? t("soundOff") : t("soundOn")) + '" aria-label="' + (soundOn ? t("soundOff") : t("soundOn")) + '">' + (soundOn ? ICON.sound : ICON.mute) + "</a>" +
+      '<a href="#" role="button" data-help title="' + t("btnHelp") + '" aria-label="' + t("btnHelp") + '">' + ICON.help + "</a>";
   }
   var dhak = $("dhak"), soundOn = true, soundStarted = false;
   try { soundOn = localStorage.getItem("pujo-sound") !== "off"; } catch (e) {}
@@ -1978,6 +2045,7 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
     $("grab").setAttribute("aria-label", sheetAt === "full" ? t("grabMap") : t("grabMore"));
     $("sheet").setAttribute("aria-label", t("title")); $("map").setAttribute("aria-label", t("title"));
     $("foot").innerHTML = art("semi", "foot-deco") + '<p><button type="button" id="aboutBtn">' + t("footAbout") + "</button>" + t("footRest") + "</p>" +
+      '<p><button type="button" id="tourBtn">' + t("tourBtn") + "</button></p>" +
       '<p class="credit">' + t("credit") + ' <a href="' + SITE + '" target="_blank" rel="noopener">' + t("creditName") + "</a>, " + t("iitb") + "</p>";
     map.attributionControl.setPrefix(t("credit") + ' <a href="' + SITE + '" target="_blank" rel="noopener">' + t("creditName") + "</a>, " + t("iitb"));
     homeMarker.setTooltipContent(t("iitb"));
@@ -2030,7 +2098,7 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
     if (dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", "");
     var top = toDays ? $("daysTitle") : $("aboutTitle"); if (top) top.scrollIntoView({ block: "start" });
   }
-  $("foot").addEventListener("click", function (e) { if (e.target.closest("#aboutBtn")) openAbout(false); });
+  $("foot").addEventListener("click", function (e) { if (e.target.closest("#aboutBtn")) openAbout(false); else if (e.target.closest("#tourBtn")) startTour(); });
   $("day").addEventListener("click", function () { openAbout(true); });
   setInterval(paintDay, 30000);
   try { document.fonts.ready.then(paintDay); } catch (e) {}
@@ -2042,6 +2110,92 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
     if (!pts.length) return;
     if (pts.length === 1) showPoint(pts[0], 15); else showBounds(L.latLngBounds(pts));
   }
+
+  /* ---------- guided tour: opens by itself on a first visit, and any time from the ? button or the footer.
+     It spotlights the real controls, so it never goes out of date, and follows the chosen language ---------- */
+  var tour = { i: 0, on: false, back: null };
+  var TOUR_AT = [null, "pin", ".map-btns", "sheet", "#nearBtn", "search", "#day", "prefs", null];
+  function rectOf(el, pad) { var r = el.getBoundingClientRect(); return r.width && r.height ? { x: r.left - pad, y: r.top - pad, w: r.width + 2 * pad, h: r.height + 2 * pad, r: 14 } : null; }
+  function unionOf(els, pad) {
+    var rs = els.map(function (e) { return e.getBoundingClientRect(); }).filter(function (r) { return r.width; });
+    if (!rs.length) return null;
+    var x0 = Math.min.apply(null, rs.map(function (r) { return r.left; })), y0 = Math.min.apply(null, rs.map(function (r) { return r.top; })),
+        x1 = Math.max.apply(null, rs.map(function (r) { return r.right; })), y1 = Math.max.apply(null, rs.map(function (r) { return r.bottom; }));
+    return { x: x0 - pad, y: y0 - pad, w: x1 - x0 + 2 * pad, h: y1 - y0 + 2 * pad, r: 16 };
+  }
+  function tourTarget(key) {
+    if (!key) return null;
+    if (key === "pin") {
+      var p = shown[0]; if (!p) return null;
+      var c = map.latLngToContainerPoint([p.y, p.x]), mb = $("map").getBoundingClientRect();
+      if (c.x < 24 || c.y < headH() + 24 || c.x > mb.width - 24 || c.y > mb.height - sheetH() - 24) return null;
+      return { x: mb.left + c.x - 26, y: mb.top + c.y - 26, w: 52, h: 52, r: 26 };
+    }
+    if (key === "sheet") { var s0 = $("sheet").getBoundingClientRect(); return { x: s0.left + 6, y: s0.top + 4, w: s0.width - 12, h: Math.min(s0.height - 8, 190), r: 16 }; }
+    if (key === "search") return unionOf([$("q").parentElement, $("area")], 6);
+    if (key === "prefs") return unionOf([$("langBtn"), $("themeBtn")], 6);
+    var el = document.querySelector(key); return el ? rectOf(el, 6) : null;
+  }
+  function placeTour(tg) {
+    var hole = $("tourHole"), card = $("tourCard"), vw = window.innerWidth, vh = window.innerHeight;
+    if (tg) { hole.className = "tour-hole"; hole.style.cssText = "left:" + tg.x + "px;top:" + tg.y + "px;width:" + tg.w + "px;height:" + tg.h + "px;border-radius:" + tg.r + "px"; }
+    else { hole.className = "tour-hole none"; hole.style.cssText = "left:" + vw / 2 + "px;top:" + vh / 2 + "px;width:0;height:0;border-radius:0"; }
+    var cw = Math.min(344, vw - 24); card.style.width = cw + "px";
+    var ch = card.offsetHeight, x, y;
+    if (!tg) { x = (vw - cw) / 2; y = (vh - ch) / 2; }
+    else {
+      x = Math.max(12, Math.min(vw - cw - 12, tg.x + tg.w / 2 - cw / 2));
+      if (tg.y + tg.h + 14 + ch <= vh - 12) y = tg.y + tg.h + 14;
+      else if (tg.y - 14 - ch >= 12) y = tg.y - 14 - ch;
+      else y = Math.max(12, vh - ch - 12);
+    }
+    card.style.left = x + "px"; card.style.top = y + "px";
+  }
+  function showStep(i) {
+    var steps = t("tourSteps"), n = steps.length; tour.i = i;
+    $("tourStep").textContent = t("tourOf", i + 1, n);
+    $("tourDots").innerHTML = steps.map(function (_, k) { return '<i class="' + (k < i ? "is-done" : k === i ? "is-now" : "") + '"></i>'; }).join("");
+    $("tourTitle").textContent = steps[i][0]; $("tourText").textContent = steps[i][1];
+    $("tourBack").textContent = t("tourBack"); $("tourBack").hidden = i === 0;
+    $("tourSkip").textContent = t("tourSkip"); $("tourSkip").hidden = i === n - 1;
+    $("tourNext").textContent = i === n - 1 ? t("tourDone") : t("tourNext");
+    placeTour(tourTarget(TOUR_AT[i]));
+    $("tourNext").focus({ preventScroll: true });
+  }
+  function startTour() {
+    if (tour.on) return;
+    if (dlg.open) { dlg.close ? dlg.close() : dlg.removeAttribute("open"); }
+    tour.on = true; tour.back = document.activeElement; $("tour").hidden = false;
+    tour.inert = [].filter.call(document.body.children, function (el) { return el.id !== "tour" && !/^(SCRIPT|AUDIO|STYLE)$/.test(el.tagName) && !el.inert; });
+    tour.inert.forEach(function (el) { el.inert = true; });
+    var wait = 0; if (sheetAt === "full") { setSheet("half"); wait = 320; }
+    $("tourCard").style.visibility = "hidden";
+    setTimeout(function () { $("tourCard").style.visibility = ""; if (tour.on) showStep(0); }, wait);
+  }
+  function endTour() {
+    if (!tour.on) return;
+    tour.on = false; $("tour").hidden = true;
+    (tour.inert || []).forEach(function (el) { el.inert = false; }); tour.inert = null;
+    try { localStorage.setItem("pujo-tour", "done"); } catch (e) {}
+    if (tour.back && tour.back.focus) { try { tour.back.focus({ preventScroll: true }); } catch (e) {} }
+  }
+  function tourGo(d) { var n = t("tourSteps").length, j = tour.i + d; if (j >= n) { endTour(); return; } if (j >= 0) showStep(j); }
+  $("tourNext").addEventListener("click", function () { tourGo(1); });
+  $("tourBack").addEventListener("click", function () { tourGo(-1); });
+  $("tourSkip").addEventListener("click", endTour);
+  window.addEventListener("keydown", function (e) {
+    if (!tour.on) return;
+    if (e.key === "Escape") { e.preventDefault(); endTour(); }
+    else if (e.key === "ArrowRight") { e.preventDefault(); tourGo(1); }
+    else if (e.key === "ArrowLeft") { e.preventDefault(); tourGo(-1); }
+    else if (e.key === "Tab") {
+      var bs = [$("tourSkip"), $("tourBack"), $("tourNext")].filter(function (b) { return !b.hidden; }), at = bs.indexOf(document.activeElement);
+      e.preventDefault(); bs[(at + (e.shiftKey ? bs.length - 1 : 1)) % bs.length].focus();
+    }
+  }, true);
+  window.addEventListener("resize", function () { if (tour.on) showStep(tour.i); });
+  window.pujoTour = startTour;
+  try { if (localStorage.getItem("pujo-tour") !== "done") setTimeout(function () { if (!tour.on && !dlg.open && !state.picking) startTour(); }, 2400); } catch (e) {}
 
   /* ---------- start: open around IIT Bombay with the nearest pujos in view ---------- */
   state.me = { lat: HOME.lat, lng: HOME.lng, acc: 0, source: "home" };
