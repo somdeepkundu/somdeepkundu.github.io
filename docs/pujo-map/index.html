@@ -882,6 +882,16 @@ html.names-on .place { opacity: .45; }
 @media (prefers-reduced-motion: reduce) { .sel-icon::after { animation: none; } }
 .sel-icon svg { width: 34px; height: 34px; display: block; background: var(--paper); border-radius: 50%; box-shadow: 0 1px 6px rgba(0,0,0,.28); }
 .me-icon span { position: absolute; inset: 0; border-radius: 50%; background: var(--you); border: 3px solid var(--paper); box-shadow: 0 1px 5px rgba(0,0,0,.35); }
+.me-icon .beam { position: absolute; left: 50%; top: 50%; width: 104px; height: 104px; margin: -52px 0 0 -52px; pointer-events: none; opacity: 0; transition: opacity .3s; transform: rotate(var(--mh, 0deg)); will-change: transform;
+  background: conic-gradient(from -30deg at 50% 50%, color-mix(in srgb, var(--you) 62%, transparent) 0deg, color-mix(in srgb, var(--you) 62%, transparent) 60deg, transparent 60.5deg, transparent 359.5deg, color-mix(in srgb, var(--you) 62%, transparent) 360deg);
+  -webkit-mask-image: radial-gradient(circle, transparent 9%, #000 12%, transparent 70%); mask-image: radial-gradient(circle, transparent 9%, #000 12%, transparent 70%); }
+html.heading .me-icon .beam { opacity: 1; }
+html.heading.hdg-stale .me-icon .beam { opacity: .3; }
+.needle { transform-origin: 12px 12px; transform: rotate(calc(-1 * var(--hdg, 0deg))); }
+.map-btns a[data-compass][aria-pressed="true"].hdg-stale-b { opacity: .75; }
+.row-dir { display: inline-block; width: 15px; height: 15px; margin-right: 5px; vertical-align: -2px; transform: rotate(calc(var(--b, 0deg) - var(--hdg, 0deg))); }
+.row-dir svg { width: 100%; height: 100%; display: block; }
+@media (prefers-reduced-motion: reduce) { .me-icon .beam { transition: none; } }
 .home-icon span { position: absolute; inset: 0; border-radius: 50%; background: var(--ink); color: var(--paper); border: 2px solid var(--paper); box-shadow: 0 1px 5px rgba(0,0,0,.35); display: grid; place-items: center; }
 .home-icon svg { width: 16px; height: 16px; }
 .home-tip { font-size: 12px; padding: 3px 8px; }
@@ -1200,13 +1210,13 @@ html[lang="bn"] .tour-card h2 { font-family: var(--font-deco); font-size: 23px; 
       credit: "Developed by", creditName: "Somdeep Kundu", iitb: "IIT Bombay",
       soundOn: "Play the dhak", soundOff: "Mute the dhak",
       artCredit: 'Bengali fonts from <a href="https://github.com/fahimscirex/bangla-fonts" target="_blank" rel="noopener">bangla-fonts</a>. Alpona art by <a href="https://www.instagram.com/the_nocturnal_mystic/" target="_blank" rel="noopener">Parama Ghosh</a>, traced from her hand-painted alponas. Dhak sound from <a href="https://youtu.be/VksCiC7qz2c" target="_blank" rel="noopener">this YouTube video</a>.',
-      btnHome: "Pujos near IIT Bombay", btnAll: "Show every pujo", btnRoute: "Pandal-hopping route", btnNames: "Show pujo names", btnNamesOff: "Hide pujo names", btnHelp: "How to use",
+      btnHome: "Pujos near IIT Bombay", btnAll: "Show every pujo", btnRoute: "Pandal-hopping route", btnNames: "Show pujo names", btnNamesOff: "Hide pujo names", btnHelp: "How to use", btnCompass: "Show which way I face", btnCompassOff: "Turn compass off", compassOn: "Compass on. If the beam looks off, draw a figure-8 with your phone.", compassWait: "Finding your location first, so the beam can point from you.", compassDenied: "Motion sensors are blocked. Allow them in your browser's site settings.", compassNone: "No compass data from this device. Tap the compass to try again.", compassLow: "Direction off? Draw a figure-8 with your phone.", compassOff: "Compass off.",
       tourBtn: "How to use", tourNext: "Next", tourBack: "Back", tourSkip: "Skip", tourDone: "Start exploring",
       tourOf: function (i, n) { return "Step " + i + " of " + n; },
       tourSteps: [
         ["Welcome to the map", "A one-minute look at what each control does. You can replay it any time from the ? button."],
         ["Tap a pin", "Every dot is a pujo. Tap one to highlight it, and the names of its nearest neighbours appear beside it. The red glow shows where pujos cluster."],
-        ["Map buttons", "Home returns to IIT Bombay and the corners show every pujo. The tag shows pujo names, the trail draws a pandal-hopping route, and the speaker plays or mutes the dhak."],
+        ["Map buttons", "Home returns to IIT Bombay and the corners show every pujo. The compass shows which way you face, the tag shows pujo names, the trail draws a pandal-hopping route, and the speaker plays or mutes the dhak."],
         ["Nearest first", "The list is sorted by distance. Drag the panel up for more. Tap a pujo for directions on foot or by car, and its Instagram or Facebook page."],
         ["Near you", "Use your location, so distances and directions start from where you stand."],
         ["Search and filter", "Search by name, area or number, or pick an area."],
@@ -1235,7 +1245,7 @@ html[lang="bn"] .tour-card h2 { font-family: var(--font-deco); font-size: 23px; 
       srcTitle: "Sources and data",
       src: 'Google Maps listings, plus <a href="https://www.freepressjournal.in/mumbai/durga-puja-2025-mumbai-celebrates-bengals-biggest-festival-with-grand-pandals-culture-and-cuisine" target="_blank" rel="noopener">Free Press Journal</a>, <a href="https://www.boldsky.com/insync/durga-puja-pandals-mumbai-2026-7-stunning-celebrations-to-explore-from-matunga-to-juhu-173373.html" target="_blank" rel="noopener">Boldsky</a>, <a href="https://lbb.in/mumbai/durga-pandals-mumbai/" target="_blank" rel="noopener">LBB</a> and <a href="https://www.justdial.com/Mumbai/Aamra-Prabasi-Durga-Puja-Venue-Nerul-Nerul-Sector-27/022PXX22-XX22-220327111649-G8Q4_BZDET" target="_blank" rel="noopener">Justdial</a>. Instagram, Facebook and website links go to each pujo’s own pages, found by search. Map © OpenStreetMap contributors; Mumbai ward outline © DataMeet.',
       dl: 'Download every pin as <a href="mumbai-durga-pujas-2026.csv">CSV</a> or <a href="mumbai-durga-pujas-2026.geojson">GeoJSON</a>.',
-      version: 'Version 1.8; earlier: <a href="v1.7/">1.7</a>, <a href="v1.6/">1.6</a>, <a href="v1.5/">1.5</a>, <a href="v1.4/">1.4</a>, <a href="v1.3/">1.3</a>, <a href="v1.2/">1.2</a>, <a href="v1.1/">1.1</a>, <a href="v1/">1</a>',
+      version: 'Version 1.9; earlier: <a href="v1.8/">1.8</a>, <a href="v1.7/">1.7</a>, <a href="v1.6/">1.6</a>, <a href="v1.5/">1.5</a>, <a href="v1.4/">1.4</a>, <a href="v1.3/">1.3</a>, <a href="v1.2/">1.2</a>, <a href="v1.1/">1.1</a>, <a href="v1/">1</a>',
       leftOff: "One, Sarbojonin Kharghar Durgotsav, is left off the map because its venue could not be confirmed.",
       sayTitle: "Suggestions",
       say: 'Know a pujo that is missing, a wrong pin, or its Instagram page? Or have an idea for the map? Write to me at <a href="mailto:somdeepkundu@gmail.com?subject=Mumbai%20Durga%20Pujo%20Map">somdeepkundu@gmail.com</a>, on <a href="https://www.linkedin.com/in/somdeep-kundu/" target="_blank" rel="noopener">LinkedIn</a> or on <a href="https://www.instagram.com/somdeeplearning/" target="_blank" rel="noopener">Instagram</a>.',
@@ -1262,13 +1272,13 @@ html[lang="bn"] .tour-card h2 { font-family: var(--font-deco); font-size: 23px; 
       credit: "তৈরি করেছেন", creditName: "সোমদীপ কুণ্ডু", iitb: "আইআইটি বম্বে",
       soundOn: "ঢাক বাজান", soundOff: "ঢাক বন্ধ করুন",
       artCredit: 'বাংলা হরফ: <a href="https://github.com/fahimscirex/bangla-fonts" target="_blank" rel="noopener">bangla-fonts</a> থেকে। আলপনা: <a href="https://www.instagram.com/the_nocturnal_mystic/" target="_blank" rel="noopener">পরমা ঘোষ</a>, তাঁর হাতে আঁকা আলপনা থেকে রেখায় তোলা। ঢাকের আওয়াজ: <a href="https://youtu.be/VksCiC7qz2c" target="_blank" rel="noopener">এই ইউটিউব ভিডিও</a> থেকে।',
-      btnHome: "আইআইটি বম্বের কাছের পুজো", btnAll: "সব পুজো দেখুন", btnRoute: "ঠাকুর দেখার রুট", btnNames: "পুজোর নাম দেখুন", btnNamesOff: "পুজোর নাম লুকান", btnHelp: "কীভাবে ব্যবহার করবেন",
+      btnHome: "আইআইটি বম্বের কাছের পুজো", btnAll: "সব পুজো দেখুন", btnRoute: "ঠাকুর দেখার রুট", btnNames: "পুজোর নাম দেখুন", btnNamesOff: "পুজোর নাম লুকান", btnHelp: "কীভাবে ব্যবহার করবেন", btnCompass: "আমি কোন দিকে মুখ করে আছি দেখুন", btnCompassOff: "কম্পাস বন্ধ করুন", compassOn: "কম্পাস চালু। রশ্মি ঠিক না লাগলে ফোনটা দিয়ে আট (৮) আঁকুন।", compassWait: "আগে আপনার অবস্থান খুঁজছি, তাহলে রশ্মি আপনার থেকে দিক দেখাবে।", compassDenied: "মোশন সেন্সর আটকানো আছে। ব্রাউজারের সাইট সেটিংসে অনুমতি দিন।", compassNone: "এই ফোন থেকে কম্পাসের তথ্য আসছে না। কম্পাসে আবার ট্যাপ করুন।", compassLow: "দিক ঠিক নেই? ফোনটা দিয়ে আট (৮) আঁকুন।", compassOff: "কম্পাস বন্ধ।",
       tourBtn: "কীভাবে ব্যবহার করবেন", tourNext: "পরের", tourBack: "আগের", tourSkip: "বাদ দিন", tourDone: "শুরু করুন",
       tourOf: function (i, n) { return "ধাপ " + num(i) + " / " + num(n); },
       tourSteps: [
         ["ম্যাপে স্বাগতম", "এক মিনিটে দেখে নিন কোন বোতাম কী করে। যখন খুশি ? বোতাম টিপে আবার দেখতে পারবেন।"],
         ["পিনে ট্যাপ করুন", "প্রতিটি বিন্দু একটি পুজো। ট্যাপ করলে সেটি আলাদা করে দেখা যাবে, আর পাশে কাছের পুজোগুলোর নাম ভেসে উঠবে। লাল আভা দেখায় কোথায় পুজো বেশি জমে আছে।"],
-        ["ম্যাপের বোতাম", "বাড়ির চিহ্ন আইআইটি বম্বেতে ফেরায়, কোণের চিহ্ন সব পুজো দেখায়। ট্যাগ পুজোর নাম দেখায়, পথের চিহ্ন ঠাকুর দেখার রুট আঁকে, আর স্পিকার ঢাক বাজায় বা চুপ করায়।"],
+        ["ম্যাপের বোতাম", "বাড়ির চিহ্ন আইআইটি বম্বেতে ফেরায়, কোণের চিহ্ন সব পুজো দেখায়। কম্পাস দেখায় আপনি কোন দিকে মুখ করে আছেন, ট্যাগ পুজোর নাম দেখায়, পথের চিহ্ন ঠাকুর দেখার রুট আঁকে, আর স্পিকার ঢাক বাজায় বা চুপ করায়।"],
         ["কাছেরটা আগে", "তালিকা দূরত্ব অনুযায়ী সাজানো। আরও দেখতে প্যানেলটা উপরে টানুন। কোনো পুজোয় ট্যাপ করলে হেঁটে বা গাড়িতে যাওয়ার দিশা আর তাদের ইনস্টাগ্রাম বা ফেসবুক পাতা পাবেন।"],
         ["আপনার কাছে", "আপনার অবস্থান ব্যবহার করুন, তাহলে দূরত্ব আর দিশা আপনি যেখানে আছেন সেখান থেকে শুরু হবে।"],
         ["খুঁজুন ও বাছুন", "নাম, এলাকা বা নম্বর দিয়ে খুঁজুন, অথবা একটি এলাকা বেছে নিন।"],
@@ -1297,7 +1307,7 @@ html[lang="bn"] .tour-card h2 { font-family: var(--font-deco); font-size: 23px; 
       srcTitle: "তথ্যসূত্র ও ডেটা",
       src: 'গুগল ম্যাপের তথ্য, সঙ্গে <a href="https://www.freepressjournal.in/mumbai/durga-puja-2025-mumbai-celebrates-bengals-biggest-festival-with-grand-pandals-culture-and-cuisine" target="_blank" rel="noopener">Free Press Journal</a>, <a href="https://www.boldsky.com/insync/durga-puja-pandals-mumbai-2026-7-stunning-celebrations-to-explore-from-matunga-to-juhu-173373.html" target="_blank" rel="noopener">Boldsky</a>, <a href="https://lbb.in/mumbai/durga-pandals-mumbai/" target="_blank" rel="noopener">LBB</a> আর <a href="https://www.justdial.com/Mumbai/Aamra-Prabasi-Durga-Puja-Venue-Nerul-Nerul-Sector-27/022PXX22-XX22-220327111649-G8Q4_BZDET" target="_blank" rel="noopener">Justdial</a>। ইনস্টাগ্রাম, ফেসবুক ও ওয়েবসাইটের লিংক পুজোগুলোর নিজেদের, সার্চ করে পাওয়া। ম্যাপ © OpenStreetMap; মুম্বইয়ের ওয়ার্ড সীমানা © DataMeet।',
       dl: 'সব পিন <a href="mumbai-durga-pujas-2026.csv">CSV</a> বা <a href="mumbai-durga-pujas-2026.geojson">GeoJSON</a> ফাইলে ডাউনলোড করুন।',
-      version: 'সংস্করণ ১.৮; আগের: <a href="v1.7/">১.৭</a>, <a href="v1.6/">১.৬</a>, <a href="v1.5/">১.৫</a>, <a href="v1.4/">১.৪</a>, <a href="v1.3/">১.৩</a>, <a href="v1.2/">১.২</a>, <a href="v1.1/">১.১</a>, <a href="v1/">১</a>',
+      version: 'সংস্করণ ১.৯; আগের: <a href="v1.8/">১.৮</a>, <a href="v1.7/">১.৭</a>, <a href="v1.6/">১.৬</a>, <a href="v1.5/">১.৫</a>, <a href="v1.4/">১.৪</a>, <a href="v1.3/">১.৩</a>, <a href="v1.2/">১.২</a>, <a href="v1.1/">১.১</a>, <a href="v1/">১</a>',
       leftOff: "এর মধ্যে সর্বজনীন খারঘর দুর্গোৎসব ম্যাপে নেই, কারণ মণ্ডপের জায়গা নিশ্চিত করা যায়নি।",
       sayTitle: "পরামর্শ",
       say: 'কোনও পুজো বাদ পড়েছে, পিন ভুল জায়গায়, বা কোনও পুজোর ইনস্টাগ্রাম পেজ জানেন? ম্যাপ নিয়ে কোনও পরামর্শ আছে? <a href="mailto:somdeepkundu@gmail.com?subject=Mumbai%20Durga%20Pujo%20Map">somdeepkundu@gmail.com</a>-এ মেল করুন, অথবা <a href="https://www.linkedin.com/in/somdeep-kundu/" target="_blank" rel="noopener">LinkedIn</a> বা <a href="https://www.instagram.com/somdeeplearning/" target="_blank" rel="noopener">Instagram</a>-এ জানান।',
@@ -1308,6 +1318,7 @@ html[lang="bn"] .tour-card h2 { font-family: var(--font-deco); font-size: 23px; 
   function areaName(a) { return LANG === "bn" ? (AREA_BN[a] || a) : a; }
 
   var state = { area: "all", q: "", me: null, watchId: null, picking: false, open: null, route: false };
+  var compass = { on: false, raw: null, disp: 0, last: 0, abs: false, started: 0, lowHint: false, raf: 0, timer: 0, painted: -999 };
 
   function $(id) { return document.getElementById(id); }
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
@@ -1316,6 +1327,11 @@ html[lang="bn"] .tour-card h2 { font-family: var(--font-deco); font-size: 23px; 
     var r = Math.PI / 180, dLa = (b.lat - a.lat) * r, dLo = (b.lng - a.lng) * r;
     var s = Math.sin(dLa / 2) * Math.sin(dLa / 2) + Math.cos(a.lat * r) * Math.cos(b.lat * r) * Math.sin(dLo / 2) * Math.sin(dLo / 2);
     return 12742 * Math.asin(Math.sqrt(s));
+  }
+  function bearing(a, b) {
+    var r = Math.PI / 180, y = Math.sin((b.lng - a.lng) * r) * Math.cos(b.lat * r);
+    var x = Math.cos(a.lat * r) * Math.sin(b.lat * r) - Math.sin(a.lat * r) * Math.cos(b.lat * r) * Math.cos((b.lng - a.lng) * r);
+    return (Math.atan2(y, x) / r + 360) % 360;
   }
   function fmtKm(d) { return d < 1 ? t("m", Math.max(10, Math.round(d * 100) * 10)) : t("km", d < 10 ? d.toFixed(1) : Math.round(d)); }
   var tt;
@@ -1353,6 +1369,7 @@ html[lang="bn"] .tour-card h2 { font-family: var(--font-deco); font-size: 23px; 
     sun: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>',
     house: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M3.5 11 12 4l8.5 7"/><path d="M6 9.5V20h12V9.5"/><path d="M10 20v-5.5h4V20"/></svg>',
     expand: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>',
+    compass: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><g class="needle"><path d="M12 4.6l3 7.4h-6z" fill="currentColor"/><path d="M12 19.4l-3-7.4h6z" opacity=".35" fill="currentColor" stroke="none"/></g></svg>',
     help: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.4 9.3a2.7 2.7 0 0 1 5.2.9c0 1.8-2.6 2.2-2.6 4"/><circle cx="12" cy="17.4" r=".7" fill="currentColor"/></svg>',
     names: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 12.2V4.5h7.7l9.3 9.3-7.7 7.7z"/><circle cx="8" cy="9" r="1.3"/></svg>',
     route: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="18.5" r="2.3"/><circle cx="18" cy="5.5" r="2.3"/><path d="M8.3 18.5H15a3.2 3.2 0 0 0 0-6.4H9a3.2 3.2 0 0 1 0-6.6h6.7"/></svg>',
@@ -1637,7 +1654,8 @@ html[lang="bn"] .tour-card h2 { font-family: var(--font-deco); font-size: 23px; 
   }
   function rowHtml(p) {
     var open = state.open === p.i;
-    var dist = state.me ? '<span class="row-dist">' + fmtKm(p.d) + "</span>" : "<span></span>";
+    var dir = (compass.on && state.me && state.me.source === "gps" && p.d > 0.02) ? '<span class="row-dir" style="--b:' + Math.round(p.b) + 'deg" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l7 18-7-4.6-7 4.6z"/></svg></span>' : "";
+    var dist = state.me ? '<span class="row-dist">' + dir + fmtKm(p.d) + "</span>" : "<span></span>";
     var hasArea = p.venue.toLowerCase().indexOf(p.area.toLowerCase()) !== -1;
     var where = esc(p.venue === "Venue not found" ? p.area : (hasArea ? p.venue : p.venue + ", " + p.area));
     var html = '<li class="row' + (open ? " is-open" : "") + '" data-i="' + p.i + '">' +
@@ -1655,7 +1673,7 @@ html[lang="bn"] .tour-card h2 { font-family: var(--font-deco); font-size: 23px; 
     return html + "</li>";
   }
   function render() {
-    PUJAS.forEach(function (p) { p.d = state.me ? km(state.me, p) : 0; });
+    PUJAS.forEach(function (p) { p.d = state.me ? km(state.me, p) : 0; p.b = state.me ? bearing(state.me, p) : 0; });
     shown = PUJAS.filter(matches);
     shown.sort(state.me ? function (a, b) { return a.d - b.d; } : function (a, b) { return (a.n[0] || 999) - (b.n[0] || 999); });
     PUJAS.forEach(function (p) {
@@ -1851,8 +1869,9 @@ html[lang="bn"] .tour-card h2 { font-family: var(--font-deco); font-size: 23px; 
     $("nearBtn").setAttribute("aria-pressed", String(mine));
     var ll = [lat, lng];
     if (mine) {
-      if (!meMarker) meMarker = L.marker(ll, { interactive: false, keyboard: false, zIndexOffset: 1000, icon: L.divIcon({ className: "me-icon", html: "<span></span>", iconSize: [20, 20], iconAnchor: [10, 10] }) }).addTo(map);
+      if (!meMarker) meMarker = L.marker(ll, { interactive: false, keyboard: false, zIndexOffset: 1000, icon: L.divIcon({ className: "me-icon", html: '<i class="beam"></i><span></span>', iconSize: [20, 20], iconAnchor: [10, 10] }) }).addTo(map);
       else meMarker.setLatLng(ll);
+      paintHeading(true);
       if (acc > 20) { if (!meAcc) meAcc = L.circle(ll, { radius: acc, className: "me-acc", interactive: false }).addTo(map); else meAcc.setLatLng(ll).setRadius(acc); }
       else if (meAcc) { map.removeLayer(meAcc); meAcc = null; }
     } else {
@@ -1898,6 +1917,85 @@ html[lang="bn"] .tour-card h2 { font-family: var(--font-deco); font-size: 23px; 
   }
   map.on("click", function (e) { if (state.picking) setMe(e.latlng.lat, e.latlng.lng, 0, "picked"); });
 
+  /* compass: which way the phone faces. Android sends an absolute orientation (alpha counts anticlockwise), iOS sends webkitCompassHeading.
+     Every reading is validated, smoothed as an angle, and a watchdog re-subscribes when the stream goes quiet. */
+  function screenAngle() {
+    if (screen.orientation && typeof screen.orientation.angle === "number") return screen.orientation.angle;
+    return typeof window.orientation === "number" ? window.orientation : 0;
+  }
+  function lerpAngle(a, b, k) { var d = ((b - a + 540) % 360) - 180; return ((a + d * k) % 360 + 360) % 360; }
+  function camHeading(alpha, beta, gamma) {
+    var d = Math.PI / 180, cA = Math.cos(alpha * d), sA = Math.sin(alpha * d), cB = Math.cos(beta * d), sB = Math.sin(beta * d), cG = Math.cos(gamma * d), sG = Math.sin(gamma * d);
+    var east = -(cA * sG + cG * sA * sB), north = cA * cG * sB - sA * sG;
+    if (Math.hypot(east, north) < 0.17) return ((Math.atan2(-cB * sA, cA * cB) / d) + 360 + screenAngle()) % 360; // lying flat: top of the screen
+    return ((Math.atan2(east, north) / d) + 360) % 360; // held upright: the way the back camera looks
+  }
+  function validNum(v) { return typeof v === "number" && !isNaN(v); }
+  function gotHeading(h) { compass.raw = (h % 360 + 360) % 360; compass.last = Date.now(); if (!compass.raf) compass.raf = requestAnimationFrame(compassLoop); }
+  function onOriAbs(e) {
+    if (!validNum(e.alpha) || !validNum(e.beta) || !validNum(e.gamma)) return;
+    compass.abs = true; gotHeading(camHeading(e.alpha, e.beta, e.gamma));
+  }
+  function onOri(e) {
+    var h = e.webkitCompassHeading;
+    if (validNum(h)) {
+      var acc = e.webkitCompassAccuracy;
+      if (validNum(acc) && (acc < 0 || acc > 40) && !compass.lowHint) { compass.lowHint = true; toast(t("compassLow"), 5200); }
+      gotHeading(h); return;
+    }
+    if (compass.abs || e.absolute !== true) return; // plain alpha is relative to a random start, never a compass
+    if (validNum(e.alpha) && validNum(e.beta) && validNum(e.gamma)) gotHeading(camHeading(e.alpha, e.beta, e.gamma));
+  }
+  function listenCompass(on) {
+    var f = on ? "addEventListener" : "removeEventListener";
+    window[f]("deviceorientationabsolute", onOriAbs, true); window[f]("deviceorientation", onOri, true);
+  }
+  function paintHeading(force) {
+    var h = Math.round(compass.disp * 2) / 2;
+    if (!force && h === compass.painted) return;
+    compass.painted = h;
+    var v = h + "deg";
+    if (meMarker && meMarker.getElement()) meMarker.getElement().style.setProperty("--mh", v);
+    if (btnBox) btnBox.style.setProperty("--hdg", v);
+    var lw = $("listWrap"); if (lw) lw.style.setProperty("--hdg", v);
+  }
+  function compassLoop() {
+    compass.raf = 0;
+    if (!compass.on) return;
+    if (compass.raw !== null) { compass.disp = lerpAngle(compass.disp, compass.raw, 0.22); paintHeading(false); }
+    var stale = compass.raw !== null && Date.now() - compass.last > 2500;
+    document.documentElement.classList.toggle("hdg-stale", stale);
+    if (!document.hidden) compass.raf = requestAnimationFrame(compassLoop);
+  }
+  function compassWatch() {
+    if (!compass.on) return;
+    var now = Date.now();
+    if (compass.raw === null && now - compass.started > 5000 && !compass.warned) { compass.warned = true; toast(t("compassNone"), 5200); }
+    if (compass.raw !== null && now - compass.last > 2500) { listenCompass(false); listenCompass(true); } // quiet stream: resubscribe
+  }
+  function startCompass() {
+    compass = { on: true, raw: compass.raw, disp: compass.disp, last: 0, abs: false, started: Date.now(), lowHint: false, raf: 0, timer: 0, painted: -999, warned: false };
+    var DOE = window.DeviceOrientationEvent, ask = (DOE && typeof DOE.requestPermission === "function") ? DOE.requestPermission() : null; // must run inside the tap
+    listenCompass(true);
+    compass.timer = setInterval(compassWatch, 1000);
+    document.documentElement.classList.add("heading");
+    var gps = state.me && state.me.source === "gps";
+    if (!gps) { toast(t("compassWait"), 4200); if (state.watchId === null) locate(); } else toast(t("compassOn"), 4800);
+    if (ask) ask.then(function (r) { if (r !== "granted") { stopCompass(); toast(t("compassDenied"), 6000); } }, function () { stopCompass(); toast(t("compassDenied"), 6000); });
+    paintButtons(); render();
+  }
+  function stopCompass() {
+    if (!compass.on) return;
+    compass.on = false; clearInterval(compass.timer); listenCompass(false);
+    document.documentElement.classList.remove("heading", "hdg-stale");
+    paintButtons(); render();
+  }
+  function toggleCompass() { if (compass.on) { stopCompass(); toast(t("compassOff"), 1800); } else startCompass(); }
+  document.addEventListener("visibilitychange", function () {
+    if (!compass.on || document.hidden) return;
+    listenCompass(false); listenCompass(true); if (!compass.raf) compass.raf = requestAnimationFrame(compassLoop);
+  });
+
   /* map buttons: back to IIT Bombay, every pujo, and the pandal-hopping route */
   function showAll() { showBounds(L.latLngBounds(PUJAS.filter(function (p) { return p.region !== "Palghar"; }).map(function (p) { return [p.lat, p.lng]; }))); }
   var btnBox;
@@ -1914,6 +2012,7 @@ html[lang="bn"] .tour-card h2 { font-family: var(--font-deco); font-size: 23px; 
         else if (a.hasAttribute("data-sound")) toggleSound();
         else if (a.hasAttribute("data-names")) toggleNames();
         else if (a.hasAttribute("data-help")) startTour();
+        else if (a.hasAttribute("data-compass")) toggleCompass();
         else setRoute(!state.route);
       });
       return btnBox;
@@ -1922,6 +2021,7 @@ html[lang="bn"] .tour-card h2 { font-family: var(--font-deco); font-size: 23px; 
   new Buttons().addTo(map);
   function paintButtons() {
     btnBox.innerHTML = '<a href="#" role="button" data-home title="' + t("btnHome") + '" aria-label="' + t("btnHome") + '">' + ICON.house + "</a>" +
+      '<a href="#" role="button" data-compass aria-pressed="' + compass.on + '" title="' + (compass.on ? t("btnCompassOff") : t("btnCompass")) + '" aria-label="' + (compass.on ? t("btnCompassOff") : t("btnCompass")) + '">' + ICON.compass + "</a>" +
       '<a href="#" role="button" data-all title="' + t("btnAll") + '" aria-label="' + t("btnAll") + '">' + ICON.expand + "</a>" +
       '<a href="#" role="button" data-names aria-pressed="' + namesOn + '" title="' + (namesOn ? t("btnNamesOff") : t("btnNames")) + '" aria-label="' + (namesOn ? t("btnNamesOff") : t("btnNames")) + '">' + ICON.names + "</a>" +
       '<a href="#" role="button" data-route aria-pressed="' + state.route + '" title="' + t("btnRoute") + '" aria-label="' + t("btnRoute") + '">' + ICON.route + "</a>" +
