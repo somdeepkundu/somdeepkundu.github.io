@@ -1046,7 +1046,11 @@ dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
 .tour-hole.none { outline-color: transparent; }
 .tour-card { position: absolute; background: var(--paper); color: var(--ink); border: 1px solid var(--line); border-radius: 18px; padding: 16px 18px 24px; overflow: hidden; box-shadow: 0 14px 44px rgba(0, 0, 0, 0.38); transition: left .4s cubic-bezier(.2,.7,.2,1), top .4s cubic-bezier(.2,.7,.2,1); }
 .tour-step { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-.tour-dots { display: flex; gap: 5px; margin: 0 0 11px; }
+.tour-head { display: flex; align-items: center; justify-content: space-between; margin: -8px -10px 3px 0; }
+.tour-dots { display: flex; gap: 5px; }
+.tour-card button.tour-sound { min-height: 44px; width: 44px; padding: 0; display: grid; place-items: center; border-color: transparent; background: transparent; color: var(--muted); }
+.tour-card button.tour-sound[aria-pressed="true"] { color: var(--alta); }
+.tour-sound svg { width: 20px; height: 20px; }
 .tour-dots i { display: block; width: 6px; height: 6px; border-radius: 3px; background: var(--line); transition: width .3s cubic-bezier(.2,.7,.2,1), background-color .3s; }
 .tour-dots i.is-done { background: color-mix(in srgb, var(--alta) 38%, var(--line)); }
 .tour-dots i.is-now { width: 22px; background: var(--alta); }
@@ -1115,7 +1119,7 @@ html[lang="bn"] .tour-card h2 { font-family: var(--font-deco); font-size: 23px; 
   <div class="tour-shield"></div>
   <div class="tour-hole" id="tourHole"></div>
   <div class="tour-card" id="tourCard" role="dialog" aria-modal="true" aria-labelledby="tourTitle" aria-describedby="tourText">
-    <div class="tour-dots" id="tourDots" aria-hidden="true"></div>
+    <div class="tour-head"><div class="tour-dots" id="tourDots" aria-hidden="true"></div><button type="button" class="tour-sound" id="tourSound"></button></div>
     <div id="tourBody" aria-live="polite" aria-atomic="true">
       <p class="tour-step" id="tourStep"></p>
       <h2 id="tourTitle"></h2>
@@ -1214,7 +1218,7 @@ html[lang="bn"] .tour-card h2 { font-family: var(--font-deco); font-size: 23px; 
       tourBtn: "How to use", tourNext: "Next", tourBack: "Back", tourSkip: "Skip", tourDone: "Start exploring",
       tourOf: function (i, n) { return "Step " + i + " of " + n; },
       tourSteps: [
-        ["Welcome to the map", "A one-minute look at what each control does. You can replay it any time from the ? button."],
+        ["Welcome to the Mumbai Durga Pujo Map", "Find Durga Pujos near you and plan your pandal-hopping. Here is a one-minute look around."],
         ["Tap a pin", "Every dot is a pujo. Tap one to highlight it, and the names of its nearest neighbours appear beside it. The red glow shows where pujos cluster."],
         ["Map buttons", "Home returns to IIT Bombay and the corners show every pujo. The compass shows which way you face, the tag shows pujo names, the trail draws a pandal-hopping route, and the speaker plays or mutes the dhak."],
         ["Nearest first", "The list is sorted by distance. Drag the panel up for more. Tap a pujo for directions on foot or by car, and its Instagram or Facebook page."],
@@ -1245,7 +1249,7 @@ html[lang="bn"] .tour-card h2 { font-family: var(--font-deco); font-size: 23px; 
       srcTitle: "Sources and data",
       src: 'Google Maps listings, plus <a href="https://www.freepressjournal.in/mumbai/durga-puja-2025-mumbai-celebrates-bengals-biggest-festival-with-grand-pandals-culture-and-cuisine" target="_blank" rel="noopener">Free Press Journal</a>, <a href="https://www.boldsky.com/insync/durga-puja-pandals-mumbai-2026-7-stunning-celebrations-to-explore-from-matunga-to-juhu-173373.html" target="_blank" rel="noopener">Boldsky</a>, <a href="https://lbb.in/mumbai/durga-pandals-mumbai/" target="_blank" rel="noopener">LBB</a> and <a href="https://www.justdial.com/Mumbai/Aamra-Prabasi-Durga-Puja-Venue-Nerul-Nerul-Sector-27/022PXX22-XX22-220327111649-G8Q4_BZDET" target="_blank" rel="noopener">Justdial</a>. Instagram, Facebook and website links go to each pujo’s own pages, found by search. Map © OpenStreetMap contributors; Mumbai ward outline © DataMeet.',
       dl: 'Download every pin as <a href="mumbai-durga-pujas-2026.csv">CSV</a> or <a href="mumbai-durga-pujas-2026.geojson">GeoJSON</a>.',
-      version: 'Version 1.9; earlier: <a href="v1.8/">1.8</a>, <a href="v1.7/">1.7</a>, <a href="v1.6/">1.6</a>, <a href="v1.5/">1.5</a>, <a href="v1.4/">1.4</a>, <a href="v1.3/">1.3</a>, <a href="v1.2/">1.2</a>, <a href="v1.1/">1.1</a>, <a href="v1/">1</a>',
+      version: 'Version 1.9.1; earlier: <a href="v1.9/">1.9</a>, <a href="v1.8/">1.8</a>, <a href="v1.7/">1.7</a>, <a href="v1.6/">1.6</a>, <a href="v1.5/">1.5</a>, <a href="v1.4/">1.4</a>, <a href="v1.3/">1.3</a>, <a href="v1.2/">1.2</a>, <a href="v1.1/">1.1</a>, <a href="v1/">1</a>',
       leftOff: "One, Sarbojonin Kharghar Durgotsav, is left off the map because its venue could not be confirmed.",
       sayTitle: "Suggestions",
       say: 'Know a pujo that is missing, a wrong pin, or its Instagram page? Or have an idea for the map? Write to me at <a href="mailto:somdeepkundu@gmail.com?subject=Mumbai%20Durga%20Pujo%20Map">somdeepkundu@gmail.com</a>, on <a href="https://www.linkedin.com/in/somdeep-kundu/" target="_blank" rel="noopener">LinkedIn</a> or on <a href="https://www.instagram.com/somdeeplearning/" target="_blank" rel="noopener">Instagram</a>.',
@@ -1276,7 +1280,7 @@ html[lang="bn"] .tour-card h2 { font-family: var(--font-deco); font-size: 23px; 
       tourBtn: "কীভাবে ব্যবহার করবেন", tourNext: "পরের", tourBack: "আগের", tourSkip: "বাদ দিন", tourDone: "শুরু করুন",
       tourOf: function (i, n) { return "ধাপ " + num(i) + " / " + num(n); },
       tourSteps: [
-        ["ম্যাপে স্বাগতম", "এক মিনিটে দেখে নিন কোন বোতাম কী করে। যখন খুশি ? বোতাম টিপে আবার দেখতে পারবেন।"],
+        ["মুম্বই দুর্গাপুজো ম্যাপে স্বাগতম", "কাছের দুর্গাপুজো খুঁজুন আর ঠাকুর দেখার পথ সাজান। চলুন, এক মিনিটে ঘুরে দেখি।"],
         ["পিনে ট্যাপ করুন", "প্রতিটি বিন্দু একটি পুজো। ট্যাপ করলে সেটি আলাদা করে দেখা যাবে, আর পাশে কাছের পুজোগুলোর নাম ভেসে উঠবে। লাল আভা দেখায় কোথায় পুজো বেশি জমে আছে।"],
         ["ম্যাপের বোতাম", "বাড়ির চিহ্ন আইআইটি বম্বেতে ফেরায়, কোণের চিহ্ন সব পুজো দেখায়। কম্পাস দেখায় আপনি কোন দিকে মুখ করে আছেন, ট্যাগ পুজোর নাম দেখায়, পথের চিহ্ন ঠাকুর দেখার রুট আঁকে, আর স্পিকার ঢাক বাজায় বা চুপ করায়।"],
         ["কাছেরটা আগে", "তালিকা দূরত্ব অনুযায়ী সাজানো। আরও দেখতে প্যানেলটা উপরে টানুন। কোনো পুজোয় ট্যাপ করলে হেঁটে বা গাড়িতে যাওয়ার দিশা আর তাদের ইনস্টাগ্রাম বা ফেসবুক পাতা পাবেন।"],
@@ -1307,7 +1311,7 @@ html[lang="bn"] .tour-card h2 { font-family: var(--font-deco); font-size: 23px; 
       srcTitle: "তথ্যসূত্র ও ডেটা",
       src: 'গুগল ম্যাপের তথ্য, সঙ্গে <a href="https://www.freepressjournal.in/mumbai/durga-puja-2025-mumbai-celebrates-bengals-biggest-festival-with-grand-pandals-culture-and-cuisine" target="_blank" rel="noopener">Free Press Journal</a>, <a href="https://www.boldsky.com/insync/durga-puja-pandals-mumbai-2026-7-stunning-celebrations-to-explore-from-matunga-to-juhu-173373.html" target="_blank" rel="noopener">Boldsky</a>, <a href="https://lbb.in/mumbai/durga-pandals-mumbai/" target="_blank" rel="noopener">LBB</a> আর <a href="https://www.justdial.com/Mumbai/Aamra-Prabasi-Durga-Puja-Venue-Nerul-Nerul-Sector-27/022PXX22-XX22-220327111649-G8Q4_BZDET" target="_blank" rel="noopener">Justdial</a>। ইনস্টাগ্রাম, ফেসবুক ও ওয়েবসাইটের লিংক পুজোগুলোর নিজেদের, সার্চ করে পাওয়া। ম্যাপ © OpenStreetMap; মুম্বইয়ের ওয়ার্ড সীমানা © DataMeet।',
       dl: 'সব পিন <a href="mumbai-durga-pujas-2026.csv">CSV</a> বা <a href="mumbai-durga-pujas-2026.geojson">GeoJSON</a> ফাইলে ডাউনলোড করুন।',
-      version: 'সংস্করণ ১.৯; আগের: <a href="v1.8/">১.৮</a>, <a href="v1.7/">১.৭</a>, <a href="v1.6/">১.৬</a>, <a href="v1.5/">১.৫</a>, <a href="v1.4/">১.৪</a>, <a href="v1.3/">১.৩</a>, <a href="v1.2/">১.২</a>, <a href="v1.1/">১.১</a>, <a href="v1/">১</a>',
+      version: 'সংস্করণ ১.৯.১; আগের: <a href="v1.9/">১.৯</a>, <a href="v1.8/">১.৮</a>, <a href="v1.7/">১.৭</a>, <a href="v1.6/">১.৬</a>, <a href="v1.5/">১.৫</a>, <a href="v1.4/">১.৪</a>, <a href="v1.3/">১.৩</a>, <a href="v1.2/">১.২</a>, <a href="v1.1/">১.১</a>, <a href="v1/">১</a>',
       leftOff: "এর মধ্যে সর্বজনীন খারঘর দুর্গোৎসব ম্যাপে নেই, কারণ মণ্ডপের জায়গা নিশ্চিত করা যায়নি।",
       sayTitle: "পরামর্শ",
       say: 'কোনও পুজো বাদ পড়েছে, পিন ভুল জায়গায়, বা কোনও পুজোর ইনস্টাগ্রাম পেজ জানেন? ম্যাপ নিয়ে কোনও পরামর্শ আছে? <a href="mailto:somdeepkundu@gmail.com?subject=Mumbai%20Durga%20Pujo%20Map">somdeepkundu@gmail.com</a>-এ মেল করুন, অথবা <a href="https://www.linkedin.com/in/somdeep-kundu/" target="_blank" rel="noopener">LinkedIn</a> বা <a href="https://www.instagram.com/somdeeplearning/" target="_blank" rel="noopener">Instagram</a>-এ জানান।',
@@ -2260,8 +2264,11 @@ html[lang="bn"] .tour-card h2 { font-family: var(--font-deco); font-size: 23px; 
     $("tourSkip").textContent = t("tourSkip"); $("tourSkip").hidden = i === n - 1;
     $("tourNext").textContent = i === n - 1 ? t("tourDone") : t("tourNext");
     placeTour(tourTarget(TOUR_AT[i]));
+    paintTourSound();
     $("tourNext").focus({ preventScroll: true });
   }
+  function paintTourSound() { var b = $("tourSound"); b.innerHTML = soundOn ? ICON.sound : ICON.mute; b.setAttribute("aria-pressed", String(soundOn)); b.setAttribute("aria-label", soundOn ? t("soundOff") : t("soundOn")); b.title = b.getAttribute("aria-label"); }
+  $("tourSound").addEventListener("click", function () { toggleSound(); paintTourSound(); });
   function startTour() {
     if (tour.on) return;
     if (dlg.open) { dlg.close ? dlg.close() : dlg.removeAttribute("open"); }
