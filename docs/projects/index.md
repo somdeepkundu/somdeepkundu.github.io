@@ -14,9 +14,9 @@ A selection of my geospatial and AI projects. Click any card to explore.
 
 **[Mumbai Durga Pujo Map](pujo-map.md)**
 
-115 Durga Pujos across Mumbai, Thane and Navi Mumbai, sorted nearest to you, with directions and a pandal-hopping route. In English and বাংলা, light or dark.
+115 Durga Pujos across Mumbai, Thane and Navi Mumbai, sorted nearest to you, with a walking compass, directions and a pandal-hopping route. In English and বাংলা, light or dark.
 
-`Leaflet` `deck.gl` `Geocoding` `Bilingual` `Durga Puja`
+`Leaflet` `deck.gl` `Compass` `Geocoding` `Bilingual` `Durga Puja`
 
 [View Project →](pujo-map.md){ .md-button } [Open Map →](https://somdeepkundu.github.io/pujo-map/){ .md-button }
 </div>

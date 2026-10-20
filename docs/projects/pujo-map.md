@@ -44,7 +44,7 @@ og:
 <div>
 <h1>Mumbai Durga Pujo Map</h1>
 <p class="pm-bn" lang="bn">মুম্বই দুর্গাপুজো ম্যাপ</p>
-<p class="pm-tag">115 Durga Pujos across Mumbai, Thane and Navi Mumbai. Nearest first, with directions.</p>
+<p class="pm-tag">115 Durga Pujos across Mumbai, Thane and Navi Mumbai. Nearest first, with a compass and directions.</p>
 </div>
 </div>
 
@@ -54,12 +54,20 @@ og:
 
 <div class="pm-shots" markdown>
 <figure markdown>
-![The map in English, light mode](../assets/images/pujo-map-phone-en.jpg)
-<figcaption>Pujos near IIT Bombay, with a soft glow where they cluster.</figcaption>
+![Tapping a pujo shows its neighbours' names](../assets/images/pujo-map-phone-nbrs.jpg)
+<figcaption>Tap a pujo and its neighbours' names appear beside it.</figcaption>
+</figure>
+<figure markdown>
+![The compass beam and direction arrows](../assets/images/pujo-map-phone-compass.jpg)
+<figcaption>Compass on: a beam on your blue dot, an arrow beside each pujo.</figcaption>
 </figure>
 <figure markdown>
 ![The map in Bangla, dark mode, with a pandal-hopping route](../assets/images/pujo-map-phone-bn.jpg)
 <figcaption lang="bn">বাংলায়, ডার্ক মোডে, ঠাকুর দেখার রুট সহ।</figcaption>
+</figure>
+<figure markdown>
+![The guided tour explaining the compass button](../assets/images/pujo-map-phone-tour.jpg)
+<figcaption>A guided tour, with each map button explained one by one.</figcaption>
 </figure>
 </div>
 
@@ -67,7 +75,27 @@ og:
 <div class="pm-feat" markdown>
 **Nearest first**
 
-Distances from IIT Bombay, or from you. Directions open in Google Maps for walking or by car, with each pujo's Instagram or Facebook page where it has one. Tap a pujo and its nearest neighbours' names appear beside it, or turn on pujo names for the whole map. A short guided tour opens on your first visit, in English or Bangla, and the ? button replays it. The tour opens with a short welcome and has its own mute button for the dhak. On the map-buttons step, tap Explain each button to go through them one by one. Press and hold Home to make any spot in the region your own home. Tap the compass and a beam on your blue dot shows which way you face, with a small arrow beside each pujo pointing the way to walk. If the direction drifts, draw a figure-8 with your phone.
+Distances from IIT Bombay, or from you. Directions open in Google Maps for walking or by car, with each pujo's Instagram or Facebook page where it has one.
+</div>
+<div class="pm-feat" markdown>
+**Names and neighbours**
+
+Tap a pujo and the names of its nearest neighbours appear beside it, joined by dotted lines. Or switch on pujo names for the whole map. Dots shrink as you zoom out, so the red glow of the crowded areas stays clear.
+</div>
+<div class="pm-feat" markdown>
+**Compass for walking**
+
+Tap the compass and a beam on your blue dot shows which way you face, with a small arrow beside each pujo pointing the way to walk. Drifting? Draw a figure-8 with your phone. It needs GPS, and asks you to turn it on if it is off.
+</div>
+<div class="pm-feat" markdown>
+**Your own home**
+
+Home is IIT Bombay, since the map began for the Bengali community there. Press and hold Home to make any spot in the region your home, and the distances follow. It is saved on your phone, with a one-tap reset.
+</div>
+<div class="pm-feat" markdown>
+**A guided tour**
+
+A short welcome tour opens on your first visit, in English or Bangla, and the ? button brings it back. On the map-buttons step, Explain each button goes through them one by one. Skip and mute are always on the card.
 </div>
 <div class="pm-feat" markdown>
 **Pandal-hopping route**
@@ -77,7 +105,17 @@ The shortest walk through 4 pujos close by, drawn as a calm trail, ready to open
 <div class="pm-feat" markdown>
 **Today, by the Bengali calendar**
 
-A slim 24-hour strip shows the tithi now and when the next begins, by the traditional Bengali panjika, with sunrise, sunset and the Bengali date. In English and বাংলা.
+A slim 24-hour strip shows the tithi now and when the next begins, by the traditional Bengali panjika, with sunrise, sunset and the Bengali date, in am and pm. In English and বাংলা.
+</div>
+<div class="pm-feat" markdown>
+**Light, dark and Bangla**
+
+Switch between English and বাংলা, and between light and dark. The whole map, tour and notices follow, and the dhak plays softly unless you mute it.
+</div>
+<div class="pm-feat" markdown>
+**Open data**
+
+All 115 pins are free to download as CSV or GeoJSON, with how each position was found marked as exact, venue or approximate.
 </div>
 </div>
 

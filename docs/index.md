@@ -91,7 +91,7 @@ body[data-md-color-scheme="slate"]{
       <span class="ann-body">
         <span class="ann-tag">Durga Puja 2026</span>
         <span class="ann-title">Mumbai Durga Pujo Map</span>
-        <span class="ann-sub">115 pujos, nearest first, in English and <span lang="bn">বাংলা</span></span>
+        <span class="ann-sub">115 pujos, nearest first, with a walking compass, in English and <span lang="bn">বাংলা</span></span>
       </span>
       <span class="ann-arrow">→</span>
     </a>
