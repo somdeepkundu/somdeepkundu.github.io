@@ -35,6 +35,21 @@ og:
 .md-typeset .pm-feat p strong{display:block;margin-bottom:.15rem;color:var(--pm-ink);font-size:.8rem}
 .md-typeset .pm-page .pm-foot{margin-top:1.6rem;font-size:.7rem;color:var(--pm-mute)}
 .md-typeset .pm-page a:not(.md-button){color:var(--pm-alta)}
+.pm-video{max-width:300px;margin:1.4rem auto .6rem;text-align:center}
+.md-typeset .pm-video video{display:block;width:100%;height:auto;border-radius:22px;border:1px solid var(--pm-line);box-shadow:0 14px 34px -22px rgba(60,10,15,.55);background:#1c1617}
+.md-typeset .pm-video p{margin:.55rem 0 0;max-width:none;font-size:.66rem;color:var(--pm-mute)}
+/* siuli (shiuli, night jasmine): a few blossoms drift down the page; decorative only */
+.siuli-layer{position:fixed;inset:0;z-index:1;overflow:hidden;pointer-events:none}
+.siuli{position:absolute;top:-40px;will-change:transform}
+.siuli i{display:block;will-change:transform}
+.siuli svg{display:block;width:100%;height:100%;filter:drop-shadow(0 1px 1.5px rgba(90,60,30,.35))}
+.siuli{animation:siuliFall var(--d) linear var(--l) infinite}
+.siuli i{animation:siuliSway var(--s) ease-in-out var(--l) infinite alternate}
+.siuli svg{animation:siuliSpin var(--r) linear var(--l) infinite}
+@keyframes siuliFall{from{transform:translate3d(0,-6vh,0)}to{transform:translate3d(var(--x),112vh,0)}}
+@keyframes siuliSway{from{transform:translateX(-18px)}to{transform:translateX(18px)}}
+@keyframes siuliSpin{from{transform:rotate(var(--a)) rotateY(0)}to{transform:rotate(calc(var(--a) + 360deg)) rotateY(360deg)}}
+@media (prefers-reduced-motion:reduce){.siuli-layer{display:none}}
 </style>
 
 <div class="pm-page" markdown>
@@ -51,6 +66,13 @@ og:
 [Open the map →](https://somdeepkundu.github.io/pujo-map/){ .md-button .md-button--primary }
 [Data (CSV)](https://somdeepkundu.github.io/pujo-map/mumbai-durga-pujas-2026.csv){ .md-button }
 [Data (GeoJSON)](https://somdeepkundu.github.io/pujo-map/mumbai-durga-pujas-2026.geojson){ .md-button }
+
+<div class="pm-video">
+<video controls playsinline preload="none" poster="../../assets/images/pujo-map-brag.jpg" aria-label="A 20 second tour of the Mumbai Durga Pujo Map">
+<source src="../../assets/videos/pujo-map-brag.mp4" type="video/mp4">
+</video>
+<p>The map in 20 seconds. Sound on for the dhak.</p>
+</div>
 
 <div class="pm-shots" markdown>
 <figure markdown>
@@ -103,6 +125,21 @@ A short welcome tour opens on your first visit, in English or Bangla, and the ? 
 The shortest walk through 4 pujos close by, drawn as a calm trail, ready to open in Google Maps.
 </div>
 <div class="pm-feat" markdown>
+**Highlights**
+
+A ✦ marks the oldest and most historic pujos, such as the one running since 1953, and Kumari Puja at Ramakrishna Math. The Highlights button lists just those.
+</div>
+<div class="pm-feat" markdown>
+**Share a pujo**
+
+Share sends a pujo's name, place and a Google Maps link through your phone's own share sheet, to WhatsApp or anyone.
+</div>
+<div class="pm-feat" markdown>
+**Install it, even offline**
+
+Add it to your home screen like an app. After one visit it still opens when the network is patchy between pandals, with the map tiles you have already seen.
+</div>
+<div class="pm-feat" markdown>
 **Today, by the Bengali calendar**
 
 A slim 24-hour strip shows the tithi now and when the next begins, by the traditional Bengali panjika, with sunrise, sunset and the Bengali date, in am and pm. In English and বাংলা.
@@ -123,6 +160,38 @@ All 115 pins are free to download as CSV or GeoJSON, with how each position was 
 
 <p class="pm-foot">Bengali fonts from <a href="https://github.com/fahimscirex/bangla-fonts">bangla-fonts</a>. Alpona art by <a href="https://www.instagram.com/the_nocturnal_mystic/">Parama Ghosh</a>, traced from her hand-painted alponas. Dhak sound from <a href="https://youtu.be/VksCiC7qz2c">this YouTube video</a>.</p>
 
-<p class="pm-foot">Made by <a href="https://somdeepkundu.github.io/">Somdeep Kundu</a>, IIT Bombay · Durga Puja 2026 · v1.11.1 · earlier: <a href="https://somdeepkundu.github.io/pujo-map/v1.11/">v1.11</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.10.2/">v1.10.2</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.10.1/">v1.10.1</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.10/">v1.10</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.9.3/">v1.9.3</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.9.2/">v1.9.2</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.9.1/">v1.9.1</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.9/">v1.9</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.8/">v1.8</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.7/">v1.7</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.6/">v1.6</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.5/">v1.5</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.4/">v1.4</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.3/">v1.3</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.2/">v1.2</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.1/">v1.1</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1/">v1</a></p>
+<p class="pm-foot">Made by <a href="https://somdeepkundu.github.io/">Somdeep Kundu</a>, IIT Bombay · Durga Puja 2026 · v1.11.2 · earlier: <a href="https://somdeepkundu.github.io/pujo-map/v1.11.1/">v1.11.1</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.11/">v1.11</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.10.2/">v1.10.2</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.10.1/">v1.10.1</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.10/">v1.10</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.9.3/">v1.9.3</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.9.2/">v1.9.2</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.9.1/">v1.9.1</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.9/">v1.9</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.8/">v1.8</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.7/">v1.7</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.6/">v1.6</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.5/">v1.5</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.4/">v1.4</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.3/">v1.3</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.2/">v1.2</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1.1/">v1.1</a>, <a href="https://somdeepkundu.github.io/pujo-map/v1/">v1</a></p>
 
 </div>
+
+<div class="siuli-layer" aria-hidden="true"></div>
+
+<script>
+(function(){
+  function go(){
+    var L=document.querySelector('.siuli-layer');
+    if(!L||L.dataset.on)return; L.dataset.on=1;
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    var ns='http://www.w3.org/2000/svg',n=innerWidth<700?9:16;
+    var svg='<svg viewBox="-50 -50 100 100" aria-hidden="true">';
+    for(var k=0;k<5;k++)svg+='<ellipse cx="0" cy="-24" rx="10" ry="25" transform="rotate('+(k*72)+')" fill="#fffdf8" stroke="#e8ddcb" stroke-width="1.4"/>';
+    svg+='<circle r="9" fill="#f08a2c"/><circle r="4" fill="#d96a12"/></svg>';
+    for(var i=0;i<n;i++){
+      var w=document.createElement('div'),b=document.createElement('i'),z=14+Math.random()*16;
+      w.className='siuli';
+      w.style.left=(Math.random()*100)+'vw';
+      w.style.width=w.style.height=z+'px';
+      w.style.opacity=(.55+Math.random()*.4).toFixed(2);
+      w.style.setProperty('--d',(14+Math.random()*12).toFixed(1)+'s');
+      w.style.setProperty('--l',(-Math.random()*26).toFixed(1)+'s');
+      w.style.setProperty('--s',(2.8+Math.random()*3).toFixed(1)+'s');
+      w.style.setProperty('--r',(7+Math.random()*9).toFixed(1)+'s');
+      w.style.setProperty('--a',Math.floor(Math.random()*360)+'deg');
+      w.style.setProperty('--x',(Math.random()*120-60).toFixed(0)+'px');
+      b.style.width=b.style.height='100%';
+      b.innerHTML=svg; w.appendChild(b); L.appendChild(w);
+    }
+  }
+  if(typeof document$!=='undefined')document$.subscribe(go); else if(document.readyState!=='loading')go(); else document.addEventListener('DOMContentLoaded',go);
+})();
+</script>
