@@ -74,11 +74,6 @@ og:
 <p>The map in 20 seconds. Sound on for the dhak.</p>
 </div>
 
-<div class="pm-video">
-<img src="../../assets/images/pujo-map-anatomy.gif" alt="An isometric machine: a drawer on rails clicks into three stops, peek, half and full, while a dial reads how much of the screen it covers" width="560" height="420" loading="lazy" style="width:100%;height:auto;border-radius:12px">
-<p>Anatomy of the list sheet: a drawer that clicks into peek, half and full, like the bottom sheet in the app. <a href="https://somdeepkundu.github.io/pujo-map/anatomy/">Try it interactively →</a></p>
-</div>
-
 <div class="pm-shots" markdown>
 <figure markdown>
 ![Tapping a pujo shows its neighbours' names](../assets/images/pujo-map-phone-nbrs.jpg)
