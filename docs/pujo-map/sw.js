@@ -1,6 +1,6 @@
 /* Mumbai Durga Pujo Map: keeps the app, fonts, map library and recently seen map tiles on the phone,
    so the list and map still open when the network is patchy between pandals. */
-var VERSION = "pujo-1.11.2";
+var VERSION = "pujo-1.12";
 var SHELL = VERSION + "-shell", RUNTIME = "pujo-runtime", TILES = "pujo-tiles", MAX_TILES = 400;
 var PRECACHE = ["./", "./index.html", "./manifest.webmanifest", "./icon-192.png", "./icon-512.png", "./dhak.mp3"];
 
