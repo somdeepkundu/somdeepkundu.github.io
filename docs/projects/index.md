@@ -12,7 +12,7 @@ A selection of my geospatial and AI projects. Click any card to explore.
 <div class="project-card" markdown>
 ![](../assets/images/pujo-map-card.jpg)
 
-**[Mumbai Durga Pujo Map](pujo-map.md)**
+**[Mumbai Durga Pujo Map](pujo-map.md)** · <span lang="bn">মুম্বাই পুজো পরিক্রমা</span>
 
 115 Durga Pujos across Mumbai, Thane and Navi Mumbai, sorted nearest to you, with a walking compass, directions and a pandal-hopping route. In English and বাংলা, light or dark.
 
