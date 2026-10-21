@@ -1,6 +1,6 @@
 {
-  "name": "Mumbai Durga Pujo Map",
-  "short_name": "Pujo Map",
+  "name": "\u09ae\u09c1\u09ae\u09cd\u09ac\u09be\u0987 \u09aa\u09c1\u099c\u09cb \u09aa\u09b0\u09bf\u0995\u09cd\u09b0\u09ae\u09be \u00b7 Mumbai Durga Pujo Map",
+  "short_name": "\u09aa\u09c1\u099c\u09cb \u09aa\u09b0\u09bf\u0995\u09cd\u09b0\u09ae\u09be",
   "description": "Map of Durga Pujas across Mumbai, Thane and Navi Mumbai, sorted nearest to you, with directions.",
   "start_url": "./index.html",
   "scope": "./",
