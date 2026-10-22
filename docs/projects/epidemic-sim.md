@@ -11,6 +11,19 @@ An agent-based SIR epidemic on the real map of Mumbai, Thane, Navi Mumbai and Mi
 [Open the simulator →](https://somdeepkundu.github.io/epidemic-sim/){ .md-button .md-button--primary }
 [Model code (model.js)](https://somdeepkundu.github.io/epidemic-sim/model.js){ .md-button }
 
+<div class="es-video">
+<video controls playsinline muted preload="none" poster="../../assets/images/epidemic-sim-brag.jpg" aria-label="A 17 second tour of the Mumbai Epidemic Simulator on a phone">
+<source src="../../assets/videos/epidemic-sim-brag.mp4" type="video/mp4">
+</video>
+<p>The simulator in 17 seconds: census population, commuting, and what density does to an epidemic.</p>
+</div>
+
+<style>
+.es-video{max-width:300px;margin:1.4rem auto .8rem;text-align:center}
+.md-typeset .es-video video{display:block;width:100%;height:auto;border-radius:22px;border:1px solid rgba(46,42,79,.18);box-shadow:0 14px 34px -22px rgba(46,42,79,.6);background:#F2F1F5}
+.md-typeset .es-video p{margin:.55rem 0 0;font-size:.66rem;opacity:.75}
+</style>
+
 ![The simulator: people on the Mumbai map, the epidemic curve and the semivariogram](../assets/images/epidemic-sim-card.jpg)
 
 ## What you can do
