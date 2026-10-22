@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
-<script src="model.js?v=1.1"></script>
+<script src="model.js?v=1.1.1"></script>
 <style>
 :root{--slide:#F2F1F5;--glass:rgba(250,249,252,.94);--ink:#2E2A4F;--muted:#6B6785;--rule:#DAD7E3;--alta:#2E2A4F;--on-alta:#FFFFFF;--soft:#E7E5EF;
   --S:#5B7A99;--I:#D9466F;--R:#B4B2BE;--V:#6F8F4E;--water:#E3E2EA;--shadow:0 10px 30px -18px rgba(46,42,79,.55)}
@@ -75,6 +75,7 @@ select{width:100%;font-size:14px;padding:8px;border-radius:8px;border:1px solid 
 .hud .n{font-size:13px;color:var(--muted)}
 .hud .n b{display:block;font-size:20px;line-height:1.1}
 .hud .n.s b{color:var(--S)}.hud .n.i b{color:var(--I)}.hud .n.r b{color:var(--muted)}
+.gate{width:12px;height:12px;transform:rotate(45deg);background:var(--slide);border:2px solid var(--ink)}
 .hint-click{position:absolute;z-index:550;left:50%;bottom:24px;transform:translateX(-50%);background:var(--I);color:#fff;border-radius:10px;padding:8px 14px;font-size:14px;font-weight:700;display:none}
 
 /* analysis drawer */
@@ -165,22 +166,26 @@ dialog li{margin-bottom:4px}
       <button class="btn sm" id="btnSeed">Infect on the map</button>
       <button class="btn sm" id="btnMC">Repeat 10 times</button>
     </div>
-    <p class="note">Changes apply when you press Reset.</p>
+    <p class="note">Changes apply when you press Reset. <span id="scale"></span></p>
 
     <details open><summary>The disease</summary><div id="cDisease"></div>
       <p class="note">Each range gives every person their own value between the two sliders.</p></details>
     <details open><summary>The city</summary>
       <div class="ctl"><div class="lbl">Where people live</div>
-        <select id="place"><option value="towns">Around 18 neighbourhood centres</option><option value="uniform">Evenly over all land</option></select></div>
+        <select id="place"><option value="census">Where the 2011 Census counted them</option><option value="towns">Around 18 neighbourhood centres</option><option value="uniform">Evenly over all land</option></select></div>
       <div class="ctl"><div class="lbl">Who meets whom</div>
         <select id="mode"><option value="spatial">Only people nearby</option><option value="random">Anyone in the city</option></select></div>
       <div id="cSpace"></div></details>
+    <details open><summary>Travel and migration</summary><div id="cMove"></div>
+      <p class="note">Commuters spend 9 am to 6 pm near a job centre. Nearer, larger centres are likelier (a gravity model). Travellers arrive at the main stations and the airport.</p></details>
     <details><summary>Vaccines and immunity</summary><div id="cInt"></div></details>
     <details><summary>Run settings</summary><div id="cRun"></div>
       <p class="note">The same seed and settings always give the same epidemic.</p></details>
     <details><summary>Map layers</summary>
       <label class="chk"><input type="checkbox" id="lyDots" checked> People</label>
       <label class="chk"><input type="checkbox" id="lyHeat"> Hotspots, per square kilometre</label>
+      <label class="chk"><input type="checkbox" id="lyWard"> Share infected, by ward</label>
+      <label class="chk"><input type="checkbox" id="lyHubs" checked> Job centres and arrival points</label>
       <label class="chk"><input type="checkbox" id="lyRad"> Reach of each infected person</label>
       <label class="chk"><input type="checkbox" id="sdOn" checked> Textbook SIR curve on the chart</label></details>
     <details><summary>Download</summary>
@@ -191,11 +196,12 @@ dialog li{margin-bottom:4px}
 
 <dialog id="about">
   <h1 style="font-size:20px;margin:0">Mumbai Epidemic Simulator</h1>
-  <p class="note">v1.0 · Developed by <a href="https://somdeepkundu.github.io/">Somdeep Kundu</a>, a PhD student of IIT Bombay working on Agriculture and Rural Water Management using Earth Observation and bottom-up ground data.</p>
-  <p>Each dot is one simulated person living on the real land of Mumbai, Thane and Navi Mumbai. People wander, meet others, catch the disease, recover, and may lose immunity. It is a teaching and exploration tool, not a forecast of any real disease.</p>
+  <p class="note">Version 1.1.1. Earlier versions: <a href="v1.1/">1.1</a>, <a href="v1.0/">1.0</a>.<br>Developed by <a href="https://somdeepkundu.github.io/">Somdeep Kundu</a>, a PhD student of IIT Bombay working on Agriculture and Rural Water Management using Earth Observation and bottom-up ground data.</p>
+  <p>Each dot is one simulated person, placed where the 2011 Census counted people in Mumbai, Thane, Navi Mumbai and Mira-Bhayandar. People roam near home, many travel to a job centre each working day, meet others, catch the disease, recover, and may lose immunity. It is a teaching and exploration tool, not a forecast of any real disease.</p>
   <h2>How one step works (0.1 day)</h2>
   <ol>
-    <li>Each person takes a random-walk step. Steps that would land in the sea are refused and the person turns back.</li>
+    <li>Each person moves around an anchor: home, or their workplace between 9 am and 6 pm if they commute. The offset from the anchor is a mean-reverting random walk; steps into the sea are refused.</li>
+    <li>Infected travellers arrive at stations and the airport as a Poisson stream, each infecting the nearest susceptible person there.</li>
     <li>Each infected person makes a Poisson-distributed number of contacts (mean = contacts per day × 0.1). In spatial mode each contact is a random person within the contact radius, found with a grid (cell list); in well-mixed mode it is anyone.</li>
     <li>A contact with a susceptible person infects them with the infected person's infectivity.</li>
     <li>Each infected person recovers with probability 0.1 / illness duration; recovered people lose immunity with probability 0.1 / waning days.</li>
@@ -209,11 +215,14 @@ dialog li{margin-bottom:4px}
     <li><b>Mean-field model:</b> Euler's method for the SIR ordinary differential equations.</li>
     <li><b>Semivariogram:</b> Matheron, G. (1963). Principles of geostatistics. <i>Economic Geology</i> 58, 1246–1266. Here applied to a 0/1 indicator (indicator variogram).</li>
     <li><b>Moran's I:</b> Moran, P. A. P. (1950). Notes on continuous stochastic phenomena. <i>Biometrika</i> 37, 17–23.</li>
+    <li><b>Commuting:</b> gravity model with exponential distance decay, P(job centre j) ∝ w<sub>j</sub>·e<sup>−d/β</sup>. Wilson, A. G. (1971). A family of spatial interaction models. <i>Environment and Planning A</i> 3, 1–32.</li>
+    <li><b>Placing people:</b> each 100 m land cell gets its ward's census population, split between slum and other cells by the slum share, and people are drawn in proportion.</li>
     <li><b>Random numbers:</b> Mulberry32 seeded generator, so runs are reproducible.</li>
   </ul>
   <h2>Limits</h2>
-  <p class="note">People are placed by a simple rule, not by census population density. Movement is a random walk, not real travel such as local trains. Contact radius and speed are illustrative. With few people over a large area, the spatial mode spreads slower than the well-mixed model.</p>
+  <p class="note">Populations are from 2011 and are spread evenly within each ward apart from slum clusters. The Thane outline is hand-drawn and approximate, because no open boundary was found. Job centres and their sizes are illustrative, not measured, and real travel such as the local trains is not modelled route by route. Contact radius and roaming distance are illustrative.</p>
   <h2>Data</h2>
+  <p class="note">Population: Census of India 2011, Primary Census Abstract, by BMC ward, collated in <a href="https://github.com/mickeykedia/Mumbai-Population-Map">Mumbai-Population-Map</a>; city totals for Thane, Navi Mumbai and Mira-Bhayandar from the same census. Ward, Navi Mumbai, Mira-Bhayandar and slum cluster boundaries: <a href="https://github.com/datameet/Municipal_Spatial_Data">DataMeet Municipal Spatial Data</a>, CC BY-SA 2.5 India.</p>
   <p class="note">Map tiles © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors. Land outline from OpenStreetMap and DataMeet, as used in the <a href="https://somdeepkundu.github.io/pujo-map/">Mumbai Durga Pujo Map</a>. Code under the MIT licence.</p>
   <p class="note">Ideas or bugs? Write to <a href="mailto:somdeepkundu@gmail.com?subject=Mumbai%20Epidemic%20Simulator">somdeepkundu@gmail.com</a>, or on <a href="https://www.linkedin.com/in/somdeep-kundu/">LinkedIn</a> or <a href="https://www.instagram.com/somdeeplearning/">Instagram</a>.</p>
   <form method="dialog"><button class="btn pri">Close</button></form>
@@ -231,9 +240,15 @@ var GROUPS = {
     { id: "inf", label: "Infectivity per contact", min: .01, max: .5, step: .01, lo: .05, hi: .05, range: 1 },
     { id: "dur", label: "Illness duration (days)", min: 2, max: 60, step: 1, lo: 15, hi: 15, range: 1 }],
   cSpace: [
-    { id: "N", label: "People", min: 200, max: 3000, step: 100, v: 1500 },
-    { id: "rad", label: "Contact radius (m)", min: 100, max: 5000, step: 100, v: 1500 },
-    { id: "spd", label: "Movement (km per day)", min: 0, max: 20, step: .5, v: 3 }],
+    { id: "N", label: "Simulated people", min: 500, max: 4000, step: 100, v: 2000 },
+    { id: "slum", label: "Share living in slum clusters (%)", min: 0, max: 80, step: 1, v: 42 },
+    { id: "rad", label: "Contact radius (m)", min: 100, max: 3000, step: 50, v: 500 },
+    { id: "wander", label: "How far people roam (m)", min: 50, max: 3000, step: 50, v: 400 }],
+  cMove: [
+    { id: "commute", label: "Share who travel to work (%)", min: 0, max: 80, step: 1, v: 40 },
+    { id: "commuteKm", label: "Typical commute (km)", min: 2, max: 40, step: 1, v: 10 },
+    { id: "stopDay", label: "Stop commuting from day (0 = never)", min: 0, max: 365, step: 1, v: 0 },
+    { id: "imports", label: "Infected travellers arriving per day", min: 0, max: 20, step: .5, v: 0 }],
   cInt: [
     { id: "vac", label: "Vaccinated at start (%)", min: 0, max: 90, step: 1, v: 0 },
     { id: "wan", label: "Immunity lasts (days, 0 = for ever)", min: 0, max: 720, step: 10, v: 0 }],
@@ -271,7 +286,8 @@ ALL.forEach(function (s) {
 function params() {
   return { N: num("N"), crLo: num("crLo"), crHi: num("crHi"), infLo: num("infLo"), infHi: num("infHi"),
     durLo: num("durLo"), durHi: num("durHi"), init: num("init"), vac: num("vac") / 100, wan: num("wan"),
-    rad: num("rad"), spd: num("spd"), days: num("days"), seed: num("seed"),
+    rad: num("rad"), wander: num("wander"), slum: num("slum") / 100, commute: num("commute") / 100, commuteKm: num("commuteKm"),
+    stopDay: num("stopDay"), imports: num("imports"), days: num("days"), seed: num("seed"),
     mode: $("mode").value, place: $("place").value, seedAt: M.IITB };
 }
 
@@ -314,12 +330,13 @@ map.on("move zoom resize", drawMap);
 addEventListener("resize", function () { sizeCanvas(); map.invalidateSize(); drawAll(); });
 
 // State
-var mask = null, sim = null, sd = null, mc = null, mcText = "", running = false, raf = null, lastTs = null, acc = 0, seedMode = false;
+var popData = null, wards = null, mask = null, sim = null, sd = null, mc = null, mcText = "", running = false, raf = null, lastTs = null, acc = 0, seedMode = false;
 
 function drawMap() {
   var r = document.querySelector(".stage").getBoundingClientRect();
   ctx.clearRect(0, 0, r.width, r.height);
   if (!sim) return;
+  if ($("lyWard").checked && wards) drawWards();
   var z = map.getZoom(), rad = Math.max(1.6, Math.min(5, (z - 8) * 0.9));
   if ($("lyHeat").checked) {
     var cell = 1000, gw = Math.ceil(M.WM / cell), gh = Math.ceil(M.HM / cell), cnt = new Uint16Array(gw * gh), mx = 0;
@@ -416,7 +433,7 @@ function drawSV() {
   b.forEach(function (x) { if (x.gamma == null) return; g.beginPath(); g.arc(X(x.h), Y(x.gamma), 2.6, 0, 6.2832); g.fill(); });
   var s = svData.sv, mo = svData.mo, firstG = b[0].gamma;
   var ratio = firstG != null && sill > 0 ? firstG / sill : null;
-  var verdict = mo == null ? "Too early to tell." : mo.I > 0.03 ? "Yes. People close together tend to share the same fate." : mo.I > 0.01 ? "Slightly." : "No. Infection looks scattered at random.";
+  var verdict = mo == null || svData.sv.mean < 0.03 || svData.sv.mean > 0.97 ? "Too early or too late to tell: almost everyone shares the same status." : mo.I > 0.03 ? "Yes. People close together tend to share the same fate." : mo.I > 0.01 ? "Slightly." : "No. Infection looks scattered at random.";
   $("svstats").innerHTML = "<b>" + verdict + "</b><br>" +
     "On day " + svData.day.toFixed(0) + ", " + (100 * s.mean).toFixed(0) + "% have been infected. " +
     (ratio != null ? "Neighbours within 0.5 km differ " + (100 * ratio).toFixed(0) + "% as much as two random people (the dashed line). " : "") +
@@ -428,13 +445,48 @@ function drawStats() {
   var c = sim.last, p = sim.p, ever = 0;
   for (var i = 0; i < sim.N; i++) ever += sim.ever[i];
   $("hud").innerHTML = '<span class="day">Day <b>' + sim.t.toFixed(0) + '</b> of ' + p.days + '</span><span class="n s">Susceptible<b>' + c.S + '</b></span><span class="n i">Infected<b>' + c.I + '</b></span><span class="n r">Recovered<b>' + c.R + '</b></span>';
-  $("stats").innerHTML = "At its peak, <b>" + sim.peakI + "</b> people were ill at once, on day " + sim.peakDay.toFixed(0) + ". So far <b>" + (100 * ever / p.N).toFixed(0) + "%</b> have caught it." + mcText;
+  var sc = sim.scale, big = function (n) { return sc ? " (about " + fmt(n * sc) + " people)" : ""; };
+  var travel = p.stopDay > 0 && sim.t >= p.stopDay ? " Commuting stopped on day " + p.stopDay + "." : "";
+  $("stats").innerHTML = "At its peak, <b>" + sim.peakI + "</b> dots were ill at once" + big(sim.peakI) + ", on day " + sim.peakDay.toFixed(0) + ". So far <b>" + (100 * ever / p.N).toFixed(0) + "%</b> have caught it." +
+    (sim.imported ? " " + sim.imported + " cases arrived from outside." : "") + travel + mcText;
+  $("scale").textContent = sc ? "Each dot stands for about " + fmt(sc) + " residents." : "";
+}
+function fmt(n) {
+  n = Math.round(n);
+  if (n >= 1e7) return (n / 1e7).toFixed(1) + " crore";
+  if (n >= 1e5) return (n / 1e5).toFixed(1) + " lakh";
+  return n.toLocaleString("en-IN");
+}
+var hubLayer = L.layerGroup();
+function drawHubs() {
+  hubLayer.clearLayers();
+  M.HUBS.forEach(function (h) {
+    L.circleMarker([h[2], h[1]], { radius: 4 + h[3] * 1.5, color: css("--ink"), weight: 1.5, fillColor: css("--ink"), fillOpacity: .12 }).bindTooltip(h[0] + ", job centre").addTo(hubLayer);
+  });
+  M.GATEWAYS.forEach(function (g) {
+    L.marker([g[2], g[1]], { icon: L.divIcon({ className: "gate", html: "", iconSize: [12, 12] }) }).bindTooltip(g[0] + ", arrivals").addTo(hubLayer);
+  });
+  if ($("lyHubs").checked) hubLayer.addTo(map);
+}
+$("lyHubs").onchange = function () { if (this.checked) hubLayer.addTo(map); else map.removeLayer(hubLayer); };
+function drawWards() {
+  var st = sim.zoneStats(), inkI = css("--I");
+  ctx.lineWidth = 1; ctx.strokeStyle = css("--ink");
+  wards.features.forEach(function (f) {
+    var z = f.properties.zone, n = st.n[z], share = n ? st.ever[z] / n : 0;
+    ctx.beginPath();
+    f.geometry.coordinates.forEach(function (poly) { poly.forEach(function (ring) {
+      ring.forEach(function (c, i) { var pt = map.latLngToContainerPoint([c[1], c[0]]); if (i) ctx.lineTo(pt.x, pt.y); else ctx.moveTo(pt.x, pt.y); });
+      ctx.closePath(); }); });
+    ctx.globalAlpha = n ? .08 + .55 * share : 0; ctx.fillStyle = inkI; ctx.fill("evenodd");
+    ctx.globalAlpha = .35; ctx.stroke(); ctx.globalAlpha = 1;
+  });
 }
 function drawAll() { drawMap(); drawChart(); drawSV(); drawStats(); }
 
 function reset() {
   stop();
-  sim = new M.Sim(params(), mask);
+  sim = new M.Sim(params(), mask, popData);
   sd = M.runSD(sim.p); mc = null; mcText = ""; svData = null;
   $("svstats").innerHTML = '<span class="note">The semivariogram compares people at each distance: points below the dashed line mean nearby people tend to share infection status. It updates as the epidemic runs.</span>';
   drawAll();
@@ -468,7 +520,7 @@ function showTab(sv) {
 }
 $("tabCurve").onclick = function () { showTab(false); };
 $("tabSV").onclick = function () { showTab(true); };
-["lyDots", "lyHeat", "lyRad"].forEach(function (id) { $(id).onchange = drawMap; });
+["lyDots", "lyHeat", "lyRad", "lyWard"].forEach(function (id) { $(id).onchange = drawMap; });
 $("sdOn").onchange = drawChart;
 
 $("btnSeed").onclick = function () {
@@ -489,19 +541,20 @@ $("btnMC").onclick = function () {
   stop();
   var p = sim ? sim.p : params();
   $("stats").innerHTML = "Running 10 epidemics…";
-  setTimeout(function () {
-    mc = []; var peaks = [], days = [], tot = [];
-    for (var s = 1; s <= 10; s++) {
-      var q = Object.assign({}, p, { seed: s }), r = new M.Sim(q, mask);
-      while (!r.done) r.step();
-      mc.push(r.hist); peaks.push(r.peakI); days.push(r.peakDay);
-      var e = 0; for (var i = 0; i < r.N; i++) e += r.ever[i]; tot.push(e);
-    }
-    var mn = function (a) { return Math.min.apply(null, a); }, mxx = function (a) { return Math.max.apply(null, a); }, av = function (a) { return a.reduce(function (x, y) { return x + y; }, 0) / a.length; };
-    mcText = "<br>Across 10 runs (faint lines), the peak ranged from " + mn(peaks) + " to " + mxx(peaks) + " people, between day " + mn(days).toFixed(0) + " and " + mxx(days).toFixed(0) +
-      ", and " + (100 * mn(tot) / p.N).toFixed(0) + "–" + (100 * mxx(tot) / p.N).toFixed(0) + "% caught it.";
+  mc = []; var peaks = [], days = [], tot = [], s = 1;
+  (function next() {
+    var q = Object.assign({}, p, { seed: s }), r = new M.Sim(q, mask, popData);
+    while (!r.done) r.step();
+    mc.push(r.hist); peaks.push(r.peakI); days.push(r.peakDay);
+    var e = 0; for (var i = 0; i < r.N; i++) e += r.ever[i]; tot.push(e);
+    $("stats").innerHTML = "Running epidemic " + s + " of 10…";
+    drawChart();
+    if (++s <= 10) return setTimeout(next, 0);
+    var mn = function (a) { return Math.min.apply(null, a); }, mxx = function (a) { return Math.max.apply(null, a); };
+    mcText = "<br>Across 10 runs (faint lines), the peak ranged from " + mn(peaks) + " to " + mxx(peaks) + " dots, between day " + mn(days).toFixed(0) + " and " + mxx(days).toFixed(0) +
+      ", and " + (mn(tot) === mxx(tot) ? (100 * mn(tot) / p.N).toFixed(0) : (100 * mn(tot) / p.N).toFixed(0) + "–" + (100 * mxx(tot) / p.N).toFixed(0)) + "% caught it.";
     drawChart(); drawStats();
-  }, 30);
+  })();
 };
 
 function download(name, text, type) {
@@ -532,10 +585,14 @@ $("btnAbout").onclick = function () { dlg.showModal(); };
 ALL.forEach(showVal);
 sizeCanvas();
 setTimeout(function () { map.invalidateSize(); fitMap(); sizeCanvas(); drawMap(); }, 50);
-fetch("land.geojson").then(function (r) { return r.json(); }).then(function (geo) {
-  mask = new M.LandMask(geo, 100);
+var getJSON = function (u) { return fetch(u).then(function (r) { if (!r.ok) throw new Error(u); return r.json(); }); };
+Promise.all([getJSON("land.geojson"), getJSON("population.json"), getJSON("wards.geojson")]).then(function (d) {
+  mask = new M.LandMask(d[0], 100);
+  popData = new M.Population(d[1], mask);
+  wards = d[2];
+  drawHubs();
   reset();
-}).catch(function () { $("hud").textContent = "Could not load the land outline. Open this page from a web server."; });
+}).catch(function () { $("hud").textContent = "The map data did not load. Check your connection and reload the page."; });
 })();
 </script>
 </body>
