@@ -14,9 +14,9 @@ A selection of my geospatial and AI projects. Click any card to explore.
 
 **[Mumbai Epidemic Simulator](epidemic-sim.md)**
 
-An epidemic spreading person by person across the real map of Mumbai, Thane and Navi Mumbai. Agent-based SIR with Monte Carlo runs, vaccination and waning immunity, checked against the SIR equations, with a semivariogram and Moran's I for spatial clustering.
+An epidemic spreading person by person across the real map of Mumbai, Thane and Navi Mumbai. Agent-based SIR on 2011 Census population, with commuting, arriving travellers, vaccination and Monte Carlo runs, checked against the SIR equations, with a semivariogram and Moran's I for spatial clustering.
 
-`Agent-based model` `SIR` `Monte Carlo` `Semivariogram` `Leaflet` `GeoJSON`
+`Agent-based model` `SIR` `Census 2011` `Gravity model` `Semivariogram` `Leaflet`
 
 [View Project →](epidemic-sim.md){ .md-button } [Open Simulator →](https://somdeepkundu.github.io/epidemic-sim/){ .md-button }
 </div>
