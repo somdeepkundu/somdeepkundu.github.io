@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
-<script src="model.js"></script>
+<script src="model.js?v=1.1"></script>
 <style>
 :root{--slide:#F2F1F5;--glass:rgba(250,249,252,.94);--ink:#2E2A4F;--muted:#6B6785;--rule:#DAD7E3;--alta:#2E2A4F;--on-alta:#FFFFFF;--soft:#E7E5EF;
   --S:#5B7A99;--I:#D9466F;--R:#B4B2BE;--V:#6F8F4E;--water:#E3E2EA;--shadow:0 10px 30px -18px rgba(46,42,79,.55)}
@@ -28,6 +28,9 @@ button,select,input{font:inherit;color:inherit}
 #dots{position:absolute;inset:0;pointer-events:none;z-index:450}
 .leaflet-container{font:inherit;background:var(--water)}
 .leaflet-control-attribution{font-size:10px}
+.osm{filter:grayscale(.85) contrast(.9) brightness(1.04)}
+:root[data-theme="dark"] .osm{filter:grayscale(1) invert(1) brightness(.78) contrast(.9)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .osm{filter:grayscale(1) invert(1) brightness(.78) contrast(.9)}}
 .leaflet-top.leaflet-right{top:8px;right:8px}
 
 /* control panel: a slide label floating on the map */
@@ -211,7 +214,7 @@ dialog li{margin-bottom:4px}
   <h2>Limits</h2>
   <p class="note">People are placed by a simple rule, not by census population density. Movement is a random walk, not real travel such as local trains. Contact radius and speed are illustrative. With few people over a large area, the spatial mode spreads slower than the well-mixed model.</p>
   <h2>Data</h2>
-  <p class="note">Map tiles © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, © <a href="https://carto.com/attributions">CARTO</a>. Land outline from OpenStreetMap and DataMeet, as used in the <a href="https://somdeepkundu.github.io/pujo-map/">Mumbai Durga Pujo Map</a>. Code under the MIT licence.</p>
+  <p class="note">Map tiles © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors. Land outline from OpenStreetMap and DataMeet, as used in the <a href="https://somdeepkundu.github.io/pujo-map/">Mumbai Durga Pujo Map</a>. Code under the MIT licence.</p>
   <p class="note">Ideas or bugs? Write to <a href="mailto:somdeepkundu@gmail.com?subject=Mumbai%20Epidemic%20Simulator">somdeepkundu@gmail.com</a>, or on <a href="https://www.linkedin.com/in/somdeep-kundu/">LinkedIn</a> or <a href="https://www.instagram.com/somdeeplearning/">Instagram</a>.</p>
   <form method="dialog"><button class="btn pri">Close</button></form>
 </dialog>
@@ -294,8 +297,8 @@ function fitMap() {
 var tiles = null;
 function setTiles() {
   if (tiles) map.removeLayer(tiles);
-  tiles = L.tileLayer("https://{s}.basemaps.cartocdn.com/" + (isDark() ? "dark_all" : "light_all") + "/{z}/{x}/{y}{r}.png",
-    { subdomains: "abcd", maxZoom: 18, attribution: "© OpenStreetMap contributors © CARTO" }).addTo(map);
+  tiles = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+    { maxZoom: 19, className: "osm", attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
 }
 setTiles();
 L.rectangle([[B.s, B.w], [B.n, B.e]], { color: css("--alta"), weight: 1, dashArray: "4 4", fill: false, interactive: false }).addTo(map);
