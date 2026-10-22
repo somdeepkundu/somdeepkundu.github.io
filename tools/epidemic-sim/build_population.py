@@ -138,7 +138,7 @@ def main(dm, ward_csv, out_dir):
         w = f["properties"]["name"]
         r = census[w]
         zones.append(dict(name="Ward " + w, city="Greater Mumbai", pop=int(r["TOT_P"]),
-                          workers=int(r["TOT_WORK_P"]), place=r.get("Place", "")))
+                          workers=int(r["TOT_WORK_P"]), place=r.get("Ward_Names", "")))
         shapes.append(f["geometry"])
 
     nm = {"type": "MultiPolygon", "coordinates": [f["geometry"]["coordinates"] for f in load("NMMC/NMC_ElectoralWards.geojson")["features"]]}

@@ -76,6 +76,18 @@ select{width:100%;font-size:14px;padding:8px;border-radius:8px;border:1px solid 
 .hud .n b{display:block;font-size:20px;line-height:1.1}
 .hud .n.s b{color:var(--S)}.hud .n.i b{color:var(--I)}.hud .n.r b{color:var(--muted)}
 .gate{width:12px;height:12px;transform:rotate(45deg);background:var(--slide);border:2px solid var(--ink)}
+.wleg{position:absolute;z-index:550;left:372px;top:96px;width:230px;padding:8px 12px;background:var(--glass);border:1px solid var(--rule);border-radius:10px;box-shadow:var(--shadow);font-size:12px;color:var(--muted)}
+.wleg b{display:block;color:var(--ink);font-size:13px;margin-bottom:4px}
+.wrow{display:grid;grid-template-columns:14px auto 1fr;gap:8px;align-items:center;margin:3px 0;color:var(--ink)}
+.wrow i,.dt i{display:inline-block;width:14px;height:14px;border-radius:3px}
+.wrow .rng{text-align:right;color:var(--muted)}
+.wleg .note{display:block;margin:6px 0 0;font-size:11px}
+.dt{width:100%;border-collapse:collapse;font-size:13px;margin:6px 0}
+.dt th{text-align:left;font-weight:700;color:var(--muted);padding:3px 6px 3px 0;border-bottom:1px solid var(--rule)}
+.dt td{padding:4px 6px 4px 0;border-bottom:1px solid var(--rule)}
+.dt td:first-child{display:flex;gap:6px;align-items:center}
+#insights p{margin:2px 0 6px}
+.wtip{position:absolute;z-index:570;pointer-events:none;max-width:260px;padding:8px 10px;border-radius:10px;background:var(--glass);border:1px solid var(--rule);box-shadow:var(--shadow);font-size:13px;line-height:1.4}
 .hint-click{position:absolute;z-index:550;left:50%;bottom:24px;transform:translateX(-50%);background:var(--I);color:#fff;border-radius:10px;padding:8px 14px;font-size:14px;font-weight:700;display:none}
 
 /* analysis drawer */
@@ -109,6 +121,12 @@ dialog li{margin-bottom:4px}
   .leaflet-top.leaflet-left{top:64px}
   .leaflet-top.leaflet-right{top:64px}
   .hint-click{bottom:30px}
+  .wleg{left:8px;top:auto;bottom:26px;width:168px;padding:6px 8px;font-size:11px}
+  .wleg b{font-size:12px}
+  .wleg .note{display:none}
+  .wrow{grid-template-columns:10px auto 1fr;gap:5px;margin:1px 0}
+  .wrow i{width:10px;height:10px}
+  .tab{padding:6px 8px;font-size:13px}
   body{padding-bottom:76px}
   .transport{position:fixed;z-index:900;left:0;right:0;bottom:0;margin:0;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:var(--glass);backdrop-filter:blur(8px);border-top:1px solid var(--rule)}
   .panel-head{padding-bottom:4px}
@@ -121,14 +139,17 @@ dialog li{margin-bottom:4px}
   <div id="map" aria-label="Map of Mumbai with simulated people"></div>
   <canvas id="dots" aria-hidden="true"></canvas>
   <div class="hud" id="hud" aria-live="polite"></div>
+  <div class="wleg" id="wardLegend" hidden></div>
+  <div class="wtip" id="wtip" hidden role="status"></div>
   <div class="hint-click" id="hintClick">Tap the map to infect people there</div>
 
 </div>
 
   <section class="drawer" aria-label="Results">
     <div class="tabs" role="tablist">
-      <button class="tab" role="tab" aria-selected="true" id="tabCurve">Spread over time</button>
-      <button class="tab" role="tab" aria-selected="false" id="tabSV">Is it clustered?</button>
+      <button class="tab" role="tab" aria-selected="true" id="tabCurve">Over time</button>
+      <button class="tab" role="tab" aria-selected="false" id="tabSV">Clustering</button>
+      <button class="tab" role="tab" aria-selected="false" id="tabDens">By density</button>
       <span class="sp"></span>
       <button class="btn sm" id="btnSV" hidden>Measure now</button>
     </div>
@@ -137,6 +158,7 @@ dialog li{margin-bottom:4px}
       <div class="leg"><span><i style="background:var(--S)"></i>Susceptible</span><span><i style="background:var(--I)"></i>Infected</span><span><i style="background:var(--R)"></i>Recovered</span><span><i class="dash"></i>Textbook SIR</span></div>
       <div class="stats" id="stats"></div>
     </div>
+    <div id="paneDens" hidden><div class="stats" id="insights"></div></div>
     <div id="paneSV" hidden>
       <canvas class="ch" id="svplot"></canvas>
       <div class="stats" id="svstats"></div>
@@ -181,10 +203,11 @@ dialog li{margin-bottom:4px}
     <details><summary>Vaccines and immunity</summary><div id="cInt"></div></details>
     <details><summary>Run settings</summary><div id="cRun"></div>
       <p class="note">The same seed and settings always give the same epidemic.</p></details>
-    <details><summary>Map layers</summary>
+    <details open><summary>Map layers</summary>
       <label class="chk"><input type="checkbox" id="lyDots" checked> People</label>
       <label class="chk"><input type="checkbox" id="lyHeat"> Hotspots, per square kilometre</label>
-      <label class="chk"><input type="checkbox" id="lyWard"> Share infected, by ward</label>
+      <div class="ctl"><div class="lbl">Shade each ward by</div>
+        <select id="wardMode"><option value="">Nothing</option><option value="dens">Population density (2011 Census)</option><option value="sus">Susceptible people per km², now</option><option value="inf">Share who have caught it</option></select></div>
       <label class="chk"><input type="checkbox" id="lyHubs" checked> Job centres and arrival points</label>
       <label class="chk"><input type="checkbox" id="lyRad"> Reach of each infected person</label>
       <label class="chk"><input type="checkbox" id="sdOn" checked> Textbook SIR curve on the chart</label></details>
@@ -336,7 +359,7 @@ function drawMap() {
   var r = document.querySelector(".stage").getBoundingClientRect();
   ctx.clearRect(0, 0, r.width, r.height);
   if (!sim) return;
-  if ($("lyWard").checked && wards) drawWards();
+  if ($("wardMode").value && wards) drawWards($("wardMode").value); else $("wardLegend").hidden = true;
   var z = map.getZoom(), rad = Math.max(1.6, Math.min(5, (z - 8) * 0.9));
   if ($("lyHeat").checked) {
     var cell = 1000, gw = Math.ceil(M.WM / cell), gh = Math.ceil(M.HM / cell), cnt = new Uint16Array(gw * gh), mx = 0;
@@ -469,25 +492,150 @@ function drawHubs() {
   if ($("lyHubs").checked) hubLayer.addTo(map);
 }
 $("lyHubs").onchange = function () { if (this.checked) hubLayer.addTo(map); else map.removeLayer(hubLayer); };
-function drawWards() {
-  var st = sim.zoneStats(), inkI = css("--I");
-  ctx.lineWidth = 1; ctx.strokeStyle = css("--ink");
-  wards.features.forEach(function (f) {
-    var z = f.properties.zone, n = st.n[z], share = n ? st.ever[z] / n : 0;
-    ctx.beginPath();
-    f.geometry.coordinates.forEach(function (poly) { poly.forEach(function (ring) {
-      ring.forEach(function (c, i) { var pt = map.latLngToContainerPoint([c[1], c[0]]); if (i) ctx.lineTo(pt.x, pt.y); else ctx.moveTo(pt.x, pt.y); });
-      ctx.closePath(); }); });
-    ctx.globalAlpha = n ? .08 + .55 * share : 0; ctx.fillStyle = inkI; ctx.fill("evenodd");
-    ctx.globalAlpha = .35; ctx.stroke(); ctx.globalAlpha = 1;
-  });
+// ---- Wards: area, density classes (quintiles), colours, insights ----
+var CLASS_WORDS = ["Very low", "Low", "Middle", "High", "Very high"];
+var RAMPS = {
+  dens: ["#E9E6F2", "#C3BCDB", "#9488BD", "#62559A", "#2E2A4F"],   // haematoxylin
+  sus:  ["#E6EEF5", "#BCD0E3", "#8AAECF", "#5B86B3", "#2F5A86"],   // steel
+  inf:  ["#FBE5EC", "#F4B3C6", "#E9809E", "#D9466F", "#9E1E46"]    // eosin
+};
+var W = null; // ward facts, built once data has loaded
+function wardFacts() {
+  if (W) return W;
+  var nz = popData.zones.length, km2 = new Float64Array(nz + 1), i;
+  for (i = 0; i < popData.zone.length; i++) if (popData.zone[i] && popData.cellOnLand(i)) km2[popData.zone[i]] += popData.cell * popData.cell / 1e6;
+  var dens = new Float64Array(nz + 1), ids = [];
+  for (i = 1; i <= nz; i++) if (km2[i] > 0) { dens[i] = popData.zones[i - 1].pop / km2[i]; ids.push(i); }
+  W = { km2: km2, dens: dens, ids: ids, cls: quintiles(ids, function (z) { return dens[z]; }) };
+  return W;
 }
-function drawAll() { drawMap(); drawChart(); drawSV(); drawStats(); }
+// Quintile classes: sort wards by value and split into five groups of (nearly) equal count
+function quintiles(ids, val) {
+  var sorted = ids.filter(function (z) { return val(z) != null; }).sort(function (a, b) { return val(a) - val(b); });
+  var cls = {}, breaks = [];
+  sorted.forEach(function (z, k) { cls[z] = Math.min(4, Math.floor(5 * k / sorted.length)); });
+  for (var c = 0; c < 5; c++) {
+    var inC = sorted.filter(function (z) { return cls[z] === c; });
+    breaks.push(inC.length ? [val(inC[0]), val(inC[inC.length - 1])] : null);
+  }
+  return { of: cls, breaks: breaks };
+}
+function wardValues(mode) {
+  var f = wardFacts(), st = sim.zoneStats(), sc = popData.total / sim.N, sus = new Int32Array(f.km2.length), v = {};
+  if (mode === "sus") for (var i = 0; i < sim.N; i++) if (sim.st[i] === 0) sus[sim.zone[i]]++;
+  f.ids.forEach(function (z) {
+    v[z] = mode === "dens" ? f.dens[z] : mode === "sus" ? sus[z] * sc / f.km2[z] : (st.n[z] ? st.ever[z] / st.n[z] : null);
+  });
+  return v;
+}
+function fmtVal(mode, x) { return mode === "inf" ? Math.round(100 * x) + "%" : innerWidth < 860 ? Math.round(x / 1000) + "k" : Math.round(x).toLocaleString("en-IN"); }
+var wardTip = null;
+function buildWardTips() {
+  // Invisible ward shapes catch the pointer; the label is our own box so it sits above the dots
+  var tip = $("wtip");
+  wardTip = L.geoJSON(wards, { style: { stroke: false, fill: true, fillOpacity: 0 }, interactive: true, bubblingMouseEvents: true }).addTo(map);
+  wardTip.eachLayer(function (l) {
+    var show = function (e) {
+      if (seedMode) return;
+      tip.innerHTML = wardTipText(l.feature.properties); tip.hidden = false;
+      var r = document.querySelector(".stage").getBoundingClientRect(), x = Math.min(e.containerPoint.x + 14, r.width - tip.offsetWidth - 8);
+      tip.style.left = Math.max(8, x) + "px"; tip.style.top = Math.max(8, e.containerPoint.y - tip.offsetHeight - 10) + "px";
+    };
+    l.on("mousemove", show); l.on("click", show); l.on("mouseout", function () { tip.hidden = true; });
+  });
+  map.on("movestart zoomstart", function () { tip.hidden = true; });
+}
+function wardTipText(pr) {
+  if (!sim || !popData) return pr.name;
+  var f = wardFacts(), z = pr.zone, st = sim.zoneStats(), c = f.cls.of[z];
+  var z0 = popData.zones[z - 1], place = z0.place ? " (" + z0.place + ")" : "";
+  return "<b>" + pr.name + place + "</b><br>" + Math.round(f.dens[z]).toLocaleString("en-IN") + " people per km², " + CLASS_WORDS[c].toLowerCase() + " density<br>" +
+    (st.n[z] ? Math.round(100 * st.ever[z] / st.n[z]) + "% of its " + st.n[z] + " dots have caught it" : "No dots live here");
+}
+function drawWards(mode) {
+  var f = wardFacts(), v = wardValues(mode);
+  // density uses fixed census classes; the live measures are re-ranked each frame
+  var q = mode === "dens" ? f.cls : quintiles(f.ids, function (z) { return v[z]; }), ramp = RAMPS[mode];
+  ctx.lineWidth = 1; ctx.strokeStyle = css("--slide");
+  wards.features.forEach(function (ft) {
+    var z = ft.properties.zone, c = q.of[z];
+    ctx.beginPath();
+    ft.geometry.coordinates.forEach(function (poly) { poly.forEach(function (ring) {
+      ring.forEach(function (pt, i) { var p = map.latLngToContainerPoint([pt[1], pt[0]]); if (i) ctx.lineTo(p.x, p.y); else ctx.moveTo(p.x, p.y); });
+      ctx.closePath(); }); });
+    if (c == null) return;
+    ctx.globalAlpha = .78; ctx.fillStyle = ramp[c]; ctx.fill("evenodd");
+    ctx.globalAlpha = 1; ctx.stroke();
+  });
+  var title = mode === "dens" ? "People per km², 2011 Census" : mode === "sus" ? "Susceptible people per km², day " + sim.t.toFixed(0) : "Share who have caught it, day " + sim.t.toFixed(0);
+  var rows = "";
+  for (var k = 4; k >= 0; k--) {
+    var br = q.breaks[k];
+    if (!br) continue;
+    rows += '<div class="wrow"><i style="background:' + ramp[k] + '"></i><span>' + CLASS_WORDS[k] + '</span><span class="rng">' + fmtVal(mode, br[0]) + "–" + fmtVal(mode, br[1]) + "</span></div>";
+  }
+  $("wardLegend").innerHTML = "<b>" + title + "</b>" + rows + '<span class="note">Each class holds a fifth of the wards.</span>';
+  $("wardLegend").hidden = false;
+}
+
+// Track the epidemic in each density class as it runs
+var classHist = null;
+function trackClasses() {
+  if (!popData || !sim || sim.p.place !== "census") { classHist = null; return; }
+  var f = wardFacts(), I = [0, 0, 0, 0, 0], E = [0, 0, 0, 0, 0], n = [0, 0, 0, 0, 0];
+  for (var i = 0; i < sim.N; i++) {
+    var c = f.cls.of[sim.zone[i]];
+    if (c == null) continue;
+    n[c]++; E[c] += sim.ever[i]; if (sim.st[i] === 1) I[c]++;
+  }
+  if (!classHist) classHist = { n: n, peak: [0, 0, 0, 0, 0], peakDay: [0, 0, 0, 0, 0], ever: E, half: [null, null, null, null, null] };
+  classHist.ever = E;
+  for (var c2 = 0; c2 < 5; c2++) {
+    if (I[c2] > classHist.peak[c2]) { classHist.peak[c2] = I[c2]; classHist.peakDay[c2] = sim.t; }
+    if (classHist.half[c2] == null && n[c2] && E[c2] / n[c2] >= .5) classHist.half[c2] = sim.t;
+  }
+}
+// Spearman rank correlation between ward density and ward share infected
+function spearman(xs, ys) {
+  var rank = function (a) { var idx = a.map(function (v, i) { return i; }).sort(function (i, j) { return a[i] - a[j]; }), r = []; idx.forEach(function (i, k) { r[i] = k; }); return r; };
+  var rx = rank(xs), ry = rank(ys), n = xs.length, d2 = 0;
+  for (var i = 0; i < n; i++) d2 += (rx[i] - ry[i]) * (rx[i] - ry[i]);
+  return n > 2 ? 1 - 6 * d2 / (n * (n * n - 1)) : null;
+}
+function drawInsights() {
+  var box = $("insights");
+  if (!box || $("paneDens").hidden) return;
+  if (!classHist) { box.innerHTML = '<p class="note">Choose “Where the 2011 Census counted them” under The city, then Reset, to compare wards by density.</p>'; return; }
+  var f = wardFacts(), h = classHist, st = sim.zoneStats(), sc = popData.total / sim.N;
+  var share = function (c) { return h.n[c] ? h.ever[c] / h.n[c] : 0; };
+  var xs = [], ys = [];
+  f.ids.forEach(function (z) { if (st.n[z] >= 5) { xs.push(f.dens[z]); ys.push(st.ever[z] / st.n[z]); } });
+  var rho = spearman(xs, ys), lines = [];
+  var hi = share(4), lo = share(0);
+  if (sim.t < 3) lines.push("Run the epidemic to compare wards.");
+  else {
+    if (hi > lo + .05) lines.push("The densest fifth of wards have had <b>" + Math.round(100 * hi) + "%</b> infected, against <b>" + Math.round(100 * lo) + "%</b> in the least dense fifth.");
+    else if (lo > hi + .05) lines.push("The least dense fifth of wards have had more infections (" + Math.round(100 * lo) + "%) than the densest (" + Math.round(100 * hi) + "%), so something other than density is driving spread here, such as where it started or commuting.");
+    else lines.push("So far density makes little difference: " + Math.round(100 * hi) + "% infected in the densest fifth of wards, " + Math.round(100 * lo) + "% in the least dense.");
+    var order = [0, 1, 2, 3, 4].filter(function (c) { return h.peak[c] > 0; }).sort(function (a, b) { return h.peakDay[a] - h.peakDay[b]; });
+    if (order.length >= 2 && h.peakDay[order[order.length - 1]] - h.peakDay[order[0]] >= 3)
+      lines.push(CLASS_WORDS[order[0]] + "-density wards peaked first, on day " + h.peakDay[order[0]].toFixed(0) + "; " + CLASS_WORDS[order[order.length - 1]].toLowerCase() + "-density wards last, on day " + h.peakDay[order[order.length - 1]].toFixed(0) + ".");
+    if (rho != null) lines.push("Rank correlation between ward density and share infected: <b>ρ = " + rho.toFixed(2) + "</b> across " + xs.length + " wards (" + (Math.abs(rho) < .2 ? "weak" : Math.abs(rho) < .5 ? "moderate" : "strong") + (rho >= 0 ? ", denser means more infected" : ", denser means fewer infected") + ").");
+  }
+  var rows = "";
+  for (var c = 4; c >= 0; c--) {
+    var br = f.cls.breaks[c];
+    rows += "<tr><td><i style=\"background:" + RAMPS.dens[c] + "\"></i>" + CLASS_WORDS[c] + "</td><td>" + (br ? Math.round(br[0] / 1000) + "–" + Math.round(br[1] / 1000) + "k" : "") + "</td><td>" + Math.round(100 * share(c)) + "%</td><td>" + (h.peak[c] ? h.peakDay[c].toFixed(0) : "–") + "</td><td>" + (h.peak[c] ? fmt(h.peak[c] * sc) : "–") + "</td></tr>";
+  }
+  box.innerHTML = "<p>" + lines.join(" ") + "</p><table class=\"dt\"><thead><tr><th>Density</th><th>People per km²</th><th>Caught it</th><th>Peak day</th><th>Ill at peak</th></tr></thead><tbody>" + rows + "</tbody></table>" +
+    '<p class="note">Density classes are quintiles of the 27 wards and cities by 2011 Census people per km² of land.</p>';
+}
+function drawAll() { drawMap(); drawChart(); drawSV(); drawStats(); drawInsights(); }
 
 function reset() {
   stop();
   sim = new M.Sim(params(), mask, popData);
-  sd = M.runSD(sim.p); mc = null; mcText = ""; svData = null;
+  sd = M.runSD(sim.p); mc = null; mcText = ""; svData = null; classHist = null; trackClasses();
   $("svstats").innerHTML = '<span class="note">The semivariogram compares people at each distance: points below the dashed line mean nearby people tend to share infection status. It updates as the epidemic runs.</span>';
   drawAll();
 }
@@ -498,9 +646,9 @@ function frame(ts) {
   if (lastTs === null) lastTs = ts;
   acc += Math.min(.5, (ts - lastTs) / 1000) * num("speed"); lastTs = ts;
   var n = 0;
-  while (acc >= M.DT && !sim.done && n < 300) { sim.step(); acc -= M.DT; n++; }
+  while (acc >= M.DT && !sim.done && n < 300) { sim.step(); trackClasses(); acc -= M.DT; n++; }
   if (sim.done) stop();
-  drawMap(); drawChart(); drawStats();
+  drawMap(); drawChart(); drawStats(); drawInsights();
   if (ts - lastSV > 1500 || sim.done) { lastSV = ts; computeSV(); }
   if (running) raf = requestAnimationFrame(frame);
 }
@@ -510,17 +658,18 @@ $("btnPlay").onclick = function () {
   running = true; lastTs = null; acc = 0; $("btnPlay").textContent = "Pause";
   raf = requestAnimationFrame(frame);
 };
-$("btnStep").onclick = function () { stop(); if (!sim) reset(); for (var k = 0; k < 10 && !sim.done; k++) sim.step(); drawAll(); };
+$("btnStep").onclick = function () { stop(); if (!sim) reset(); for (var k = 0; k < 10 && !sim.done; k++) { sim.step(); trackClasses(); } drawAll(); };
 $("btnReset").onclick = reset;
 $("btnSV").onclick = computeSV;
-function showTab(sv) {
-  $("tabCurve").setAttribute("aria-selected", !sv); $("tabSV").setAttribute("aria-selected", sv);
-  $("paneCurve").hidden = sv; $("paneSV").hidden = !sv; $("btnSV").hidden = !sv;
-  if (sv) { if (!svData) computeSV(); else drawSV(); } else drawChart();
+function showTab(which) {
+  ["Curve", "SV", "Dens"].forEach(function (k) { $("tab" + k).setAttribute("aria-selected", k === which); $("pane" + k).hidden = k !== which; });
+  $("btnSV").hidden = which !== "SV";
+  if (which === "SV") { if (!svData) computeSV(); else drawSV(); } else if (which === "Curve") drawChart(); else drawInsights();
 }
-$("tabCurve").onclick = function () { showTab(false); };
-$("tabSV").onclick = function () { showTab(true); };
-["lyDots", "lyHeat", "lyRad", "lyWard"].forEach(function (id) { $(id).onchange = drawMap; });
+$("tabCurve").onclick = function () { showTab("Curve"); };
+$("tabSV").onclick = function () { showTab("SV"); };
+$("tabDens").onclick = function () { showTab("Dens"); };
+["lyDots", "lyHeat", "lyRad", "wardMode"].forEach(function (id) { $(id).onchange = drawMap; });
 $("sdOn").onchange = drawChart;
 
 $("btnSeed").onclick = function () {
@@ -591,6 +740,7 @@ Promise.all([getJSON("land.geojson"), getJSON("population.json"), getJSON("wards
   popData = new M.Population(d[1], mask);
   wards = d[2];
   drawHubs();
+  buildWardTips();
   reset();
 }).catch(function () { $("hud").textContent = "The map data did not load. Check your connection and reload the page."; });
 })();
