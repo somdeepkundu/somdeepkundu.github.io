@@ -8,147 +8,183 @@
 <meta property="og:title" content="Mumbai Epidemic Simulator">
 <meta property="og:description" content="Watch an epidemic spread person by person across Mumbai. Agent-based SIR, Monte Carlo, semivariogram and Moran's I, in your browser.">
 <meta property="og:url" content="https://somdeepkundu.github.io/epidemic-sim/">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
 <script src="model.js"></script>
 <style>
-:root{--paper:#FDFBF9;--elev:#FFFFFF;--ink:#241E1F;--muted:#6F6668;--line:#ECE6E6;--alta:#B0151F;--on-alta:#fff;--tint:#FBF0F0;
-  --S:#2E9E4F;--I:#D7263D;--R:#8C8C8C;--V:#3A78C2;--land:#F5F3F0;--water:#DCE0E3}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1C1617;--elev:#251D1F;--ink:#F3ECEC;--muted:#ABA0A2;--line:#3A3033;--alta:#EA4A51;--on-alta:#1C0A0B;--tint:#2A1D1F;
-  --S:#4CC56F;--I:#FF5468;--R:#9A9A9A;--V:#6FA3E8;--water:#151A1E}}
-:root[data-theme="dark"]{--paper:#1C1617;--elev:#251D1F;--ink:#F3ECEC;--muted:#ABA0A2;--line:#3A3033;--alta:#EA4A51;--on-alta:#1C0A0B;--tint:#2A1D1F;
-  --S:#4CC56F;--I:#FF5468;--R:#9A9A9A;--V:#6FA3E8;--water:#151A1E}
+:root{--slide:#F2F1F5;--glass:rgba(250,249,252,.94);--ink:#2E2A4F;--muted:#6B6785;--rule:#DAD7E3;--alta:#2E2A4F;--on-alta:#FFFFFF;--soft:#E7E5EF;
+  --S:#5B7A99;--I:#D9466F;--R:#B4B2BE;--V:#6F8F4E;--water:#E3E2EA;--shadow:0 10px 30px -18px rgba(46,42,79,.55)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--slide:#16141F;--glass:rgba(27,25,38,.94);--ink:#E9E6F5;--muted:#A19DB8;--rule:#35314A;--alta:#C9C2F2;--on-alta:#1B1830;--soft:#25223A;
+  --S:#7FA3C7;--I:#FF6F95;--R:#6E6A82;--V:#93B86E;--water:#1B1926;--shadow:0 10px 30px -18px rgba(0,0,0,.8)}}
+:root[data-theme="dark"]{--slide:#16141F;--glass:rgba(27,25,38,.94);--ink:#E9E6F5;--muted:#A19DB8;--rule:#35314A;--alta:#C9C2F2;--on-alta:#1B1830;--soft:#25223A;
+  --S:#7FA3C7;--I:#FF6F95;--R:#6E6A82;--V:#93B86E;--water:#1B1926;--shadow:0 10px 30px -18px rgba(0,0,0,.8)}
 *{box-sizing:border-box}
-html,body{margin:0;height:100%;background:var(--paper);color:var(--ink);font:14px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}
-.app{display:grid;grid-template-columns:330px 1fr;grid-template-rows:auto 1fr;height:100vh}
-header{grid-column:1/3;display:flex;align-items:center;gap:12px;padding:8px 14px;border-bottom:1px solid var(--line);background:var(--elev);position:relative}
-header::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:5px;background:linear-gradient(var(--alta) 0 2px,transparent 2px 3px,var(--alta) 3px)}
-header h1{font-size:17px;margin:0;font-weight:650}
-header .sub{color:var(--muted);font-size:12px}
-header .sp{flex:1}
-.ib{border:1px solid var(--line);background:var(--elev);color:var(--ink);border-radius:999px;padding:5px 12px;cursor:pointer;font:inherit;font-size:13px}
-.ib:hover{border-color:var(--alta);color:var(--alta)}
-aside{overflow-y:auto;padding:12px 14px 30px;border-right:1px solid var(--line);background:var(--paper)}
-main{display:grid;grid-template-rows:1fr auto;min-height:0}
-#mapwrap{position:relative;min-height:300px}
+html,body{margin:0;height:100%;background:var(--slide);color:var(--ink);font:15px/1.5 "Atkinson Hyperlegible",system-ui,sans-serif;font-variant-numeric:tabular-nums}
+button,select,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--I);outline-offset:2px}
+.stage{position:fixed;inset:0}
 #map{position:absolute;inset:0;background:var(--water)}
 #dots{position:absolute;inset:0;pointer-events:none;z-index:450}
-.hud{position:absolute;left:56px;top:10px;z-index:500;background:var(--elev);border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:13px;box-shadow:0 6px 18px -10px rgba(0,0,0,.4)}
-.hud b{font-variant-numeric:tabular-nums}
-.hint-click{position:absolute;right:10px;top:10px;z-index:500;background:var(--alta);color:var(--on-alta);border-radius:999px;padding:5px 12px;font-size:12px;display:none}
-.bottom{display:grid;grid-template-columns:1.4fr 1fr;gap:10px;padding:10px;border-top:1px solid var(--line);background:var(--elev)}
-.card{border:1px solid var(--line);border-radius:10px;padding:8px 10px;background:var(--paper);min-width:0}
-.card h3{margin:0 0 4px;font-size:13px;font-weight:650}
-canvas.ch{width:100%;height:190px;display:block}
-h2{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:16px 0 6px;font-weight:650}
-.ctl{margin-bottom:9px}
-.lbl{display:flex;justify-content:space-between;font-size:13px}
-.lbl b{font-weight:600;font-variant-numeric:tabular-nums}
-input[type=range]{width:100%;accent-color:var(--alta);margin:2px 0 0}
-.pair{display:grid;grid-template-columns:auto 1fr auto 1fr;gap:4px;align-items:center;font-size:11px;color:var(--muted)}
-select{width:100%;font:inherit;font-size:13px;padding:5px;border-radius:8px;border:1px solid var(--line);background:var(--elev);color:var(--ink)}
-.btns{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 6px}
-.btn{border:1.5px solid var(--line);background:var(--elev);color:var(--ink);border-radius:999px;padding:6px 13px;font:inherit;font-weight:600;font-size:13px;cursor:pointer}
-.btn:hover{border-color:var(--alta);color:var(--alta)}
-.btn.pri{background:var(--alta);border-color:var(--alta);color:var(--on-alta)}
-.btn.on{background:var(--tint);border-color:var(--alta);color:var(--alta)}
-.chk{display:flex;gap:6px;align-items:center;font-size:13px;margin:4px 0}
-.note{font-size:12px;color:var(--muted)}
-.stats{font-size:13px;line-height:1.6}
-.stats b{font-variant-numeric:tabular-nums}
-.leg{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12px;color:var(--muted);margin-top:4px}
-.leg i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px;vertical-align:-1px}
-dialog{max-width:640px;width:calc(100% - 32px);border:1px solid var(--line);border-radius:14px;background:var(--elev);color:var(--ink);padding:18px 20px}
-dialog::backdrop{background:rgba(0,0,0,.45)}
-dialog h2{margin-top:14px}
-dialog a{color:var(--alta)}
-dialog li{margin-bottom:4px}
-.leaflet-container{font:inherit}
+.leaflet-container{font:inherit;background:var(--water)}
 .leaflet-control-attribution{font-size:10px}
+.leaflet-top.leaflet-right{top:8px;right:8px}
+
+/* control panel: a slide label floating on the map */
+.panel{position:fixed;z-index:600;left:16px;top:16px;bottom:16px;width:340px;display:flex;flex-direction:column;background:var(--glass);backdrop-filter:blur(8px);border:1px solid var(--rule);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+.panel-head{padding:16px 18px 12px;border-bottom:1px solid var(--rule)}
+.title{display:flex;gap:10px;align-items:flex-start}
+.title h1{font-size:21px;line-height:1.15;margin:0;font-weight:700;letter-spacing:-.01em}
+.title p{margin:3px 0 0;font-size:13px;color:var(--muted)}
+.tools{display:flex;gap:6px;margin-left:auto}
+.icon{width:32px;height:32px;border-radius:8px;border:1px solid var(--rule);background:transparent;display:grid;place-items:center;cursor:pointer}
+.icon:hover{background:var(--soft)}
+.transport{display:flex;gap:8px;margin-top:14px;align-items:center}
+.play{flex:1;height:42px;border:0;border-radius:10px;background:var(--ink);color:var(--slide);font-weight:700;font-size:15px;cursor:pointer;transition:transform .12s ease}
+.play:active,.btn:active{transform:scale(.97)}
+.btn{height:42px;padding:0 13px;border:1px solid var(--rule);border-radius:10px;background:transparent;font-weight:700;font-size:14px;cursor:pointer;transition:transform .12s ease,background .15s}
+.btn:hover{background:var(--soft)}
+.btn.on{background:var(--I);border-color:var(--I);color:#fff}
+.btn.sm{height:34px;font-size:13px}
+.panel-body{overflow-y:auto;padding:4px 18px 20px;flex:1;overscroll-behavior:contain}
+.r0{margin:12px 0 4px;padding:10px 12px;border-radius:10px;background:var(--soft);font-size:13px;color:var(--muted)}
+.r0 strong{font-size:22px;color:var(--ink);display:block;line-height:1.1}
+details{border-bottom:1px solid var(--rule);padding:4px 0}
+summary{list-style:none;cursor:pointer;padding:12px 0 8px;font-weight:700;font-size:15px;display:flex;justify-content:space-between}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--muted);font-weight:400}
+details[open] summary::after{content:"\2212"}
+.ctl{margin:0 0 12px}
+.lbl{display:flex;justify-content:space-between;gap:8px;font-size:14px}
+.lbl b{font-weight:700}
+input[type=range]{width:100%;accent-color:var(--ink);margin:4px 0 0;height:22px}
+.pair{display:grid;grid-template-columns:auto 1fr auto 1fr;gap:6px;align-items:center;font-size:12px;color:var(--muted)}
+select{width:100%;font-size:14px;padding:8px;border-radius:8px;border:1px solid var(--rule);background:var(--slide)}
+.chk{display:flex;gap:8px;align-items:center;font-size:14px;margin:6px 0}
+.chk input{accent-color:var(--I);width:16px;height:16px}
+.note{font-size:13px;color:var(--muted);margin:6px 0}
+.row{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}
+
+/* live counter on the map */
+.hud{position:absolute;z-index:550;left:372px;top:16px;display:flex;gap:18px;align-items:baseline;padding:10px 16px;background:var(--glass);border:1px solid var(--rule);border-radius:12px;box-shadow:var(--shadow)}
+.hud .day{font-size:13px;color:var(--muted)}
+.hud .day b{font-size:20px;color:var(--ink)}
+.hud .n{font-size:13px;color:var(--muted)}
+.hud .n b{display:block;font-size:20px;line-height:1.1}
+.hud .n.s b{color:var(--S)}.hud .n.i b{color:var(--I)}.hud .n.r b{color:var(--muted)}
+.hint-click{position:absolute;z-index:550;left:50%;bottom:24px;transform:translateX(-50%);background:var(--I);color:#fff;border-radius:10px;padding:8px 14px;font-size:14px;font-weight:700;display:none}
+
+/* analysis drawer */
+.drawer{position:fixed;z-index:560;right:16px;bottom:16px;width:min(560px,calc(100% - 404px));background:var(--glass);backdrop-filter:blur(8px);border:1px solid var(--rule);border-radius:14px;box-shadow:var(--shadow);padding:10px 14px 12px}
+.tabs{display:flex;gap:4px;margin-bottom:6px;align-items:center}
+.tab{border:0;background:transparent;padding:6px 10px;border-radius:8px;font-weight:700;font-size:14px;color:var(--muted);cursor:pointer}
+.tab[aria-selected="true"]{background:var(--soft);color:var(--ink)}
+.tabs .sp{flex:1}
+canvas.ch{width:100%;height:170px;display:block}
+.leg{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px;color:var(--muted);margin-top:4px}
+.leg i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+.leg .dash{width:16px;height:0;border-top:2px dashed var(--muted);border-radius:0;vertical-align:3px}
+.stats{font-size:14px;margin-top:4px}
+.stats b{font-weight:700}
+[hidden]{display:none!important}
+
+dialog{max-width:620px;width:calc(100% - 32px);border:1px solid var(--rule);border-radius:14px;background:var(--slide);color:var(--ink);padding:22px 24px;line-height:1.6}
+dialog::backdrop{background:rgba(22,20,31,.5)}
+dialog h2{font-size:16px;margin:18px 0 4px}
+dialog a{color:var(--I)}
+dialog li{margin-bottom:4px}
+
 @media (max-width:860px){
-  .app{grid-template-columns:1fr;grid-template-rows:auto auto auto;height:auto}
-  #mapwrap{height:56vh}
-  header h1{font-size:15px}
-  .hud{font-size:12px;left:50px;right:8px}
-  header{grid-column:1}
-  aside{order:3;border-right:0;border-top:1px solid var(--line);overflow:visible}
-  main{order:2;grid-template-rows:auto auto}
-  .bottom{grid-template-columns:1fr}
-  header .sub{display:none}
+  .stage{position:relative;height:62vh;height:62svh}
+  html,body{height:auto}
+  .panel{position:relative;left:auto;top:auto;bottom:auto;width:auto;margin:-18px 0 0;border-radius:18px 18px 0 0;border-left:0;border-right:0;border-bottom:0;box-shadow:0 -8px 24px -18px rgba(0,0,0,.5);backdrop-filter:none;background:var(--slide)}
+  .panel-body{overflow:visible}
+  .hud{left:10px;right:10px;top:10px;justify-content:space-between;gap:8px;padding:8px 12px}
+  .hud .day b,.hud .n b{font-size:17px}
+  .drawer{position:relative;right:auto;bottom:auto;width:auto;margin:0;border-radius:0;border-left:0;border-right:0;box-shadow:none;backdrop-filter:none;background:var(--slide)}
+  .leaflet-top.leaflet-left{top:64px}
+  .leaflet-top.leaflet-right{top:64px}
+  .hint-click{bottom:30px}
+  body{padding-bottom:76px}
+  .transport{position:fixed;z-index:900;left:0;right:0;bottom:0;margin:0;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:var(--glass);backdrop-filter:blur(8px);border-top:1px solid var(--rule)}
+  .panel-head{padding-bottom:4px}
 }
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
-<div class="app">
-<header>
-  <svg width="26" height="26" viewBox="-50 -50 100 100" aria-hidden="true"><circle r="44" fill="none" stroke="var(--alta)" stroke-width="5"/><circle r="9" fill="var(--I)"/><circle cx="24" cy="-14" r="6" fill="var(--S)"/><circle cx="-22" cy="-18" r="6" fill="var(--S)"/><circle cx="-18" cy="22" r="6" fill="var(--R)"/><circle cx="20" cy="22" r="6" fill="var(--I)"/></svg>
-  <div><h1>Mumbai Epidemic Simulator</h1><div class="sub">Agent-based SIR on the real map · Monte Carlo · spatial statistics</div></div>
-  <div class="sp"></div>
-  <button class="ib" id="btnTheme" title="Light or dark">Theme</button>
-  <button class="ib" id="btnAbout">About</button>
-</header>
+<div class="stage">
+  <div id="map" aria-label="Map of Mumbai with simulated people"></div>
+  <canvas id="dots" aria-hidden="true"></canvas>
+  <div class="hud" id="hud" aria-live="polite"></div>
+  <div class="hint-click" id="hintClick">Tap the map to infect people there</div>
 
-<aside>
-  <div class="btns">
-    <button class="btn pri" id="btnPlay">▶ Start</button>
-    <button class="btn" id="btnStep">+1 day</button>
-    <button class="btn" id="btnReset">↺ Reset</button>
-  </div>
-  <div class="btns">
-    <button class="btn" id="btnSeed" title="Click on the map to infect the nearest people">✚ Infect on map</button>
-    <button class="btn" id="btnMC">Run 10 seeds</button>
-  </div>
-  <p class="note">Change settings, then press <b>Reset</b>. R0 = contacts × infectivity × duration = <b id="R0"></b> (expected final size, well mixed: <b id="FS"></b>)</p>
+</div>
 
-  <h2>Disease</h2>
-  <div id="cDisease"></div>
-  <h2>Population &amp; space</h2>
-  <div class="ctl"><div class="lbl">Where people live</div>
-    <select id="place"><option value="towns">Clustered around 18 town centres</option><option value="uniform">Spread evenly over land</option></select></div>
-  <div class="ctl"><div class="lbl">Who meets whom</div>
-    <select id="mode"><option value="spatial">Only people nearby (spatial)</option><option value="random">Anyone in the region (well mixed)</option></select></div>
-  <div id="cSpace"></div>
-  <h2>Interventions</h2>
-  <div id="cInt"></div>
-  <h2>Run</h2>
-  <div id="cRun"></div>
-
-  <h2>Layers</h2>
-  <label class="chk"><input type="checkbox" id="lyDots" checked> People</label>
-  <label class="chk"><input type="checkbox" id="lyHeat"> Hotspots (infected per 1 km cell)</label>
-  <label class="chk"><input type="checkbox" id="lyRad"> Contact radius around infected</label>
-  <label class="chk"><input type="checkbox" id="sdOn" checked> Mean-field SIR on chart (dashed)</label>
-
-  <h2>Export</h2>
-  <div class="btns">
-    <button class="btn" id="btnCSV">Time series CSV</button>
-    <button class="btn" id="btnGeo">People GeoJSON</button>
-  </div>
-  <p class="note">Every run is reproducible: the same settings and seed always give the same epidemic.</p>
-</aside>
-
-<main>
-  <div id="mapwrap">
-    <div id="map"></div>
-    <canvas id="dots"></canvas>
-    <div class="hud" id="hud"></div>
-    <div class="hint-click" id="hintClick">Click the map to infect people there</div>
-  </div>
-  <div class="bottom">
-    <div class="card">
-      <h3>Epidemic curve</h3>
+  <section class="drawer" aria-label="Results">
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" aria-selected="true" id="tabCurve">Spread over time</button>
+      <button class="tab" role="tab" aria-selected="false" id="tabSV">Is it clustered?</button>
+      <span class="sp"></span>
+      <button class="btn sm" id="btnSV" hidden>Measure now</button>
+    </div>
+    <div id="paneCurve">
       <canvas class="ch" id="chart"></canvas>
-      <div class="leg"><span><i style="background:var(--S)"></i>Susceptible</span><span><i style="background:var(--I)"></i>Infected</span><span><i style="background:var(--R)"></i>Recovered</span><span>dashed = mean-field SIR · faint = 10 seeds</span></div>
+      <div class="leg"><span><i style="background:var(--S)"></i>Susceptible</span><span><i style="background:var(--I)"></i>Infected</span><span><i style="background:var(--R)"></i>Recovered</span><span><i class="dash"></i>Textbook SIR</span></div>
       <div class="stats" id="stats"></div>
     </div>
-    <div class="card">
-      <h3>Spatial structure <button class="btn" id="btnSV" style="float:right;padding:2px 10px;font-size:12px">Compute now</button></h3>
+    <div id="paneSV" hidden>
       <canvas class="ch" id="svplot"></canvas>
-      <div class="stats" id="svstats"><span class="note">Semivariogram of “ever infected” (1) vs not (0) by distance. Below the dashed sill = nearby people share infection status, so the epidemic is clustered.</span></div>
+      <div class="stats" id="svstats"></div>
+    </div>
+  </section>
+
+<aside class="panel" aria-label="Settings">
+  <div class="panel-head">
+    <div class="title">
+      <svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="none" stroke="var(--ink)" stroke-width="2"/><circle cx="20" cy="20" r="5" fill="var(--I)"/><circle cx="31" cy="15" r="3" fill="var(--S)"/><circle cx="10" cy="13" r="3" fill="var(--S)"/><circle cx="12" cy="28" r="3" fill="var(--R)"/><circle cx="28" cy="29" r="3" fill="var(--I)" opacity=".6"/></svg>
+      <div><h1>Mumbai Epidemic Simulator</h1><p>Watch a disease move through the city, one person at a time.</p></div>
+      <div class="tools">
+        <button class="icon" id="btnTheme" aria-label="Switch light or dark"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg></button>
+        <button class="icon" id="btnAbout" aria-label="About and methods"><svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 7v4.5M8 4.6v.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+      </div>
+    </div>
+    <div class="transport">
+      <button class="play" id="btnPlay">Start</button>
+      <button class="btn" id="btnStep" title="Advance one day">+1 day</button>
+      <button class="btn" id="btnReset" title="Start again with these settings">Reset</button>
     </div>
   </div>
-</main>
-</div>
+
+  <div class="panel-body">
+    <div class="r0"><strong id="R0"></strong>people infected by each case at the start (R0). In a fully mixed city, <span id="FS"></span> would catch it in the end.</div>
+    <div class="row">
+      <button class="btn sm" id="btnSeed">Infect on the map</button>
+      <button class="btn sm" id="btnMC">Repeat 10 times</button>
+    </div>
+    <p class="note">Changes apply when you press Reset.</p>
+
+    <details open><summary>The disease</summary><div id="cDisease"></div>
+      <p class="note">Each range gives every person their own value between the two sliders.</p></details>
+    <details open><summary>The city</summary>
+      <div class="ctl"><div class="lbl">Where people live</div>
+        <select id="place"><option value="towns">Around 18 neighbourhood centres</option><option value="uniform">Evenly over all land</option></select></div>
+      <div class="ctl"><div class="lbl">Who meets whom</div>
+        <select id="mode"><option value="spatial">Only people nearby</option><option value="random">Anyone in the city</option></select></div>
+      <div id="cSpace"></div></details>
+    <details><summary>Vaccines and immunity</summary><div id="cInt"></div></details>
+    <details><summary>Run settings</summary><div id="cRun"></div>
+      <p class="note">The same seed and settings always give the same epidemic.</p></details>
+    <details><summary>Map layers</summary>
+      <label class="chk"><input type="checkbox" id="lyDots" checked> People</label>
+      <label class="chk"><input type="checkbox" id="lyHeat"> Hotspots, per square kilometre</label>
+      <label class="chk"><input type="checkbox" id="lyRad"> Reach of each infected person</label>
+      <label class="chk"><input type="checkbox" id="sdOn" checked> Textbook SIR curve on the chart</label></details>
+    <details><summary>Download</summary>
+      <div class="row"><button class="btn sm" id="btnCSV">Daily counts (CSV)</button><button class="btn sm" id="btnGeo">People on the map (GeoJSON)</button></div>
+      <p class="note">GeoJSON opens in QGIS, kepler.gl or Python.</p></details>
+  </div>
+</aside>
 
 <dialog id="about">
   <h1 style="font-size:20px;margin:0">Mumbai Epidemic Simulator</h1>
@@ -248,8 +284,13 @@ $("btnTheme").onclick = function () {
 
 // Map
 var B = M.BOX;
-var map = L.map("map", { zoomControl: true, preferCanvas: true, minZoom: 9, zoomSnap: 0.25 }).fitBounds([[B.s, B.w], [B.n, B.e]]);
+var map = L.map("map", { zoomControl: false, preferCanvas: true, minZoom: 9, zoomSnap: 0.25 }).fitBounds([[B.s, B.w], [B.n, B.e]]);
 map.setMaxBounds([[B.s - .3, B.w - .4], [B.n + .3, B.e + .4]]);
+L.control.zoom({ position: "topright" }).addTo(map);
+function fitMap() {
+  var wide = innerWidth > 860;
+  map.fitBounds([[B.s, B.w], [B.n, B.e]], wide ? { paddingTopLeft: [372, 90], paddingBottomRight: [20, 20] } : { paddingTopLeft: [10, 70], paddingBottomRight: [10, 30] });
+}
 var tiles = null;
 function setTiles() {
   if (tiles) map.removeLayer(tiles);
@@ -257,12 +298,12 @@ function setTiles() {
     { subdomains: "abcd", maxZoom: 18, attribution: "© OpenStreetMap contributors © CARTO" }).addTo(map);
 }
 setTiles();
-L.rectangle([[B.s, B.w], [B.n, B.e]], { color: "#B0151F", weight: 1, dashArray: "4 4", fill: false, interactive: false }).addTo(map);
-L.circleMarker([M.IITB[1], M.IITB[0]], { radius: 5, color: "#B0151F", weight: 2, fillOpacity: 0, interactive: true }).bindTooltip("IIT Bombay (default first infections)").addTo(map);
+L.rectangle([[B.s, B.w], [B.n, B.e]], { color: css("--alta"), weight: 1, dashArray: "4 4", fill: false, interactive: false }).addTo(map);
+L.circleMarker([M.IITB[1], M.IITB[0]], { radius: 5, color: css("--alta"), weight: 2, fillOpacity: 0, interactive: true }).bindTooltip("IIT Bombay (default first infections)").addTo(map);
 
 var cv = $("dots"), ctx = cv.getContext("2d");
 function sizeCanvas() {
-  var r = $("mapwrap").getBoundingClientRect(), d = devicePixelRatio || 1;
+  var r = document.querySelector(".stage").getBoundingClientRect(), d = devicePixelRatio || 1;
   cv.width = r.width * d; cv.height = r.height * d; cv.style.width = r.width + "px"; cv.style.height = r.height + "px";
   ctx.setTransform(d, 0, 0, d, 0, 0);
 }
@@ -273,7 +314,7 @@ addEventListener("resize", function () { sizeCanvas(); map.invalidateSize(); dra
 var mask = null, sim = null, sd = null, mc = null, mcText = "", running = false, raf = null, lastTs = null, acc = 0, seedMode = false;
 
 function drawMap() {
-  var r = $("mapwrap").getBoundingClientRect();
+  var r = document.querySelector(".stage").getBoundingClientRect();
   ctx.clearRect(0, 0, r.width, r.height);
   if (!sim) return;
   var z = map.getZoom(), rad = Math.max(1.6, Math.min(5, (z - 8) * 0.9));
@@ -286,7 +327,7 @@ function drawMap() {
     if (mx) for (var c = 0; c < cnt.length; c++) if (cnt[c]) {
       var cx = (c % gw) * cell, cy = Math.floor(c / gw) * cell, a = M.toLL(cx, cy), b2 = M.toLL(cx + cell, cy + cell);
       var p1 = map.latLngToContainerPoint([a[1], a[0]]), p2 = map.latLngToContainerPoint([b2[1], b2[0]]);
-      ctx.fillStyle = "rgba(215,38,61," + (0.15 + 0.6 * cnt[c] / mx).toFixed(2) + ")";
+      ctx.fillStyle = "rgba(217,70,111," + (0.15 + 0.6 * cnt[c] / mx).toFixed(2) + ")";
       ctx.fillRect(p1.x, p2.y, p2.x - p1.x, p1.y - p2.y);
     }
   }
@@ -320,7 +361,7 @@ function setupCanvas(c) {
   return { g: g, w: w, h: h };
 }
 function axes(g, w, h, m, xMax, yMax, xl) {
-  g.font = "11px system-ui"; g.fillStyle = css("--muted"); g.strokeStyle = css("--line"); g.lineWidth = 1;
+  g.font = "12px 'Atkinson Hyperlegible', system-ui, sans-serif"; g.fillStyle = css("--muted"); g.strokeStyle = css("--rule"); g.lineWidth = 1;
   for (var i = 0; i <= 4; i++) {
     var y = h - m.b - i * (h - m.t - m.b) / 4;
     g.beginPath(); g.moveTo(m.l, y); g.lineTo(w - m.r, y); g.stroke();
@@ -330,7 +371,7 @@ function axes(g, w, h, m, xMax, yMax, xl) {
   g.fillText(xl, w - m.r - 60, h - 2);
 }
 function drawChart() {
-  var o = setupCanvas($("chart")), g = o.g, w = o.w, h = o.h, m = { l: 38, r: 8, t: 8, b: 26 };
+  var o = setupCanvas($("chart")), g = o.g, w = o.w, h = o.h, m = { l: 38, r: 20, t: 8, b: 26 };
   g.clearRect(0, 0, w, h);
   var p = sim ? sim.p : params(), xMax = p.days, yMax = p.N;
   axes(g, w, h, m, xMax, yMax, "days");
@@ -357,7 +398,7 @@ function computeSV() {
   drawSV();
 }
 function drawSV() {
-  var o = setupCanvas($("svplot")), g = o.g, w = o.w, h = o.h, m = { l: 38, r: 8, t: 8, b: 26 };
+  var o = setupCanvas($("svplot")), g = o.g, w = o.w, h = o.h, m = { l: 38, r: 20, t: 8, b: 26 };
   g.clearRect(0, 0, w, h);
   if (!svData) { axes(g, w, h, m, 12, .25, "lag (km)"); return; }
   var b = svData.sv.bins, sill = svData.sv.sill, yMax = Math.max(.05, sill * 1.4);
@@ -365,24 +406,26 @@ function drawSV() {
   axes(g, w, h, m, svData.maxLag / 1000, yMax, "lag (km)");
   var X = function (v) { return m.l + v / svData.maxLag * (w - m.l - m.r); }, Y = function (v) { return h - m.b - v / yMax * (h - m.t - m.b); };
   g.strokeStyle = css("--muted"); g.setLineDash([5, 4]); g.beginPath(); g.moveTo(m.l, Y(sill)); g.lineTo(w - m.r, Y(sill)); g.stroke(); g.setLineDash([]);
-  g.strokeStyle = css("--alta"); g.fillStyle = css("--alta"); g.lineWidth = 2; g.beginPath();
+  g.strokeStyle = css("--I"); g.fillStyle = css("--I"); g.lineWidth = 2; g.beginPath();
   var first = true;
   b.forEach(function (x) { if (x.gamma == null) return; var px = X(x.h), py = Y(x.gamma); if (first) { g.moveTo(px, py); first = false; } else g.lineTo(px, py); });
   g.stroke();
   b.forEach(function (x) { if (x.gamma == null) return; g.beginPath(); g.arc(X(x.h), Y(x.gamma), 2.6, 0, 6.2832); g.fill(); });
   var s = svData.sv, mo = svData.mo, firstG = b[0].gamma;
   var ratio = firstG != null && sill > 0 ? firstG / sill : null;
-  $("svstats").innerHTML = "Day <b>" + svData.day.toFixed(1) + "</b> · share ever infected <b>" + (100 * s.mean).toFixed(1) + "%</b> · sill p(1−p) = <b>" + sill.toFixed(3) + "</b><br>" +
-    (ratio != null ? "γ at 0.5 km is <b>" + (100 * ratio).toFixed(0) + "%</b> of the sill (lower = more clustered). " : "") +
-    (mo ? "Moran's I (" + (sim.p.mode === "spatial" ? sim.p.rad : 1500) + " m) = <b>" + mo.I.toFixed(3) + "</b> (random ≈ " + mo.expected.toFixed(3) + ")" : "Moran's I: not defined yet");
+  var verdict = mo == null ? "Too early to tell." : mo.I > 0.03 ? "Yes. People close together tend to share the same fate." : mo.I > 0.01 ? "Slightly." : "No. Infection looks scattered at random.";
+  $("svstats").innerHTML = "<b>" + verdict + "</b><br>" +
+    "On day " + svData.day.toFixed(0) + ", " + (100 * s.mean).toFixed(0) + "% have been infected. " +
+    (ratio != null ? "Neighbours within 0.5 km differ " + (100 * ratio).toFixed(0) + "% as much as two random people (the dashed line). " : "") +
+    (mo ? "Moran's I is " + mo.I.toFixed(3) + ", against " + mo.expected.toFixed(3) + " for no clustering." : "");
 }
 
 function drawStats() {
   if (!sim) return;
   var c = sim.last, p = sim.p, ever = 0;
   for (var i = 0; i < sim.N; i++) ever += sim.ever[i];
-  $("hud").innerHTML = "Day <b>" + sim.t.toFixed(1) + "</b> / " + p.days + " · <span style='color:var(--S)'>S <b>" + c.S + "</b></span> · <span style='color:var(--I)'>I <b>" + c.I + "</b></span> · <span style='color:var(--R)'>R <b>" + c.R + "</b></span>" + (sim.done ? " · finished" : c.I === 0 ? " · no one infected" : "");
-  $("stats").innerHTML = "Peak <b>" + sim.peakI + "</b> infected on day <b>" + sim.peakDay.toFixed(1) + "</b> · ever infected <b>" + ever + "</b> of " + p.N + " (" + (100 * ever / p.N).toFixed(1) + "%)" + mcText;
+  $("hud").innerHTML = '<span class="day">Day <b>' + sim.t.toFixed(0) + '</b> of ' + p.days + '</span><span class="n s">Susceptible<b>' + c.S + '</b></span><span class="n i">Infected<b>' + c.I + '</b></span><span class="n r">Recovered<b>' + c.R + '</b></span>';
+  $("stats").innerHTML = "At its peak, <b>" + sim.peakI + "</b> people were ill at once, on day " + sim.peakDay.toFixed(0) + ". So far <b>" + (100 * ever / p.N).toFixed(0) + "%</b> have caught it." + mcText;
 }
 function drawAll() { drawMap(); drawChart(); drawSV(); drawStats(); }
 
@@ -390,10 +433,10 @@ function reset() {
   stop();
   sim = new M.Sim(params(), mask);
   sd = M.runSD(sim.p); mc = null; mcText = ""; svData = null;
-  $("svstats").innerHTML = '<span class="note">Semivariogram of “ever infected” (1) vs not (0) by distance. Below the dashed sill = nearby people share infection status, so the epidemic is clustered.</span>';
+  $("svstats").innerHTML = '<span class="note">The semivariogram compares people at each distance: points below the dashed line mean nearby people tend to share infection status. It updates as the epidemic runs.</span>';
   drawAll();
 }
-function stop() { running = false; if (raf) cancelAnimationFrame(raf); raf = null; $("btnPlay").textContent = "▶ Start"; }
+function stop() { running = false; if (raf) cancelAnimationFrame(raf); raf = null; $("btnPlay").textContent = sim && sim.done ? "Run again" : (sim && sim.stepNo ? "Continue" : "Start"); }
 var lastSV = 0;
 function frame(ts) {
   if (!running) return;
@@ -409,12 +452,19 @@ function frame(ts) {
 $("btnPlay").onclick = function () {
   if (running) return stop();
   if (!sim || sim.done) reset();
-  running = true; lastTs = null; acc = 0; $("btnPlay").textContent = "❚❚ Pause";
+  running = true; lastTs = null; acc = 0; $("btnPlay").textContent = "Pause";
   raf = requestAnimationFrame(frame);
 };
 $("btnStep").onclick = function () { stop(); if (!sim) reset(); for (var k = 0; k < 10 && !sim.done; k++) sim.step(); drawAll(); };
 $("btnReset").onclick = reset;
 $("btnSV").onclick = computeSV;
+function showTab(sv) {
+  $("tabCurve").setAttribute("aria-selected", !sv); $("tabSV").setAttribute("aria-selected", sv);
+  $("paneCurve").hidden = sv; $("paneSV").hidden = !sv; $("btnSV").hidden = !sv;
+  if (sv) { if (!svData) computeSV(); else drawSV(); } else drawChart();
+}
+$("tabCurve").onclick = function () { showTab(false); };
+$("tabSV").onclick = function () { showTab(true); };
 ["lyDots", "lyHeat", "lyRad"].forEach(function (id) { $(id).onchange = drawMap; });
 $("sdOn").onchange = drawChart;
 
@@ -435,7 +485,7 @@ map.on("click", function (e) {
 $("btnMC").onclick = function () {
   stop();
   var p = sim ? sim.p : params();
-  $("stats").innerHTML = "Running 10 seeds…";
+  $("stats").innerHTML = "Running 10 epidemics…";
   setTimeout(function () {
     mc = []; var peaks = [], days = [], tot = [];
     for (var s = 1; s <= 10; s++) {
@@ -445,8 +495,8 @@ $("btnMC").onclick = function () {
       var e = 0; for (var i = 0; i < r.N; i++) e += r.ever[i]; tot.push(e);
     }
     var mn = function (a) { return Math.min.apply(null, a); }, mxx = function (a) { return Math.max.apply(null, a); }, av = function (a) { return a.reduce(function (x, y) { return x + y; }, 0) / a.length; };
-    mcText = "<br><b>10 seeds:</b> peak " + mn(peaks) + "–" + mxx(peaks) + " (mean " + av(peaks).toFixed(0) + ") on day " + mn(days).toFixed(0) + "–" + mxx(days).toFixed(0) +
-      " · ever infected " + mn(tot) + "–" + mxx(tot) + " (mean " + (100 * av(tot) / p.N).toFixed(1) + "%)";
+    mcText = "<br>Across 10 runs (faint lines), the peak ranged from " + mn(peaks) + " to " + mxx(peaks) + " people, between day " + mn(days).toFixed(0) + " and " + mxx(days).toFixed(0) +
+      ", and " + (100 * mn(tot) / p.N).toFixed(0) + "–" + (100 * mxx(tot) / p.N).toFixed(0) + "% caught it.";
     drawChart(); drawStats();
   }, 30);
 };
@@ -478,7 +528,7 @@ $("btnAbout").onclick = function () { dlg.showModal(); };
 
 ALL.forEach(showVal);
 sizeCanvas();
-setTimeout(function () { map.invalidateSize(); map.fitBounds([[B.s, B.w], [B.n, B.e]], { padding: [10, 10] }); sizeCanvas(); drawMap(); }, 50);
+setTimeout(function () { map.invalidateSize(); fitMap(); sizeCanvas(); drawMap(); }, 50);
 fetch("land.geojson").then(function (r) { return r.json(); }).then(function (geo) {
   mask = new M.LandMask(geo, 100);
   reset();
