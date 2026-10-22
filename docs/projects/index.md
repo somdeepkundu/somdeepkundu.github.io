@@ -10,6 +10,18 @@ A selection of my geospatial and AI projects. Click any card to explore.
 <div class="grid" markdown>
 
 <div class="project-card" markdown>
+![](../assets/images/epidemic-sim-card.jpg)
+
+**[Mumbai Epidemic Simulator](epidemic-sim.md)**
+
+An epidemic spreading person by person across the real map of Mumbai, Thane and Navi Mumbai. Agent-based SIR with Monte Carlo runs, vaccination and waning immunity, checked against the SIR equations, with a semivariogram and Moran's I for spatial clustering.
+
+`Agent-based model` `SIR` `Monte Carlo` `Semivariogram` `Leaflet` `GeoJSON`
+
+[View Project →](epidemic-sim.md){ .md-button } [Open Simulator →](https://somdeepkundu.github.io/epidemic-sim/){ .md-button }
+</div>
+
+<div class="project-card" markdown>
 ![](../assets/images/pujo-map-card.jpg)
 
 **[Mumbai Durga Pujo Map](pujo-map.md)** · <span lang="bn">মুম্বাই পুজো পরিক্রমা</span>
