@@ -16,11 +16,11 @@ An agent-based SIR epidemic on the real land of Mumbai, Thane and Navi Mumbai. E
 ## What you can do
 
 - **Watch it spread on the map.** People live clustered around 18 town centres or spread evenly over land, and never walk into the sea. Turn on 1 km hotspots or each infected person's contact radius.
-- **Start it anywhere.** The first cases begin at IIT Bombay; press *Infect on map* and click any place to add cases there.
+- **Start it anywhere.** The first cases begin at IIT Bombay; press *Infect on the map* and tap any place to add cases there.
 - **Nearby or well mixed.** Spatial mode passes the disease only to people within the contact radius. Well-mixed mode lets anyone meet anyone, as in the textbook SIR model.
 - **Different people, different values.** Contacts per day, infectivity and illness duration each take a min–max range, and every person draws their own value.
 - **Interventions.** Vaccinate a share of people at the start, or let immunity wane so the epidemic can return (SIRS).
-- **Monte Carlo.** Run 10 seeds and see how much chance alone changes the peak and its timing. Every run is reproducible from its seed.
+- **Monte Carlo.** Press *Repeat 10 times* and see how much chance alone changes the peak and its timing. Every run is reproducible from its seed.
 - **Spatial statistics.** An indicator semivariogram and Moran's I of “ever infected” show whether neighbours share infection status.
 - **Export.** The epidemic curve as CSV, and every person's position and state as GeoJSON for QGIS or Python.
 
