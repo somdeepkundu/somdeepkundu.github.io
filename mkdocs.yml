@@ -80,6 +80,7 @@ nav:
     - "Alok Kriti 2.0": projects/alok-kriti.md
     - "NFHS Data Analysis": projects/nfhs-analysis.md
     - "Spatial Process Modelling": projects/spatial-modelling.md
+    - "Mumbai Epidemic Simulator": projects/epidemic-sim.md
     # HOW TO ADD A NEW PROJECT:
     # 1. Create markdown file: docs/projects/your-project-name.md
     # 2. Add line in nav above with your project title and file path
