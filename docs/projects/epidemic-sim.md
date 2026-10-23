@@ -34,7 +34,7 @@ An agent-based SIR epidemic on the real map of Mumbai, Thane, Navi Mumbai and Mi
 - **Start it anywhere.** The first cases begin at IIT Bombay; press *Infect on the map* and tap any place to add cases there.
 - **Nearby or well mixed.** Spatial mode passes the disease only to people within the contact radius. Well-mixed mode lets anyone meet anyone, as in the textbook SIR model.
 - **Different people, different values.** Contacts per day, infectivity and illness duration each take a min–max range, and every person draws their own value.
-- **Interventions.** Vaccinate a share of people at the start, or let immunity wane so the epidemic can return (SIRS).
+- **Vaccination, dose by dose.** Set how many people get a first dose, a second dose and a booster, how much each protects, when the campaign starts, how fast each round goes, the gap between doses and how fast protection fades. Vaccinate everyone at random, the most crowded wards first, or commuters first. Immunity after infection can also wane, so the epidemic can return (SIRS).
 - **Monte Carlo.** Press *Repeat 10 times* and see how much chance alone changes the peak and its timing. Every run is reproducible from its seed.
 - **Spatial statistics.** An indicator semivariogram and Moran's I of “ever infected” show whether neighbours share infection status.
 - **Export.** The epidemic curve as CSV, and every person's position and state as GeoJSON for QGIS or Python.
@@ -53,6 +53,7 @@ An agent-based SIR epidemic on the real map of Mumbai, Thane, Navi Mumbai and Mi
 | Population | Ward census counts spread over 100 m land cells, split between slum and other cells | Census of India 2011; DataMeet |
 | Commuting | Gravity model, P(job centre j) ∝ w<sub>j</sub>·e<sup>−d/β</sup> | Wilson (1971), *Environment and Planning A* 3 |
 | Arrivals | Poisson stream of infected travellers at stations and the airport | — |
+| Vaccination | Leaky vaccine: each dose cuts the chance of infection per contact; optional exponential waning | — |
 | Clustering | Indicator semivariogram, Matheron estimator | Matheron (1963), *Economic Geology* 58 |
 | Clustering | Global Moran's I with distance-band weights | Moran (1950), *Biometrika* 37 |
 
@@ -66,4 +67,4 @@ This is a teaching and exploration tool, not a forecast. Populations are from 20
 
 Ward populations from the Census of India 2011 Primary Census Abstract, collated by ward in [Mumbai-Population-Map](https://github.com/mickeykedia/Mumbai-Population-Map). Ward, Navi Mumbai, Mira-Bhayandar and slum cluster boundaries from [DataMeet Municipal Spatial Data](https://github.com/datameet/Municipal_Spatial_Data), CC BY-SA 2.5 India. The script that builds the population grid is in `tools/epidemic-sim/` in this site's repository.
 
-<p style="font-size:.7rem;opacity:.75">Made by <a href="https://somdeepkundu.github.io/">Somdeep Kundu</a>, a PhD student of IIT Bombay working on Agriculture and Rural Water Management using Earth Observation and bottom-up ground data. Ideas or bugs? Write to <a href="mailto:somdeepkundu@gmail.com?subject=Mumbai%20Epidemic%20Simulator">somdeepkundu@gmail.com</a>. Map © OpenStreetMap contributors. Code under the MIT licence. Version 1.1.1 · earlier: <a href="https://somdeepkundu.github.io/epidemic-sim/v1.1/">v1.1</a>, <a href="https://somdeepkundu.github.io/epidemic-sim/v1.0/">v1.0</a></p>
+<p style="font-size:.7rem;opacity:.75">Made by <a href="https://somdeepkundu.github.io/">Somdeep Kundu</a>, a PhD student of IIT Bombay working on Agriculture and Rural Water Management using Earth Observation and bottom-up ground data. Ideas or bugs? Write to <a href="mailto:somdeepkundu@gmail.com?subject=Mumbai%20Epidemic%20Simulator">somdeepkundu@gmail.com</a>. Map © OpenStreetMap contributors. Code under the MIT licence. Version 1.2 · earlier: <a href="https://somdeepkundu.github.io/epidemic-sim/v1.1.1/">v1.1.1</a>, <a href="https://somdeepkundu.github.io/epidemic-sim/v1.1/">v1.1</a>, <a href="https://somdeepkundu.github.io/epidemic-sim/v1.0/">v1.0</a></p>

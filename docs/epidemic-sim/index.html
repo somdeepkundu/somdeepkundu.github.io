@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
-<script src="model.js?v=1.1.1"></script>
+<script src="model.js?v=1.2"></script>
 <style>
 :root{--slide:#F2F1F5;--glass:rgba(250,249,252,.94);--ink:#2E2A4F;--muted:#6B6785;--rule:#DAD7E3;--alta:#2E2A4F;--on-alta:#FFFFFF;--soft:#E7E5EF;
   --S:#5B7A99;--I:#D9466F;--R:#B4B2BE;--V:#6F8F4E;--water:#E3E2EA;--shadow:0 10px 30px -18px rgba(46,42,79,.55)}
@@ -74,7 +74,7 @@ select{width:100%;font-size:14px;padding:8px;border-radius:8px;border:1px solid 
 .hud .day b{font-size:20px;color:var(--ink)}
 .hud .n{font-size:13px;color:var(--muted)}
 .hud .n b{display:block;font-size:20px;line-height:1.1}
-.hud .n.s b{color:var(--S)}.hud .n.i b{color:var(--I)}.hud .n.r b{color:var(--muted)}
+.hud .n.v b{color:var(--V)}.hud .n.s b{color:var(--S)}.hud .n.i b{color:var(--I)}.hud .n.r b{color:var(--muted)}
 .gate{width:12px;height:12px;transform:rotate(45deg);background:var(--slide);border:2px solid var(--ink)}
 .wleg{position:absolute;z-index:550;left:372px;top:96px;width:230px;padding:8px 12px;background:var(--glass);border:1px solid var(--rule);border-radius:10px;box-shadow:var(--shadow);font-size:12px;color:var(--muted)}
 .wleg b{display:block;color:var(--ink);font-size:13px;margin-bottom:4px}
@@ -117,6 +117,7 @@ dialog li{margin-bottom:4px}
   .panel-body{overflow:visible}
   .hud{left:10px;right:10px;top:10px;justify-content:space-between;gap:8px;padding:8px 12px}
   .hud .day b,.hud .n b{font-size:17px}
+  .hud{gap:4px}.hud .n,.hud .day{font-size:11px}
   .drawer{position:relative;right:auto;bottom:auto;width:auto;margin:0;border-radius:0;border-left:0;border-right:0;box-shadow:none;backdrop-filter:none;background:var(--slide)}
   .leaflet-top.leaflet-left{top:64px}
   .leaflet-top.leaflet-right{top:64px}
@@ -155,7 +156,7 @@ dialog li{margin-bottom:4px}
     </div>
     <div id="paneCurve">
       <canvas class="ch" id="chart"></canvas>
-      <div class="leg"><span><i style="background:var(--S)"></i>Susceptible</span><span><i style="background:var(--I)"></i>Infected</span><span><i style="background:var(--R)"></i>Recovered</span><span><i class="dash"></i>Textbook SIR</span></div>
+      <div class="leg"><span><i style="background:var(--S)"></i>Susceptible</span><span><i style="background:var(--I)"></i>Infected</span><span><i style="background:var(--R)"></i>Recovered</span><span><i class="dash"></i>Textbook SIR</span><span id="legV" hidden><i style="background:var(--V)"></i>One dose (faint), two doses</span></div>
       <div class="stats" id="stats"></div>
     </div>
     <div id="paneDens" hidden><div class="stats" id="insights"></div></div>
@@ -200,7 +201,10 @@ dialog li{margin-bottom:4px}
       <div id="cSpace"></div></details>
     <details open><summary>Travel and migration</summary><div id="cMove"></div>
       <p class="note">Commuters spend 9 am to 6 pm near a job centre. Nearer, larger centres are likelier (a gravity model). Travellers arrive at the main stations and the airport.</p></details>
-    <details><summary>Vaccines and immunity</summary><div id="cInt"></div></details>
+    <details><summary>Vaccines and immunity</summary><div id="cInt"></div>
+      <div class="ctl"><div class="lbl">Who gets vaccinated first</div>
+        <select id="vOrder"><option value="random">Everyone equally, at random</option><option value="dense">The most crowded wards first</option><option value="commuters">People who travel to work first</option></select></div>
+      <p class="note">Protection is the cut in a vaccinated person's chance of catching it from each contact. Doses are skipped for anyone ill on the day. Set the first-dose share to 0 for no vaccine.</p></details>
     <details><summary>Run settings</summary><div id="cRun"></div>
       <p class="note">The same seed and settings always give the same epidemic.</p></details>
     <details open><summary>Map layers</summary>
@@ -219,7 +223,7 @@ dialog li{margin-bottom:4px}
 
 <dialog id="about">
   <h1 style="font-size:20px;margin:0">Mumbai Epidemic Simulator</h1>
-  <p class="note">Version 1.1.1. Earlier versions: <a href="v1.1/">1.1</a>, <a href="v1.0/">1.0</a>.<br>Developed by <a href="https://somdeepkundu.github.io/">Somdeep Kundu</a>, a PhD student of IIT Bombay working on Agriculture and Rural Water Management using Earth Observation and bottom-up ground data.</p>
+  <p class="note">Version 1.2. Earlier versions: <a href="v1.1.1/">1.1.1</a>, <a href="v1.1/">1.1</a>, <a href="v1.0/">1.0</a>.<br>Developed by <a href="https://somdeepkundu.github.io/">Somdeep Kundu</a>, a PhD student of IIT Bombay working on Agriculture and Rural Water Management using Earth Observation and bottom-up ground data.</p>
   <p>Each dot is one simulated person, placed where the 2011 Census counted people in Mumbai, Thane, Navi Mumbai and Mira-Bhayandar. People roam near home, many travel to a job centre each working day, meet others, catch the disease, recover, and may lose immunity. It is a teaching and exploration tool, not a forecast of any real disease.</p>
   <h2>How one step works (0.1 day)</h2>
   <ol>
@@ -239,6 +243,7 @@ dialog li{margin-bottom:4px}
     <li><b>Semivariogram:</b> Matheron, G. (1963). Principles of geostatistics. <i>Economic Geology</i> 58, 1246–1266. Here applied to a 0/1 indicator (indicator variogram).</li>
     <li><b>Moran's I:</b> Moran, P. A. P. (1950). Notes on continuous stochastic phenomena. <i>Biometrika</i> 37, 17–23.</li>
     <li><b>Commuting:</b> gravity model with exponential distance decay, P(job centre j) ∝ w<sub>j</sub>·e<sup>−d/β</sup>. Wilson, A. G. (1971). A family of spatial interaction models. <i>Environment and Planning A</i> 3, 1–32.</li>
+    <li><b>Vaccination:</b> a “leaky” vaccine. Each dose lowers a person's chance of infection per contact by its protection, optionally halving over time (exponential waning). Up to three rounds, each rolled out evenly over a set number of days, in a chosen priority order.</li>
     <li><b>Placing people:</b> each 100 m land cell gets its ward's census population, split between slum and other cells by the slum share, and people are drawn in proportion.</li>
     <li><b>Random numbers:</b> Mulberry32 seeded generator, so runs are reproducible.</li>
   </ul>
@@ -273,8 +278,17 @@ var GROUPS = {
     { id: "stopDay", label: "Stop commuting from day (0 = never)", min: 0, max: 365, step: 1, v: 0 },
     { id: "imports", label: "Infected travellers arriving per day", min: 0, max: 20, step: .5, v: 0 }],
   cInt: [
-    { id: "vac", label: "Vaccinated at start (%)", min: 0, max: 90, step: 1, v: 0 },
-    { id: "wan", label: "Immunity lasts (days, 0 = for ever)", min: 0, max: 720, step: 10, v: 0 }],
+    { id: "v1", label: "First dose: share of people (%)", min: 0, max: 100, step: 1, v: 0 },
+    { id: "e1", label: "First dose: protection (%)", min: 0, max: 100, step: 1, v: 50 },
+    { id: "v2", label: "Second dose: share of first-dose people (%)", min: 0, max: 100, step: 1, v: 80 },
+    { id: "e2", label: "After second dose: protection (%)", min: 0, max: 100, step: 1, v: 85 },
+    { id: "v3", label: "Booster: share of second-dose people (%)", min: 0, max: 100, step: 1, v: 0 },
+    { id: "e3", label: "After booster: protection (%)", min: 0, max: 100, step: 1, v: 92 },
+    { id: "vStart", label: "Campaign starts on day", min: 0, max: 365, step: 1, v: 0 },
+    { id: "vRoll", label: "Days to give each round", min: 0, max: 180, step: 1, v: 30 },
+    { id: "vGap", label: "Days between doses", min: 7, max: 180, step: 1, v: 28 },
+    { id: "vHalf", label: "Vaccine protection halves every (days, 0 = never)", min: 0, max: 720, step: 10, v: 0 },
+    { id: "wan", label: "Immunity after infection lasts (days, 0 = for ever)", min: 0, max: 720, step: 10, v: 0 }],
   cRun: [
     { id: "init", label: "First infections", min: 1, max: 50, step: 1, v: 5 },
     { id: "days", label: "Days to simulate", min: 30, max: 730, step: 10, v: 200 },
@@ -297,7 +311,8 @@ function showVal(s) {
   $("v" + s.id).textContent = s.range ? (num(s.id + "Lo") === num(s.id + "Hi") ? $(s.id + "Lo").value : $(s.id + "Lo").value + " – " + $(s.id + "Hi").value) : $(s.id).value;
   var p = params(), R0 = ((p.crLo + p.crHi) / 2) * ((p.infLo + p.infHi) / 2) * ((p.durLo + p.durHi) / 2);
   $("R0").textContent = R0.toFixed(2);
-  $("FS").textContent = (100 * M.finalSize(R0 * (1 - p.vac))).toFixed(0) + "%";
+  var prot = p.v1 * ((1 - p.v2) * p.e1 + p.v2 * ((1 - p.v3) * p.e2 + p.v3 * p.e3));
+  $("FS").textContent = (100 * M.finalSize(R0 * (1 - prot))).toFixed(0) + "%";
 }
 ALL.forEach(function (s) {
   if (s.range) {
@@ -308,7 +323,8 @@ ALL.forEach(function (s) {
 
 function params() {
   return { N: num("N"), crLo: num("crLo"), crHi: num("crHi"), infLo: num("infLo"), infHi: num("infHi"),
-    durLo: num("durLo"), durHi: num("durHi"), init: num("init"), vac: num("vac") / 100, wan: num("wan"),
+    durLo: num("durLo"), durHi: num("durHi"), init: num("init"), v1: num("v1") / 100, v2: num("v2") / 100, v3: num("v3") / 100, e1: num("e1") / 100, e2: num("e2") / 100, e3: num("e3") / 100,
+    vStart: num("vStart"), vRoll: num("vRoll"), vGap: num("vGap"), vHalf: num("vHalf"), vOrder: $("vOrder").value, wan: num("wan"),
     rad: num("rad"), wander: num("wander"), slum: num("slum") / 100, commute: num("commute") / 100, commuteKm: num("commuteKm"),
     stopDay: num("stopDay"), imports: num("imports"), days: num("days"), seed: num("seed"),
     mode: $("mode").value, place: $("place").value, seedAt: M.IITB };
@@ -390,7 +406,7 @@ function drawMap() {
       for (var j = 0; j < sim.N; j++) {
         if (sim.st[j] !== want) continue;
         var l2 = sim.lonlat(j), p = map.latLngToContainerPoint([l2[1], l2[0]]);
-        ctx.fillStyle = want === 2 && sim.vac[j] ? vcol : col[want];
+        ctx.fillStyle = want === 0 && sim.doses[j] ? vcol : col[want];
         ctx.beginPath(); ctx.arc(p.x, p.y, want === 1 ? rad + .8 : rad, 0, 6.2832); ctx.fill();
       }
     }
@@ -428,7 +444,7 @@ function drawChart() {
   var S = css("--S"), I = css("--I"), R = css("--R");
   if (mc) mc.forEach(function (hh) { line(hh.t, hh.I, I, false, .25, 1); });
   if (sd && $("sdOn").checked) { line(sd.t, sd.S, S, true, 1, 1.5); line(sd.t, sd.I, I, true, 1, 1.5); line(sd.t, sd.R, R, true, 1, 1.5); }
-  if (sim) { var H = sim.hist; line(H.t, H.S, S, false, 1, 2); line(H.t, H.I, I, false, 1, 2.2); line(H.t, H.R, R, false, 1, 2); }
+  if (sim) { var H = sim.hist; if (H.V1[H.V1.length - 1] > 0) { line(H.t, H.V1, css("--V"), false, .45, 1.5); line(H.t, H.V2, css("--V"), false, 1, 1.5); } line(H.t, H.S, S, false, 1, 2); line(H.t, H.I, I, false, 1, 2.2); line(H.t, H.R, R, false, 1, 2); }
 }
 
 var svData = null;
@@ -467,11 +483,14 @@ function drawStats() {
   if (!sim) return;
   var c = sim.last, p = sim.p, ever = 0;
   for (var i = 0; i < sim.N; i++) ever += sim.ever[i];
-  $("hud").innerHTML = '<span class="day">Day <b>' + sim.t.toFixed(0) + '</b> of ' + p.days + '</span><span class="n s">Susceptible<b>' + c.S + '</b></span><span class="n i">Infected<b>' + c.I + '</b></span><span class="n r">Recovered<b>' + c.R + '</b></span>';
+  $("hud").innerHTML = '<span class="day">Day <b>' + sim.t.toFixed(0) + '</b> of ' + p.days + '</span><span class="n s">Susceptible<b>' + c.S + '</b></span><span class="n i">Infected<b>' + c.I + '</b></span><span class="n r">Recovered<b>' + c.R + '</b></span>' + (p.v1 > 0 ? '<span class="n v">Vaccinated<b>' + sim.doseCounts()[0] + '</b></span>' : '');
   var sc = sim.scale, big = function (n) { return sc ? " (about " + fmt(n * sc) + " people)" : ""; };
   var travel = p.stopDay > 0 && sim.t >= p.stopDay ? " Commuting stopped on day " + p.stopDay + "." : "";
+  var dc = sim.doseCounts(), vacText = "";
+  if (p.v1 > 0) vacText = " Vaccinated: " + Math.round(100 * dc[0] / p.N) + "% one dose, " + Math.round(100 * dc[1] / p.N) + "% two" + (p.v3 > 0 ? ", " + Math.round(100 * dc[2] / p.N) + "% booster" : "") + ".";
+  $("legV").hidden = !(p.v1 > 0);
   $("stats").innerHTML = "At its peak, <b>" + sim.peakI + "</b> dots were ill at once" + big(sim.peakI) + ", on day " + sim.peakDay.toFixed(0) + ". So far <b>" + (100 * ever / p.N).toFixed(0) + "%</b> have caught it." +
-    (sim.imported ? " " + sim.imported + " cases arrived from outside." : "") + travel + mcText;
+    (sim.imported ? " " + sim.imported + " cases arrived from outside." : "") + travel + vacText + mcText;
   $("scale").textContent = sc ? "Each dot stands for about " + fmt(sc) + " residents." : "";
 }
 function fmt(n) {
@@ -723,7 +742,7 @@ $("btnGeo").onclick = function () {
   for (var i = 0; i < sim.N; i++) {
     var ll = sim.lonlat(i);
     f.push({ type: "Feature", geometry: { type: "Point", coordinates: [+ll[0].toFixed(5), +ll[1].toFixed(5)] },
-      properties: { id: i, state: names[sim.st[i]], ever_infected: sim.ever[i], vaccinated: sim.vac[i], day_infected: sim.tInf[i] >= 0 ? +sim.tInf[i].toFixed(1) : null } });
+      properties: { id: i, state: names[sim.st[i]], ever_infected: sim.ever[i], doses: sim.doses[i], day_infected: sim.tInf[i] >= 0 ? +sim.tInf[i].toFixed(1) : null } });
   }
   download("epidemic_people_day" + Math.round(sim.t) + ".geojson", JSON.stringify({ type: "FeatureCollection", properties: { day: sim.t, params: sim.p }, features: f }), "application/geo+json");
 };

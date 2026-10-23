@@ -1,4 +1,4 @@
-/* Spatial agent-based SIR model on real geography.  v1.1.1
+/* Spatial agent-based SIR model on real geography.  v1.2
    Somdeep Kundu. MIT licence.
    Methods: Kermack & McKendrick (1927) SIR compartments; Monte Carlo simulation
    (Metropolis & Ulam 1949) with a seeded Mulberry32 generator; Poisson counts by
@@ -128,6 +128,15 @@
     this.cache[key] = cum;
     return cum;
   };
+  // People per km² of land in each zone
+  Population.prototype.densities = function () {
+    if (this.dens) return this.dens;
+    var km2 = new Float64Array(this.zones.length + 1), d = new Float64Array(this.zones.length + 1), i;
+    for (i = 0; i < this.zone.length; i++) if (this.zone[i] && this.cellOnLand(i)) km2[this.zone[i]] += this.cell * this.cell / 1e6;
+    for (i = 1; i <= this.zones.length; i++) d[i] = km2[i] ? this.zones[i - 1].pop / km2[i] : 0;
+    this.dens = d;
+    return d;
+  };
   Population.prototype.cellOnLand = function (i) {
     var x = (i % this.gw + 0.5) * this.cell, y = (Math.floor(i / this.gw) + 0.5) * this.cell;
     return this.mask.on(x, y);
@@ -146,7 +155,11 @@
 
   /* Parameters:
      N, crLo/crHi (contacts per day), infLo/infHi (prob. per contact), durLo/durHi (days),
-     init, vac (fraction), wan (days, 0 = off), rad (m), wander (m), days, seed,
+     init, wan (days of immunity after infection, 0 = for ever), rad (m), wander (m), days, seed,
+     vaccination: v1 (share given dose 1), v2 (share of dose-1 people given dose 2), v3 (share of
+     dose-2 people given a booster), e1/e2/e3 (protection against infection after each dose, 0-1),
+     vStart (day the campaign starts), vRoll (days to give each round), vGap (days between doses),
+     vHalf (days for vaccine protection to halve, 0 = never), vOrder ("random" | "dense" | "commuters"),
      mode ("spatial" | "random"), place ("census" | "towns" | "uniform"), slum (fraction),
      commute (fraction), commuteKm (km), stopDay (day, 0 = never), imports (per day),
      seedAt ([lon,lat] or null) */
@@ -158,7 +171,7 @@
     this.x = new Float32Array(N); this.y = new Float32Array(N);
     this.ox = new Float32Array(N); this.oy = new Float32Array(N);
     this.zone = new Uint16Array(N);
-    this.st = new Uint8Array(N); this.ever = new Uint8Array(N); this.vac = new Uint8Array(N);
+    this.st = new Uint8Array(N); this.ever = new Uint8Array(N);
     this.cr = new Float32Array(N); this.inf = new Float32Array(N); this.dur = new Float32Array(N);
     this.tInf = new Float32Array(N).fill(-1);
     var cum = p.place === "census" && this.pop ? this.pop.cdf(p.slum) : null;
@@ -176,14 +189,65 @@
       this.x[i] = this.hx[i]; this.y[i] = this.hy[i];
     }
     this.scale = this.pop && p.place === "census" ? this.pop.total / N : 0;
-    var nv = Math.round(p.vac * N);
-    while (nv > 0) { var v = Math.floor(r() * N); if (this.st[v] === 0) { this.st[v] = 2; this.vac[v] = 1; nv--; } }
+    this.t = 0; this.planVaccines();
     this.seed(p.seedAt || null, p.init);
     this.stepNo = 0; this.t = 0; this.imported = 0;
-    this.hist = { t: [], S: [], I: [], R: [] };
+    this.hist = { t: [], S: [], I: [], R: [], V1: [], V2: [] };
     this.peakI = 0; this.peakDay = 0;
     this.record();
   }
+  // ---- Vaccination: a leaky vaccine given in up to three rounds ----
+  // Each person gets a planned day for each dose. Doses are given on that day unless the person is ill then.
+  Sim.prototype.planVaccines = function () {
+    var p = this.p, r = this.r, N = this.N, i;
+    this.doses = new Uint8Array(N); this.tDose = new Float32Array(N);
+    this.plan = [new Float32Array(N).fill(-1), new Float32Array(N).fill(-1), new Float32Array(N).fill(-1)];
+    this.given = [0, 0, 0];
+    var v1 = p.v1 || 0;
+    if (v1 <= 0) return;
+    var order = [];
+    for (i = 0; i < N; i++) order.push(i);
+    var key = new Float64Array(N), self = this, dens = this.pop ? this.pop.densities() : null;
+    for (i = 0; i < N; i++) {
+      key[i] = r(); // random tie-break
+      if (p.vOrder === "dense" && dens) key[i] -= dens[this.zone[i]] || 0;
+      if (p.vOrder === "commuters") key[i] -= this.com[i] ? 1e9 : 0;
+    }
+    order.sort(function (a, b) { return key[a] - key[b]; });
+    var n1 = Math.round(v1 * N), roll = Math.max(0, p.vRoll || 0), gap = Math.max(0, p.vGap || 0), start = p.vStart || 0;
+    for (var k = 0; k < n1; k++) {
+      i = order[k];
+      var t1 = start + (n1 > 1 ? roll * k / (n1 - 1) : 0);
+      this.plan[0][i] = t1;
+      if (r() < (p.v2 || 0)) {
+        this.plan[1][i] = t1 + gap;
+        if (r() < (p.v3 || 0)) this.plan[2][i] = t1 + 2 * gap;
+      }
+    }
+    this.giveDoses(); // doses planned for day 0
+  };
+  Sim.prototype.giveDoses = function () {
+    var t = this.t, N = this.N;
+    for (var d = 0; d < 3; d++) {
+      var P = this.plan[d];
+      for (var i = 0; i < N; i++) {
+        if (P[i] < 0 || P[i] > t + 1e-9 || this.doses[i] !== d || this.st[i] === 1) continue;
+        this.doses[i] = d + 1; this.tDose[i] = t; P[i] = -1; this.given[d]++;
+      }
+    }
+  };
+  Sim.prototype.protection = function (i) {
+    var d = this.doses[i];
+    if (!d) return 0;
+    var p = this.p, e = d === 1 ? p.e1 : d === 2 ? p.e2 : p.e3;
+    if (p.vHalf > 0) e *= Math.pow(0.5, (this.t - this.tDose[i]) / p.vHalf);
+    return e;
+  };
+  Sim.prototype.doseCounts = function () {
+    var c = [0, 0, 0];
+    for (var i = 0; i < this.N; i++) { var d = this.doses[i]; if (d >= 1) c[0]++; if (d >= 2) c[1]++; if (d >= 3) c[2]++; }
+    return c;
+  };
   Sim.prototype.randomPoint = function () {
     var r = this.r, x, y, tries = 0;
     do {
@@ -238,6 +302,9 @@
     var s = 0, i = 0, rc = 0;
     for (var j = 0; j < this.N; j++) { var v = this.st[j]; if (v === 0) s++; else if (v === 1) i++; else rc++; }
     this.last = { S: s, I: i, R: rc };
+    var v1 = 0, v2 = 0;
+    if (this.doses) for (var q = 0; q < this.N; q++) { if (this.doses[q] >= 1) v1++; if (this.doses[q] >= 2) v2++; }
+    this.hist.V1.push(v1); this.hist.V2.push(v2);
     this.hist.t.push(this.t); this.hist.S.push(s); this.hist.I.push(i); this.hist.R.push(rc);
     if (i > this.peakI) { this.peakI = i; this.peakDay = this.t; }
   };
@@ -290,6 +357,7 @@
     var p = this.p, r = this.r, N = this.N, i, k;
     this.t = (this.stepNo + 1) * DT;
     this.move();
+    this.giveDoses();
     if (p.imports > 0) this.importCases();
     var infected = [];
     for (i = 0; i < N; i++) if (this.st[i] === 1) infected.push(i);
@@ -302,14 +370,14 @@
       if (spatial) { this.neighbours(i, buf); if (!buf.length) continue; }
       for (var c = 0; c < n; c++) {
         var tg = spatial ? buf[Math.floor(r() * buf.length)] : Math.floor(r() * N);
-        if (this.st[tg] === 0 && r() < this.inf[i]) this.infect(tg);
+        if (this.st[tg] === 0 && r() < this.inf[i] * (1 - this.protection(tg))) this.infect(tg);
       }
     }
     for (k = 0; k < infected.length; k++) {
       i = infected[k];
       if (r() < DT / this.dur[i]) this.st[i] = 2;
     }
-    if (p.wan > 0) for (i = 0; i < N; i++) if (this.st[i] === 2 && r() < DT / p.wan) { this.st[i] = 0; this.vac[i] = 0; }
+    if (p.wan > 0) for (i = 0; i < N; i++) if (this.st[i] === 2 && r() < DT / p.wan) this.st[i] = 0;
     this.stepNo++;
     this.record();
   };
@@ -325,12 +393,24 @@
   // Mean-field SIR (well mixed), Euler steps, using the mid-point of each range
   function runSD(p) {
     var cr = (p.crLo + p.crHi) / 2, inf = (p.infLo + p.infHi) / 2, dur = (p.durLo + p.durHi) / 2, N = p.N;
-    var R = Math.round(p.vac * N), I = Math.min(p.init, N - R), S = N - R - I;
+    var I = Math.min(p.init, N), S = N - I, R = 0;
     var h = { t: [0], S: [S], I: [I], R: [R] }, steps = Math.round(p.days / DT);
+    // average protection of the population on day t, from the vaccine schedule (doses given at an even rate)
+    var cover = function (t, d) {
+      var start = (p.vStart || 0) + d * (p.vGap || 0), roll = p.vRoll || 0, share = (p.v1 || 0) * (d >= 1 ? p.v2 || 0 : 1) * (d >= 2 ? p.v3 || 0 : 1);
+      if (t < start) return 0;
+      return share * (roll > 0 ? Math.min(1, (t - start) / roll) : 1);
+    };
+    var prot = function (t) {
+      var c1 = cover(t, 0), c2 = cover(t, 1), c3 = cover(t, 2);
+      var w = p.vHalf > 0 ? Math.pow(0.5, Math.max(0, (t - (p.vStart || 0) - (p.vRoll || 0) / 2)) / p.vHalf) : 1;
+      return ((c1 - c2) * p.e1 + (c2 - c3) * p.e2 + c3 * p.e3) * w;
+    };
     for (var k = 1; k <= steps; k++) {
-      var a = cr * inf * S * I / N + (S > 0 ? (p.imports || 0) * S / N : 0), b = I / dur, w = p.wan > 0 ? R / p.wan : 0;
+      var t = k * DT, f = 1 - prot(t);
+      var a = (cr * inf * S * I / N + (S > 0 ? (p.imports || 0) * S / N : 0)) * f, b = I / dur, w = p.wan > 0 ? R / p.wan : 0;
       S += (w - a) * DT; I += (a - b) * DT; R += (b - w) * DT;
-      h.t.push(k * DT); h.S.push(S); h.I.push(I); h.R.push(R);
+      h.t.push(t); h.S.push(S); h.I.push(I); h.R.push(R);
     }
     return h;
   }
@@ -378,7 +458,7 @@
     return { I: (N / W) * (num / den), expected: -1 / (N - 1) };
   }
 
-  var API = { VERSION: "1.1.1", DT: DT, BOX: BOX, WM: WM, HM: HM, IITB: IITB, TOWNS: TOWNS, HUBS: HUBS, GATEWAYS: GATEWAYS,
+  var API = { VERSION: "1.2", DT: DT, BOX: BOX, WM: WM, HM: HM, IITB: IITB, TOWNS: TOWNS, HUBS: HUBS, GATEWAYS: GATEWAYS,
     toXY: toXY, toLL: toLL, rng: rng, poisson: poisson, LandMask: LandMask, Population: Population, Sim: Sim,
     runSD: runSD, finalSize: finalSize, semivariogram: semivariogram, moransI: moransI };
   if (typeof module !== "undefined" && module.exports) module.exports = API; else root.EpiModel = API;
