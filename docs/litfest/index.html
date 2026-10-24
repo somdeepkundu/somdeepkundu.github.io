@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LitFest Companion</title>
+<meta name="description" content="Live programme and interactive campus map for Sunday 25 October at Godrej Literature Live! The Mumbai LitFest 2026, NCPA. Unofficial companion.">
+<meta name="theme-color" content="#4B2C86">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="LitFest Companion">
+<meta property="og:title" content="LitFest Companion: Sunday at NCPA">
+<meta property="og:description" content="What's on now, where it is, and how to get there. Interactive campus map and live programme for the Mumbai LitFest 2026.">
+<meta property="og:url" content="https://somdeepkundu.github.io/litfest/">
+<meta property="og:image" content="https://somdeepkundu.github.io/litfest/assets/img/thumbnail.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="LitFest">
+<link rel="preload" href="assets/fonts/poppins-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/poppins-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/app.css">
+<script>
+  /* Apply the saved theme before first paint so there is no flash. */
+  try { var t = localStorage.getItem("lf-theme"); if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t); } catch (e) {}
+</script>
+</head>
+<body>
+<!--APP-->
+<div class="app" id="app">
+  <header class="top">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 34 34" aria-hidden="true">
+        <rect x="3" y="5" width="7.5" height="25" rx="3.75" fill="#E2262E"/>
+        <rect x="13.25" y="3" width="7.5" height="27" rx="3.75" fill="#4B2C86"/>
+        <rect x="23.5" y="7" width="7.5" height="23" rx="3.75" fill="#F6B820" transform="rotate(8 27.25 18.5)"/>
+      </svg>
+      <div class="brand-text">
+        <h1 class="brand-name">LitFest Companion</h1>
+        <p class="brand-sub" id="brandSub">Sunday 25 October, NCPA Mumbai</p>
+      </div>
+    </div>
+    <div class="days" id="days" hidden></div>
+    <div class="clock" id="clock" data-mode="preview" role="status" aria-live="polite"><span class="dot"></span><span id="clockText">Preview</span></div>
+    <button class="icon-btn" id="themeBtn" type="button" aria-label="Switch to dark theme"></button>
+    <button class="icon-btn" id="aboutBtn" type="button" aria-label="About this app"></button>
+  </header>
+
+  <main class="stage" id="stage">
+    <section class="mapwrap" id="mapwrap" aria-label="Interactive map of the NCPA campus">
+      <svg class="map-svg" id="mapSvg" role="group" aria-label="Campus map. Venues are buttons." xmlns="http://www.w3.org/2000/svg"></svg>
+      <div class="map-labels" id="mapLabels"></div>
+
+      <div class="map-ctrl tl">
+        <label class="select-wrap" title="Where directions start">
+          <span class="sr-only">Directions start</span>
+          <span data-icon="walk" class="ico-l"></span>
+          <select id="fromSel"><option value="auto">From the closest gate</option></select>
+          <span data-icon="chev" class="ico-r"></span>
+        </label>
+        <button class="pill-btn" id="spotBtn" type="button" aria-pressed="false" title="Tap the map where you are"><span data-icon="spot"></span><span class="lbl">Set my spot</span></button>
+        <button class="pill-btn" id="layerAccess" type="button" aria-pressed="false" title="Step-free entrances and routes"><span data-icon="access"></span><span class="lbl">Step-free</span></button>
+        <button class="pill-btn" id="layerAmen" type="button" aria-pressed="true" title="Show amenities"><span data-icon="pin"></span><span class="lbl">Amenities</span></button>
+      </div>
+
+      <div class="map-ctrl br">
+        <div class="ctrl-group">
+          <button type="button" id="locateBtn" class="locate" aria-label="Show where I am" aria-pressed="false"></button>
+        </div>
+        <div class="ctrl-group">
+          <button type="button" id="zoomIn" aria-label="Zoom in"></button>
+          <button type="button" id="zoomOut" aria-label="Zoom out"></button>
+          <button type="button" id="zoomReset" aria-label="Show the whole campus"></button>
+        </div>
+      </div>
+
+      <details class="legend" id="legend" open>
+        <summary>Map key <span data-icon="chev"></span></summary>
+        <ul>
+          <li><span class="sw indoor"></span>Indoor venue</li>
+          <li><span class="sw outdoor"></span>Outdoor venue</li>
+          <li><span class="sw live"></span>Session on now</li>
+          <li><span class="sw entry"></span>Venue entry</li>
+          <li><span class="sw access"></span>Step-free access</li>
+          <li><span class="sw path"></span>Walkway</li>
+          <li><span class="sw parking"></span>Car parking</li>
+        </ul>
+      </details>
+
+      <div class="geo-chip" id="geoChip" role="status" aria-live="polite" hidden></div>
+
+      <div class="preview-bar" id="previewBar" hidden>
+        <span id="previewText">Previewing 3:00 PM</span>
+        <button type="button" id="backToNow">Back to now</button>
+      </div>
+    </section>
+
+    <div class="sheet" id="sheet">
+    <button class="grabber" id="grabber" type="button" aria-label="Show more of the list"><span></span></button>
+    <section class="shelf" id="shelf" aria-label="Day timeline">
+      <div class="shelf-head">
+        <div class="shelf-time" id="shelfTime">11:30 AM</div>
+        <div class="spacer"></div>
+        <button class="chip-btn" id="nowBtn" type="button" hidden><span data-icon="clock"></span>Now</button>
+      </div>
+      <div class="shelf-body">
+        <div class="lane-names" id="laneNames" aria-hidden="true"></div>
+        <div class="track" id="track" role="slider" tabindex="0" aria-label="Time of day" aria-valuemin="600" aria-valuemax="1260" aria-valuenow="690" aria-valuetext="11:30 AM"></div>
+      </div>
+    </section>
+
+    <aside class="panel" aria-label="Programme">
+      <div class="tabs" role="tablist">
+        <button class="tab" role="tab" id="tab-programme" aria-selected="true" aria-controls="panelScroll" data-tab="programme">Programme <span class="count" id="countProg">0</span></button>
+        <button class="tab" role="tab" id="tab-plan" aria-selected="false" aria-controls="panelScroll" data-tab="plan">My plan <span class="count" id="countPlan">0</span></button>
+        <button class="tab" role="tab" id="tab-around" aria-selected="false" aria-controls="panelScroll" data-tab="around">Access<span class="long"> &amp; info</span></button>
+      </div>
+      <div class="panel-scroll" id="panelScroll" role="tabpanel"></div>
+    </aside>
+    </div>
+  </main>
+</div>
+
+<dialog class="about" id="about" aria-labelledby="aboutTitle">
+  <div class="about-in">
+    <button class="icon-btn x" type="button" id="aboutClose" aria-label="Close"></button>
+    <h2 id="aboutTitle">About LitFest Companion</h2>
+    <p class="lede">What's on now, where it is, and how to get there, for Sunday at Godrej Literature Live! The Mumbai LitFest 2026.</p>
+    <blockquote class="dharker"><p>“Reading gives us hope.”</p><cite>Anil Dharker (1946–2021), who started the festival</cite></blockquote>
+    <ul>
+      <li>Drag the timeline to see what's happening at any hour. On the day it follows the clock.</li>
+      <li>Tap a venue on the map, or a session in the list, to see the route from your gate.</li>
+      <li>Bookmark sessions to build your plan. It stays on this device, flags clashes, and can remind you when it's time to walk over.</li>
+      <li>Tap the location button to see where you are on campus, or Set my spot if GPS is weak indoors.</li>
+      <li>Step-free shows the wheelchair-accessible entrances marked on the festival map and routes to them.</li>
+      <li>The festival asks booked guests to arrive 15 minutes early. Arrive-by times use that rule.</li>
+    </ul>
+    <p>This is an unofficial companion, not affiliated with the festival organisers. The programme and map come from the printed festival guide. Check <a href="https://litlive.in" target="_blank" rel="noopener">litlive.in</a> for last-minute changes.</p>
+    <div class="credit">
+      <p>Developed by <b>Somdeep Kundu</b>, a PhD student of IIT Bombay working on Agriculture and Rural Water Management using Earth Observation and bottom-up ground data.</p>
+    </div>
+    <div class="contact">
+      <a href="https://www.somdeepkundu.in/" target="_blank" rel="noopener">somdeepkundu.in</a>
+      <a href="https://www.linkedin.com/in/somdeep-kundu" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://www.instagram.com/somdeeplearning" target="_blank" rel="noopener">Instagram @somdeeplearning</a>
+      <span class="sel">somdeepkundu@gmail.com</span>
+    </div>
+    <p id="versionLine">Version 1.0.0</p>
+  </div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="remind-banner" id="remindBanner" role="alert" hidden>
+  <span class="rb-ic" data-icon="bell"></span>
+  <div class="rb-txt"><b class="rb-t"></b><span class="rb-b"></span></div>
+  <div class="rb-act"><button type="button" class="btn primary" data-rb="show">Show</button><button type="button" class="icon-btn" id="rbClose" aria-label="Dismiss"></button></div>
+</div>
+<!--/APP-->
+
+<script src="data/programme.js"></script>
+<script src="data/campus.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
