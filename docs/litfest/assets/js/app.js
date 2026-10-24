@@ -9,7 +9,7 @@
 (function () {
   "use strict";
 
-  var VERSION = "1.0.1";
+  var VERSION = "1.0.2";
   var P = window.LITFEST_PROGRAMME;
   var C = window.LITFEST_CAMPUS;
   var ENV = window.LITFEST_ENV || "web"; // "web" | "offline" | "artifact"
@@ -263,40 +263,70 @@
   var ME = { on: false, watch: null, pending: false, fix: null, map: null, onCampus: false, msg: "" };
   var FIT = null;
   function calibPoints() {
-    var pts = (GEO.points || []).slice();
-    try { (JSON.parse(store(CAL_KEY) || "[]") || []).forEach(function (p) { pts.push(p); }); } catch (e) {}
-    return pts;
+    var byId = {}, order = [];
+    function put(p, i) { var k = p.id || ("p" + i); if (!(k in byId)) order.push(k); byId[k] = p; }
+    (GEO.points || []).forEach(put);
+    try { (JSON.parse(store(CAL_KEY) || "[]") || []).forEach(put); } catch (e) {}
+    return order.map(function (k) { return byId[k]; });
   }
+  function localPoints() { try { return JSON.parse(store(CAL_KEY) || "[]") || []; } catch (e) { return []; } }
   function toLocal(lat, lon) { // metres east and metres south of the campus centre
     var c = GEO.centre || [lat, lon], R = 6371008, rad = Math.PI / 180;
     return [(lon - c[1]) * rad * R * Math.cos(c[0] * rad), -(lat - c[0]) * rad * R];
   }
   function metresBetween(a, b) { var p = toLocal(a[0], a[1]), q = toLocal(b[0], b[1]); return Math.hypot(p[0] - q[0], p[1] - q[1]); }
-  // Least-squares similarity transform (scale, rotation, shift) from GPS to map units, using complex numbers.
-  function fitGeo() {
-    FIT = null;
-    var pts = calibPoints();
-    if (pts.length < 2) return;
-    var zs = pts.map(function (p) { return toLocal(p.lat, p.lon); }), ws = pts.map(function (p) { return p.map; });
-    var zm = [0, 0], wm = [0, 0];
-    zs.forEach(function (z, i) { zm[0] += z[0] / zs.length; zm[1] += z[1] / zs.length; wm[0] += ws[i][0] / zs.length; wm[1] += ws[i][1] / zs.length; });
+  function det3(m) { return m[0][0] * (m[1][1] * m[2][2] - m[1][2] * m[2][1]) - m[0][1] * (m[1][0] * m[2][2] - m[1][2] * m[2][0]) + m[0][2] * (m[1][0] * m[2][1] - m[1][1] * m[2][0]); }
+  function solve3(m, v) {
+    var d = det3(m); if (Math.abs(d) < 1e-9) return null;
+    return [0, 1, 2].map(function (c) { var k = m.map(function (row, r) { var x = row.slice(); x[c] = v[r]; return x; }); return det3(k) / d; });
+  }
+  // Similarity (scale, rotation, shift) by least squares, using complex numbers.
+  function fitSimilarity(zs, ws) {
+    var n = zs.length, zm = [0, 0], wm = [0, 0];
+    zs.forEach(function (z, i) { zm[0] += z[0] / n; zm[1] += z[1] / n; wm[0] += ws[i][0] / n; wm[1] += ws[i][1] / n; });
     var nr = 0, ni = 0, den = 0;
     zs.forEach(function (z, i) {
       var a = z[0] - zm[0], b = z[1] - zm[1], c = ws[i][0] - wm[0], d = ws[i][1] - wm[1];
       nr += c * a + d * b; ni += d * a - c * b; den += a * a + b * b;
     });
-    if (den < 400) return; // points closer than ~20 m apart can't anchor the map
+    if (den < 400) return null;
     var A = [nr / den, ni / den];
-    var B = [wm[0] - (A[0] * zm[0] - A[1] * zm[1]), wm[1] - (A[0] * zm[1] + A[1] * zm[0])];
-    var err = 0;
-    zs.forEach(function (z, i) { var x = A[0] * z[0] - A[1] * z[1] + B[0], y = A[0] * z[1] + A[1] * z[0] + B[1]; err += Math.hypot(x - ws[i][0], y - ws[i][1]); });
-    FIT = { A: A, B: B, mpu: 1 / Math.hypot(A[0], A[1]), err: err / zs.length, n: zs.length };
+    return { type: "similarity", m: [A[0], -A[1], wm[0] - (A[0] * zm[0] - A[1] * zm[1]), A[1], A[0], wm[1] - (A[0] * zm[1] + A[1] * zm[0])] };
   }
-  function geoToMap(lat, lon) {
-    if (!FIT) return null;
-    var z = toLocal(lat, lon);
-    return [FIT.A[0] * z[0] - FIT.A[1] * z[1] + FIT.B[0], FIT.A[0] * z[1] + FIT.A[1] * z[0] + FIT.B[1]];
+  // Affine (allows the schematic map to be stretched differently across and down) with 4+ points.
+  function fitAffine(zs, ws) {
+    var S2 = [[0, 0, 0], [0, 0, 0], [0, 0, 0]], bx = [0, 0, 0], by = [0, 0, 0];
+    zs.forEach(function (z, i) {
+      var r = [z[0], z[1], 1];
+      for (var a = 0; a < 3; a++) { for (var b = 0; b < 3; b++) S2[a][b] += r[a] * r[b]; bx[a] += r[a] * ws[i][0]; by[a] += r[a] * ws[i][1]; }
+    });
+    var X = solve3(S2, bx), Y = solve3(S2, by);
+    if (!X || !Y) return null;
+    var f = { type: "affine", m: [X[0], X[1], X[2], Y[0], Y[1], Y[2]] };
+    var det = f.m[0] * f.m[4] - f.m[1] * f.m[3], sim = fitSimilarity(zs, ws);
+    if (!sim || det <= 0) return null;
+    var ss = sim.m[0] * sim.m[4] - sim.m[1] * sim.m[3];
+    if (det / ss < 0.6 || det / ss > 1.6) return null; // nearly in a line: the stretch can't be trusted
+    return f;
   }
+  function applyFit(f, z) { return [f.m[0] * z[0] + f.m[1] * z[1] + f.m[2], f.m[3] * z[0] + f.m[4] * z[1] + f.m[5]]; }
+  function fitGeo() {
+    FIT = null;
+    var pts = calibPoints();
+    if (pts.length < 2) return;
+    var zs = pts.map(function (p) { return toLocal(p.lat, p.lon); }), ws = pts.map(function (p) { return p.map; });
+    var f = (pts.length >= 4 && fitAffine(zs, ws)) || fitSimilarity(zs, ws);
+    if (!f) return;
+    f.mpu = 1 / Math.sqrt(Math.abs(f.m[0] * f.m[4] - f.m[1] * f.m[3]));
+    f.res = {}; f.err = 0; f.max = 0; f.worst = null; f.n = pts.length;
+    pts.forEach(function (p, i) {
+      var m = applyFit(f, zs[i]), r = Math.hypot(m[0] - ws[i][0], m[1] - ws[i][1]) * f.mpu;
+      f.res[p.id] = r; f.err += r / pts.length;
+      if (r > f.max) { f.max = r; f.worst = p.id; }
+    });
+    FIT = f;
+  }
+  function geoToMap(lat, lon) { return FIT ? applyFit(FIT, toLocal(lat, lon)) : null; }
   function mpu() { return FIT ? FIT.mpu : (GEO.metresPerUnit || 0.17); }
   function insideCampus(pt) {
     var b = C.boundary;
@@ -472,6 +502,12 @@
     sv("path", { class: "spot-body", d: "M0 0C-4-9-15-15-15-27a15 15 0 0 1 30 0C15-15 4-9 0 0Z" }, meEls.spot);
     sv("circle", { class: "spot-eye", cy: -27, r: 6 }, meEls.spot);
     meEls.dot.style.display = "none"; meEls.spot.style.display = "none"; meEls.acc.style.display = "none";
+    meEls.setup = sv("g", { id: "setupLayer" }, world);
+    meEls.target = scalable(sv("g", { class: "setup-target" }, world), 0, 0);
+    sv("circle", { class: "st-pulse", r: 30 }, meEls.target);
+    sv("circle", { class: "st-ring", r: 18 }, meEls.target);
+    sv("circle", { class: "st-core", r: 5 }, meEls.target);
+    meEls.target.style.display = "none";
 
     // HTML labels
     C.venues.forEach(function (v) {
@@ -706,7 +742,10 @@
       delete pointers[e.pointerId];
       svg.classList.remove("dragging");
       if (gesture && gesture.type === "pan" && !gesture.moved && e.type === "pointerup") {
-        if (S.picking) {
+        if (SETUP.picking) {
+          var sp = rel(e), su = toUser(sp[0], sp[1]);
+          setupPick([Math.round((su[0] - view.tx) / view.k), Math.round((su[1] - view.ty) / view.k)]);
+        } else if (S.picking) {
           var pp = rel(e), u = toUser(pp[0], pp[1]);
           setSpot([Math.round((u[0] - view.tx) / view.k), Math.round((u[1] - view.ty) / view.k)]);
         } else if (gesture.venue) selectVenue(gesture.venue, true);
@@ -743,15 +782,17 @@
     if (!navigator.geolocation) { ME.on = false; ME.msg = "This browser can't share its location. Tap Set my spot instead."; renderGeo(); return; }
     ME.on = true; ME.pending = true; ME.msg = "";
     renderGeo();
+    if (SETUP.on) { enableSetup(); S.tab = "setup"; drawSetupDots(); var firstT = allTargets().filter(function (t) { return !calibPoints().some(function (p) { return p.id === t.id; }); })[0]; showTarget(firstT ? firstT.id : null, false); }
     try {
-      ME.watch = navigator.geolocation.watchPosition(onPos, onPosErr, { enableHighAccuracy: true, maximumAge: 10000, timeout: 25000 });
+      ME.watch = navigator.geolocation.watchPosition(onPos, onPosErr, { enableHighAccuracy: true, maximumAge: SETUP.on ? 0 : 10000, timeout: 25000 });
     } catch (e) { onPosErr({ code: 0 }); }
   }
   function stopLocate(silent) {
     if (ME.watch != null && navigator.geolocation) navigator.geolocation.clearWatch(ME.watch);
     ME = { on: false, watch: null, pending: false, fix: null, map: null, onCampus: false, msg: "" };
     if (S.from === "me") S.from = "auto";
-    renderGeo(); refreshRoute(false);
+    renderGeo();
+    if (SETUP.on) { enableSetup(); S.tab = "setup"; drawSetupDots(); var firstT = allTargets().filter(function (t) { return !calibPoints().some(function (p) { return p.id === t.id; }); })[0]; showTarget(firstT ? firstT.id : null, false); } refreshRoute(false);
     if (!silent) render(true);
   }
   var lastGeoRender = null;
@@ -759,6 +800,8 @@
     var c = p.coords;
     ME.pending = false;
     ME.fix = { lat: c.latitude, lon: c.longitude, acc: c.accuracy || 50, t: Date.now() };
+    if (SETUP.cap && !p.synthetic && ME.fix.acc <= 30) SETUP.cap.samples.push({ lat: ME.fix.lat, lon: ME.fix.lon, acc: ME.fix.acc });
+    if (SETUP.on) updateSetupLive();
     var dist = metresBetween([c.latitude, c.longitude], GEO.centre || [c.latitude, c.longitude]);
     ME.onCampus = dist <= (GEO.campusRadius || 230);
     var m = ME.onCampus ? geoToMap(c.latitude, c.longitude) : null;
@@ -766,6 +809,7 @@
     if (ME.map && S.from !== "spot" && !ME.autoFrom) { S.from = "me"; ME.autoFrom = true; }
     ME.msg = "";
     renderGeo();
+    if (SETUP.on) { enableSetup(); S.tab = "setup"; drawSetupDots(); var firstT = allTargets().filter(function (t) { return !calibPoints().some(function (p) { return p.id === t.id; }); })[0]; showTarget(firstT ? firstT.id : null, false); }
     var moved = !lastGeoRender || !ME.map || Math.hypot(ME.map[0] - lastGeoRender[0], ME.map[1] - lastGeoRender[1]) > 12;
     if (moved) { lastGeoRender = ME.map; if (S.from === "me") refreshRoute(false); render(true); }
   }
@@ -775,6 +819,7 @@
     else if (e && e.code === 3) ME.msg = "Still looking for GPS. Indoors it can take a while.";
     else ME.msg = "Your location isn't available right now. Tap Set my spot instead.";
     renderGeo();
+    if (SETUP.on) { enableSetup(); S.tab = "setup"; drawSetupDots(); var firstT = allTargets().filter(function (t) { return !calibPoints().some(function (p) { return p.id === t.id; }); })[0]; showTarget(firstT ? firstT.id : null, false); }
   }
   function setSpot(pt) {
     var b = C.boundary;
@@ -782,13 +827,15 @@
     S.spot = pt; S.from = "spot"; S.picking = false;
     store("lf-spot", JSON.stringify(pt)); store("lf-from", "spot");
     mapwrap.classList.remove("picking");
-    renderGeo(); refreshRoute(!!routeTarget); render(true);
+    renderGeo();
+    if (SETUP.on) { enableSetup(); S.tab = "setup"; drawSetupDots(); var firstT = allTargets().filter(function (t) { return !calibPoints().some(function (p) { return p.id === t.id; }); })[0]; showTarget(firstT ? firstT.id : null, false); } refreshRoute(!!routeTarget); render(true);
     toast("Routes now start from your spot");
   }
   function clearSpot() {
     S.spot = null; store("lf-spot", null);
     if (S.from === "spot") { S.from = ME.map ? "me" : "auto"; store("lf-from", S.from); }
-    renderGeo(); refreshRoute(false); render(true);
+    renderGeo();
+    if (SETUP.on) { enableSetup(); S.tab = "setup"; drawSetupDots(); var firstT = allTargets().filter(function (t) { return !calibPoints().some(function (p) { return p.id === t.id; }); })[0]; showTarget(firstT ? firstT.id : null, false); } refreshRoute(false); render(true);
   }
   function renderGeo() {
     // marker layer
@@ -1192,7 +1239,7 @@
   var listSig = "";
   function renderPanel(force) {
     var t = S.t, d = D();
-    var sig = [S.tab, S.selected, S.venue, S.q, S.cat, S.isl, S.from, S.access, String(S.spot), String(lastGeoRender), REM.on, REM.lead, notifPermission(), String(FIT && FIT.n), Object.keys(S.plan).sort().join(","),
+    var sig = [S.tab, SETUP.on && S.tab === "setup" ? [SETUP.target, !!SETUP.cap, SETUP.picking, String(SETUP.pick), ME.on, !!ME.fix, ME.fix ? gpsQuality(ME.fix.acc) : "", calibPoints().length, localPoints().map(function (p) { return p.id + p.t; }).join()].join("/") : "", S.selected, S.venue, S.q, S.cat, S.isl, S.from, S.access, String(S.spot), String(lastGeoRender), REM.on, REM.lead, notifPermission(), String(FIT && FIT.n), Object.keys(S.plan).sort().join(","),
       d.sessions.map(function (s) { var st = stateAt(s, t); return st === "soon" ? "s" + Math.round(s.s - t) : st[0]; }).join("")].join("|");
     if (!force && sig === listSig) return;
     listSig = sig;
@@ -1207,6 +1254,7 @@
 
     if (S.tab === "programme") renderProgramme(t);
     else if (S.tab === "plan") renderPlan(t);
+    else if (S.tab === "setup") renderSetup();
     else renderInfo();
 
     if (fk) { var el = scroller.querySelector('[data-fk="' + fk + '"]'); if (el) el.focus({ preventScroll: true }); }
@@ -1367,50 +1415,208 @@
     h += "</ul></section>";
 
     h += '<section class="info"><h2>Good to know</h2><ul class="rules">' + A.rules.map(function (r) { return "<li>" + esc(r) + "</li>"; }).join("") + "</ul></section>";
-    h += setupPanel();
+    h += '<p class="setup-link">' + icon("locate") + '<span>Organisers: <button class="link" type="button" data-act="opensetup">set up live location</button></span></p>';
     h += footer();
     scroller.innerHTML = h;
   }
 
-  /* One-time setup so the live GPS dot lands in the right place on this schematic map. */
-  function setupTargets() {
-    var t = C.gates.map(function (g) { return { id: g.id, label: g.name, map: g.at }; });
-    C.venues.forEach(function (v) { if (v.entries && v.entries[0]) t.push({ id: "e-" + v.id, label: v.short + " entrance", map: v.entries[0].at }); });
+  /* ------------------------------------------------------------------ */
+  /* Live-location setup (organisers): record GPS at known map places     */
+  /* ------------------------------------------------------------------ */
+  var SETUP = { on: /[?&](setup|calibrate)\b/.test(location.search || ""), target: null, cap: null, picking: false, pick: null, timer: null };
+  function venueAt(pt) {
+    var hit = null;
+    C.venues.forEach(function (v) {
+      var inside = false, sh = v.shape;
+      for (var i = 0, j = sh.length - 1; i < sh.length; j = i++) {
+        if (((sh[i][1] > pt[1]) !== (sh[j][1] > pt[1])) && (pt[0] < (sh[j][0] - sh[i][0]) * (pt[1] - sh[i][1]) / (sh[j][1] - sh[i][1]) + sh[i][0])) inside = !inside;
+      }
+      if (inside && !hit) hit = v;
+    });
+    return hit;
+  }
+  var SETUP_TARGETS = (function () {
+    var t = [];
+    C.gates.forEach(function (g) { t.push({ id: g.id, group: "gates", label: g.name, hint: g.hint, map: g.at }); });
+    C.venues.forEach(function (v) { if (v.type !== "hub" && v.entries && v.entries[0]) t.push({ id: "e-" + v.id, group: "doors", label: v.short + " entrance", hint: "Stand at the door marked with the red arrow", map: v.entries[0].at }); });
+    Object.keys(C.amenities).forEach(function (n) {
+      C.amenities[n].at.forEach(function (pt, i) {
+        var v = venueAt(pt);
+        t.push({ id: "a" + n + "-" + i, group: "inside", label: C.amenities[n].name, hint: "Marker " + n + (v ? ", " + v.short : ""), map: pt });
+      });
+    });
+    return t;
+  })();
+  function allTargets() {
+    var t = SETUP_TARGETS.slice();
+    calibPoints().forEach(function (p) { if (/^c-/.test(p.id)) t.push({ id: p.id, group: "custom", label: p.label || "Spot on the map", hint: "Tapped on the map", map: p.map }); });
     return t;
   }
-  function setupPanel() {
-    var showOpen = /[?&]setup\b|[?&]calibrate\b/.test(location.search || "");
-    var local = []; try { local = JSON.parse(store(CAL_KEY) || "[]") || []; } catch (e) {}
-    var h = '<details class="setup"' + (showOpen ? " open" : "") + '><summary>' + icon("locate") + "Live location setup, for organisers</summary><div class=\"setup-in\">";
-    h += "<p>The festival map is a drawing, not to scale, so the app needs a few real GPS readings to place people on it. Do this once, on site:</p>";
-    h += "<ol><li>Tap Start GPS and allow location.</li><li>Stand right at a gate or a venue entrance and wait until accuracy is under 15 m.</li><li>Tap that place below. Record at least two places far apart, ideally Gate 1, Gate 3 and two venue entrances.</li></ol>";
-    var acc = ME.fix ? Math.round(ME.fix.acc) : null;
-    h += '<div class="actions">' + (ME.on ? '<span class="gps-state' + (acc != null && acc <= 15 ? " good" : "") + '">' + (acc == null ? "Waiting for GPS…" : "GPS accuracy ±" + acc + " m") + "</span>" : '<button class="btn primary" type="button" data-act="setupgps">' + icon("locate") + "Start GPS</button>") + "</div>";
-    h += '<div class="setup-grid">' + setupTargets().map(function (t) {
-      var done = local.some(function (p) { return p.id === t.id; });
-      return '<button class="btn' + (done ? " done" : "") + '" type="button" data-act="record" data-id="' + t.id + '"' + (ME.fix ? "" : " disabled") + ">" + (done ? icon("check") : "") + esc(t.label) + "</button>";
-    }).join("") + "</div>";
-    if (local.length) {
-      h += "<p>" + local.length + " recorded on this phone." + (FIT ? " Live position is on for this phone (average fit error " + Math.round(FIT.err * mpu()) + " m)." : " Record one more place to turn on live position.") + "</p>";
-      var json = JSON.stringify(local.map(function (p) { return { id: p.id, map: p.map, lat: +p.lat.toFixed(6), lon: +p.lon.toFixed(6), acc: p.acc }; }));
-      h += "<p>To turn it on for everyone, send this to the developer, or paste it as <code>points</code> in data/campus.js:</p>";
-      h += '<pre class="code" id="calibOut">' + esc(json) + "</pre>";
-      h += '<div class="actions"><button class="btn" type="button" data-act="copycalib">' + icon("link") + 'Copy</button><button class="btn danger" type="button" data-act="clearcalib">Clear recordings</button></div>';
+  function targetById(id) { return allTargets().filter(function (t) { return t.id === id; })[0] || (SETUP.pick && id === "c-new" ? { id: "c-new", group: "custom", label: "Spot on the map", map: SETUP.pick } : null); }
+  function enableSetup() {
+    SETUP.on = true;
+    if (!$("#tab-setup")) {
+      var b = document.createElement("button");
+      b.className = "tab"; b.type = "button"; b.id = "tab-setup";
+      b.setAttribute("role", "tab"); b.setAttribute("aria-controls", "panelScroll"); b.setAttribute("data-tab", "setup");
+      b.innerHTML = icon("locate") + "Setup";
+      b.addEventListener("click", function () { setTab("setup"); });
+      $(".tabs").appendChild(b);
     }
-    return h + "</div></details>";
   }
-  function recordPoint(id) {
-    if (!ME.fix) { toast("Waiting for GPS"); return; }
-    var t = setupTargets().filter(function (x) { return x.id === id; })[0];
+  function gpsQuality(acc) { return acc <= 10 ? "good" : acc <= 20 ? "ok" : "weak"; }
+  function updateSetupLive() {
+    var el = $("#gpsLive");
+    if (el && ME.fix) {
+      var q = gpsQuality(ME.fix.acc);
+      el.className = "gps-card q-" + q;
+      $(".big", el).textContent = "±" + Math.round(ME.fix.acc) + " m";
+      $(".lbl", el).textContent = q === "good" ? "Good. Ready to record." : q === "ok" ? "Okay. Better if you wait a few seconds in the open." : "Weak. Step away from buildings and trees.";
+    }
+    var cap = $("#capCount");
+    if (cap && SETUP.cap) cap.textContent = SETUP.cap.samples.length + " good readings";
+  }
+  function showTarget(id, fly) {
+    SETUP.target = id;
+    var t = targetById(id);
+    if (t) {
+      meEls.target._sc.x = t.map[0]; meEls.target._sc.y = t.map[1];
+      meEls.target.style.display = "";
+      updateScalables();
+      if (fly) { revealMap(); fitBox([t.map[0] - 160, t.map[1] - 160, t.map[0] + 160, t.map[1] + 160], { pad: 0.1, maxK: 2.2 }); }
+    } else meEls.target.style.display = "none";
+  }
+  function drawSetupDots() {
+    var g = meEls.setup;
+    while (g.firstChild) g.removeChild(g.firstChild);
+    if (!SETUP.on) return;
+    calibPoints().forEach(function (p) {
+      var r = FIT && FIT.res ? FIT.res[p.id] : null;
+      var cls = r == null ? "" : r <= 8 ? " good" : r <= 15 ? " ok" : " bad";
+      var d = scalable(sv("g", { class: "setup-dot" + cls }, g), p.map[0], p.map[1]);
+      sv("circle", { r: 9 }, d);
+    });
+    scalables = scalables.filter(function (o) { return o.el.parentNode; });
+    updateScalables();
+  }
+  function startCapture(id) {
+    var t = targetById(id);
     if (!t) return;
-    var local = []; try { local = JSON.parse(store(CAL_KEY) || "[]") || []; } catch (e) {}
-    local = local.filter(function (p) { return p.id !== id; });
-    local.push({ id: id, map: t.map, lat: ME.fix.lat, lon: ME.fix.lon, acc: Math.round(ME.fix.acc), t: new Date().toISOString() });
-    store(CAL_KEY, JSON.stringify(local));
-    fitGeo();
-    if (ME.fix) onPos({ coords: { latitude: ME.fix.lat, longitude: ME.fix.lon, accuracy: ME.fix.acc } });
-    toast("Recorded " + t.label + (ME.fix.acc > 15 ? " (accuracy was ±" + Math.round(ME.fix.acc) + " m)" : ""));
+    if (!ME.on) startLocate();
+    if (SETUP.cap) stopCapture(true);
+    showTarget(id, false);
+    SETUP.cap = { id: id, label: t.label, map: t.map, t0: Date.now(), dur: 10000, samples: [] };
+    SETUP.timer = setInterval(captureTick, 200);
     render(true);
+  }
+  function stopCapture(silent) {
+    clearInterval(SETUP.timer); SETUP.timer = null; SETUP.cap = null;
+    if (!silent) render(true);
+  }
+  function captureTick() {
+    var c = SETUP.cap; if (!c) return;
+    var el = Date.now() - c.t0;
+    // On phones that report slowly, keep listening (up to 25 s) until there are enough good readings.
+    if (el >= c.dur && c.samples.length < 4 && el < 25000) c.dur = Math.min(25000, c.dur + 2000);
+    var bar = $("#capBar"), txt = $("#capText");
+    if (bar) bar.style.width = Math.min(100, el / c.dur * 100) + "%";
+    if (txt) txt.textContent = "Hold still at " + c.label + ", " + Math.max(0, Math.ceil((c.dur - el) / 1000)) + " s";
+    if (el >= c.dur) finishCapture();
+  }
+  function finishCapture() {
+    var c = SETUP.cap; stopCapture(true);
+    var sm = c.samples;
+    if (sm.length < 3) { toast("Not enough good GPS readings. Step into the open and try again."); render(true); return; }
+    var W = 0, lat = 0, lon = 0;
+    sm.forEach(function (x) { var w = 1 / (x.acc * x.acc); W += w; lat += x.lat * w; lon += x.lon * w; });
+    lat /= W; lon /= W;
+    var spread = Math.sqrt(sm.reduce(function (a, x) { var d = metresBetween([x.lat, x.lon], [lat, lon]); return a + d * d; }, 0) / sm.length);
+    var acc = Math.round(Math.max(Math.sqrt(1 / W), spread) * 10) / 10;
+    var id = c.id === "c-new" ? "c-" + Date.now().toString(36) : c.id;
+    var pts = localPoints().filter(function (p) { return p.id !== id; });
+    var rec = { id: id, map: c.map, lat: +lat.toFixed(7), lon: +lon.toFixed(7), acc: acc, n: sm.length, t: new Date().toISOString() };
+    if (/^c-/.test(id)) rec.label = "Spot " + (pts.filter(function (p) { return /^c-/.test(p.id); }).length + 1);
+    pts.push(rec);
+    store(CAL_KEY, JSON.stringify(pts));
+    if (c.id === "c-new") SETUP.pick = null;
+    fitGeo();
+    if (ME.fix) onPos({ coords: { latitude: ME.fix.lat, longitude: ME.fix.lon, accuracy: ME.fix.acc }, synthetic: true });
+    toast("Recorded " + c.label + ", ±" + Math.round(acc) + " m from " + sm.length + " readings");
+    var next = allTargets().filter(function (t) { return !calibPoints().some(function (p) { return p.id === t.id; }); })[0];
+    showTarget(next ? next.id : null, false);
+    drawSetupDots();
+    render(true);
+  }
+  function deletePoint(id) {
+    store(CAL_KEY, JSON.stringify(localPoints().filter(function (p) { return p.id !== id; })));
+    fitGeo(); drawSetupDots();
+    if (ME.fix) onPos({ coords: { latitude: ME.fix.lat, longitude: ME.fix.lon, accuracy: ME.fix.acc }, synthetic: true });
+    render(true);
+  }
+  function setupPick(pt) {
+    SETUP.picking = false; mapwrap.classList.remove("picking");
+    SETUP.pick = pt;
+    showTarget("c-new", false);
+    renderGeo();
+    if (SETUP.on) { enableSetup(); S.tab = "setup"; drawSetupDots(); var firstT = allTargets().filter(function (t) { return !calibPoints().some(function (p) { return p.id === t.id; }); })[0]; showTarget(firstT ? firstT.id : null, false); } render(true);
+    if (S.tab !== "setup") setTab("setup");
+  }
+  function calibJSON() {
+    return JSON.stringify(calibPoints().map(function (p) {
+      var o = { id: p.id, map: p.map, lat: p.lat, lon: p.lon, acc: p.acc };
+      if (p.label) o.label = p.label;
+      return o;
+    }));
+  }
+  function setupRow(t) {
+    var p = calibPoints().filter(function (x) { return x.id === t.id; })[0], cap = SETUP.cap && SETUP.cap.id === t.id;
+    var res = p && FIT && FIT.res ? FIT.res[p.id] : null;
+    var status = p ? "±" + Math.round(p.acc) + " m" + (p.n ? ", " + p.n + " readings" : "") + (res != null && FIT.n >= 3 ? ", fits within " + Math.round(res) + " m" : "") : (t.hint || "Not recorded");
+    var cls = "trow" + (p ? " done" : "") + (SETUP.target === t.id ? " sel" : "") + (res != null && FIT.n >= 3 && res > 15 ? " bad" : "");
+    var h = '<li class="' + cls + '"><button class="tname" type="button" data-act="tshow" data-id="' + esc(t.id) + '"><span class="tdot"></span><span><b>' + esc(t.label) + "</b><small>" + esc(res != null && FIT.n >= 3 && res > 15 ? "Off by " + Math.round(res) + " m. Redo this one." : status) + "</small></span></button>";
+    if (cap) h += '<button class="btn sm" type="button" data-act="tcancel">Cancel</button>';
+    else h += '<button class="btn sm' + (p ? "" : " primary") + '" type="button" data-act="trec" data-id="' + esc(t.id) + '"' + (SETUP.cap ? " disabled" : "") + ">" + (p ? "Redo" : "Record") + "</button>";
+    if (p && localPoints().some(function (x) { return x.id === t.id; })) h += '<button class="icon-btn sm" type="button" data-act="tdel" data-id="' + esc(t.id) + '" aria-label="Delete ' + esc(t.label) + '">' + icon("close") + "</button>";
+    return h + "</li>";
+  }
+  function renderSetup() {
+    var pts = calibPoints(), n = pts.length, targets = allTargets();
+    var h = '<section class="info setup2"><h2>Live location setup</h2>';
+    h += '<p class="info-intro">Stand at a place you can find on the map, hold still, and record. Each recording averages about 10 seconds of GPS. Start with the three gates, then add doors and spots inside. Four or more places spread across the campus give the most accurate dot.</p>';
+    h += '<div class="setup-sticky">';
+    if (!ME.on) h += '<button class="btn primary big" type="button" data-act="setupgps">' + icon("locate") + "Start GPS</button>";
+    else if (!ME.fix) h += '<div class="gps-card q-weak" id="gpsLive"><span class="big">…</span><span class="lbl">Waiting for GPS. Stay outdoors.</span></div>';
+    else { var q = gpsQuality(ME.fix.acc); h += '<div class="gps-card q-' + q + '" id="gpsLive"><span class="big">±' + Math.round(ME.fix.acc) + ' m</span><span class="lbl">' + (q === "good" ? "Good. Ready to record." : q === "ok" ? "Okay. Better if you wait a few seconds in the open." : "Weak. Step away from buildings and trees.") + "</span></div>"; }
+    if (SETUP.cap) {
+      h += '<div class="cap-card"><div class="cap-top"><span id="capText">Hold still at ' + esc(SETUP.cap.label) + '</span><span id="capCount">' + SETUP.cap.samples.length + ' good readings</span></div><div class="cap-track"><span id="capBar"></span></div></div>';
+    }
+    h += "</div>";
+    var verdict, vcls;
+    if (n < 2 || !FIT) { verdict = n ? "Record one more place, far from the first" : "Nothing recorded yet"; vcls = "wait"; }
+    else if (n < 3) { verdict = "Live dot is on. Add a third place so the app can check its accuracy"; vcls = "ok"; }
+    else if (FIT.err <= 8 && FIT.max <= 15) { verdict = "Ready to publish. Average error " + Math.round(FIT.err) + " m, worst " + Math.round(FIT.max) + " m"; vcls = "good"; }
+    else { var w = targetById(FIT.worst); verdict = "Average error " + Math.round(FIT.err) + " m. Redo " + (w ? w.label : "the worst place") + " (off by " + Math.round(FIT.max) + " m)"; vcls = "ok"; }
+    h += '<div class="fit-card f-' + vcls + '"><b>' + n + (n === 1 ? " place" : " places") + " recorded</b><span>" + esc(verdict) + "." + (FIT ? " " + (FIT.type === "affine" ? "Using the precise fit (4+ places)." : "Using the basic fit; 4+ places switch to the precise one.") : "") + "</span></div>";
+    var groups = [["gates", "1. Gates", "Start here. Gate 1 and Gate 3 are the furthest apart."], ["doors", "2. Venue doors", "The red arrows on the map."], ["inside", "3. Spots inside", "Numbered markers. Use the ones you can stand right next to."], ["custom", "4. Anywhere else", "Tap the exact spot on the map where you're standing, then record it."]];
+    groups.forEach(function (g) {
+      var list = targets.filter(function (t) { return t.group === g[0]; });
+      h += "<h3>" + esc(g[1]) + '</h3><p class="grp-hint">' + esc(g[2]) + "</p>";
+      if (g[0] === "custom") {
+        h += '<div class="actions"><button class="btn" type="button" data-act="tpick">' + icon("spot") + (SETUP.picking ? "Now tap the map…" : "Tap the map where I am") + "</button></div>";
+        if (SETUP.pick) list = list.concat([{ id: "c-new", group: "custom", label: "New spot", hint: "Tapped on the map. Record it while you stand there", map: SETUP.pick }]);
+      }
+      if (list.length) h += '<ul class="trows">' + list.map(setupRow).join("") + "</ul>";
+    });
+    if (n) {
+      h += '<h3>Send it</h3><p class="grp-hint">Copy this and send it to the developer, or paste it as <code>points</code> in data/campus.js. Then everyone gets the live dot.</p>';
+      h += '<pre class="code" id="calibOut">' + esc(calibJSON()) + "</pre>";
+      h += '<div class="actions"><button class="btn primary" type="button" data-act="copycalib">' + icon("link") + "Copy</button>";
+      if (navigator.share) h += '<button class="btn" type="button" data-act="sharecalib">Share</button>';
+      if (ENV !== "artifact") h += '<button class="btn" type="button" data-act="dlcalib">Download</button>';
+      h += '<button class="btn danger" type="button" data-act="clearcalib">Clear all</button></div>';
+    }
+    h += "</section>" + footer();
+    scroller.innerHTML = h;
   }
 
   function footer() {
@@ -1475,9 +1681,19 @@
       else if (act === "islfilter") { S.isl = true; S.tab = "programme"; render(true); scroller.scrollTop = 0; }
       else if (act === "venueaccess") { revealMap(); setAccess(true, true); var vv = VENUES[b.getAttribute("data-id")]; if (vv.access && vv.access.length) fitBox(bbox(vv.access.concat(vv.shape)), { pad: 0.2, min: 420, maxK: 2 }); }
       else if (act === "setupgps") startLocate();
-      else if (act === "record") recordPoint(b.getAttribute("data-id"));
-      else if (act === "copycalib") { var tx = $("#calibOut").textContent; try { navigator.clipboard.writeText(tx).then(function () { toast("Copied"); }, function () { selectText($("#calibOut")); }); } catch (e) { selectText($("#calibOut")); } }
-      else if (act === "clearcalib") { store(CAL_KEY, null); fitGeo(); if (ME.fix) onPos({ coords: { latitude: ME.fix.lat, longitude: ME.fix.lon, accuracy: ME.fix.acc } }); render(true); }
+      else if (act === "opensetup") { enableSetup(); setTab("setup"); }
+      else if (act === "tshow") { showTarget(b.getAttribute("data-id"), true); render(true); }
+      else if (act === "trec") startCapture(b.getAttribute("data-id"));
+      else if (act === "tcancel") stopCapture();
+      else if (act === "tdel") deletePoint(b.getAttribute("data-id"));
+      else if (act === "tpick") { SETUP.picking = !SETUP.picking; mapwrap.classList.toggle("picking", SETUP.picking); if (SETUP.picking) { revealMap(); toast("Tap the map where you are standing"); } render(true); }
+      else if (act === "copycalib") { var tx = calibJSON(); try { navigator.clipboard.writeText(tx).then(function () { toast("Copied. Paste it in WhatsApp or email."); }, function () { selectText($("#calibOut")); }); } catch (e) { selectText($("#calibOut")); } }
+      else if (act === "sharecalib") { try { navigator.share({ title: "LitFest live-location setup", text: calibJSON() }).catch(function () {}); } catch (e) {} }
+      else if (act === "dlcalib") { try { var bl = new Blob([JSON.stringify(JSON.parse(calibJSON()), null, 2)], { type: "application/json" }), a = document.createElement("a"); a.href = URL.createObjectURL(bl); a.download = "litfest-calibration.json"; document.body.appendChild(a); a.click(); a.remove(); } catch (e) {} }
+      else if (act === "clearcalib") {
+        if (b.getAttribute("data-sure") !== "1") { b.setAttribute("data-sure", "1"); b.textContent = "Tap again to clear all"; return; }
+        store(CAL_KEY, null); fitGeo(); drawSetupDots(); if (ME.fix) onPos({ coords: { latitude: ME.fix.lat, longitude: ME.fix.lon, accuracy: ME.fix.acc }, synthetic: true }); render(true);
+      }
       else if (act === "about") openAbout();
       else if (act === "link") copyLink(S.selected);
     });
@@ -1746,6 +1962,7 @@
       S.picking = !S.picking;
       mapwrap.classList.toggle("picking", S.picking);
       renderGeo();
+    if (SETUP.on) { enableSetup(); S.tab = "setup"; drawSetupDots(); var firstT = allTargets().filter(function (t) { return !calibPoints().some(function (p) { return p.id === t.id; }); })[0]; showTarget(firstT ? firstT.id : null, false); }
     });
     $("#geoChip").addEventListener("click", function (e) {
       var b = e.target.closest("[data-geo]"); if (!b) return;
@@ -1762,6 +1979,7 @@
     });
     $("#rbClose").innerHTML = icon("close");
     renderGeo();
+    if (SETUP.on) { enableSetup(); S.tab = "setup"; drawSetupDots(); var firstT = allTargets().filter(function (t) { return !calibPoints().some(function (p) { return p.id === t.id; }); })[0]; showTarget(firstT ? firstT.id : null, false); }
     $("#layerAmen").addEventListener("click", function () { S.amen = !S.amen; store("lf-amen", S.amen ? "1" : "0"); syncLayers(); });
     $("#layerAccess").addEventListener("click", function () { setAccess(!S.access); });
     syncLayers();
@@ -1791,7 +2009,8 @@
         if (S.tab !== "programme") setTab("programme");
         requestAnimationFrame(function () { var q = $("#q"); if (q) { e.preventDefault(); q.focus(); } });
       } else if (e.key === "Escape" && !$("#about").open) {
-        if (S.picking) { S.picking = false; mapwrap.classList.remove("picking"); renderGeo(); }
+        if (SETUP.picking) { SETUP.picking = false; mapwrap.classList.remove("picking"); render(true); }
+        else if (S.picking) { S.picking = false; mapwrap.classList.remove("picking"); renderGeo(); }
         else if (S.selected) selectSession(S.selected, { toggle: true });
         else if (S.venue) { S.venue = null; drawRoute(null); render(true); }
       }
@@ -1812,7 +2031,7 @@
     if (ENV === "web" && "serviceWorker" in navigator && /^https?:$/.test(location.protocol) && window.top === window.self) {
       window.addEventListener("load", function () { navigator.serviceWorker.register("sw.js").catch(function () {}); });
     }
-    window.LitFest = { version: VERSION, state: S, setTime: function (m) { setTime(m, true); }, select: selectSession, fix: function (lat, lon, acc) { ME.on = true; onPos({ coords: { latitude: lat, longitude: lon, accuracy: acc || 8 } }); }, remind: function () { var ps = planList()[0]; if (ps) fireReminder(ps, remindAt(ps), true); } };
+    window.LitFest = { version: VERSION, state: S, setTime: function (m) { setTime(m, true); }, select: selectSession, fix: function (lat, lon, acc) { ME.on = true; ME.pending = false; onPos({ coords: { latitude: lat, longitude: lon, accuracy: acc || 8 } }); }, remind: function () { var ps = planList()[0]; if (ps) fireReminder(ps, remindAt(ps), true); } };
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);

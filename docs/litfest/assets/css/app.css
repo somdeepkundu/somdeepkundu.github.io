@@ -735,6 +735,55 @@ button.link { border: 0; background: none; padding: 0; color: var(--accent); fon
   .remind-banner { top: calc(58px + env(safe-area-inset-top, 0px)); }
 }
 
+/* ---------- Live-location setup ---------- */
+.tab svg.i { width: 15px; height: 15px; }
+.setup-link { margin: 4px 16px 16px; display: flex; gap: 8px; align-items: center; font-size: var(--fs-13); color: var(--ink-2); }
+.setup-link svg.i { width: 16px; height: 16px; color: var(--ink-3); }
+.setup-sticky { position: sticky; top: 0; z-index: 3; display: flex; flex-direction: column; gap: 8px; margin: 0 -16px; padding: 8px 16px; background: var(--surface); }
+.setup2 h3 { margin-top: 10px; color: var(--ink); font-size: var(--fs-14); }
+.grp-hint { margin: -8px 0 0; font-size: var(--fs-12); color: var(--ink-3); }
+.btn.big { height: 46px; font-size: var(--fs-15); justify-content: center; }
+.btn.sm { height: 32px; padding: 0 12px; font-size: var(--fs-12); flex: none; }
+.btn[disabled] { opacity: .45; cursor: not-allowed; }
+.icon-btn.sm { width: 32px; height: 32px; flex: none; }
+.gps-card { display: flex; align-items: baseline; gap: 12px; padding: 12px 14px; border-radius: var(--r-m); border: 1px solid var(--rule); }
+.gps-card .big { font-size: 26px; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+.gps-card .lbl { font-size: var(--fs-13); color: var(--ink-2); }
+.gps-card.q-good { background: color-mix(in srgb, #1F9D63 12%, var(--surface)); border-color: color-mix(in srgb, #1F9D63 35%, var(--rule)); }
+.gps-card.q-good .big { color: #1F9D63; }
+.gps-card.q-ok { background: var(--soon-soft); }
+.gps-card.q-ok .big { color: var(--soon); }
+.gps-card.q-weak { background: var(--live-soft); }
+.gps-card.q-weak .big { color: var(--live); }
+.cap-card { padding: 12px 14px; border-radius: var(--r-m); background: var(--ink); color: var(--paper); display: flex; flex-direction: column; gap: 8px; }
+.cap-top { display: flex; justify-content: space-between; gap: 10px; font-size: var(--fs-13); font-weight: 600; }
+.cap-top span:last-child { font-weight: 400; opacity: .75; font-variant-numeric: tabular-nums; }
+.cap-track { height: 6px; border-radius: 3px; background: color-mix(in srgb, var(--paper) 25%, transparent); overflow: hidden; }
+.cap-track span { display: block; height: 100%; width: 0; background: var(--outdoor); border-radius: 3px; transition: width .2s linear; }
+.fit-card { display: flex; flex-direction: column; gap: 2px; padding: 12px 14px; border-radius: var(--r-m); border: 1px solid var(--rule); font-size: var(--fs-13); color: var(--ink-2); }
+.fit-card b { color: var(--ink); font-size: var(--fs-14); }
+.fit-card.f-good { border-color: color-mix(in srgb, #1F9D63 45%, var(--rule)); }
+.fit-card.f-good b { color: #1F9D63; }
+.trows { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.trow { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--rule); }
+.trow .tname { flex: 1; min-width: 0; display: flex; align-items: center; gap: 10px; text-align: left; border: 0; background: transparent; padding: 6px 4px; border-radius: 8px; }
+.trow .tname:hover { background: var(--surface-2); }
+.trow .tname b { display: block; font-size: var(--fs-13); font-weight: 600; color: var(--ink); }
+.trow .tname small { display: block; font-size: var(--fs-11); color: var(--ink-3); }
+.trow .tdot { width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--rule-strong); flex: none; }
+.trow.done .tdot { background: #1F9D63; border-color: #1F9D63; }
+.trow.bad .tdot { background: var(--live); border-color: var(--live); }
+.trow.bad small { color: var(--live); }
+.trow.sel { background: var(--accent-soft); border-radius: 8px; border-bottom-color: transparent; }
+.setup-target .st-pulse { fill: none; stroke: #2F7BF6; stroke-width: 3; animation: stpulse 1.6s var(--ease) infinite; transform-box: fill-box; transform-origin: center; }
+.setup-target .st-ring { fill: color-mix(in srgb, #2F7BF6 18%, transparent); stroke: #2F7BF6; stroke-width: 4; }
+.setup-target .st-core { fill: #2F7BF6; }
+@keyframes stpulse { 0% { transform: scale(.6); opacity: 1; } 100% { transform: scale(1.5); opacity: 0; } }
+.setup-dot circle { fill: var(--surface); stroke: var(--ink-3); stroke-width: 4; }
+.setup-dot.good circle { stroke: #1F9D63; fill: #1F9D63; }
+.setup-dot.ok circle { stroke: var(--soon); fill: var(--soon-soft); }
+.setup-dot.bad circle { stroke: var(--live); fill: var(--live); }
+
 @media (prefers-reduced-motion: reduce) { .panel-scroll { scroll-behavior: auto; } }
 
 .filters {
@@ -1033,7 +1082,7 @@ dialog.about::backdrop { background: rgba(16, 12, 28, .5); backdrop-filter: blur
 @media (max-width: 820px) {
   body { overflow: hidden; }
   /* Phone: the map fills the screen and a draggable sheet holds the timeline and the list. */
-  .stage { display: block; position: relative; overflow: hidden; --sheet-vis: 50%; }
+  .stage { display: block; position: relative; overflow: hidden; overflow: clip; --sheet-vis: 50%; }
   .mapwrap { position: absolute; inset: 0; }
   .sheet {
     position: absolute; left: 0; right: 0; bottom: 0;
