@@ -9,7 +9,7 @@
 (function () {
   "use strict";
 
-  var VERSION = "1.0.0";
+  var VERSION = "1.0.1";
   var P = window.LITFEST_PROGRAMME;
   var C = window.LITFEST_CAMPUS;
   var ENV = window.LITFEST_ENV || "web"; // "web" | "offline" | "artifact"
@@ -175,7 +175,7 @@
   if (S.from === "spot" && !S.spot) S.from = "auto";
 
   function isFestivalDay() { return now().date === D().date; }
-  function liveMinute() { var d = D(); return clamp(now().min, d.w0, d.w1); }
+  function liveMinute() { return Math.floor(now().min); }
   function busiestMinute() {
     var d = D(), best = d.w0, bestN = -1;
     for (var m = d.w0; m <= d.w1; m += SNAP) {
@@ -1036,7 +1036,7 @@
   }
   function renderShelf() {
     var d = D(), t = S.t;
-    playheadEl.style.left = pct(t) + "%";
+    playheadEl.style.left = pct(clamp(t, d.w0, d.w1)) + "%";
     track.setAttribute("aria-valuenow", Math.round(t));
     track.setAttribute("aria-valuetext", fmt(t));
     var fest = isFestivalDay(), nm = now().min;
@@ -1051,8 +1051,11 @@
       b.classList.toggle("dim", !filt[s.id]);
     });
     var tl = $("#shelfTime");
-    var sub = S.follow ? "Now" : (fest ? "Preview" : "Drag to explore the day");
-    tl.innerHTML = esc(fmt(t)) + "<small>" + esc(sub) + "</small>";
+    var first = d.sessions[0], sub;
+    if (S.follow && t < d.w0) sub = "Now. Opens at " + fmt(first.s);
+    else if (S.follow && t > d.w1) sub = "Now. That's a wrap";
+    else sub = S.follow ? "Now" : (fest ? "Preview. Tap Now to go back" : "Preview of " + d.short);
+    tl.innerHTML = "<b>" + esc(fmt(t)) + "</b><small>" + esc(sub) + "</small>";
     $("#nowBtn").hidden = !fest || S.follow;
   }
   function bindShelf() {
@@ -1656,11 +1659,11 @@
     var n = now(), d = D(), el = $("#clock"), txt = $("#clockText");
     var mode, html;
     if (n.date === d.date) {
-      if (n.min < d.w0) { mode = "today"; html = '<span class="k">Today, opens</span> ' + esc(fmt(d.sessions[0].s)); }
+      if (n.min < d.w0) { mode = "today"; html = "Opens " + esc(fmt(d.sessions[0].s)); }
       else if (n.min > d.w1) { mode = "over"; html = "That's a wrap"; }
       else { mode = "live"; html = '<span class="k">Live</span> ' + esc(fmt(n.min)); }
-    } else if (n.date < d.date) { mode = "preview"; html = '<span class="k">Preview of</span> ' + esc(d.short); }
-    else { mode = "over"; html = '<span class="k">Archive,</span> ' + esc(d.short); }
+    } else if (n.date < d.date) { mode = "preview"; html = esc(d.short); }
+    else { mode = "over"; html = "That's a wrap"; }
     if (el.getAttribute("data-mode") !== mode) el.setAttribute("data-mode", mode);
     if (txt.innerHTML !== html) txt.innerHTML = html;
     var pb = $("#previewBar");
