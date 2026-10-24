@@ -3,7 +3,7 @@
    - Programme and map data are fetched network-first, so a fix published on the day reaches people quickly.
    - Opens the right session when someone taps a reminder notification.
    Bump VERSION whenever you publish a change. */
-var VERSION = "litfest-1.0.1";
+var VERSION = "litfest-1.0.2";
 var SHELL = [
   "./", "./index.html", "./manifest.webmanifest",
   "./assets/css/app.css", "./assets/js/app.js",
