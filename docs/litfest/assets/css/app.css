@@ -161,6 +161,8 @@ svg.i { width: 18px; height: 18px; flex: none; stroke: currentColor; fill: none;
   letter-spacing: -0.01em;
   line-height: 1.15;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .brand-sub {
   margin: 1px 0 0;
@@ -482,7 +484,9 @@ svg.i { width: 18px; height: 18px; flex: none; stroke: currentColor; fill: none;
   font-variant-numeric: tabular-nums;
   min-width: 0;
 }
-.shelf-time small { font-weight: 400; color: var(--ink-3); font-size: var(--fs-12); margin-left: 6px; }
+.shelf-time { display: flex; flex-direction: column; line-height: 1.2; }
+.shelf-time b { font-weight: 600; }
+.shelf-time small { font-weight: 500; color: var(--ink-3); font-size: var(--fs-11); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 150px; }
 .shelf-head .spacer { flex: 1; }
 .chip-btn {
   height: 28px;
@@ -1075,7 +1079,6 @@ dialog.about::backdrop { background: rgba(16, 12, 28, .5); backdrop-filter: blur
   .s-more { padding-left: 16px; }
 }
 @media (max-width: 420px) {
-  .shelf-time small { display: none; }
   #layerAmen { display: none; }
   .brand-mark { width: 28px; height: 28px; }
   .brand-name { font-size: var(--fs-15); }
