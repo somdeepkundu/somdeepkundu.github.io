@@ -9,7 +9,7 @@
 (function () {
   "use strict";
 
-  var VERSION = "1.0.2";
+  var VERSION = "1.0.3";
   var P = window.LITFEST_PROGRAMME;
   var C = window.LITFEST_CAMPUS;
   var ENV = window.LITFEST_ENV || "web"; // "web" | "offline" | "artifact"
@@ -330,7 +330,7 @@
   function mpu() { return FIT ? FIT.mpu : (GEO.metresPerUnit || 0.17); }
   function insideCampus(pt) {
     var b = C.boundary;
-    return pt[0] >= b.x - 40 && pt[0] <= b.x + b.w + 40 && pt[1] >= b.y - 40 && pt[1] <= b.y + b.h + 40;
+    return pt[0] >= b.x - 90 && pt[0] <= b.x + b.w + 90 && pt[1] >= b.y - 90 && pt[1] <= b.y + b.h + 90;
   }
   fitGeo();
 
@@ -802,10 +802,10 @@
     ME.fix = { lat: c.latitude, lon: c.longitude, acc: c.accuracy || 50, t: Date.now() };
     if (SETUP.cap && !p.synthetic && ME.fix.acc <= 30) SETUP.cap.samples.push({ lat: ME.fix.lat, lon: ME.fix.lon, acc: ME.fix.acc });
     if (SETUP.on) updateSetupLive();
-    var dist = metresBetween([c.latitude, c.longitude], GEO.centre || [c.latitude, c.longitude]);
-    ME.onCampus = dist <= (GEO.campusRadius || 230);
-    var m = ME.onCampus ? geoToMap(c.latitude, c.longitude) : null;
-    ME.map = m && insideCampus(m) ? [Math.round(m[0]), Math.round(m[1])] : null;
+    var m = geoToMap(c.latitude, c.longitude);
+    if (m) ME.onCampus = insideCampus(m); // calibrated: use the real campus outline
+    else ME.onCampus = metresBetween([c.latitude, c.longitude], GEO.centre || [c.latitude, c.longitude]) <= (GEO.campusRadius || 230);
+    ME.map = m && ME.onCampus ? [Math.round(m[0]), Math.round(m[1])] : null;
     if (ME.map && S.from !== "spot" && !ME.autoFrom) { S.from = "me"; ME.autoFrom = true; }
     ME.msg = "";
     renderGeo();
