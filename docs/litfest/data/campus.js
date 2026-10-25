@@ -125,11 +125,16 @@ window.LITFEST_CAMPUS = {
      The blue "you are here" dot appears only after at least two `points` are recorded on site, because the printed
      map is a schematic. Record them with index.html?calibrate (see docs/MAP.md) and paste the result here. */
   geo: {
-    centre: [18.9251, 72.8206],
-    campusRadius: 230,
-    metresPerUnit: 0.17,
+    centre: [18.925602, 72.819864],   // campus centre, measured from the gate readings below
+    campusRadius: 170,
+    metresPerUnit: 0.174,
     walkMetresPerMinute: 65,
-    points: []
+    // Recorded on site by Somdeep Kundu, 25 Oct 2026, 7:30 am (each a 10-second average). Fit error 2 to 5 m.
+    points: [
+      { id: "g1", map: [1135, 865], lat: 18.9260627, lon: 72.8207757, acc: 1.4 },
+      { id: "g2", map: [600, 65], lat: 18.9260719, lon: 72.8192137, acc: 1.4 },
+      { id: "g3", map: [100, 65], lat: 18.9254881, lon: 72.818679, acc: 1.2 }
+    ]
   },
 
   labels: {
