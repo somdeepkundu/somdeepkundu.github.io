@@ -1,0 +1,12 @@
+Gram Suvidha Map — changelog
+
+1.1.0 (2026-11-02)
+- Restructured to the house pattern: assets/css, assets/js, vendored Leaflet 1.9.4, self-hosted fonts (OFL), strict CSP.
+- Installable and offline: service worker caches the app, map tiles (up to 3000) and the last 60 OSM answers.
+- Overpass queries use GET so they can be cached; a newer search can no longer be overwritten by a slow older one.
+- CSV export neutralises spreadsheet formulas; every OSM string is escaped or set as text.
+- Link preview (Open Graph card), app icons, Auto/Light/Dark theme toggle, 16 px text on phones.
+
+1.0.0 (2026-11-02)
+- First release: village search (Nominatim), amenities from Overpass by village boundary or radius,
+  basic-services scorecard, 11 layers, list by distance, GeoJSON/CSV export, shareable links.
