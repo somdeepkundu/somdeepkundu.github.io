@@ -3,122 +3,45 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: blob: https://tile.openstreetmap.org https://server.arcgisonline.com; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self' https://nominatim.openstreetmap.org https://overpass-api.de https://overpass.kumi.systems https://maps.mail.ru; font-src 'self'; worker-src 'self'; manifest-src 'self'">
 <title>Gram Suvidha Map</title>
-<meta name="description" content="Village-level amenity mapping from OpenStreetMap. Search any village, see schools, health centres, water points, banks, bus stops and more.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
-<style>
-/* Layout: field-notebook sidebar (search → scorecard → layers → list) beside a full-height map; stacks on phones */
-:root{
-  --paper:#f4f5f1; --card:#ffffff; --ink:#1c2420; --muted:#5d6862; --line:#dde1db;
-  --indigo:#2e3f97; --indigo-soft:#e6e9f7; --ok:#2f7d4f; --miss:#b2482f;
-  --f-display:"Familjen Grotesk", "Segoe UI", system-ui, sans-serif;
-  --f-body:"Atkinson Hyperlegible", system-ui, -apple-system, sans-serif;
-  --f-mono:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
-}
-@media (prefers-color-scheme: dark){
-  :root{ --paper:#141917; --card:#1c2320; --ink:#e7ece8; --muted:#9aa59f; --line:#2c3531;
-    --indigo:#9aa8f2; --indigo-soft:#252c4d; --ok:#6cc48f; --miss:#e8866c; color-scheme:dark }
-}
-*{box-sizing:border-box}
-html,body{height:100%;margin:0}
-body{background:var(--paper);color:var(--ink);font:15px/1.5 var(--f-body)}
-.app{display:grid;grid-template-columns:400px 1fr;height:100%}
-.side{display:flex;flex-direction:column;min-height:0;border-right:1px solid var(--line);background:var(--paper)}
-.side-scroll{overflow-y:auto;padding:18px 20px 24px;display:flex;flex-direction:column;gap:22px}
-header.brand{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
-.brand h1{font:700 1.45rem/1.1 var(--f-display);margin:0;letter-spacing:-.01em}
-.brand h1 span{color:var(--indigo)}
-.brand small{font:500 .7rem var(--f-mono);color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
-.tag{color:var(--muted);margin:4px 0 0;font-size:.88rem}
-
-form.search{display:flex;gap:8px}
-.search input{flex:1;min-width:0;font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)}
-.search input:focus-visible,button:focus-visible{outline:2px solid var(--indigo);outline-offset:2px}
-button{font:600 .9rem var(--f-body);border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:9px 12px;cursor:pointer}
-button.primary{background:var(--indigo);border-color:var(--indigo);color:var(--paper)}
-button:hover{border-color:var(--indigo)}
-button:disabled{opacity:.5;cursor:default}
-.results{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:8px;background:var(--card);overflow:hidden}
-.results button{border:0;border-bottom:1px solid var(--line);border-radius:0;text-align:left;font-weight:400;padding:9px 12px;background:transparent}
-.results button:last-child{border-bottom:0}
-.results button:hover{background:var(--indigo-soft)}
-.results b{display:block;font-weight:700}
-.results span{font-size:.8rem;color:var(--muted)}
-
-.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-label.radius{font-size:.85rem;color:var(--muted);display:flex;align-items:center;gap:8px;flex:1}
-label.radius input{flex:1;accent-color:var(--indigo)}
-.mono{font-family:var(--f-mono);font-size:.8rem;font-variant-numeric:tabular-nums}
-
-section h2{font:600 .72rem var(--f-mono);letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0 0 10px;display:flex;justify-content:space-between}
-.place h3{font:700 1.35rem/1.15 var(--f-display);margin:0;text-wrap:balance}
-.place p{margin:4px 0 0;color:var(--muted);font-size:.85rem}
-
-.score{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-.score div{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:7px 9px;display:flex;flex-direction:column;gap:1px;min-width:0}
-.score b{font-size:.84rem;font-weight:700;display:flex;gap:6px;align-items:center}
-.score b::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--miss);flex:none}
-.score .yes b::before{background:var(--ok)}
-.score span{font-size:.76rem;color:var(--muted)}
-.note{font-size:.8rem;color:var(--muted);margin:10px 0 0}
-.note a{color:var(--indigo)}
-
-.cats{display:flex;flex-wrap:wrap;gap:6px}
-.chip{display:inline-flex;align-items:center;gap:7px;font:400 .82rem var(--f-body);padding:5px 10px;border-radius:999px}
-.chip i{width:10px;height:10px;border-radius:50%;background:var(--c)}
-.chip em{font:500 .74rem var(--f-mono);font-style:normal;color:var(--muted)}
-.chip[aria-pressed="false"]{opacity:.45}
-.chip[aria-pressed="false"] i{background:transparent;box-shadow:inset 0 0 0 2px var(--c)}
-
-.list{display:flex;flex-direction:column;gap:14px}
-.group h4{margin:0 0 4px;font:600 .9rem var(--f-display);display:flex;gap:8px;align-items:center}
-.group h4 i{width:10px;height:10px;border-radius:50%;background:var(--c)}
-.item{display:grid;grid-template-columns:1fr auto;gap:2px 10px;width:100%;text-align:left;border:0;border-bottom:1px dashed var(--line);border-radius:0;background:transparent;padding:6px 2px;font-weight:400}
-.item:hover{background:var(--indigo-soft)}
-.item b{font-weight:700;font-size:.88rem;min-width:0;overflow-wrap:anywhere}
-.item span{font-size:.76rem;color:var(--muted)}
-.item .mono{color:var(--muted);grid-row:span 2;align-self:center}
-.empty{color:var(--muted);font-size:.88rem}
-
-.exports{display:flex;gap:8px;flex-wrap:wrap}
-footer{font-size:.75rem;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
-footer a{color:inherit}
-
-.mapwrap{position:relative;min-width:0}
-#map{position:absolute;inset:0;background:var(--line)}
-.status{position:absolute;z-index:500;left:50%;top:14px;transform:translateX(-50%);background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:.85rem;box-shadow:0 4px 18px rgba(0,0,0,.12);max-width:calc(100% - 32px)}
-.status.err{border-color:var(--miss);color:var(--miss)}
-.status .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--indigo);margin-right:8px;animation:pulse 1s infinite alternate}
-@keyframes pulse{from{opacity:.25}to{opacity:1}}
-@media (prefers-reduced-motion:reduce){.status .dot{animation:none}}
-.leaflet-popup-content{font:14px/1.45 var(--f-body);margin:12px 14px}
-.pop b{font-size:.95rem}
-.pop .t{color:#5d6862;font-size:.8rem}
-.pop table{font:12px var(--f-mono);margin-top:6px;border-collapse:collapse}
-.pop td{padding:1px 8px 1px 0;vertical-align:top;color:#333}
-.pop a{color:#2e3f97}
-
-@media (max-width:820px){
-  .app{display:flex;flex-direction:column-reverse;height:auto}
-  .mapwrap{height:56vh}
-  .side{border-right:0}
-  .side-scroll{overflow:visible;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-}
-</style>
+<meta name="description" content="Village-level amenity mapping from OpenStreetMap. Search any Indian village to see schools, Anganwadis, health centres, water points, banks, bus stops and more.">
+<meta name="theme-color" content="#2e3f97">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Gram Suvidha Map">
+<meta property="og:title" content="Gram Suvidha Map: amenities in any Indian village">
+<meta property="og:description" content="Search a village and see what OpenStreetMap knows about its schools, health centres, water points, banks and bus stops, with a basic-services scorecard.">
+<meta property="og:url" content="https://somdeepkundu.github.io/gram-suvidha-map/">
+<meta property="og:image" content="https://somdeepkundu.github.io/gram-suvidha-map/assets/img/thumbnail.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Gram Suvidha">
+<link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/familjen-grotesk-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+<link rel="stylesheet" href="assets/css/app.css">
+<script src="assets/js/theme.js"></script>
 </head>
 <body>
 <div class="app">
   <aside class="side">
     <div class="side-scroll">
       <div>
-        <header class="brand"><h1>Gram <span>Suvidha</span> Map</h1><small>OSM · live</small></header>
+        <header class="brand">
+          <h1>Gram <span>Suvidha</span> Map</h1>
+          <button class="theme" type="button" id="themeBtn" aria-label="Colour theme">Auto</button>
+        </header>
         <p class="tag">Village-level amenities from OpenStreetMap. Search a village, or tap anywhere on the map.</p>
       </div>
 
-      <div style="display:flex;flex-direction:column;gap:10px">
+      <div class="stack">
         <form class="search" id="searchForm">
           <input id="q" type="search" placeholder="Village, taluka or district" autocomplete="off" aria-label="Search village">
           <button class="primary" type="submit">Search</button>
@@ -163,369 +86,16 @@ footer a{color:inherit}
 
       <footer>
         Data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a> (ODbL) · search by Nominatim · queries by Overpass API.<br>
-        Built by Somdeep Kundu, RuDRA Lab, C-TARA, IIT Bombay.
+        Built by Somdeep Kundu, RuDRA Lab, C-TARA, IIT Bombay · <span class="mono" id="ver"></span>
       </footer>
     </div>
   </aside>
   <main class="mapwrap">
     <div id="map" role="application" aria-label="Amenity map"></div>
-    <div class="status" id="status" hidden></div>
+    <div class="status" id="status" role="status" hidden></div>
   </main>
 </div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-<script>
-"use strict";
-const $ = id => document.getElementById(id);
-
-/* ---------- categories ---------- */
-const CATS = [
-  {id:"health",    label:"Health",                 color:"#d1495b"},
-  {id:"education", label:"Education & Anganwadi",  color:"#2e3f97"},
-  {id:"water",     label:"Water & sanitation",     color:"#1f8fb4"},
-  {id:"agri",      label:"Agriculture & veterinary",color:"#5f8a2b"},
-  {id:"finance",   label:"Bank, ATM & post",       color:"#c98a12"},
-  {id:"gov",       label:"Panchayat & public offices",color:"#7b4fa3"},
-  {id:"transport", label:"Transport & fuel",       color:"#3d4a52"},
-  {id:"market",    label:"Shops, markets & food",  color:"#d9702a"},
-  {id:"religion",  label:"Places of worship",      color:"#9c6b4e"},
-  {id:"leisure",   label:"Play & recreation",      color:"#2f9e7a"},
-  {id:"other",     label:"Other",                  color:"#8a948e"}
-];
-const CAT = Object.fromEntries(CATS.map(c => [c.id, c]));
-
-function classify(t){
-  const a=t.amenity, s=t.shop, mm=t.man_made;
-  if (a==="veterinary" || ["agrarian","farm","garden_centre","feed"].includes(s) || mm==="silo" || t.craft==="agricultural_engines" || a==="animal_breeding") return "agri";
-  if (["hospital","clinic","doctors","dentist","pharmacy","health_post","nursing_home"].includes(a) || t.healthcare) return "health";
-  if (["school","college","university","kindergarten","library","childcare","training","prep_school"].includes(a)) return "education";
-  if (["drinking_water","water_point","toilets","shower","waste_disposal","recycling"].includes(a) ||
-      ["water_well","water_tower","water_works","storage_tank","pumping_station","wastewater_plant"].includes(mm)) return "water";
-  if (["bank","atm","post_office","bureau_de_change","money_lender"].includes(a)) return "finance";
-  if (["townhall","police","fire_station","courthouse","community_centre","social_facility","public_building","village_hall"].includes(a) ||
-      ["government","administrative"].includes(t.office)) return "gov";
-  if (a==="place_of_worship" || a==="monastery") return "religion";
-  if (a==="bus_station" || t.highway==="bus_stop" || ["station","halt"].includes(t.railway) || ["fuel","taxi"].includes(a)) return "transport";
-  if (a==="marketplace" || s || ["restaurant","cafe","fast_food","food_court"].includes(a)) return "market";
-  if (t.leisure || ["theatre","cinema","arts_centre"].includes(a)) return "leisure";
-  return "other";
-}
-
-const NICE = {
-  townhall:"Town hall / Gram Panchayat", kindergarten:"Kindergarten / Anganwadi", drinking_water:"Drinking water tap",
-  water_well:"Well / borewell", water_tower:"Overhead water tank", storage_tank:"Storage tank", water_works:"Water works",
-  pumping_station:"Pumping station", toilets:"Public toilet", doctors:"Doctor", clinic:"Clinic", hospital:"Hospital",
-  pharmacy:"Pharmacy", health_post:"Health sub-centre", veterinary:"Veterinary hospital", agrarian:"Agri-input shop",
-  bank:"Bank", atm:"ATM", post_office:"Post office", bus_stop:"Bus stop", bus_station:"Bus stand", fuel:"Fuel pump",
-  marketplace:"Market / haat", place_of_worship:"Place of worship", community_centre:"Community hall",
-  police:"Police station", school:"School", college:"College", library:"Library", playground:"Playground", pitch:"Sports ground",
-  convenience:"General store", supermarket:"Supermarket", station:"Railway station", halt:"Railway halt"
-};
-const WORSHIP = {hindu:"Temple", muslim:"Mosque", christian:"Church", sikh:"Gurdwara", buddhist:"Buddhist vihara", jain:"Jain temple"};
-
-function typeLabel(t){
-  if (t.amenity==="place_of_worship") return WORSHIP[t.religion] || "Place of worship";
-  if (t.amenity) return NICE[t.amenity] || cap(t.amenity);
-  if (t.highway==="bus_stop") return NICE.bus_stop;
-  if (t.railway) return NICE[t.railway] || cap(t.railway);
-  if (t.shop) return NICE[t.shop] || cap(t.shop) + " shop";
-  if (t.man_made) return NICE[t.man_made] || cap(t.man_made);
-  if (t.healthcare) return cap(t.healthcare);
-  if (t.office) return cap(t.office) + " office";
-  if (t.leisure) return NICE[t.leisure] || cap(t.leisure);
-  if (t.craft) return cap(t.craft);
-  return "Feature";
-}
-function cap(s){ s=String(s).replace(/_/g," "); return s.charAt(0).toUpperCase()+s.slice(1); }
-function esc(s){ return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
-
-/* ---------- basic-services scorecard ---------- */
-const ESSENTIALS = [
-  {label:"School",           test:f=>f.cat==="education" && ["school","college"].includes(f.tags.amenity)},
-  {label:"Anganwadi",        test:f=>f.tags.amenity==="kindergarten" || f.tags.amenity==="childcare" || /anganwadi/i.test(f.tags.name||"")},
-  {label:"Health facility",  test:f=>f.cat==="health"},
-  {label:"Drinking water",   test:f=>["drinking_water","water_point"].includes(f.tags.amenity) || ["water_well","water_tower","water_works","storage_tank"].includes(f.tags.man_made)},
-  {label:"Bank or ATM",      test:f=>["bank","atm"].includes(f.tags.amenity)},
-  {label:"Post office",      test:f=>f.tags.amenity==="post_office"},
-  {label:"Bus stop",         test:f=>f.tags.highway==="bus_stop" || f.tags.amenity==="bus_station"},
-  {label:"Panchayat office", test:f=>f.tags.amenity==="townhall" || f.tags.office==="government" || /panchayat/i.test(f.tags.name||"")},
-  {label:"Market or ration shop", test:f=>f.tags.amenity==="marketplace" || !!f.tags.shop},
-  {label:"Veterinary care",  test:f=>f.tags.amenity==="veterinary"}
-];
-
-/* ---------- map ---------- */
-const map = L.map("map", {zoomControl:true}).setView([20.6, 78.9], 5);
-const osm = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {maxZoom:19, attribution:"© OpenStreetMap contributors"}).addTo(map);
-const sat = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {maxZoom:19, attribution:"Imagery © Esri, Maxar, Earthstar Geographics"});
-L.control.layers({"OSM map":osm, "Satellite (Esri)":sat}, null, {position:"topright"}).addTo(map);
-L.control.scale({imperial:false}).addTo(map);
-
-const areaLayer = L.layerGroup().addTo(map);
-const catLayers = Object.fromEntries(CATS.map(c => [c.id, L.layerGroup().addTo(map)]));
-let state = {place:null, feats:[], hidden:new Set(["other"])};
-
-map.on("click", e => {
-  const div = document.createElement("div");
-  div.innerHTML = `<div class="pop"><b>Map amenities here?</b><div class="t mono">${e.latlng.lat.toFixed(5)}, ${e.latlng.lng.toFixed(5)}</div></div>`;
-  const b = document.createElement("button"); b.textContent = "Map within " + fmtKm(radius()); b.className="primary"; b.style.marginTop="8px";
-  b.onclick = () => { map.closePopup(); load({name:"Dropped pin", meta:`${e.latlng.lat.toFixed(5)}, ${e.latlng.lng.toFixed(5)}`, lat:e.latlng.lat, lon:e.latlng.lng}); };
-  div.appendChild(b);
-  L.popup().setLatLng(e.latlng).setContent(div).openOn(map);
-});
-
-/* ---------- UI helpers ---------- */
-function radius(){ return +$("radius").value; }
-function fmtKm(m){ return m < 1000 ? Math.round(m) + " m" : (m/1000).toFixed(m < 10000 ? 1 : 0) + " km"; }
-$("radius").addEventListener("input", () => $("radiusVal").textContent = fmtKm(radius()));
-$("radius").addEventListener("change", () => { if (state.place && state.place.mode !== "boundary") load(state.place); });
-
-function status(msg, kind){
-  const el = $("status");
-  if (!msg){ el.hidden = true; return; }
-  el.hidden = false; el.className = "status" + (kind==="err" ? " err" : "");
-  el.innerHTML = (kind==="busy" ? '<span class="dot"></span>' : "") + esc(msg);
-  if (kind==="ok") setTimeout(() => { if (el.textContent === msg) el.hidden = true; }, 3500);
-}
-function dist(a, b, c, d){
-  const R=6371000, r=Math.PI/180, x=(c-a)*r, y=(d-b)*r;
-  const h=Math.sin(x/2)**2 + Math.cos(a*r)*Math.cos(c*r)*Math.sin(y/2)**2;
-  return 2*R*Math.asin(Math.sqrt(h));
-}
-
-/* ---------- Nominatim search ---------- */
-async function nominatim(q){
-  const u = "https://nominatim.openstreetmap.org/search?format=jsonv2&polygon_geojson=1&polygon_threshold=0.0002&addressdetails=1&limit=8&countrycodes=in&q=" + encodeURIComponent(q);
-  const r = await fetch(u, {headers:{"Accept-Language":"en"}});
-  if (!r.ok) throw new Error("Place search failed (HTTP " + r.status + ")");
-  return r.json();
-}
-function placeFromResult(r){
-  const ad = r.address || {};
-  const name = ad.village || ad.hamlet || ad.town || ad.suburb || ad.city || r.name || r.display_name.split(",")[0];
-  const meta = [ad.subdistrict || ad.county, ad.state_district, ad.state].filter(Boolean).join(" · ");
-  const geo = r.geojson && /Polygon/.test(r.geojson.type) ? r.geojson : null;
-  const bb = r.boundingbox.map(Number);
-  const km2 = dist(bb[0],bb[2],bb[1],bb[2]) * dist(bb[0],bb[2],bb[0],bb[3]) / 1e6;
-  let areaId = null;
-  if (geo && km2 < 300){
-    if (r.osm_type === "relation") areaId = 3600000000 + r.osm_id;
-    else if (r.osm_type === "way") areaId = 2400000000 + r.osm_id;
-  }
-  return {name, meta, lat:+r.lat, lon:+r.lon, geo:areaId ? geo : null, areaId, osm:`${r.osm_type}/${r.osm_id}`, kind:`${r.category}:${r.type}`};
-}
-
-$("searchForm").addEventListener("submit", async e => {
-  e.preventDefault();
-  const q = $("q").value.trim(); if (!q) return;
-  status("Searching for “" + q + "”…", "busy");
-  try {
-    const res = await nominatim(q);
-    const box = $("results"); box.innerHTML = "";
-    if (!res.length){ status("No place called “" + q + "” found in India. Try adding the district.", "err"); box.hidden = true; return; }
-    status(null);
-    if (res.length === 1){ box.hidden = true; load(placeFromResult(res[0])); return; }
-    res.forEach(r => {
-      const p = placeFromResult(r);
-      const b = document.createElement("button"); b.type = "button";
-      b.innerHTML = `<b>${esc(p.name)}</b><span>${esc(p.meta || r.display_name)} · ${esc(r.type)}</span>`;
-      b.onclick = () => { box.hidden = true; load(p); };
-      box.appendChild(b);
-    });
-    box.hidden = false;
-  } catch(err){ status(err.message, "err"); }
-});
-
-/* ---------- Overpass ---------- */
-const ENDPOINTS = ["https://overpass-api.de/api/interpreter", "https://overpass.kumi.systems/api/interpreter", "https://maps.mail.ru/osm/tools/overpass/api/interpreter"];
-function buildQuery(sel, prefix){
-  const f = [
-    "[amenity]", "[shop]", "[healthcare]", "[highway=bus_stop]", '[railway~"^(station|halt)$"]',
-    '[man_made~"^(water_well|water_tower|water_works|storage_tank|pumping_station|wastewater_plant|silo)$"]',
-    '[office~"^(government|administrative)$"]', '[leisure~"^(playground|pitch|park|sports_centre|stadium)$"]', "[craft=agricultural_engines]"
-  ];
-  return `[out:json][timeout:60];${prefix}(${f.map(x => `nwr${sel}${x};`).join("")});out center tags;`;
-}
-async function overpass(q){
-  let last;
-  for (const ep of ENDPOINTS){
-    try {
-      const r = await fetch(ep, {method:"POST", body:"data=" + encodeURIComponent(q), headers:{"Content-Type":"application/x-www-form-urlencoded"}});
-      if (r.ok) return await r.json();
-      last = new Error(r.status === 429 ? "Overpass servers are busy. Wait a minute and try again." : "Overpass error (HTTP " + r.status + ")");
-    } catch(e){ last = new Error("Could not reach Overpass. Check your connection."); }
-  }
-  throw last;
-}
-
-async function load(place){
-  state.place = place;
-  $("results").hidden = true;
-  status("Collecting amenities for " + place.name + "…", "busy");
-  areaLayer.clearLayers(); Object.values(catLayers).forEach(l => l.clearLayers());
-
-  let data, mode;
-  try {
-    if (place.areaId){
-      data = await overpass(buildQuery("(area.a)", `area(${place.areaId})->.a;`)); mode = "boundary";
-      if (!data.elements.length){ data = null; }
-    }
-    if (!data){
-      data = await overpass(buildQuery(`(around:${radius()},${place.lat},${place.lon})`, "")); mode = "radius";
-    }
-  } catch(err){ status(err.message, "err"); return; }
-  place.mode = mode;
-
-  // draw area
-  if (mode === "boundary" && place.geo){
-    const g = L.geoJSON(place.geo, {style:{color:getCss("--indigo"), weight:2, dashArray:"6 5", fillOpacity:.04}}).addTo(areaLayer);
-    map.fitBounds(g.getBounds(), {padding:[30,30]});
-  } else {
-    const c = L.circle([place.lat, place.lon], {radius:radius(), color:getCss("--indigo"), weight:2, dashArray:"6 5", fillOpacity:.04}).addTo(areaLayer);
-    map.fitBounds(c.getBounds(), {padding:[20,20]});
-  }
-  L.circleMarker([place.lat, place.lon], {radius:5, color:"#fff", weight:2, fillColor:"#1c2420", fillOpacity:1}).bindTooltip("Village centre").addTo(areaLayer);
-
-  // features
-  const seen = new Set();
-  state.feats = data.elements.map(el => {
-    const lat = el.lat ?? el.center?.lat, lon = el.lon ?? el.center?.lon;
-    if (lat == null || !el.tags) return null;
-    const key = el.type + el.id; if (seen.has(key)) return null; seen.add(key);
-    const t = el.tags, cat = classify(t);
-    if (cat === "other" && ["bench","waste_basket","parking","parking_space","bicycle_parking","telephone","post_box","clock","shelter","hunting_stand"].includes(t.amenity)) return null;
-    return {id:key, osm:`${el.type}/${el.id}`, lat, lon, tags:t, cat, type:typeLabel(t),
-            name:t.name || t["name:en"] || "", d:dist(place.lat, place.lon, lat, lon)};
-  }).filter(Boolean).sort((a,b) => a.d - b.d);
-
-  state.feats.forEach(f => {
-    const c = CAT[f.cat];
-    f.marker = L.circleMarker([f.lat, f.lon], {radius:7, color:"#fff", weight:1.5, fillColor:c.color, fillOpacity:.95})
-      .bindPopup(() => popup(f)).bindTooltip(esc(f.name || f.type), {direction:"top", offset:[0,-6]});
-    f.marker.addTo(catLayers[f.cat]);
-  });
-  applyVisibility();
-  render();
-  writeUrl();
-  status(state.feats.length + " amenities mapped in OSM", "ok");
-}
-function getCss(v){ return getComputedStyle(document.documentElement).getPropertyValue(v).trim() || "#2e3f97"; }
-
-function popup(f){
-  const t = f.tags, rows = [];
-  ["name:en","name:hi","name:mr","name:bn","operator","opening_hours","religion","isced:level","phone","addr:full"].forEach(k => {
-    if (t[k] && t[k] !== f.name) rows.push(`<tr><td>${esc(k)}</td><td>${esc(t[k])}</td></tr>`);
-  });
-  return `<div class="pop"><b>${esc(f.name || f.type)}</b><div class="t">${esc(f.type)} · ${fmtKm(f.d)} from centre</div>
-    ${rows.length ? `<table>${rows.join("")}</table>` : ""}
-    <div style="margin-top:6px;font-size:.8rem"><a href="https://www.openstreetmap.org/${f.osm}" target="_blank" rel="noopener">View on OSM ↗</a></div></div>`;
-}
-
-/* ---------- render panel ---------- */
-function render(){
-  const p = state.place, F = state.feats;
-  $("place").hidden = $("scoreSec").hidden = $("catSec").hidden = $("listSec").hidden = $("expSec").hidden = false;
-  $("placeName").textContent = p.name;
-  $("placeMeta").textContent = p.meta || "";
-  $("mode").textContent = p.mode === "boundary" ? "village boundary" : fmtKm(radius()) + " radius";
-  $("editLink").href = `https://www.openstreetmap.org/edit#map=16/${p.lat.toFixed(5)}/${p.lon.toFixed(5)}`;
-
-  // scorecard
-  let have = 0;
-  $("score").innerHTML = ESSENTIALS.map(e => {
-    const hits = F.filter(e.test);
-    if (hits.length) have++;
-    const near = hits.length ? hits[0].d : null;
-    return `<div class="${hits.length ? "yes" : "no"}"><b>${esc(e.label)}</b>
-      <span class="mono">${hits.length ? `${hits.length} · nearest ${fmtKm(near)}` : "not mapped"}</span></div>`;
-  }).join("");
-  $("scoreCount").textContent = `${have}/${ESSENTIALS.length} mapped`;
-
-  // chips
-  const counts = {}; F.forEach(f => counts[f.cat] = (counts[f.cat] || 0) + 1);
-  $("total").textContent = F.length + " total";
-  $("cats").innerHTML = "";
-  CATS.filter(c => counts[c.id]).forEach(c => {
-    const b = document.createElement("button"); b.type = "button"; b.className = "chip";
-    b.style.setProperty("--c", c.color);
-    b.setAttribute("aria-pressed", String(!state.hidden.has(c.id)));
-    b.innerHTML = `<i></i>${esc(c.label)}<em>${counts[c.id]}</em>`;
-    b.onclick = () => { state.hidden.has(c.id) ? state.hidden.delete(c.id) : state.hidden.add(c.id); applyVisibility(); render(); };
-    $("cats").appendChild(b);
-  });
-
-  // list
-  const list = $("list"); list.innerHTML = "";
-  const shown = CATS.filter(c => counts[c.id] && !state.hidden.has(c.id));
-  if (!F.length){ list.innerHTML = `<p class="empty">Nothing has been mapped here yet. Try a wider radius, or be the first to add amenities on OSM.</p>`; return; }
-  if (!shown.length){ list.innerHTML = `<p class="empty">All layers are switched off.</p>`; return; }
-  shown.forEach(c => {
-    const g = document.createElement("div"); g.className = "group"; g.style.setProperty("--c", c.color);
-    g.innerHTML = `<h4><i></i>${esc(c.label)}</h4>`;
-    const items = F.filter(f => f.cat === c.id);
-    items.slice(0, 40).forEach(f => {
-      const b = document.createElement("button"); b.type = "button"; b.className = "item";
-      b.innerHTML = `<b>${esc(f.name || f.type)}</b><span class="mono">${fmtKm(f.d)}</span><span>${esc(f.name ? f.type : "unnamed")}</span>`;
-      b.onclick = () => { map.flyTo([f.lat, f.lon], Math.max(map.getZoom(), 17), {duration:.6}); setTimeout(() => f.marker.openPopup(), 650); if (innerWidth <= 820) $("map").scrollIntoView({behavior:"smooth"}); };
-      g.appendChild(b);
-    });
-    if (items.length > 40){ const m = document.createElement("p"); m.className = "empty"; m.textContent = `+ ${items.length - 40} more on the map`; g.appendChild(m); }
-    list.appendChild(g);
-  });
-}
-function applyVisibility(){
-  CATS.forEach(c => state.hidden.has(c.id) ? map.removeLayer(catLayers[c.id]) : catLayers[c.id].addTo(map));
-}
-
-/* ---------- export ---------- */
-function slug(){ return (state.place?.name || "area").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""); }
-function save(text, name, type){
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(new Blob([text], {type})); a.download = name;
-  document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
-}
-$("dlGeo").onclick = () => {
-  const fc = {type:"FeatureCollection", features:state.feats.map(f => ({type:"Feature",
-    geometry:{type:"Point", coordinates:[+f.lon.toFixed(7), +f.lat.toFixed(7)]},
-    properties:{category:CAT[f.cat].label, type:f.type, name:f.name, distance_m:Math.round(f.d), osm_id:f.osm, ...f.tags}}))};
-  save(JSON.stringify(fc, null, 1), `amenities-${slug()}.geojson`, "application/geo+json");
-};
-$("dlCsv").onclick = () => {
-  const q = v => `"${String(v ?? "").replace(/"/g, '""')}"`;
-  const rows = [["category","type","name","lat","lon","distance_m","osm_url"].join(",")]
-    .concat(state.feats.map(f => [CAT[f.cat].label, f.type, f.name, f.lat.toFixed(6), f.lon.toFixed(6), Math.round(f.d), "https://www.openstreetmap.org/" + f.osm].map(q).join(",")));
-  save("﻿" + rows.join("\n"), `amenities-${slug()}.csv`, "text/csv");
-};
-$("copyLink").onclick = async e => {
-  const btn = e.currentTarget;
-  try { await navigator.clipboard.writeText(location.href); btn.textContent = "Link copied"; }
-  catch { btn.textContent = "Copy from address bar"; }
-  setTimeout(() => btn.textContent = "Copy share link", 2000);
-};
-
-/* ---------- shareable URL: ?q=village or ?lat=..&lon=..&r=.. ---------- */
-function writeUrl(){
-  const p = state.place, u = new URL(location.href);
-  u.search = "";
-  if (p.name === "Dropped pin"){ u.searchParams.set("lat", p.lat.toFixed(5)); u.searchParams.set("lon", p.lon.toFixed(5)); }
-  else u.searchParams.set("q", [p.name, p.meta.split(" · ").pop()].filter(Boolean).join(", "));
-  u.searchParams.set("r", radius());
-  try { history.replaceState(null, "", u); } catch {}
-}
-(async function boot(){
-  const sp = new URLSearchParams(location.search);
-  if (sp.get("r")){ $("radius").value = sp.get("r"); $("radiusVal").textContent = fmtKm(radius()); }
-  if (sp.get("lat") && sp.get("lon")){
-    const lat = +sp.get("lat"), lon = +sp.get("lon");
-    return load({name:"Dropped pin", meta:`${lat.toFixed(5)}, ${lon.toFixed(5)}`, lat, lon});
-  }
-  const q = sp.get("q") || "Hiware Bazar, Ahmednagar";
-  $("q").value = q;
-  status("Finding " + q + "…", "busy");
-  try {
-    const res = await nominatim(q);
-    if (res.length) load(placeFromResult(res[0])); else status("Search for a village to begin.", "ok");
-  } catch(err){ status(err.message, "err"); }
-})();
-</script>
+<script src="vendor/leaflet/leaflet.js"></script>
+<script src="assets/js/app.js"></script>
 </body>
 </html>
