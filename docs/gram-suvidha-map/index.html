@@ -38,7 +38,7 @@
           <h1>Gram <span>Suvidha</span> Map</h1>
           <button class="theme" type="button" id="themeBtn" aria-label="Colour theme">Auto</button>
         </header>
-        <p class="tag">Village-level amenities from OpenStreetMap. Search a village, or tap anywhere on the map.</p>
+        <p class="tag">Village-level amenities from OpenStreetMap. Search a village, or tap one on the map.</p>
       </div>
 
       <div class="stack">
@@ -53,39 +53,105 @@
         </div>
       </div>
 
+      <section class="datacard" id="dataCard" data-state="empty" aria-label="Village boundaries">
+        <div id="dataEmpty">
+          <p class="dc-title">Add your village boundaries</p>
+          <p class="dc-text">Drop <span class="mono">india_villages_2021_22states.geojson.zip</span> here, or choose it. It is read and kept in this browser only; nothing is uploaded.</p>
+          <button type="button" id="dataPick">Choose file</button>
+          <input type="file" id="dataFile" accept=".zip,.geojson,.json" hidden>
+        </div>
+        <div id="dataBusy" hidden>
+          <p class="dc-title">Importing village boundaries</p>
+          <div class="bar"><i id="dataBar"></i></div>
+          <p class="dc-text mono" id="dataProgress">Starting…</p>
+        </div>
+        <div id="dataReady" hidden>
+          <div class="dc-row"><p class="dc-title">Village boundaries on</p><button type="button" class="link" id="dataRemove">Remove</button></div>
+          <p class="dc-text"><span id="dataSummary"></span><br><span id="dataWhen"></span></p>
+        </div>
+      </section>
+
       <section class="place" id="place" hidden>
         <h2><span>Area</span><span class="mono" id="mode"></span></h2>
         <h3 id="placeName"></h3>
         <p id="placeMeta"></p>
+        <dl class="facts" id="facts" hidden></dl>
       </section>
 
-      <section id="scoreSec" hidden>
-        <h2><span>Basic services</span><span id="scoreCount"></span></h2>
-        <div class="score" id="score"></div>
-        <p class="note">OSM shows what volunteers have mapped. A red mark can mean “not yet mapped”, not “not there”. <a id="editLink" href="https://www.openstreetmap.org/" target="_blank" rel="noopener">Add it on OSM ↗</a></p>
-      </section>
-
-      <section id="catSec" hidden>
-        <h2><span>Layers</span><span id="total"></span></h2>
-        <div class="cats" id="cats"></div>
-      </section>
-
-      <section id="listSec" hidden>
-        <h2><span>Amenities by distance from centre</span></h2>
-        <div class="list" id="list"></div>
-      </section>
-
-      <section id="expSec" hidden>
-        <h2><span>Export</span></h2>
-        <div class="exports">
-          <button type="button" id="dlGeo">GeoJSON</button>
-          <button type="button" id="dlCsv">CSV</button>
-          <button type="button" id="copyLink">Copy share link</button>
+      <div id="tabsWrap" hidden>
+        <div class="tabs" role="tablist" aria-label="Sections">
+          <button type="button" role="tab" data-tab="overview" aria-selected="true" aria-controls="tab-overview">Overview</button>
+          <button type="button" role="tab" data-tab="district" aria-selected="false" aria-controls="tab-district" id="tabDistrict" tabindex="-1" hidden>District</button>
+          <button type="button" role="tab" data-tab="amenities" aria-selected="false" aria-controls="tab-amenities" tabindex="-1">Amenities</button>
         </div>
-      </section>
+
+        <div class="tabpanel" role="tabpanel" id="tab-overview">
+          <section>
+            <h2><span>Basic services</span><span id="scoreCount"></span></h2>
+            <div class="score" id="score"></div>
+            <p class="key" id="scoreKey" hidden><i class="k-yes"></i>inside the village <i class="k-near"></i>within 3 km <i class="k-no"></i>not mapped nearby</p>
+            <p class="note">OSM shows what volunteers have mapped. A red mark can mean “not yet mapped”, not “not there”. <a id="editLink" href="https://www.openstreetmap.org/" target="_blank" rel="noopener">Add it on OSM ↗</a></p>
+          </section>
+          <section id="amenChartWrap" hidden>
+            <h2><span id="amenTitle">Mapped inside the village</span><span>count · per 1,000 people</span></h2>
+            <div id="amenChart"></div>
+          </section>
+        </div>
+
+        <div class="tabpanel" role="tabpanel" id="tab-district" hidden>
+          <section>
+            <h3 class="dist-title" id="distTitle"></h3>
+            <p class="dist-meta" id="distMeta"></p>
+            <h2 class="mt"><span>Colour villages by</span></h2>
+            <div class="segs" id="metrics"></div>
+          </section>
+          <section>
+            <h2><span>Population of villages</span><span>tap a bar</span></h2>
+            <div id="histChart"></div>
+            <p class="cap" id="histNote"></p>
+            <p class="cap strong" id="binNote" aria-live="polite"></p>
+          </section>
+          <section>
+            <h2><span>Population against area</span><span>hover · tap a dot</span></h2>
+            <div id="scatterChart"></div>
+            <p class="cap">Each dot is a village. Dots above the band are denser than their neighbours.</p>
+            <p class="cap" id="scatterNote"></p>
+          </section>
+          <section>
+            <h2><span>Basic services across the district</span></h2>
+            <p class="cap">Downloads the mapped schools, health centres, water points and other basics for the whole district from OSM and counts them village by village. Takes 10 to 60 seconds.</p>
+            <button type="button" class="primary" id="scanBtn">Scan district</button>
+            <div id="scanResult" hidden>
+              <div id="scanChart"></div>
+              <p class="cap" id="scanNote"></p>
+            </div>
+          </section>
+        </div>
+
+        <div class="tabpanel" role="tabpanel" id="tab-amenities" hidden>
+          <section>
+            <h2><span>Layers</span><span id="total"></span></h2>
+            <div class="cats" id="cats"></div>
+          </section>
+          <section>
+            <h2><span>Amenities by distance</span></h2>
+            <div class="list" id="list"></div>
+          </section>
+          <section>
+            <h2><span>Export</span></h2>
+            <div class="exports">
+              <button type="button" id="dlGeo">Amenities GeoJSON</button>
+              <button type="button" id="dlCsv">Amenities CSV</button>
+              <button type="button" id="dlDist" hidden>District villages CSV</button>
+              <button type="button" id="copyLink">Copy share link</button>
+            </div>
+          </section>
+        </div>
+      </div>
 
       <footer>
         Data © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a> (ODbL) · search by Nominatim · queries by Overpass API.<br>
+        Village boundaries come from the file you add and never leave your browser.<br>
         Built by Somdeep Kundu, RuDRA Lab, C-TARA, IIT Bombay · <span class="mono" id="ver"></span>
       </footer>
     </div>
@@ -93,9 +159,12 @@
   <main class="mapwrap">
     <div id="map" role="application" aria-label="Amenity map"></div>
     <div class="status" id="status" role="status" hidden></div>
+    <div class="dropzone" aria-hidden="true"><p>Drop to add village boundaries</p></div>
   </main>
 </div>
 <script src="vendor/leaflet/leaflet.js"></script>
+<script src="assets/js/charts.js"></script>
+<script src="assets/js/villages.js"></script>
 <script src="assets/js/app.js"></script>
 </body>
 </html>
