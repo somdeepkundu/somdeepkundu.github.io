@@ -2,14 +2,16 @@
    • App files: cached on install. Pages network-first (4 s timeout), other app files cache-first.
    • Map tiles: every tile seen online is kept, up to TILE_MAX, oldest dropped first.
    • OSM answers (Nominatim, Overpass): network-first, last API_MAX kept, so villages opened before still load offline.
+   • Village boundaries are not cached here: they live in IndexedDB, imported from the viewer's own file.
    Bump VERSION whenever any cached file changes, and keep it equal to APP.version in assets/js/app.js and package.json. */
-const VERSION = 'gram-suvidha-1.1.0';
+const VERSION = 'gram-suvidha-1.2.0';
 const TILE_CACHE = 'gram-suvidha-tiles';
 const API_CACHE = 'gram-suvidha-osm';
 const TILE_MAX = 3000, API_MAX = 60;
 const SHELL = [
   './', './index.html', './manifest.webmanifest',
   './assets/css/app.css', './assets/js/app.js', './assets/js/theme.js',
+  './assets/js/charts.js', './assets/js/villages.js', './assets/js/village-worker.js', './vendor/fflate/fflate.js',
   './assets/icons/icon.svg', './assets/icons/icon-192.png', './assets/icons/icon-512.png',
   './assets/fonts/familjen-grotesk-latin-600-normal.woff2', './assets/fonts/familjen-grotesk-latin-700-normal.woff2',
   './assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2', './assets/fonts/atkinson-hyperlegible-latin-700-normal.woff2',
