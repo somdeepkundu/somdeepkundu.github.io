@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mumbai Epidemic Simulator</title>
+<meta name="description" content="A spatial agent-based SIR epidemic simulator on the real map of Mumbai, Thane and Navi Mumbai, with Monte Carlo runs, the mean-field SIR model and spatial statistics.">
+<meta property="og:title" content="Mumbai Epidemic Simulator">
+<meta property="og:description" content="Watch an epidemic spread person by person across Mumbai. Agent-based SIR, Monte Carlo, semivariogram and Moran's I, in your browser.">
+<meta property="og:url" content="https://somdeepkundu.github.io/epidemic-sim/">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script src="model.js"></script>
+<style>
+:root{--paper:#FDFBF9;--elev:#FFFFFF;--ink:#241E1F;--muted:#6F6668;--line:#ECE6E6;--alta:#B0151F;--on-alta:#fff;--tint:#FBF0F0;
+  --S:#2E9E4F;--I:#D7263D;--R:#8C8C8C;--V:#3A78C2;--land:#F5F3F0;--water:#DCE0E3}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1C1617;--elev:#251D1F;--ink:#F3ECEC;--muted:#ABA0A2;--line:#3A3033;--alta:#EA4A51;--on-alta:#1C0A0B;--tint:#2A1D1F;
+  --S:#4CC56F;--I:#FF5468;--R:#9A9A9A;--V:#6FA3E8;--water:#151A1E}}
+:root[data-theme="dark"]{--paper:#1C1617;--elev:#251D1F;--ink:#F3ECEC;--muted:#ABA0A2;--line:#3A3033;--alta:#EA4A51;--on-alta:#1C0A0B;--tint:#2A1D1F;
+  --S:#4CC56F;--I:#FF5468;--R:#9A9A9A;--V:#6FA3E8;--water:#151A1E}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--paper);color:var(--ink);font:14px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}
+.app{display:grid;grid-template-columns:330px 1fr;grid-template-rows:auto 1fr;height:100vh}
+header{grid-column:1/3;display:flex;align-items:center;gap:12px;padding:8px 14px;border-bottom:1px solid var(--line);background:var(--elev);position:relative}
+header::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:5px;background:linear-gradient(var(--alta) 0 2px,transparent 2px 3px,var(--alta) 3px)}
+header h1{font-size:17px;margin:0;font-weight:650}
+header .sub{color:var(--muted);font-size:12px}
+header .sp{flex:1}
+.ib{border:1px solid var(--line);background:var(--elev);color:var(--ink);border-radius:999px;padding:5px 12px;cursor:pointer;font:inherit;font-size:13px}
+.ib:hover{border-color:var(--alta);color:var(--alta)}
+aside{overflow-y:auto;padding:12px 14px 30px;border-right:1px solid var(--line);background:var(--paper)}
+main{display:grid;grid-template-rows:1fr auto;min-height:0}
+#mapwrap{position:relative;min-height:300px}
+#map{position:absolute;inset:0;background:var(--water)}
+#dots{position:absolute;inset:0;pointer-events:none;z-index:450}
+.hud{position:absolute;left:56px;top:10px;z-index:500;background:var(--elev);border:1px solid var(--line);border-radius:10px;padding:6px 10px;font-size:13px;box-shadow:0 6px 18px -10px rgba(0,0,0,.4)}
+.hud b{font-variant-numeric:tabular-nums}
+.hint-click{position:absolute;right:10px;top:10px;z-index:500;background:var(--alta);color:var(--on-alta);border-radius:999px;padding:5px 12px;font-size:12px;display:none}
+.bottom{display:grid;grid-template-columns:1.4fr 1fr;gap:10px;padding:10px;border-top:1px solid var(--line);background:var(--elev)}
+.card{border:1px solid var(--line);border-radius:10px;padding:8px 10px;background:var(--paper);min-width:0}
+.card h3{margin:0 0 4px;font-size:13px;font-weight:650}
+canvas.ch{width:100%;height:190px;display:block}
+h2{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:16px 0 6px;font-weight:650}
+.ctl{margin-bottom:9px}
+.lbl{display:flex;justify-content:space-between;font-size:13px}
+.lbl b{font-weight:600;font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--alta);margin:2px 0 0}
+.pair{display:grid;grid-template-columns:auto 1fr auto 1fr;gap:4px;align-items:center;font-size:11px;color:var(--muted)}
+select{width:100%;font:inherit;font-size:13px;padding:5px;border-radius:8px;border:1px solid var(--line);background:var(--elev);color:var(--ink)}
+.btns{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 6px}
+.btn{border:1.5px solid var(--line);background:var(--elev);color:var(--ink);border-radius:999px;padding:6px 13px;font:inherit;font-weight:600;font-size:13px;cursor:pointer}
+.btn:hover{border-color:var(--alta);color:var(--alta)}
+.btn.pri{background:var(--alta);border-color:var(--alta);color:var(--on-alta)}
+.btn.on{background:var(--tint);border-color:var(--alta);color:var(--alta)}
+.chk{display:flex;gap:6px;align-items:center;font-size:13px;margin:4px 0}
+.note{font-size:12px;color:var(--muted)}
+.stats{font-size:13px;line-height:1.6}
+.stats b{font-variant-numeric:tabular-nums}
+.leg{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12px;color:var(--muted);margin-top:4px}
+.leg i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px;vertical-align:-1px}
+dialog{max-width:640px;width:calc(100% - 32px);border:1px solid var(--line);border-radius:14px;background:var(--elev);color:var(--ink);padding:18px 20px}
+dialog::backdrop{background:rgba(0,0,0,.45)}
+dialog h2{margin-top:14px}
+dialog a{color:var(--alta)}
+dialog li{margin-bottom:4px}
+.leaflet-container{font:inherit}
+.leaflet-control-attribution{font-size:10px}
+@media (max-width:860px){
+  .app{grid-template-columns:1fr;grid-template-rows:auto auto auto;height:auto}
+  #mapwrap{height:56vh}
+  header h1{font-size:15px}
+  .hud{font-size:12px;left:50px;right:8px}
+  header{grid-column:1}
+  aside{order:3;border-right:0;border-top:1px solid var(--line);overflow:visible}
+  main{order:2;grid-template-rows:auto auto}
+  .bottom{grid-template-columns:1fr}
+  header .sub{display:none}
+}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+  <svg width="26" height="26" viewBox="-50 -50 100 100" aria-hidden="true"><circle r="44" fill="none" stroke="var(--alta)" stroke-width="5"/><circle r="9" fill="var(--I)"/><circle cx="24" cy="-14" r="6" fill="var(--S)"/><circle cx="-22" cy="-18" r="6" fill="var(--S)"/><circle cx="-18" cy="22" r="6" fill="var(--R)"/><circle cx="20" cy="22" r="6" fill="var(--I)"/></svg>
+  <div><h1>Mumbai Epidemic Simulator</h1><div class="sub">Agent-based SIR on the real map · Monte Carlo · spatial statistics</div></div>
+  <div class="sp"></div>
+  <button class="ib" id="btnTheme" title="Light or dark">Theme</button>
+  <button class="ib" id="btnAbout">About</button>
+</header>
+
+<aside>
+  <div class="btns">
+    <button class="btn pri" id="btnPlay">▶ Start</button>
+    <button class="btn" id="btnStep">+1 day</button>
+    <button class="btn" id="btnReset">↺ Reset</button>
+  </div>
+  <div class="btns">
+    <button class="btn" id="btnSeed" title="Click on the map to infect the nearest people">✚ Infect on map</button>
+    <button class="btn" id="btnMC">Run 10 seeds</button>
+  </div>
+  <p class="note">Change settings, then press <b>Reset</b>. R0 = contacts × infectivity × duration = <b id="R0"></b> (expected final size, well mixed: <b id="FS"></b>)</p>
+
+  <h2>Disease</h2>
+  <div id="cDisease"></div>
+  <h2>Population &amp; space</h2>
+  <div class="ctl"><div class="lbl">Where people live</div>
+    <select id="place"><option value="towns">Clustered around 18 town centres</option><option value="uniform">Spread evenly over land</option></select></div>
+  <div class="ctl"><div class="lbl">Who meets whom</div>
+    <select id="mode"><option value="spatial">Only people nearby (spatial)</option><option value="random">Anyone in the region (well mixed)</option></select></div>
+  <div id="cSpace"></div>
+  <h2>Interventions</h2>
+  <div id="cInt"></div>
+  <h2>Run</h2>
+  <div id="cRun"></div>
+
+  <h2>Layers</h2>
+  <label class="chk"><input type="checkbox" id="lyDots" checked> People</label>
+  <label class="chk"><input type="checkbox" id="lyHeat"> Hotspots (infected per 1 km cell)</label>
+  <label class="chk"><input type="checkbox" id="lyRad"> Contact radius around infected</label>
+  <label class="chk"><input type="checkbox" id="sdOn" checked> Mean-field SIR on chart (dashed)</label>
+
+  <h2>Export</h2>
+  <div class="btns">
+    <button class="btn" id="btnCSV">Time series CSV</button>
+    <button class="btn" id="btnGeo">People GeoJSON</button>
+  </div>
+  <p class="note">Every run is reproducible: the same settings and seed always give the same epidemic.</p>
+</aside>
+
+<main>
+  <div id="mapwrap">
+    <div id="map"></div>
+    <canvas id="dots"></canvas>
+    <div class="hud" id="hud"></div>
+    <div class="hint-click" id="hintClick">Click the map to infect people there</div>
+  </div>
+  <div class="bottom">
+    <div class="card">
+      <h3>Epidemic curve</h3>
+      <canvas class="ch" id="chart"></canvas>
+      <div class="leg"><span><i style="background:var(--S)"></i>Susceptible</span><span><i style="background:var(--I)"></i>Infected</span><span><i style="background:var(--R)"></i>Recovered</span><span>dashed = mean-field SIR · faint = 10 seeds</span></div>
+      <div class="stats" id="stats"></div>
+    </div>
+    <div class="card">
+      <h3>Spatial structure <button class="btn" id="btnSV" style="float:right;padding:2px 10px;font-size:12px">Compute now</button></h3>
+      <canvas class="ch" id="svplot"></canvas>
+      <div class="stats" id="svstats"><span class="note">Semivariogram of “ever infected” (1) vs not (0) by distance. Below the dashed sill = nearby people share infection status, so the epidemic is clustered.</span></div>
+    </div>
+  </div>
+</main>
+</div>
+
+<dialog id="about">
+  <h1 style="font-size:20px;margin:0">Mumbai Epidemic Simulator</h1>
+  <p class="note">v1.0 · Developed by <a href="https://somdeepkundu.github.io/">Somdeep Kundu</a>, a PhD student of IIT Bombay working on Agriculture and Rural Water Management using Earth Observation and bottom-up ground data.</p>
+  <p>Each dot is one simulated person living on the real land of Mumbai, Thane and Navi Mumbai. People wander, meet others, catch the disease, recover, and may lose immunity. It is a teaching and exploration tool, not a forecast of any real disease.</p>
+  <h2>How one step works (0.1 day)</h2>
+  <ol>
+    <li>Each person takes a random-walk step. Steps that would land in the sea are refused and the person turns back.</li>
+    <li>Each infected person makes a Poisson-distributed number of contacts (mean = contacts per day × 0.1). In spatial mode each contact is a random person within the contact radius, found with a grid (cell list); in well-mixed mode it is anyone.</li>
+    <li>A contact with a susceptible person infects them with the infected person's infectivity.</li>
+    <li>Each infected person recovers with probability 0.1 / illness duration; recovered people lose immunity with probability 0.1 / waning days.</li>
+  </ol>
+  <h2>Methods and references</h2>
+  <ul>
+    <li><b>SIR compartments:</b> Kermack, W. O. &amp; McKendrick, A. G. (1927). A contribution to the mathematical theory of epidemics. <i>Proc. R. Soc. Lond. A</i> 115, 700–721.</li>
+    <li><b>Final-size relation</b> z = 1 − e<sup>−R0·z</sup>, used as a check of the well-mixed mode (same source).</li>
+    <li><b>Monte Carlo method:</b> Metropolis, N. &amp; Ulam, S. (1949). The Monte Carlo method. <i>J. Am. Stat. Assoc.</i> 44, 335–341.</li>
+    <li><b>Poisson sampling:</b> Knuth, D. E. (1997). <i>The Art of Computer Programming</i>, Vol. 2, 3rd ed.</li>
+    <li><b>Mean-field model:</b> Euler's method for the SIR ordinary differential equations.</li>
+    <li><b>Semivariogram:</b> Matheron, G. (1963). Principles of geostatistics. <i>Economic Geology</i> 58, 1246–1266. Here applied to a 0/1 indicator (indicator variogram).</li>
+    <li><b>Moran's I:</b> Moran, P. A. P. (1950). Notes on continuous stochastic phenomena. <i>Biometrika</i> 37, 17–23.</li>
+    <li><b>Random numbers:</b> Mulberry32 seeded generator, so runs are reproducible.</li>
+  </ul>
+  <h2>Limits</h2>
+  <p class="note">People are placed by a simple rule, not by census population density. Movement is a random walk, not real travel such as local trains. Contact radius and speed are illustrative. With few people over a large area, the spatial mode spreads slower than the well-mixed model.</p>
+  <h2>Data</h2>
+  <p class="note">Map tiles © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, © <a href="https://carto.com/attributions">CARTO</a>. Land outline from OpenStreetMap and DataMeet, as used in the <a href="https://somdeepkundu.github.io/pujo-map/">Mumbai Durga Pujo Map</a>. Code under the MIT licence.</p>
+  <p class="note">Ideas or bugs? Write to <a href="mailto:somdeepkundu@gmail.com?subject=Mumbai%20Epidemic%20Simulator">somdeepkundu@gmail.com</a>, or on <a href="https://www.linkedin.com/in/somdeep-kundu/">LinkedIn</a> or <a href="https://www.instagram.com/somdeeplearning/">Instagram</a>.</p>
+  <form method="dialog"><button class="btn pri">Close</button></form>
+</dialog>
+
+<script>
+(function () {
+"use strict";
+var M = window.EpiModel, $ = function (id) { return document.getElementById(id); };
+var css = function (v) { return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); };
+
+var GROUPS = {
+  cDisease: [
+    { id: "cr", label: "Contacts per day", min: .5, max: 15, step: .5, lo: 5, hi: 5, range: 1 },
+    { id: "inf", label: "Infectivity per contact", min: .01, max: .5, step: .01, lo: .05, hi: .05, range: 1 },
+    { id: "dur", label: "Illness duration (days)", min: 2, max: 60, step: 1, lo: 15, hi: 15, range: 1 }],
+  cSpace: [
+    { id: "N", label: "People", min: 200, max: 3000, step: 100, v: 1500 },
+    { id: "rad", label: "Contact radius (m)", min: 100, max: 5000, step: 100, v: 1500 },
+    { id: "spd", label: "Movement (km per day)", min: 0, max: 20, step: .5, v: 3 }],
+  cInt: [
+    { id: "vac", label: "Vaccinated at start (%)", min: 0, max: 90, step: 1, v: 0 },
+    { id: "wan", label: "Immunity lasts (days, 0 = for ever)", min: 0, max: 720, step: 10, v: 0 }],
+  cRun: [
+    { id: "init", label: "First infections", min: 1, max: 50, step: 1, v: 5 },
+    { id: "days", label: "Days to simulate", min: 30, max: 730, step: 10, v: 200 },
+    { id: "seed", label: "Random seed", min: 1, max: 999, step: 1, v: 1 },
+    { id: "speed", label: "Animation (days per second)", min: 1, max: 60, step: 1, v: 8 }]
+};
+var ALL = [];
+var num = function (id) { return parseFloat($(id).value); };
+
+Object.keys(GROUPS).forEach(function (g) {
+  var html = "";
+  GROUPS[g].forEach(function (s) {
+    ALL.push(s);
+    if (s.range) html += '<div class="ctl"><div class="lbl">' + s.label + '<b id="v' + s.id + '"></b></div><div class="pair">min<input type="range" id="' + s.id + 'Lo" min="' + s.min + '" max="' + s.max + '" step="' + s.step + '" value="' + s.lo + '">max<input type="range" id="' + s.id + 'Hi" min="' + s.min + '" max="' + s.max + '" step="' + s.step + '" value="' + s.hi + '"></div></div>';
+    else html += '<div class="ctl"><div class="lbl">' + s.label + '<b id="v' + s.id + '"></b></div><input type="range" id="' + s.id + '" min="' + s.min + '" max="' + s.max + '" step="' + s.step + '" value="' + s.v + '"></div>';
+  });
+  $(g).innerHTML = html;
+});
+function showVal(s) {
+  $("v" + s.id).textContent = s.range ? (num(s.id + "Lo") === num(s.id + "Hi") ? $(s.id + "Lo").value : $(s.id + "Lo").value + " – " + $(s.id + "Hi").value) : $(s.id).value;
+  var p = params(), R0 = ((p.crLo + p.crHi) / 2) * ((p.infLo + p.infHi) / 2) * ((p.durLo + p.durHi) / 2);
+  $("R0").textContent = R0.toFixed(2);
+  $("FS").textContent = (100 * M.finalSize(R0 * (1 - p.vac))).toFixed(0) + "%";
+}
+ALL.forEach(function (s) {
+  if (s.range) {
+    $(s.id + "Lo").oninput = function () { if (num(s.id + "Lo") > num(s.id + "Hi")) $(s.id + "Hi").value = $(s.id + "Lo").value; showVal(s); };
+    $(s.id + "Hi").oninput = function () { if (num(s.id + "Hi") < num(s.id + "Lo")) $(s.id + "Lo").value = $(s.id + "Hi").value; showVal(s); };
+  } else $(s.id).oninput = function () { showVal(s); };
+});
+
+function params() {
+  return { N: num("N"), crLo: num("crLo"), crHi: num("crHi"), infLo: num("infLo"), infHi: num("infHi"),
+    durLo: num("durLo"), durHi: num("durHi"), init: num("init"), vac: num("vac") / 100, wan: num("wan"),
+    rad: num("rad"), spd: num("spd"), days: num("days"), seed: num("seed"),
+    mode: $("mode").value, place: $("place").value, seedAt: M.IITB };
+}
+
+// Theme
+var root = document.documentElement;
+try { var th = localStorage.getItem("epi-theme"); if (th) root.dataset.theme = th; } catch (e) {}
+function isDark() { return root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches; }
+$("btnTheme").onclick = function () {
+  root.dataset.theme = isDark() ? "light" : "dark";
+  try { localStorage.setItem("epi-theme", root.dataset.theme); } catch (e) {}
+  setTiles(); drawAll();
+};
+
+// Map
+var B = M.BOX;
+var map = L.map("map", { zoomControl: true, preferCanvas: true, minZoom: 9, zoomSnap: 0.25 }).fitBounds([[B.s, B.w], [B.n, B.e]]);
+map.setMaxBounds([[B.s - .3, B.w - .4], [B.n + .3, B.e + .4]]);
+var tiles = null;
+function setTiles() {
+  if (tiles) map.removeLayer(tiles);
+  tiles = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+    { maxZoom: 19, attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
+}
+setTiles();
+L.rectangle([[B.s, B.w], [B.n, B.e]], { color: "#B0151F", weight: 1, dashArray: "4 4", fill: false, interactive: false }).addTo(map);
+L.circleMarker([M.IITB[1], M.IITB[0]], { radius: 5, color: "#B0151F", weight: 2, fillOpacity: 0, interactive: true }).bindTooltip("IIT Bombay (default first infections)").addTo(map);
+
+var cv = $("dots"), ctx = cv.getContext("2d");
+function sizeCanvas() {
+  var r = $("mapwrap").getBoundingClientRect(), d = devicePixelRatio || 1;
+  cv.width = r.width * d; cv.height = r.height * d; cv.style.width = r.width + "px"; cv.style.height = r.height + "px";
+  ctx.setTransform(d, 0, 0, d, 0, 0);
+}
+map.on("move zoom resize", drawMap);
+addEventListener("resize", function () { sizeCanvas(); map.invalidateSize(); drawAll(); });
+
+// State
+var mask = null, sim = null, sd = null, mc = null, mcText = "", running = false, raf = null, lastTs = null, acc = 0, seedMode = false;
+
+function drawMap() {
+  var r = $("mapwrap").getBoundingClientRect();
+  ctx.clearRect(0, 0, r.width, r.height);
+  if (!sim) return;
+  var z = map.getZoom(), rad = Math.max(1.6, Math.min(5, (z - 8) * 0.9));
+  if ($("lyHeat").checked) {
+    var cell = 1000, gw = Math.ceil(M.WM / cell), gh = Math.ceil(M.HM / cell), cnt = new Uint16Array(gw * gh), mx = 0;
+    for (var i = 0; i < sim.N; i++) if (sim.st[i] === 1) {
+      var k = Math.min(gh - 1, Math.floor(sim.y[i] / cell)) * gw + Math.min(gw - 1, Math.floor(sim.x[i] / cell));
+      if (++cnt[k] > mx) mx = cnt[k];
+    }
+    if (mx) for (var c = 0; c < cnt.length; c++) if (cnt[c]) {
+      var cx = (c % gw) * cell, cy = Math.floor(c / gw) * cell, a = M.toLL(cx, cy), b2 = M.toLL(cx + cell, cy + cell);
+      var p1 = map.latLngToContainerPoint([a[1], a[0]]), p2 = map.latLngToContainerPoint([b2[1], b2[0]]);
+      ctx.fillStyle = "rgba(215,38,61," + (0.15 + 0.6 * cnt[c] / mx).toFixed(2) + ")";
+      ctx.fillRect(p1.x, p2.y, p2.x - p1.x, p1.y - p2.y);
+    }
+  }
+  if ($("lyRad").checked && sim.p.mode === "spatial") {
+    var mpp = 40075016 * Math.cos(19.1 * Math.PI / 180) / Math.pow(2, z + 8), rp = sim.p.rad / mpp;
+    ctx.strokeStyle = css("--I"); ctx.globalAlpha = .35; ctx.lineWidth = 1;
+    for (var q = 0; q < sim.N; q++) if (sim.st[q] === 1) {
+      var ll = sim.lonlat(q), pt = map.latLngToContainerPoint([ll[1], ll[0]]);
+      ctx.beginPath(); ctx.arc(pt.x, pt.y, rp, 0, 6.2832); ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+  }
+  if ($("lyDots").checked) {
+    var col = [css("--S"), css("--I"), css("--R")], vcol = css("--V");
+    for (var pass = 0; pass < 3; pass++) {   // draw infected last so they stay visible
+      var want = pass === 0 ? 2 : pass === 1 ? 0 : 1;
+      for (var j = 0; j < sim.N; j++) {
+        if (sim.st[j] !== want) continue;
+        var l2 = sim.lonlat(j), p = map.latLngToContainerPoint([l2[1], l2[0]]);
+        ctx.fillStyle = want === 2 && sim.vac[j] ? vcol : col[want];
+        ctx.beginPath(); ctx.arc(p.x, p.y, want === 1 ? rad + .8 : rad, 0, 6.2832); ctx.fill();
+      }
+    }
+  }
+}
+
+function setupCanvas(c) {
+  var d = devicePixelRatio || 1, w = c.clientWidth, h = c.clientHeight;
+  c.width = w * d; c.height = h * d;
+  var g = c.getContext("2d"); g.setTransform(d, 0, 0, d, 0, 0);
+  return { g: g, w: w, h: h };
+}
+function axes(g, w, h, m, xMax, yMax, xl) {
+  g.font = "11px system-ui"; g.fillStyle = css("--muted"); g.strokeStyle = css("--line"); g.lineWidth = 1;
+  for (var i = 0; i <= 4; i++) {
+    var y = h - m.b - i * (h - m.t - m.b) / 4;
+    g.beginPath(); g.moveTo(m.l, y); g.lineTo(w - m.r, y); g.stroke();
+    var v = yMax * i / 4; g.fillText(yMax >= 10 ? Math.round(v) : v.toFixed(2), 2, y + 4);
+  }
+  for (var k = 0; k <= 5; k++) { var xv = xMax * k / 5; g.fillText(xMax >= 10 ? Math.round(xv) : xv.toFixed(1), m.l + k * (w - m.l - m.r) / 5 - 6, h - m.b + 14); }
+  g.fillText(xl, w - m.r - 60, h - 2);
+}
+function drawChart() {
+  var o = setupCanvas($("chart")), g = o.g, w = o.w, h = o.h, m = { l: 38, r: 8, t: 8, b: 26 };
+  g.clearRect(0, 0, w, h);
+  var p = sim ? sim.p : params(), xMax = p.days, yMax = p.N;
+  axes(g, w, h, m, xMax, yMax, "days");
+  var X = function (t) { return m.l + t / xMax * (w - m.l - m.r); }, Y = function (v) { return h - m.b - v / yMax * (h - m.t - m.b); };
+  function line(ts, ys, color, dash, alpha, lw) {
+    g.strokeStyle = color; g.globalAlpha = alpha; g.lineWidth = lw; g.setLineDash(dash ? [5, 4] : []);
+    g.beginPath();
+    for (var i = 0; i < ts.length; i += 2) { if (i === 0) g.moveTo(X(ts[i]), Y(ys[i])); else g.lineTo(X(ts[i]), Y(ys[i])); }
+    g.stroke(); g.globalAlpha = 1; g.setLineDash([]);
+  }
+  var S = css("--S"), I = css("--I"), R = css("--R");
+  if (mc) mc.forEach(function (hh) { line(hh.t, hh.I, I, false, .25, 1); });
+  if (sd && $("sdOn").checked) { line(sd.t, sd.S, S, true, 1, 1.5); line(sd.t, sd.I, I, true, 1, 1.5); line(sd.t, sd.R, R, true, 1, 1.5); }
+  if (sim) { var H = sim.hist; line(H.t, H.S, S, false, 1, 2); line(H.t, H.I, I, false, 1, 2.2); line(H.t, H.R, R, false, 1, 2); }
+}
+
+var svData = null;
+function computeSV() {
+  if (!sim) return;
+  var z = new Uint8Array(sim.N);
+  for (var i = 0; i < sim.N; i++) z[i] = sim.ever[i];
+  var maxLag = 12000;
+  svData = { sv: M.semivariogram(sim, z, maxLag, 24), mo: M.moransI(sim, z, sim.p.mode === "spatial" ? sim.p.rad : 1500), day: sim.t, maxLag: maxLag };
+  drawSV();
+}
+function drawSV() {
+  var o = setupCanvas($("svplot")), g = o.g, w = o.w, h = o.h, m = { l: 38, r: 8, t: 8, b: 26 };
+  g.clearRect(0, 0, w, h);
+  if (!svData) { axes(g, w, h, m, 12, .25, "lag (km)"); return; }
+  var b = svData.sv.bins, sill = svData.sv.sill, yMax = Math.max(.05, sill * 1.4);
+  b.forEach(function (x) { if (x.gamma != null) yMax = Math.max(yMax, x.gamma * 1.1); });
+  axes(g, w, h, m, svData.maxLag / 1000, yMax, "lag (km)");
+  var X = function (v) { return m.l + v / svData.maxLag * (w - m.l - m.r); }, Y = function (v) { return h - m.b - v / yMax * (h - m.t - m.b); };
+  g.strokeStyle = css("--muted"); g.setLineDash([5, 4]); g.beginPath(); g.moveTo(m.l, Y(sill)); g.lineTo(w - m.r, Y(sill)); g.stroke(); g.setLineDash([]);
+  g.strokeStyle = css("--alta"); g.fillStyle = css("--alta"); g.lineWidth = 2; g.beginPath();
+  var first = true;
+  b.forEach(function (x) { if (x.gamma == null) return; var px = X(x.h), py = Y(x.gamma); if (first) { g.moveTo(px, py); first = false; } else g.lineTo(px, py); });
+  g.stroke();
+  b.forEach(function (x) { if (x.gamma == null) return; g.beginPath(); g.arc(X(x.h), Y(x.gamma), 2.6, 0, 6.2832); g.fill(); });
+  var s = svData.sv, mo = svData.mo, firstG = b[0].gamma;
+  var ratio = firstG != null && sill > 0 ? firstG / sill : null;
+  $("svstats").innerHTML = "Day <b>" + svData.day.toFixed(1) + "</b> · share ever infected <b>" + (100 * s.mean).toFixed(1) + "%</b> · sill p(1−p) = <b>" + sill.toFixed(3) + "</b><br>" +
+    (ratio != null ? "γ at 0.5 km is <b>" + (100 * ratio).toFixed(0) + "%</b> of the sill (lower = more clustered). " : "") +
+    (mo ? "Moran's I (" + (sim.p.mode === "spatial" ? sim.p.rad : 1500) + " m) = <b>" + mo.I.toFixed(3) + "</b> (random ≈ " + mo.expected.toFixed(3) + ")" : "Moran's I: not defined yet");
+}
+
+function drawStats() {
+  if (!sim) return;
+  var c = sim.last, p = sim.p, ever = 0;
+  for (var i = 0; i < sim.N; i++) ever += sim.ever[i];
+  $("hud").innerHTML = "Day <b>" + sim.t.toFixed(1) + "</b> / " + p.days + " · <span style='color:var(--S)'>S <b>" + c.S + "</b></span> · <span style='color:var(--I)'>I <b>" + c.I + "</b></span> · <span style='color:var(--R)'>R <b>" + c.R + "</b></span>" + (sim.done ? " · finished" : c.I === 0 ? " · no one infected" : "");
+  $("stats").innerHTML = "Peak <b>" + sim.peakI + "</b> infected on day <b>" + sim.peakDay.toFixed(1) + "</b> · ever infected <b>" + ever + "</b> of " + p.N + " (" + (100 * ever / p.N).toFixed(1) + "%)" + mcText;
+}
+function drawAll() { drawMap(); drawChart(); drawSV(); drawStats(); }
+
+function reset() {
+  stop();
+  sim = new M.Sim(params(), mask);
+  sd = M.runSD(sim.p); mc = null; mcText = ""; svData = null;
+  $("svstats").innerHTML = '<span class="note">Semivariogram of “ever infected” (1) vs not (0) by distance. Below the dashed sill = nearby people share infection status, so the epidemic is clustered.</span>';
+  drawAll();
+}
+function stop() { running = false; if (raf) cancelAnimationFrame(raf); raf = null; $("btnPlay").textContent = "▶ Start"; }
+var lastSV = 0;
+function frame(ts) {
+  if (!running) return;
+  if (lastTs === null) lastTs = ts;
+  acc += Math.min(.5, (ts - lastTs) / 1000) * num("speed"); lastTs = ts;
+  var n = 0;
+  while (acc >= M.DT && !sim.done && n < 300) { sim.step(); acc -= M.DT; n++; }
+  if (sim.done) stop();
+  drawMap(); drawChart(); drawStats();
+  if (ts - lastSV > 1500 || sim.done) { lastSV = ts; computeSV(); }
+  if (running) raf = requestAnimationFrame(frame);
+}
+$("btnPlay").onclick = function () {
+  if (running) return stop();
+  if (!sim || sim.done) reset();
+  running = true; lastTs = null; acc = 0; $("btnPlay").textContent = "❚❚ Pause";
+  raf = requestAnimationFrame(frame);
+};
+$("btnStep").onclick = function () { stop(); if (!sim) reset(); for (var k = 0; k < 10 && !sim.done; k++) sim.step(); drawAll(); };
+$("btnReset").onclick = reset;
+$("btnSV").onclick = computeSV;
+["lyDots", "lyHeat", "lyRad"].forEach(function (id) { $(id).onchange = drawMap; });
+$("sdOn").onchange = drawChart;
+
+$("btnSeed").onclick = function () {
+  seedMode = !seedMode;
+  $("btnSeed").classList.toggle("on", seedMode);
+  $("hintClick").style.display = seedMode ? "block" : "none";
+  $("map").style.cursor = seedMode ? "crosshair" : "";
+};
+map.on("click", function (e) {
+  if (!seedMode || !sim) return;
+  sim.seed([e.latlng.lng, e.latlng.lat], num("init"));
+  var s = 0, i2 = 0, r2 = 0; for (var j = 0; j < sim.N; j++) { var v = sim.st[j]; if (v === 0) s++; else if (v === 1) i2++; else r2++; }
+  var L2 = sim.hist.t.length - 1; sim.hist.S[L2] = s; sim.hist.I[L2] = i2; sim.hist.R[L2] = r2; sim.last = { S: s, I: i2, R: r2 };
+  drawAll();
+});
+
+$("btnMC").onclick = function () {
+  stop();
+  var p = sim ? sim.p : params();
+  $("stats").innerHTML = "Running 10 seeds…";
+  setTimeout(function () {
+    mc = []; var peaks = [], days = [], tot = [];
+    for (var s = 1; s <= 10; s++) {
+      var q = Object.assign({}, p, { seed: s }), r = new M.Sim(q, mask);
+      while (!r.done) r.step();
+      mc.push(r.hist); peaks.push(r.peakI); days.push(r.peakDay);
+      var e = 0; for (var i = 0; i < r.N; i++) e += r.ever[i]; tot.push(e);
+    }
+    var mn = function (a) { return Math.min.apply(null, a); }, mxx = function (a) { return Math.max.apply(null, a); }, av = function (a) { return a.reduce(function (x, y) { return x + y; }, 0) / a.length; };
+    mcText = "<br><b>10 seeds:</b> peak " + mn(peaks) + "–" + mxx(peaks) + " (mean " + av(peaks).toFixed(0) + ") on day " + mn(days).toFixed(0) + "–" + mxx(days).toFixed(0) +
+      " · ever infected " + mn(tot) + "–" + mxx(tot) + " (mean " + (100 * av(tot) / p.N).toFixed(1) + "%)";
+    drawChart(); drawStats();
+  }, 30);
+};
+
+function download(name, text, type) {
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([text], { type: type }));
+  a.download = name; document.body.appendChild(a); a.click(); a.remove();
+}
+$("btnCSV").onclick = function () {
+  if (!sim) return;
+  var H = sim.hist, out = "day,susceptible,infected,recovered\n";
+  for (var i = 0; i < H.t.length; i++) out += H.t[i].toFixed(1) + "," + H.S[i] + "," + H.I[i] + "," + H.R[i] + "\n";
+  download("epidemic_timeseries.csv", out, "text/csv");
+};
+$("btnGeo").onclick = function () {
+  if (!sim) return;
+  var names = ["susceptible", "infected", "recovered"], f = [];
+  for (var i = 0; i < sim.N; i++) {
+    var ll = sim.lonlat(i);
+    f.push({ type: "Feature", geometry: { type: "Point", coordinates: [+ll[0].toFixed(5), +ll[1].toFixed(5)] },
+      properties: { id: i, state: names[sim.st[i]], ever_infected: sim.ever[i], vaccinated: sim.vac[i], day_infected: sim.tInf[i] >= 0 ? +sim.tInf[i].toFixed(1) : null } });
+  }
+  download("epidemic_people_day" + Math.round(sim.t) + ".geojson", JSON.stringify({ type: "FeatureCollection", properties: { day: sim.t, params: sim.p }, features: f }), "application/geo+json");
+};
+
+var dlg = $("about");
+$("btnAbout").onclick = function () { dlg.showModal(); };
+
+ALL.forEach(showVal);
+sizeCanvas();
+setTimeout(function () { map.invalidateSize(); map.fitBounds([[B.s, B.w], [B.n, B.e]], { padding: [10, 10] }); sizeCanvas(); drawMap(); }, 50);
+fetch("land.geojson").then(function (r) { return r.json(); }).then(function (geo) {
+  mask = new M.LandMask(geo, 100);
+  reset();
+}).catch(function () { $("hud").textContent = "Could not load the land outline. Open this page from a web server."; });
+})();
+</script>
+</body>
+</html>
