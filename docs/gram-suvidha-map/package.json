@@ -1,6 +1,6 @@
 {
   "name": "gram-suvidha-map",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "private": true,
   "description": "Village-level amenity mapping from OpenStreetMap",
   "author": "Somdeep Kundu, RuDRA Lab, C-TARA, IIT Bombay",

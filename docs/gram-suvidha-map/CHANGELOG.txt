@@ -1,5 +1,10 @@
 Gram Suvidha Map changelog
 
+1.2.1 (2026-11-05)
+- Village names on/off button on the map. Names appear for villages in view from zoom 12, the selected
+  village in bold, up to 350 at a time (largest first). The choice is remembered in this browser.
+- OSM amenity markers now always draw on top of village colours, outlines and names.
+
 1.2.0 (2026-11-05)
 - Village boundaries from the viewer's own file: drop india_villages_2021_22states.geojson.zip (loni-private-data
   release) and a worker streams it line by line into IndexedDB, split by district. Nothing is uploaded or published.

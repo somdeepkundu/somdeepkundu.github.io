@@ -1,7 +1,7 @@
 /* Gram Suvidha Map: village-level amenities from OpenStreetMap, on the viewer's own village boundaries.
    Keep APP.version equal to VERSION in sw.js and package.json. */
 "use strict";
-const APP = { version: "1.2.0", defaultPlace: "Hiware Bazar, Ahmednagar", near: 3000 };
+const APP = { version: "1.2.1", defaultPlace: "Hiware Bazar, Ahmednagar", near: 3000 };
 const $ = id => document.getElementById(id);
 
 /* Every string from OSM or the village file is untrusted: escape for HTML, neutralise formulas for CSV. */
@@ -107,14 +107,58 @@ map.createPane("villages").style.zIndex = 350;
 const vRenderer = L.canvas({pane:"villages", tolerance:2});
 
 const villageLayer = L.layerGroup().addTo(map);
+map.createPane("vlabels").style.zIndex = 450;               // above village fills, below amenity markers
+map.getPane("vlabels").style.pointerEvents = "none";
+const labelLayer = L.layerGroup().addTo(map);
+map.createPane("amenities").style.zIndex = 640;            // OSM amenities always on top (popups stay above at 700)
+const amenRenderer = L.svg({pane:"amenities"});
+const LABEL_ZOOM = 12, LABEL_MAX = 350;
 const areaLayer = L.layerGroup().addTo(map);
 const catLayers = Object.fromEntries(CATS.map(c => [c.id, L.layerGroup().addTo(map)]));
 const state = {place:null, feats:[], hidden:new Set(["other"]), seq:0, shape:null, data:null,
+               labels:(() => { try { return localStorage.getItem("gs-labels") !== "off"; } catch { return true; } })(),
                dist:null, village:null, vlayers:new Map(), metric:"density", breaks:[], scan:null, bin:null, hover:null, tab:"overview"};
 
 const legend = L.control({position:"bottomleft"});
 legend.onAdd = () => { const d = L.DomUtil.create("div", "legend"); L.DomEvent.disableClickPropagation(d); return d; };
 legend.addTo(map);
+
+/* village names: on/off, drawn only for villages in view once zoomed in enough to read them */
+const labelCtl = L.control({position:"topright"});
+labelCtl.onAdd = () => {
+  const d = L.DomUtil.create("div", "leaflet-bar labelctl");
+  const b = L.DomUtil.create("button", "", d);
+  b.type = "button"; b.id = "labelBtn";
+  L.DomEvent.disableClickPropagation(d);
+  b.onclick = () => {
+    state.labels = !state.labels;
+    try { localStorage.setItem("gs-labels", state.labels ? "on" : "off"); } catch {}
+    updateLabels();
+  };
+  return d;
+};
+labelCtl.addTo(map);
+function updateLabels(){
+  labelLayer.clearLayers();
+  const btn = $("labelBtn"), d = state.dist, z = map.getZoom();
+  if (btn){
+    btn.hidden = !d;
+    btn.setAttribute("aria-pressed", String(state.labels));
+    btn.textContent = "Village names: " + (state.labels ? "on" : "off");
+    btn.title = state.labels && z < LABEL_ZOOM ? "Zoom in to see names" : "";
+    btn.classList.toggle("dim", state.labels && z < LABEL_ZOOM);
+  }
+  if (!state.labels || !d || z < LABEL_ZOOM) return;
+  const view = map.getBounds().pad(0.1);
+  const inView = d.feats.filter(f => view.contains([f.c[1], f.c[0]]));
+  inView.sort((a, b) => (b.id === state.village?.id) - (a.id === state.village?.id) || b.pop - a.pop);
+  inView.slice(0, LABEL_MAX).forEach(f => {
+    const p = f.properties, sel = f.id === state.village?.id;
+    L.marker([f.c[1], f.c[0]], {pane:"vlabels", interactive:false, keyboard:false,
+      icon:L.divIcon({className:"vlabel" + (sel ? " sel" : ""), html:`<span>${esc(p.vill_name || p.name)}</span>`, iconSize:null})}).addTo(labelLayer);
+  });
+}
+map.on("zoomend moveend", updateLabels);
 
 map.on("click", async e => {
   const {lat, lng} = e.latlng;
@@ -278,8 +322,8 @@ function drawAmenities(){
   Object.values(catLayers).forEach(l => l.clearLayers());
   state.feats.forEach(f => {
     f.marker = L.circleMarker([f.lat, f.lon], f.inside
-        ? {radius:7, color:"#fff", weight:1.5, fillColor:CAT[f.cat].color, fillOpacity:.95}
-        : {radius:5, color:CAT[f.cat].color, weight:1.5, fillColor:"#fff", fillOpacity:.85})
+        ? {radius:7, color:"#fff", weight:1.5, fillColor:CAT[f.cat].color, fillOpacity:.95, pane:"amenities", renderer:amenRenderer}
+        : {radius:5, color:CAT[f.cat].color, weight:1.5, fillColor:"#fff", fillOpacity:.85, pane:"amenities", renderer:amenRenderer})
       .bindPopup(() => popup(f)).bindTooltip(esc(f.name || f.type), {direction:"top", offset:[0, -6]});
     f.marker.addTo(catLayers[f.cat]);
   });
@@ -318,7 +362,7 @@ async function load(place){
 
 /* ---------- village mode ---------- */
 function clearDistrict(){
-  villageLayer.clearLayers(); state.vlayers.clear(); state.dist = null; state.scan = null; state.bin = null; state.binIndex = null;
+  villageLayer.clearLayers(); labelLayer.clearLayers(); state.vlayers.clear(); state.dist = null; state.scan = null; state.bin = null; state.binIndex = null;
   updateLegend();
 }
 function computeBreaks(){
@@ -387,7 +431,7 @@ async function selectVillage(d, f, opts = {}){
   const p = f.properties;
   state.place = {name:p.vill_name || p.name, meta:[p.subdist && p.subdist + " taluka", p.district, p.state].filter(Boolean).join(" · "),
                  lat:f.c[1], lon:f.c[0], mode:"village"};
-  restyle();
+  restyle(); updateLabels();
   areaLayer.clearLayers();
   state.shape = L.geoJSON(f.geometry, {style:{color:cssVar("--indigo"), weight:3, fill:false}, interactive:false}).addTo(areaLayer);
   if (opts.fit !== false) map.fitBounds(state.shape.getBounds(), {padding:[40, 40], maxZoom:16});

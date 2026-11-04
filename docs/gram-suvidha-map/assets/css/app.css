@@ -189,3 +189,13 @@ h2.mt{margin-top:14px}
   .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
   .tabs{top:env(safe-area-inset-top,0px)}
 }
+
+/* village names toggle + labels */
+.labelctl button{display:block;border:0;border-radius:4px;background:var(--card);color:var(--ink);font:600 12px var(--f-body);padding:7px 10px;white-space:nowrap}
+.labelctl button[aria-pressed="false"]{color:var(--muted);font-weight:400}
+.labelctl button.dim{color:var(--muted)}
+.leaflet-touch .labelctl{border:2px solid rgba(0,0,0,.2)}
+.vlabel{background:none;border:0}
+.vlabel span{display:block;transform:translate(-50%,-50%);white-space:nowrap;font:600 11px/1 var(--f-body);color:#1c2420;
+  text-shadow:0 0 2px #fff,0 0 2px #fff,0 0 3px #fff,0 0 4px #fff;letter-spacing:.01em}
+.vlabel.sel span{font-size:13px;color:#2e3f97}
