@@ -4,7 +4,7 @@
    • OSM answers (Nominatim, Overpass): network-first, last API_MAX kept, so villages opened before still load offline.
    • Village boundaries are not cached here: they live in IndexedDB, imported from the viewer's own file.
    Bump VERSION whenever any cached file changes, and keep it equal to APP.version in assets/js/app.js and package.json. */
-const VERSION = 'gram-suvidha-1.2.0';
+const VERSION = 'gram-suvidha-1.2.1';
 const TILE_CACHE = 'gram-suvidha-tiles';
 const API_CACHE = 'gram-suvidha-osm';
 const TILE_MAX = 3000, API_MAX = 60;
