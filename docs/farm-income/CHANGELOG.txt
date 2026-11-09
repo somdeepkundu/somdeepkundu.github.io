@@ -7,6 +7,9 @@ Farm income, 2013 changelog
 - The All-India account (output, paid-out expenses, net receipt), three facts, a choropleth with four
   measures, states ranked with their ranges, a state-versus-India comparison, the full table.
 - English, Hindi and Bengali; each language is one JSON file, so more can be added without code.
+  Hindi and Bengali drafted with Gemini from tools/farm-income/make_translation_prompt.py, checked with
+  check_translation.py, and corrected by hand where a statistical term had the wrong sense (Hindi
+  "payable" for paid-out expenses, Bengali "gross" for net receipt, among others).
 - Download the table (CSV, formula-safe) or all figures (JSON); print or save as PDF; copy a citation
   or a link to any state.
 - Caution and suppression rules are shown on the map, in the ranking and in the table.
