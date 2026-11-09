@@ -1,0 +1,8 @@
+{
+  "name": "farm-income",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Income from crops by state, January–June 2013 (NSS 70th round), with 95% ranges. English, Hindi, Bengali.",
+  "author": "Somdeep Kundu, RuDRA Lab, C-TARA, IIT Bombay",
+  "license": "MIT"
+}

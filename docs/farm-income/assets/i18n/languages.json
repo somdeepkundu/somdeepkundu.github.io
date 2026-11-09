@@ -1,0 +1,5 @@
+[
+  { "code": "en", "name": "English", "locale": "en-IN", "file": "en.json" },
+  { "code": "hi", "name": "हिन्दी", "locale": "hi-IN", "file": "hi.json" },
+  { "code": "bn", "name": "বাংলা", "locale": "bn-IN", "file": "bn.json" }
+]

@@ -10,6 +10,18 @@ A selection of my geospatial and AI projects. Click any card to explore.
 <div class="grid" markdown>
 
 <div class="project-card" markdown>
+![](../assets/images/farm-income-card.jpg)
+
+**[Farm income by state, 2013](farm-income.md)** · <span lang="hi">खेती की आय</span> · <span lang="bn">কৃষি আয়</span>
+
+What a season of crops paid India's farm households, state by state, with 95% ranges. NSS 70th round microdata, survey-weighted and checked against NSSO's report, with an open toolkit for any MoSPI survey. In English, हिन्दी and বাংলা.
+
+`NSS microdata` `Survey weights` `Confidence intervals` `Choropleth` `Policy` `Python`
+
+[View Project →](farm-income.md){ .md-button } [Open Page →](https://somdeepkundu.github.io/farm-income/){ .md-button }
+</div>
+
+<div class="project-card" markdown>
 ![](../assets/images/epidemic-sim-card.jpg)
 
 **[Mumbai Epidemic Simulator](epidemic-sim.md)**

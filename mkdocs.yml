@@ -71,6 +71,7 @@ nav:
   - Home: index.md
   - Projects:
     - "All Projects": projects/index.md
+    - "Farm Income 2013": projects/farm-income.md
     - "Mumbai Durga Pujo Map": projects/pujo-map.md
     - "CropView": projects/cropview.md
     - "FloodView": projects/floodview.md

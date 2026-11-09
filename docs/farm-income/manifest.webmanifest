@@ -1,0 +1,17 @@
+{
+  "name": "Farm income by state, 2013",
+  "short_name": "Farm income",
+  "description": "What India's agricultural households earned from crops in January–June 2013, state by state, with 95% ranges.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f3f5f0",
+  "theme_color": "#17562f",
+  "lang": "en",
+  "icons": [
+    { "src": "assets/icons/icon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "assets/icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

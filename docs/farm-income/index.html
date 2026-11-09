@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; connect-src 'self'; font-src 'self'; worker-src 'self'; manifest-src 'self'; base-uri 'self'; form-action 'none'; object-src 'none'">
+<title data-i18n="meta.title">Farm income by state, 2013</title>
+<meta name="description" data-i18n-attr="content:meta.description" content="What India's agricultural households earned from crops in January–June 2013, state by state, with 95% ranges. Survey-weighted estimates from NSS 70th round, checked against NSSO's report.">
+<meta name="theme-color" content="#17562f">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Somdeep Kundu">
+<meta property="og:title" content="What a season of crops paid India's farm households">
+<meta property="og:description" content="Income from crops by state, January–June 2013, with 95% ranges. NSS 70th round, survey-weighted and checked against NSSO's report. In English, हिन्दी and বাংলা.">
+<meta property="og:url" content="https://somdeepkundu.github.io/farm-income/">
+<meta property="og:image" content="https://somdeepkundu.github.io/farm-income/assets/img/thumbnail.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://somdeepkundu.github.io/farm-income/">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/anek-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/map/india-states.json" as="fetch" crossorigin>
+<link rel="stylesheet" href="assets/css/app.css">
+<script src="assets/js/theme.js"></script>
+<script type="module" src="assets/js/app.js"></script>
+</head>
+<body>
+<a class="skip" href="#findings" data-i18n="nav.skip">Skip to the findings</a>
+
+<header class="bar">
+  <a class="brand" href="./" data-i18n="nav.brand">Farm income, 2013</a>
+  <nav class="langs" id="langs" aria-label="Language" data-i18n-attr="aria-label:lang.label"></nav>
+  <button class="theme" type="button" id="themeBtn" aria-label="Colour theme" data-i18n-attr="aria-label:theme.label">Auto</button>
+</header>
+
+<p class="status" id="status" role="status" hidden></p>
+
+<main id="findings">
+  <section class="hero" aria-labelledby="heroTitle">
+    <h1 id="heroTitle" data-i18n="hero.title">What a season of crops paid India's farm households</h1>
+    <p class="dek" id="dek" data-i18n="hero.dek">January to June 2013, the rabi season. Survey-weighted estimates from agricultural households across India, NSS 70th round.</p>
+
+    <div class="hero-grid">
+    <figure class="ledger" id="ledger" aria-describedby="ledgerCaption">
+      <figcaption id="ledgerCaption" data-i18n="ledger.caption">All India, average for a household that grew crops</figcaption>
+      <dl>
+        <div class="ln"><dt data-i18n="ledger.output">Crops grown, valued at harvest</dt><dd id="lgOutput">…</dd></div>
+        <div class="ln minus"><dt data-i18n="ledger.expenses">Paid out for seed, fertiliser, hired labour and other inputs</dt><dd id="lgExpenses">…</dd></div>
+        <div class="ln total"><dt data-i18n="ledger.net">Net receipt for the six months</dt><dd id="lgNet">…</dd></div>
+      </dl>
+      <p class="ledger-notes"><span id="lgRange"></span><span id="lgMonthly"></span><span id="lgMedian"></span></p>
+    </figure>
+
+    <ul class="facts" id="facts"></ul>
+    </div>
+  </section>
+
+  <section class="explore" id="explore" aria-labelledby="exploreTitle">
+    <h2 id="exploreTitle" data-i18n="explore.title">Compare the states</h2>
+    <p data-i18n="explore.lead">Pick a measure. Tap a state on the map or in the list to see its account next to the All-India figures.</p>
+
+    <fieldset class="measures" id="measures">
+      <legend data-i18n="explore.measure">Show</legend>
+    </fieldset>
+    <p class="measure-note" id="measureNote"></p>
+
+    <div class="explore-grid">
+      <div class="mapcol">
+        <div class="map" id="map"></div>
+        <div class="legend" id="legend" aria-label="Map key" data-i18n-attr="aria-label:legend.title"></div>
+      </div>
+      <div class="rankcol">
+        <h3 class="rank-title" data-i18n="rank.title">States ranked</h3>
+        <p class="rank-key" data-i18n="rank.key">Dot: the estimate. Line: its 95% range. Open dot and dashed line: use with caution.</p>
+        <label class="check" id="unweightedWrap"><input type="checkbox" id="unweighted"> <span data-i18n="rank.unweighted">Show plain averages of the sample</span></label>
+        <p class="small" id="unweightedNote" hidden></p>
+        <div class="rank" id="rank"></div>
+        <p class="small" id="tooFew"></p>
+      </div>
+    </div>
+    <div class="tip" id="tip" role="tooltip" hidden></div>
+
+    <section class="detail" id="detail" aria-labelledby="detailTitle" tabindex="-1">
+      <h3 id="detailTitle" data-i18n="detail.hint">Choose a state on the map or in the list to compare it with All India.</h3>
+      <div id="detailBody"></div>
+      <p class="sr-only" id="announce" aria-live="polite"></p>
+    </section>
+  </section>
+
+  <section class="caveats" aria-labelledby="caveatsTitle">
+    <h2 id="caveatsTitle" data-i18n="caveats.title">Before you quote these numbers</h2>
+    <ol>
+      <li data-i18n="caveats.1">These are receipts from crops alone, for six months. They are not household incomes: wages, livestock and other work are left out.</li>
+      <li data-i18n="caveats.2">Only paid-out costs are subtracted. Family labour, seed saved from the last harvest and the household's own land cost nothing here, so the real return to farming is lower.</li>
+      <li data-i18n="caveats.3">January to June is mostly the rabi season. States that rely on the kharif crop look poorer here than they would over a full year.</li>
+      <li data-i18n="caveats.4">Amounts are in 2013 rupees, not adjusted for inflation.</li>
+      <li data-i18n="caveats.5">The ranges cover sampling error only, not mistakes in recall or valuation. For small states the range is wide; quote it.</li>
+      <li data-i18n="caveats.6">Large farms pull the average up. The median household receives much less than the average, so quote both.</li>
+    </ol>
+  </section>
+
+  <section class="tablesec" aria-labelledby="tableTitle">
+    <div class="section-head">
+      <h2 id="tableTitle" data-i18n="table.title">All states and Union Territories</h2>
+      <div class="actions">
+        <button type="button" id="dlCsv" data-i18n="table.download_csv">Download table (CSV)</button>
+        <a class="button" id="dlJson" href="data/farm_income_by_state.json" download="farm_income_by_state_2013.json" data-i18n="table.download_json">Download all figures (JSON)</a>
+        <button type="button" id="printBtn" data-i18n="table.print">Print or save as PDF</button>
+      </div>
+    </div>
+    <div class="table-wrap" tabindex="0" aria-labelledby="tableTitle">
+      <table id="table">
+        <caption data-i18n="table.caption">Net receipt from crops per household that grew crops, January–June 2013, ₹ at 2013 prices. Ranges are 95% confidence intervals.</caption>
+        <thead><tr id="thead"></tr></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+    <div class="cite">
+      <h3 data-i18n="cite.title">Cite these figures</h3>
+      <p id="citeText" data-i18n="cite.text">Kundu, S. (2026). Income from crops by state, January–June 2013: survey-weighted estimates from NSS 70th round, Schedule 33, Visit 2. RuDRA Lab, C-TARA, IIT Bombay. https://somdeepkundu.github.io/farm-income/</p>
+      <button type="button" id="citeBtn" data-i18n="cite.copy">Copy citation</button>
+    </div>
+  </section>
+
+  <section class="method" aria-labelledby="methodTitle">
+    <h2 id="methodTitle" data-i18n="method.title">How these numbers were made</h2>
+    <p id="methodP1"></p>
+    <p id="methodP2"></p>
+    <p data-i18n="method.p3">Before anything is published, the All-India figures are checked against NSSO's own report, Key Indicators of Situation of Agricultural Households in India (2014):</p>
+    <div class="table-wrap">
+      <table class="checks" id="checks"></table>
+    </div>
+    <p class="links">
+      <a href="https://github.com/somdeepkundu/mospi-microdata-kit/blob/main/docs/METHODOLOGY.md" data-i18n="method.more">Full method and limitations</a>
+      <a href="https://github.com/somdeepkundu/mospi-microdata-kit" data-i18n="method.code">Code and tests on GitHub</a>
+    </p>
+  </section>
+
+  <section class="tool" aria-labelledby="toolTitle">
+    <h2 id="toolTitle" data-i18n="tool.title">Get these numbers yourself</h2>
+    <p data-i18n="tool.lead">The same toolkit downloads any survey on microdata.gov.in, and in Google Colab it needs no coding.</p>
+    <ol class="steps">
+      <li><span data-i18n="tool.step1">Make a free account on microdata.gov.in and create an API key on your profile page.</span> <span class="mins" data-i18n="tool.minutes" data-n="5">5 min</span></li>
+      <li><span data-i18n="tool.step2">Open the notebook in Google Colab and save the key in Colab's Secrets panel.</span> <span class="mins" data-i18n="tool.minutes" data-n="2">2 min</span></li>
+      <li><span data-i18n="tool.step3">Press Run all. The notebook downloads the files, checks them against NSSO's report and writes the state tables.</span> <span class="mins" data-i18n="tool.minutes" data-n="15">15 min</span></li>
+    </ol>
+    <p class="links">
+      <a class="button primary" href="https://colab.research.google.com/github/somdeepkundu/mospi-microdata-kit/blob/main/notebooks/02_nss70_farm_income_by_state.ipynb" data-i18n="tool.open">Open the notebook in Colab</a>
+      <a class="button" href="https://colab.research.google.com/github/somdeepkundu/mospi-microdata-kit/blob/main/notebooks/01_download_any_dataset.ipynb" data-i18n="tool.any">Download any other survey</a>
+      <a class="button" href="https://github.com/somdeepkundu/mospi-microdata-kit" data-i18n="tool.github">Source code</a>
+    </p>
+  </section>
+</main>
+
+<footer class="foot">
+  <p data-i18n="footer.source">Source: NSS 70th round, Schedule 33, Visit 2, Situation Assessment Survey of Agricultural Households. National Statistical Office, Ministry of Statistics and Programme Implementation, Government of India. Household records are not published here.</p>
+  <p data-i18n="footer.credits">State boundaries from geoKosh. Typeface Anek by Ek Type (SIL Open Font License).</p>
+  <p id="translationNote" hidden></p>
+  <p><span data-i18n="footer.built">Built by Somdeep Kundu, RuDRA Lab, C-TARA, IIT Bombay.</span>
+    <a href="https://www.somdeepkundu.in/" data-i18n="footer.website">Website</a>,
+    <a href="https://somdeepkundu.github.io/" data-i18n="footer.portfolio">Geospatial portfolio</a>,
+    <a href="mailto:somdeepkundu@gmail.com?subject=Farm%20income%202013" data-i18n="footer.feedback">Send feedback</a>,
+    <a href="https://linkedin.com/in/somdeep-kundu">LinkedIn</a>,
+    <a href="https://www.instagram.com/somdeeplearning/">Instagram</a></p>
+  <p class="small" id="generated"></p>
+  <p class="small" id="version"></p>
+</footer>
+</body>
+</html>

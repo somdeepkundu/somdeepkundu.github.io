@@ -1,0 +1,15 @@
+Farm income, 2013 changelog
+
+1.0.0 (2026-11-09)
+- First release. What agricultural households earned from crops in January–June 2013, by state, from
+  NSS 70th round Schedule 33 Visit 2: survey-weighted estimates with 95% ranges, checked against NSSO's
+  KI(70/33) report before publishing.
+- The All-India account (output, paid-out expenses, net receipt), three facts, a choropleth with four
+  measures, states ranked with their ranges, a state-versus-India comparison, the full table.
+- English, Hindi and Bengali; each language is one JSON file, so more can be added without code.
+- Download the table (CSV, formula-safe) or all figures (JSON); print or save as PDF; copy a citation
+  or a link to any state.
+- Caution and suppression rules are shown on the map, in the ranking and in the table.
+- House pattern: strict CSP, self-hosted Anek fonts split by script, offline after the first visit,
+  Auto/Light/Dark theme, link preview card.
+- Figures produced with mospi-microdata-kit 1.0.0 (https://github.com/somdeepkundu/mospi-microdata-kit).
