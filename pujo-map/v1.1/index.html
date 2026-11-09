@@ -1,0 +1,1652 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1C1617" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-title" content="Durga Pujo Map">
+<meta name="author" content="Somdeep Kundu, IIT Bombay">
+<meta name="description" content="Map of Durga Pujas across Mumbai, Thane and Navi Mumbai, sorted nearest to you, with directions.">
+<title>Mumbai Durga Pujo Map</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Mumbai Durga Pujo Map">
+<meta property="og:title" content="Mumbai Durga Pujo Map">
+<meta property="og:description" content="Durga Pujas across Mumbai, Thane and Navi Mumbai, nearest to you, with directions.">
+<meta property="og:url" content="https://somdeepkundu.github.io/pujo-map/v1.1/">
+<meta property="og:image" content="https://somdeepkundu.github.io/pujo-map/thumbnail.jpg">
+<meta property="og:image:secure_url" content="https://somdeepkundu.github.io/pujo-map/thumbnail.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ma Durga's eyes drawn in red, with the words Mumbai Durga Pujo Map">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://somdeepkundu.github.io/pujo-map/thumbnail.jpg">
+<link rel="apple-touch-icon" href="thumbnail-icon.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%22-50%20-50%20100%20100%22%20fill%3D%22%23B0151F%22%3E%3Ccircle%20r%3D%2250%22%20fill%3D%22%23fff%22/%3E%3Ccircle%20r%3D%224.2%22/%3E%3Cpath%20transform%3D%22rotate%280%29%22%20d%3D%22M0-7C6-13%206-25%200-33C-6-25-6-13%200-7Z%22/%3E%3Cpath%20transform%3D%22rotate%2845%29%22%20d%3D%22M0-7C6-13%206-25%200-33C-6-25-6-13%200-7Z%22/%3E%3Cpath%20transform%3D%22rotate%2890%29%22%20d%3D%22M0-7C6-13%206-25%200-33C-6-25-6-13%200-7Z%22/%3E%3Cpath%20transform%3D%22rotate%28135%29%22%20d%3D%22M0-7C6-13%206-25%200-33C-6-25-6-13%200-7Z%22/%3E%3Cpath%20transform%3D%22rotate%28180%29%22%20d%3D%22M0-7C6-13%206-25%200-33C-6-25-6-13%200-7Z%22/%3E%3Cpath%20transform%3D%22rotate%28225%29%22%20d%3D%22M0-7C6-13%206-25%200-33C-6-25-6-13%200-7Z%22/%3E%3Cpath%20transform%3D%22rotate%28270%29%22%20d%3D%22M0-7C6-13%206-25%200-33C-6-25-6-13%200-7Z%22/%3E%3Cpath%20transform%3D%22rotate%28315%29%22%20d%3D%22M0-7C6-13%206-25%200-33C-6-25-6-13%200-7Z%22/%3E%3Ccircle%20transform%3D%22rotate%2822.5%29%22%20cy%3D%22-24%22%20r%3D%222.6%22/%3E%3Ccircle%20transform%3D%22rotate%2867.5%29%22%20cy%3D%22-24%22%20r%3D%222.6%22/%3E%3Ccircle%20transform%3D%22rotate%28112.5%29%22%20cy%3D%22-24%22%20r%3D%222.6%22/%3E%3Ccircle%20transform%3D%22rotate%28157.5%29%22%20cy%3D%22-24%22%20r%3D%222.6%22/%3E%3Ccircle%20transform%3D%22rotate%28202.5%29%22%20cy%3D%22-24%22%20r%3D%222.6%22/%3E%3Ccircle%20transform%3D%22rotate%28247.5%29%22%20cy%3D%22-24%22%20r%3D%222.6%22/%3E%3Ccircle%20transform%3D%22rotate%28292.5%29%22%20cy%3D%22-24%22%20r%3D%222.6%22/%3E%3Ccircle%20transform%3D%22rotate%28337.5%29%22%20cy%3D%22-24%22%20r%3D%222.6%22/%3E%3Cpath%20transform%3D%22rotate%280.0%29%22%20d%3D%22M0-40C3-42.5%203.4-45.5%200-48.5C-3.4-45.5-3-42.5%200-40Z%22/%3E%3Cpath%20transform%3D%22rotate%2822.5%29%22%20d%3D%22M0-40C3-42.5%203.4-45.5%200-48.5C-3.4-45.5-3-42.5%200-40Z%22/%3E%3Cpath%20transform%3D%22rotate%2845.0%29%22%20d%3D%22M0-40C3-42.5%203.4-45.5%200-48.5C-3.4-45.5-3-42.5%200-40Z%22/%3E%3Cpath%20transform%3D%22rotate%2867.5%29%22%20d%3D%22M0-40C3-42.5%203.4-45.5%200-48.5C-3.4-45.5-3-42.5%200-40Z%22/%3E%3Cpath%20transform%3D%22rotate%2890.0%29%22%20d%3D%22M0-40C3-42.5%203.4-45.5%200-48.5C-3.4-45.5-3-42.5%200-40Z%22/%3E%3Cpath%20transform%3D%22rotate%28112.5%29%22%20d%3D%22M0-40C3-42.5%203.4-45.5%200-48.5C-3.4-45.5-3-42.5%200-40Z%22/%3E%3Cpath%20transform%3D%22rotate%28135.0%29%22%20d%3D%22M0-40C3-42.5%203.4-45.5%200-48.5C-3.4-45.5-3-42.5%200-40Z%22/%3E%3Cpath%20transform%3D%22rotate%28157.5%29%22%20d%3D%22M0-40C3-42.5%203.4-45.5%200-48.5C-3.4-45.5-3-42.5%200-40Z%22/%3E%3Cpath%20transform%3D%22rotate%28180.0%29%22%20d%3D%22M0-40C3-42.5%203.4-45.5%200-48.5C-3.4-45.5-3-42.5%200-40Z%22/%3E%3Cpath%20transform%3D%22rotate%28202.5%29%22%20d%3D%22M0-40C3-42.5%203.4-45.5%200-48.5C-3.4-45.5-3-42.5%200-40Z%22/%3E%3Cpath%20transform%3D%22rotate%28225.0%29%22%20d%3D%22M0-40C3-42.5%203.4-45.5%200-48.5C-3.4-45.5-3-42.5%200-40Z%22/%3E%3Cpath%20transform%3D%22rotate%28247.5%29%22%20d%3D%22M0-40C3-42.5%203.4-45.5%200-48.5C-3.4-45.5-3-42.5%200-40Z%22/%3E%3Cpath%20transform%3D%22rotate%28270.0%29%22%20d%3D%22M0-40C3-42.5%203.4-45.5%200-48.5C-3.4-45.5-3-42.5%200-40Z%22/%3E%3Cpath%20transform%3D%22rotate%28292.5%29%22%20d%3D%22M0-40C3-42.5%203.4-45.5%200-48.5C-3.4-45.5-3-42.5%200-40Z%22/%3E%3Cpath%20transform%3D%22rotate%28315.0%29%22%20d%3D%22M0-40C3-42.5%203.4-45.5%200-48.5C-3.4-45.5-3-42.5%200-40Z%22/%3E%3Cpath%20transform%3D%22rotate%28337.5%29%22%20d%3D%22M0-40C3-42.5%203.4-45.5%200-48.5C-3.4-45.5-3-42.5%200-40Z%22/%3E%3Ccircle%20r%3D%2237%22%20fill%3D%22none%22%20stroke%3D%22%23B0151F%22%20stroke-width%3D%222.2%22/%3E%3C/svg%3E">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Mumbai Durga Pujo Map</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600&family=Tiro+Bangla&display=swap">
+<style>
+/* required styles */
+
+.leaflet-pane,
+.leaflet-tile,
+.leaflet-marker-icon,
+.leaflet-marker-shadow,
+.leaflet-tile-container,
+.leaflet-pane > svg,
+.leaflet-pane > canvas,
+.leaflet-zoom-box,
+.leaflet-image-layer,
+.leaflet-layer {
+	position: absolute;
+	left: 0;
+	top: 0;
+	}
+.leaflet-container {
+	overflow: hidden;
+	}
+.leaflet-tile,
+.leaflet-marker-icon,
+.leaflet-marker-shadow {
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	        user-select: none;
+	  -webkit-user-drag: none;
+	}
+/* Prevents IE11 from highlighting tiles in blue */
+.leaflet-tile::selection {
+	background: transparent;
+}
+/* Safari renders non-retina tile on retina better with this, but Chrome is worse */
+.leaflet-safari .leaflet-tile {
+	image-rendering: -webkit-optimize-contrast;
+	}
+/* hack that prevents hw layers "stretching" when loading new tiles */
+.leaflet-safari .leaflet-tile-container {
+	width: 1600px;
+	height: 1600px;
+	-webkit-transform-origin: 0 0;
+	}
+.leaflet-marker-icon,
+.leaflet-marker-shadow {
+	display: block;
+	}
+/* .leaflet-container svg: reset svg max-width decleration shipped in Joomla! (joomla.org) 3.x */
+/* .leaflet-container img: map is broken in FF if you have max-width: 100% on tiles */
+.leaflet-container .leaflet-overlay-pane svg {
+	max-width: none !important;
+	max-height: none !important;
+	}
+.leaflet-container .leaflet-marker-pane img,
+.leaflet-container .leaflet-shadow-pane img,
+.leaflet-container .leaflet-tile-pane img,
+.leaflet-container img.leaflet-image-layer,
+.leaflet-container .leaflet-tile {
+	max-width: none !important;
+	max-height: none !important;
+	width: auto;
+	padding: 0;
+	}
+
+.leaflet-container img.leaflet-tile {
+	/* See: https://bugs.chromium.org/p/chromium/issues/detail?id=600120 */
+	mix-blend-mode: plus-lighter;
+}
+
+.leaflet-container.leaflet-touch-zoom {
+	-ms-touch-action: pan-x pan-y;
+	touch-action: pan-x pan-y;
+	}
+.leaflet-container.leaflet-touch-drag {
+	-ms-touch-action: pinch-zoom;
+	/* Fallback for FF which doesn't support pinch-zoom */
+	touch-action: none;
+	touch-action: pinch-zoom;
+}
+.leaflet-container.leaflet-touch-drag.leaflet-touch-zoom {
+	-ms-touch-action: none;
+	touch-action: none;
+}
+.leaflet-container {
+	-webkit-tap-highlight-color: transparent;
+}
+.leaflet-container a {
+	-webkit-tap-highlight-color: rgba(51, 181, 229, 0.4);
+}
+.leaflet-tile {
+	filter: inherit;
+	visibility: hidden;
+	}
+.leaflet-tile-loaded {
+	visibility: inherit;
+	}
+.leaflet-zoom-box {
+	width: 0;
+	height: 0;
+	-moz-box-sizing: border-box;
+	     box-sizing: border-box;
+	z-index: 800;
+	}
+/* workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=888319 */
+.leaflet-overlay-pane svg {
+	-moz-user-select: none;
+	}
+
+.leaflet-pane         { z-index: 400; }
+
+.leaflet-tile-pane    { z-index: 200; }
+.leaflet-overlay-pane { z-index: 400; }
+.leaflet-shadow-pane  { z-index: 500; }
+.leaflet-marker-pane  { z-index: 600; }
+.leaflet-tooltip-pane   { z-index: 650; }
+.leaflet-popup-pane   { z-index: 700; }
+
+.leaflet-map-pane canvas { z-index: 100; }
+.leaflet-map-pane svg    { z-index: 200; }
+
+.leaflet-vml-shape {
+	width: 1px;
+	height: 1px;
+	}
+.lvml {
+	display: inline-block;
+	position: absolute;
+	}
+
+
+/* control positioning */
+
+.leaflet-control {
+	position: relative;
+	z-index: 800;
+	pointer-events: visiblePainted; /* IE 9-10 doesn't have auto */
+	pointer-events: auto;
+	}
+.leaflet-top,
+.leaflet-bottom {
+	position: absolute;
+	z-index: 1000;
+	pointer-events: none;
+	}
+.leaflet-top {
+	top: 0;
+	}
+.leaflet-right {
+	right: 0;
+	}
+.leaflet-bottom {
+	bottom: 0;
+	}
+.leaflet-left {
+	left: 0;
+	}
+.leaflet-control {
+	float: left;
+	clear: both;
+	}
+.leaflet-right .leaflet-control {
+	float: right;
+	}
+.leaflet-top .leaflet-control {
+	margin-top: 10px;
+	}
+.leaflet-bottom .leaflet-control {
+	margin-bottom: 10px;
+	}
+.leaflet-left .leaflet-control {
+	margin-left: 10px;
+	}
+.leaflet-right .leaflet-control {
+	margin-right: 10px;
+	}
+
+
+/* zoom and fade animations */
+
+.leaflet-fade-anim .leaflet-popup {
+	opacity: 0;
+	-webkit-transition: opacity 0.2s linear;
+	   -moz-transition: opacity 0.2s linear;
+	        transition: opacity 0.2s linear;
+	}
+.leaflet-fade-anim .leaflet-map-pane .leaflet-popup {
+	opacity: 1;
+	}
+.leaflet-zoom-animated {
+	-webkit-transform-origin: 0 0;
+	    -ms-transform-origin: 0 0;
+	        transform-origin: 0 0;
+	}
+svg.leaflet-zoom-animated {
+	will-change: transform;
+}
+
+.leaflet-zoom-anim .leaflet-zoom-animated {
+	-webkit-transition: -webkit-transform 0.25s cubic-bezier(0,0,0.25,1);
+	   -moz-transition:    -moz-transform 0.25s cubic-bezier(0,0,0.25,1);
+	        transition:         transform 0.25s cubic-bezier(0,0,0.25,1);
+	}
+.leaflet-zoom-anim .leaflet-tile,
+.leaflet-pan-anim .leaflet-tile {
+	-webkit-transition: none;
+	   -moz-transition: none;
+	        transition: none;
+	}
+
+.leaflet-zoom-anim .leaflet-zoom-hide {
+	visibility: hidden;
+	}
+
+
+/* cursors */
+
+.leaflet-interactive {
+	cursor: pointer;
+	}
+.leaflet-grab {
+	cursor: -webkit-grab;
+	cursor:    -moz-grab;
+	cursor:         grab;
+	}
+.leaflet-crosshair,
+.leaflet-crosshair .leaflet-interactive {
+	cursor: crosshair;
+	}
+.leaflet-popup-pane,
+.leaflet-control {
+	cursor: auto;
+	}
+.leaflet-dragging .leaflet-grab,
+.leaflet-dragging .leaflet-grab .leaflet-interactive,
+.leaflet-dragging .leaflet-marker-draggable {
+	cursor: move;
+	cursor: -webkit-grabbing;
+	cursor:    -moz-grabbing;
+	cursor:         grabbing;
+	}
+
+/* marker & overlays interactivity */
+.leaflet-marker-icon,
+.leaflet-marker-shadow,
+.leaflet-image-layer,
+.leaflet-pane > svg path,
+.leaflet-tile-container {
+	pointer-events: none;
+	}
+
+.leaflet-marker-icon.leaflet-interactive,
+.leaflet-image-layer.leaflet-interactive,
+.leaflet-pane > svg path.leaflet-interactive,
+svg.leaflet-image-layer.leaflet-interactive path {
+	pointer-events: visiblePainted; /* IE 9-10 doesn't have auto */
+	pointer-events: auto;
+	}
+
+/* visual tweaks */
+
+.leaflet-container {
+	background: #ddd;
+	outline-offset: 1px;
+	}
+.leaflet-container a {
+	color: #0078A8;
+	}
+.leaflet-zoom-box {
+	border: 2px dotted #38f;
+	background: rgba(255,255,255,0.5);
+	}
+
+
+/* general typography */
+.leaflet-container {
+	font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-size: 0.75rem;
+	line-height: 1.5;
+	}
+
+
+/* general toolbar styles */
+
+.leaflet-bar {
+	box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+	border-radius: 4px;
+	}
+.leaflet-bar a {
+	background-color: #fff;
+	border-bottom: 1px solid #ccc;
+	width: 26px;
+	height: 26px;
+	line-height: 26px;
+	display: block;
+	text-align: center;
+	text-decoration: none;
+	color: black;
+	}
+.leaflet-bar a,
+.leaflet-control-layers-toggle {
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	display: block;
+	}
+.leaflet-bar a:hover,
+.leaflet-bar a:focus {
+	background-color: #f4f4f4;
+	}
+.leaflet-bar a:first-child {
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	}
+.leaflet-bar a:last-child {
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	border-bottom: none;
+	}
+.leaflet-bar a.leaflet-disabled {
+	cursor: default;
+	background-color: #f4f4f4;
+	color: #bbb;
+	}
+
+.leaflet-touch .leaflet-bar a {
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	}
+.leaflet-touch .leaflet-bar a:first-child {
+	border-top-left-radius: 2px;
+	border-top-right-radius: 2px;
+	}
+.leaflet-touch .leaflet-bar a:last-child {
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px;
+	}
+
+/* zoom control */
+
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+	font: bold 18px 'Lucida Console', Monaco, monospace;
+	text-indent: 1px;
+	}
+
+.leaflet-touch .leaflet-control-zoom-in, .leaflet-touch .leaflet-control-zoom-out  {
+	font-size: 22px;
+	}
+
+
+/* layers control */
+
+.leaflet-control-layers {
+	box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+	background: #fff;
+	border-radius: 5px;
+	}
+.leaflet-control-layers-toggle {
+	width: 36px;
+	height: 36px;
+	}
+.leaflet-retina .leaflet-control-layers-toggle {
+	background-size: 26px 26px;
+	}
+.leaflet-touch .leaflet-control-layers-toggle {
+	width: 44px;
+	height: 44px;
+	}
+.leaflet-control-layers .leaflet-control-layers-list,
+.leaflet-control-layers-expanded .leaflet-control-layers-toggle {
+	display: none;
+	}
+.leaflet-control-layers-expanded .leaflet-control-layers-list {
+	display: block;
+	position: relative;
+	}
+.leaflet-control-layers-expanded {
+	padding: 6px 10px 6px 6px;
+	color: #333;
+	background: #fff;
+	}
+.leaflet-control-layers-scrollbar {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	padding-right: 5px;
+	}
+.leaflet-control-layers-selector {
+	margin-top: 2px;
+	position: relative;
+	top: 1px;
+	}
+.leaflet-control-layers label {
+	display: block;
+	font-size: 13px;
+	font-size: 1.08333em;
+	}
+.leaflet-control-layers-separator {
+	height: 0;
+	border-top: 1px solid #ddd;
+	margin: 5px -10px 5px -6px;
+	}
+
+/* Default icon URLs */
+.leaflet-default-icon-path { /* used only in path-guessing heuristic, see L.Icon.Default */
+	}
+
+
+/* attribution and scale controls */
+
+.leaflet-container .leaflet-control-attribution {
+	background: #fff;
+	background: rgba(255, 255, 255, 0.8);
+	margin: 0;
+	}
+.leaflet-control-attribution,
+.leaflet-control-scale-line {
+	padding: 0 5px;
+	color: #333;
+	line-height: 1.4;
+	}
+.leaflet-control-attribution a {
+	text-decoration: none;
+	}
+.leaflet-control-attribution a:hover,
+.leaflet-control-attribution a:focus {
+	text-decoration: underline;
+	}
+.leaflet-attribution-flag {
+	display: inline !important;
+	vertical-align: baseline !important;
+	width: 1em;
+	height: 0.6669em;
+	}
+.leaflet-left .leaflet-control-scale {
+	margin-left: 5px;
+	}
+.leaflet-bottom .leaflet-control-scale {
+	margin-bottom: 5px;
+	}
+.leaflet-control-scale-line {
+	border: 2px solid #777;
+	border-top: none;
+	line-height: 1.1;
+	padding: 2px 5px 1px;
+	white-space: nowrap;
+	-moz-box-sizing: border-box;
+	     box-sizing: border-box;
+	background: rgba(255, 255, 255, 0.8);
+	text-shadow: 1px 1px #fff;
+	}
+.leaflet-control-scale-line:not(:first-child) {
+	border-top: 2px solid #777;
+	border-bottom: none;
+	margin-top: -2px;
+	}
+.leaflet-control-scale-line:not(:first-child):not(:last-child) {
+	border-bottom: 2px solid #777;
+	}
+
+.leaflet-touch .leaflet-control-attribution,
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
+	box-shadow: none;
+	}
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
+	border: 2px solid rgba(0,0,0,0.2);
+	background-clip: padding-box;
+	}
+
+
+/* popup */
+
+.leaflet-popup {
+	position: absolute;
+	text-align: center;
+	margin-bottom: 20px;
+	}
+.leaflet-popup-content-wrapper {
+	padding: 1px;
+	text-align: left;
+	border-radius: 12px;
+	}
+.leaflet-popup-content {
+	margin: 13px 24px 13px 20px;
+	line-height: 1.3;
+	font-size: 13px;
+	font-size: 1.08333em;
+	min-height: 1px;
+	}
+.leaflet-popup-content p {
+	margin: 17px 0;
+	margin: 1.3em 0;
+	}
+.leaflet-popup-tip-container {
+	width: 40px;
+	height: 20px;
+	position: absolute;
+	left: 50%;
+	margin-top: -1px;
+	margin-left: -20px;
+	overflow: hidden;
+	pointer-events: none;
+	}
+.leaflet-popup-tip {
+	width: 17px;
+	height: 17px;
+	padding: 1px;
+
+	margin: -10px auto 0;
+	pointer-events: auto;
+
+	-webkit-transform: rotate(45deg);
+	   -moz-transform: rotate(45deg);
+	    -ms-transform: rotate(45deg);
+	        transform: rotate(45deg);
+	}
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+	background: white;
+	color: #333;
+	box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+	}
+.leaflet-container a.leaflet-popup-close-button {
+	position: absolute;
+	top: 0;
+	right: 0;
+	border: none;
+	text-align: center;
+	width: 24px;
+	height: 24px;
+	font: 16px/24px Tahoma, Verdana, sans-serif;
+	color: #757575;
+	text-decoration: none;
+	background: transparent;
+	}
+.leaflet-container a.leaflet-popup-close-button:hover,
+.leaflet-container a.leaflet-popup-close-button:focus {
+	color: #585858;
+	}
+.leaflet-popup-scrolled {
+	overflow: auto;
+	}
+
+.leaflet-oldie .leaflet-popup-content-wrapper {
+	-ms-zoom: 1;
+	}
+.leaflet-oldie .leaflet-popup-tip {
+	width: 24px;
+	margin: 0 auto;
+
+	-ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678)";
+	filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678);
+	}
+
+.leaflet-oldie .leaflet-control-zoom,
+.leaflet-oldie .leaflet-control-layers,
+.leaflet-oldie .leaflet-popup-content-wrapper,
+.leaflet-oldie .leaflet-popup-tip {
+	border: 1px solid #999;
+	}
+
+
+/* div icon */
+
+.leaflet-div-icon {
+	background: #fff;
+	border: 1px solid #666;
+	}
+
+
+/* Tooltip */
+/* Base styles for the element that has a tooltip */
+.leaflet-tooltip {
+	position: absolute;
+	padding: 6px;
+	background-color: #fff;
+	border: 1px solid #fff;
+	border-radius: 3px;
+	color: #222;
+	white-space: nowrap;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	pointer-events: none;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+	}
+.leaflet-tooltip.leaflet-interactive {
+	cursor: pointer;
+	pointer-events: auto;
+	}
+.leaflet-tooltip-top:before,
+.leaflet-tooltip-bottom:before,
+.leaflet-tooltip-left:before,
+.leaflet-tooltip-right:before {
+	position: absolute;
+	pointer-events: none;
+	border: 6px solid transparent;
+	background: transparent;
+	content: "";
+	}
+
+/* Directions */
+
+.leaflet-tooltip-bottom {
+	margin-top: 6px;
+}
+.leaflet-tooltip-top {
+	margin-top: -6px;
+}
+.leaflet-tooltip-bottom:before,
+.leaflet-tooltip-top:before {
+	left: 50%;
+	margin-left: -6px;
+	}
+.leaflet-tooltip-top:before {
+	bottom: 0;
+	margin-bottom: -12px;
+	border-top-color: #fff;
+	}
+.leaflet-tooltip-bottom:before {
+	top: 0;
+	margin-top: -12px;
+	margin-left: -6px;
+	border-bottom-color: #fff;
+	}
+.leaflet-tooltip-left {
+	margin-left: -6px;
+}
+.leaflet-tooltip-right {
+	margin-left: 6px;
+}
+.leaflet-tooltip-left:before,
+.leaflet-tooltip-right:before {
+	top: 50%;
+	margin-top: -6px;
+	}
+.leaflet-tooltip-left:before {
+	right: 0;
+	margin-right: -12px;
+	border-left-color: #fff;
+	}
+.leaflet-tooltip-right:before {
+	left: 0;
+	margin-left: -12px;
+	border-right-color: #fff;
+	}
+
+/* Printing */
+
+@media print {
+	/* Prevent printers from removing background-images of controls. */
+	.leaflet-control {
+		-webkit-print-color-adjust: exact;
+		print-color-adjust: exact;
+		}
+	}
+
+</style>
+<style>
+/* Map-first. Phone: header, full-screen map, list in a sheet. Desktop: list left, map right.
+   Laal paar shada: white like shola pith, alta red only for the border, the alpona mark, pins and glow. */
+:root {
+  --paper: #FFFFFF;
+  --ink: #241E1F;
+  --muted: #6F6668;
+  --line: #ECE6E6;
+  --alta: #B0151F;
+  --on-alta: #FFFFFF;
+  --tint: #FBF0F0;
+  --land: #F6F6F5;
+  --water: #DCE0E3;
+  --coast: #C5CBD0;
+  --you: #1F5FD1;
+  --tiles: grayscale(1) contrast(0.9) brightness(1.06);
+  --font: "Hind Siliguri", "Noto Sans Bengali", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-bn: "Tiro Bangla", "Noto Serif Bengali", Georgia, serif;
+  --gutter-l: max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #1C1617; --ink: #F3ECEC; --muted: #ABA0A2; --line: #332A2C;
+    --alta: #EA4A51; --on-alta: #1C0A0B; --tint: #2A1D1F;
+    --land: #262021; --water: #151A1E; --coast: #3A4248; --you: #7FA6FF;
+    --tiles: invert(1) grayscale(1) brightness(0.72) contrast(1.15);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #1C1617; --ink: #F3ECEC; --muted: #ABA0A2; --line: #332A2C;
+  --alta: #EA4A51; --on-alta: #1C0A0B; --tint: #2A1D1F;
+  --land: #262021; --water: #151A1E; --coast: #3A4248; --you: #7FA6FF;
+  --tiles: invert(1) grayscale(1) brightness(0.72) contrast(1.15);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: var(--font); font-size: 15px; line-height: 1.45;
+  -webkit-font-smoothing: antialiased; overscroll-behavior: none;
+}
+button, input, select { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--you); outline-offset: 2px; }
+
+/* phone: header on top, map fills the screen, the list is a sheet dragged up from the bottom.
+   dvh follows the address bar; the page's own top and bottom padding clears the notch and home bar */
+.app { position: relative; overflow: hidden; height: 100%; height: calc(100dvh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)); }
+.head {
+  position: absolute; top: 0; left: 0; right: 0; z-index: 800; background: var(--paper);
+  padding-block: 10px; padding-left: var(--gutter-l); padding-right: var(--gutter-r);
+  border-bottom: 4px solid var(--alta);
+  box-shadow: 0 2px 0 var(--paper), 0 3px 0 var(--alta);
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px;
+}
+.mapbox { position: absolute; left: 0; right: 0; bottom: 0; top: var(--head-h, 124px); }
+.sheet {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 700; height: 46%;
+  display: flex; flex-direction: column; background: var(--paper);
+  border-radius: 18px 18px 0 0; box-shadow: 0 -3px 18px rgba(0, 0, 0, 0.18);
+  transition: height 0.22s ease;
+}
+.sheet.dragging { transition: none; }
+.grab { flex: none; width: 100%; height: 26px; border: 0; padding: 0; background: none; display: grid; place-items: center; touch-action: none; cursor: grab; }
+.grab::before { content: ""; width: 44px; height: 5px; border-radius: 3px; background: var(--muted); opacity: 0.4; }
+@media (prefers-reduced-motion: reduce) { .sheet { transition: none; } }
+
+/* desktop */
+@media (min-width: 900px) {
+  .app { display: grid; grid-template-columns: 416px 1fr; grid-template-rows: auto minmax(0, 1fr); grid-template-areas: "head map" "list map"; border-top: 5px solid var(--alta); }
+  .head { position: relative; grid-area: head; box-shadow: none; border-bottom: 1px solid var(--line); padding-block: 18px 12px; gap: 12px; border-right: 1px solid var(--line); }
+  .mapbox { position: relative; grid-area: map; top: auto; }
+  .sheet { position: relative; grid-area: list; height: auto !important; border-radius: 0; box-shadow: none; transition: none; border-right: 1px solid var(--line); }
+  .grab { display: none; }
+}
+
+.brand { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.mark { width: 30px; height: 30px; color: var(--alta); flex: none; margin-right: 2px; }
+.titles { min-width: 0; flex: 1; }
+h1 { margin: 0; font-family: var(--font-bn); font-weight: 400; font-size: clamp(17px, 4.9vw, 20px); line-height: 1.15; letter-spacing: -0.012em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+@media (min-width: 900px) { .brand { gap: 8px; } .mark { width: 38px; height: 38px; } h1 { font-size: 21px; } }
+.today { margin: 2px 0 0; font-size: 13.5px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.today [lang="bn"] { font-family: var(--font-bn); color: var(--ink); font-size: 15px; margin-right: 4px; }
+html[lang="bn"] .today { font-family: var(--font-bn); font-size: 15px; color: var(--ink); }
+
+.tool {
+  flex: none; height: 34px; min-width: 34px; padding: 0 7px; border-radius: 999px; border: 1px solid var(--line);
+  background: var(--paper); color: var(--ink); cursor: pointer; display: inline-grid; place-items: center;
+  font-size: 14px; font-weight: 600; -webkit-tap-highlight-color: transparent;
+}
+.tool svg { width: 18px; height: 18px; }
+.tool.icon { padding: 0; width: 34px; }
+#langBtn:lang(en), .lang-bn { font-family: var(--font-bn); font-weight: 400; font-size: 15px; }
+
+.find { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 8px; min-width: 0; }
+.search { position: relative; min-width: 0; }
+.search svg { position: absolute; left: 11px; top: 50%; width: 17px; height: 17px; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
+.search input, .area {
+  width: 100%; height: 44px; border: 1px solid var(--line); border-radius: 10px; background: var(--paper);
+  font-size: 16px; /* 16px keeps iPhones from zooming in on focus */
+}
+.search input { padding: 0 10px 0 35px; }
+.search input::placeholder { color: var(--muted); }
+.area { width: auto; max-width: 34vw; padding: 0 28px 0 11px; appearance: none; cursor: pointer;
+  background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+  background-position: calc(100% - 16px) 19px, calc(100% - 11px) 19px; background-size: 5px 5px; background-repeat: no-repeat; }
+@media (min-width: 900px) { .area { max-width: 140px; } }
+.near {
+  flex: none; width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--alta); color: var(--alta); background: var(--paper);
+  display: grid; place-items: center; cursor: pointer; -webkit-tap-highlight-color: transparent;
+}
+.near svg { width: 20px; height: 20px; }
+.near[aria-pressed="true"] { background: var(--alta); color: var(--on-alta); }
+.near.busy svg { animation: spin 1.2s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .near.busy svg { animation: none; } }
+
+/* map */
+#map { position: absolute; inset: 0; background: var(--water); }
+.hit { cursor: pointer; }
+.leaflet-container { font-family: var(--font); background: var(--water); }
+.leaflet-tile-pane { filter: var(--tiles); }
+.leaflet-left { left: env(safe-area-inset-left, 0px); }
+.leaflet-right { right: env(safe-area-inset-right, 0px); }
+.land { fill: var(--land); stroke: var(--coast); stroke-width: 1; }
+.pin { fill: var(--alta); stroke: var(--paper); stroke-width: 2; cursor: pointer; }
+.pin-approx { fill: var(--paper); stroke: var(--alta); stroke-dasharray: 2.5 2; stroke-width: 2; }
+.route-line { stroke: var(--alta); stroke-width: 3; stroke-dasharray: 6 7; fill: none; stroke-linecap: round; }
+.stop-num span { position: absolute; inset: 0; border-radius: 50%; background: var(--alta); color: var(--on-alta); font-size: 12px; font-weight: 600; display: grid; place-items: center; border: 2px solid var(--paper); box-shadow: 0 1px 4px rgba(0,0,0,.3); }
+.sel-icon { color: var(--alta); }
+.sel-icon svg { width: 34px; height: 34px; display: block; background: var(--paper); border-radius: 50%; box-shadow: 0 1px 6px rgba(0,0,0,.28); }
+.me-icon span { position: absolute; inset: 0; border-radius: 50%; background: var(--you); border: 3px solid var(--paper); box-shadow: 0 1px 5px rgba(0,0,0,.35); }
+.home-icon span { position: absolute; inset: 0; border-radius: 50%; background: var(--ink); color: var(--paper); border: 2px solid var(--paper); box-shadow: 0 1px 5px rgba(0,0,0,.35); display: grid; place-items: center; }
+.home-icon svg { width: 16px; height: 16px; }
+.home-tip { font-size: 12px; padding: 3px 8px; }
+.map-btns a { display: grid !important; place-items: center; width: 40px !important; height: 40px !important; line-height: 1 !important; color: var(--ink) !important; }
+.map-btns a[aria-pressed="true"] { background: var(--alta) !important; color: var(--on-alta) !important; }
+.map-btns svg { width: 19px; height: 19px; }
+.me-acc { fill: var(--you); fill-opacity: .1; stroke: var(--you); stroke-opacity: .35; stroke-width: 1; }
+.place { color: var(--muted); font-size: 12px; white-space: nowrap; pointer-events: none; text-shadow: 0 0 3px var(--land), 0 0 3px var(--land); }
+.name-tip { background: var(--paper); color: var(--ink); border: 0; border-radius: 8px; box-shadow: 0 1px 6px rgba(0,0,0,.22); font-size: 13px; font-weight: 600; padding: 4px 9px; }
+.name-tip::before { display: none; }
+.leaflet-bar { border: 1px solid var(--line) !important; box-shadow: none !important; }
+.leaflet-bar a, .leaflet-bar a:hover { background: var(--paper); color: var(--ink); border-bottom-color: var(--line); }
+.leaflet-control-attribution { background: var(--paper) !important; color: var(--muted); font-size: 10.5px; opacity: .85; }
+.leaflet-control-attribution a { color: var(--muted); }
+@media (max-width: 899px) { .leaflet-top.leaflet-right .leaflet-control-attribution { max-width: calc(100vw - 70px); } }
+.picking #map, .picking .leaflet-interactive { cursor: crosshair; }
+.leaflet-glow-pane, .leaflet-glow-pane * { pointer-events: none !important; }
+
+/* list */
+.list-wrap { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; background: var(--paper); -webkit-overflow-scrolling: touch; }
+.list-head {
+  position: sticky; top: 0; z-index: 1; background: var(--paper); touch-action: none;
+  padding-block: 10px; padding-left: var(--gutter-l); padding-right: var(--gutter-r);
+  border-bottom: 1px solid var(--line); font-size: 13.5px; color: var(--muted);
+  display: flex; gap: 6px 12px; align-items: baseline; justify-content: space-between; flex-wrap: wrap;
+}
+.list-head strong { color: var(--ink); font-weight: 600; }
+.list-head button { border: 0; background: none; padding: 0; color: var(--alta); font-weight: 600; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
+.notice { margin: 0; padding-block: 10px; padding-left: var(--gutter-l); padding-right: var(--gutter-r); background: var(--tint); font-size: 14px; border-bottom: 1px solid var(--line); }
+.notice button, .notice a { border: 0; background: none; color: var(--alta); font-weight: 600; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
+ol.rows { list-style: none; margin: 0; padding: 0; }
+.row { border-bottom: 1px solid var(--line); }
+.row.is-open { background: var(--tint); }
+.row-btn {
+  width: 100%; border: 0; background: none; text-align: left; cursor: pointer; -webkit-tap-highlight-color: transparent;
+  padding-block: 12px; padding-left: var(--gutter-l); padding-right: var(--gutter-r);
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 12px; row-gap: 1px;
+}
+.row-name { font-weight: 600; font-size: 15.5px; line-height: 1.3; }
+.row-dist { font-size: 14px; font-weight: 600; color: var(--alta); font-variant-numeric: tabular-nums; white-space: nowrap; align-self: start; }
+.row-where { grid-column: 1 / -1; color: var(--muted); font-size: 13.5px; overflow-wrap: anywhere; }
+.approx { color: var(--alta); }
+.row-more { padding-left: var(--gutter-l); padding-right: var(--gutter-r); padding-bottom: 14px; display: grid; gap: 10px; font-size: 14px; }
+.row-more p { margin: 0; }
+.acts { display: flex; gap: 8px; flex-wrap: wrap; }
+.go, .copy {
+  display: inline-flex; align-items: center; gap: 7px; border-radius: 999px; min-height: 44px; padding: 0 17px;
+  font-size: 15px; font-weight: 600; text-decoration: none; cursor: pointer; line-height: 1.2;
+}
+.go { background: var(--alta); color: var(--on-alta); border: 1.5px solid var(--alta); }
+.copy { background: var(--paper); color: var(--ink); border: 1.5px solid var(--line); }
+.go svg, .copy svg { width: 16px; height: 16px; }
+.empty { padding: 36px 24px; text-align: center; color: var(--muted); display: grid; justify-items: center; gap: 10px; }
+.empty svg { width: 64px; height: 64px; color: var(--alta); opacity: .5; }
+.foot { padding-top: 18px; padding-bottom: calc(28px + env(safe-area-inset-bottom, 0px)); padding-left: var(--gutter-l); padding-right: var(--gutter-r); font-size: 13.5px; color: var(--muted); }
+.foot p { margin: 0; }
+.foot .credit { margin-top: 14px; color: var(--ink); }
+.foot .credit a { color: var(--alta); }
+.foot button { border: 0; background: none; padding: 0; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+
+/* about */
+dialog {
+  border: 0; border-radius: 14px; padding: 0; width: min(560px, calc(100% - 24px)); max-height: calc(100% - 40px);
+  background: var(--paper); color: var(--ink); box-shadow: 0 10px 40px rgba(0,0,0,.3);
+}
+dialog::backdrop { background: rgba(20, 10, 12, 0.45); }
+.about { padding: 22px 22px 24px; display: grid; gap: 14px; font-size: 14.5px; }
+.about h2 { margin: 0; font-family: var(--font-bn); font-weight: 400; font-size: 22px; display: flex; gap: 10px; align-items: center; }
+.about h2 svg { width: 30px; height: 30px; color: var(--alta); }
+.about h3 { margin: 6px 0 0; font-size: 15px; }
+.about p, .about ul { margin: 0; }
+.about ul { padding-left: 18px; display: grid; gap: 4px; }
+.about a { color: var(--alta); }
+.about .muted { color: var(--muted); font-size: 13px; }
+.days { display: grid; grid-template-columns: auto auto 1fr; gap: 4px 14px; margin: 0; font-size: 14px; }
+.days dt { font-family: var(--font-bn); font-size: 15.5px; }
+.days dd { margin: 0; color: var(--muted); }
+.days .is-today { color: var(--alta); font-weight: 600; }
+.close { justify-self: end; border: 1.5px solid var(--line); background: var(--paper); border-radius: 999px; padding: 7px 16px; cursor: pointer; font-weight: 600; }
+
+.toast {
+  position: fixed; z-index: 1000; left: 50%; transform: translateX(-50%);
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  background: var(--ink); color: var(--paper); padding: 9px 14px; border-radius: 10px; font-size: 14px; max-width: calc(100% - 32px);
+}
+.toast b { user-select: all; font-weight: 600; }
+@media (prefers-reduced-motion: no-preference) { .row.is-open .row-more { animation: open .18s ease-out; } }
+@keyframes open { from { opacity: 0; transform: translateY(-4px); } }
+</style>
+
+<div class="app">
+  <header class="head" id="head">
+    <div class="brand">
+      <span class="mark" data-alpona aria-hidden="true"></span>
+      <div class="titles">
+        <h1 id="title">Mumbai Durga Pujo Map</h1>
+        <p class="today" id="today"></p>
+      </div>
+      <button class="tool" id="langBtn" type="button"></button>
+      <button class="tool icon" id="themeBtn" type="button"></button>
+    </div>
+    <div class="find">
+      <label class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="q" type="search" autocomplete="off">
+      </label>
+      <select class="area" id="area"></select>
+      <button class="near" id="nearBtn" type="button" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/><path d="M12 1.5V4M12 20v2.5M1.5 12H4M20 12h2.5"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="mapbox">
+    <div id="map"></div>
+  </div>
+
+  <section class="sheet" id="sheet">
+    <button class="grab" id="grab" type="button"></button>
+    <div class="list-wrap" id="listWrap">
+      <div class="list-head" id="listHead"></div>
+      <p class="notice" id="routeNote" hidden></p>
+      <p class="notice" id="notice" hidden></p>
+      <ol class="rows" id="rows"></ol>
+      <div class="foot" id="foot"></div>
+    </div>
+  </section>
+</div>
+
+<dialog id="about" aria-labelledby="aboutTitle"><div class="about" id="aboutBody"></div></dialog>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script>
+(function () {
+  "use strict";
+  var PUJAS = [{"n":[1],"name":"Powai Bengali Welfare Association (PBWA)","venue":"MCGM Ground opp. Jal Vayu Vihar, next to BEST bus depot, Hiranandani Gardens","area":"Powai","region":"Eastern Suburbs","lat":19.118234,"lng":72.905346,"conf":"exact"},{"n":[2,89],"name":"Chembur Durga Puja Association (CDPA)","venue":"RCF Ground near Ashish Cinema, Mahul Road, Chembur","area":"Chembur","region":"Eastern Suburbs","lat":19.039148,"lng":72.896491,"conf":"exact"},{"n":[3],"name":"Ramakrishna Math & Mission","venue":"Ramakrishna Mission, 12th Road, Khar West","area":"Khar West","region":"Western Suburbs","lat":19.07485,"lng":72.834909,"conf":"exact","tip_en":"Kumari Puja on Ashtami.","tip_bn":"অষ্টমীতে কুমারী পুজো।"},{"n":[4],"name":"North Bombay Sarbojanin Durga Puja Samity","venue":"SNDT University Ground, Juhu Tara Road, Daulat Nagar","area":"Santacruz West / Juhu","region":"Western Suburbs","lat":19.08627,"lng":72.832425,"conf":"exact","tip_en":"The Mukherjee family pujo.","tip_bn":"মুখার্জি পরিবারের পুজো।"},{"n":[5],"name":"Bengal Club Durgotsab","venue":"Bengal Club, Veer Savarkar Marg, Shivaji Park","area":"Dadar West","region":"South & Central Mumbai","lat":19.028127,"lng":72.837487,"conf":"exact"},{"n":[6],"name":"Lokhandwala Durgotsav","venue":"Maharana Pratap Road, opp. Celebration Club, Lokhandwala Complex","area":"Andheri West","region":"Western Suburbs","lat":19.145924,"lng":72.827265,"conf":"exact","tip_en":"Abhijeet Bhattacharya's family pujo.","tip_bn":"অভিজিৎ ভট্টাচার্যের পরিবারের পুজো।"},{"n":[7],"name":"Bombay Durgabari Samiti","venue":"Mathuradas Vissanji Hall / Tejpal Hall, August Kranti Maidan","area":"Gowalia Tank","region":"South & Central Mumbai","lat":18.962529,"lng":72.808909,"conf":"exact","tip_en":"One of Mumbai's oldest pujos.","tip_bn":"মুম্বইয়ের অন্যতম পুরোনো পুজো।"},{"n":[8],"name":"Malad West Sarbojanin Durgotsav","venue":"Closest match: Maitree Sarbojanin, Rajora Banquet Hall, off Link Road","area":"Malad West","region":"Western Suburbs","lat":19.177702,"lng":72.834654,"conf":"area"},{"n":[9],"name":"Vashi Cultural Association (VCA)","venue":"Ground opp. ICL School, next to Modern College, Sector 15","area":"Vashi","region":"Navi Mumbai","lat":19.078694,"lng":73.001818,"conf":"exact"},{"n":[10],"name":"Notunpalli Sarbojonin Durgotsab","venue":"Behind Patwardhan Park, near Link Road","area":"Bandra West","region":"Western Suburbs","lat":19.064627,"lng":72.833489,"conf":"exact","tip_en":"Also called the Shakti Samanta pujo.","tip_bn":"শক্তি সামন্তের পুজো নামেও পরিচিত।"},{"n":[11],"name":"Thakur Village Bengali Association (TVBA)","venue":"Evershine Club Ground, Thakur Village","area":"Kandivali East","region":"Western Suburbs","lat":19.211379,"lng":72.875818,"conf":"venue"},{"n":[12],"name":"Durga Puja Thane","venue":"No organiser or venue given in the list","area":"Thane","region":"Thane","lat":19.186459,"lng":72.975468,"conf":"area"},{"n":[13,25],"name":"Kalbadevi Sarbojanin Durga Puja Committee","venue":"Madhav Baug, C.P. Tank Road, Charni Road East","area":"Bhuleshwar / Kalbadevi","region":"South & Central Mumbai","lat":18.955426,"lng":72.826333,"conf":"exact"},{"n":[14],"name":"Lodha Splendora Durga Puja","venue":"Lodha Splendora township, Ghodbunder Road, Bhayandarpada","area":"Thane West","region":"Thane","lat":19.285703,"lng":72.955734,"conf":"venue"},{"n":[15],"name":"Beverly Park Socio & Cultural Organisation","venue":"Beverly Park","area":"Mira Road East","region":"Mira–Bhayandar","lat":19.293624,"lng":72.871486,"conf":"area"},{"n":[16,110],"name":"Koparkhairane Bengali Association","venue":"Shetkari Samaj Hall, Sector 4A, near railway station","area":"Koparkhairane","region":"Navi Mumbai","lat":19.105502,"lng":73.009541,"conf":"venue"},{"n":[17],"name":"Bengali Welfare Association, Mira Road (Amader Committee)","venue":"Ground at Archies Lane, opp. Cosmopolitan School, Sheetal Nagar","area":"Mira Road East","region":"Mira–Bhayandar","lat":19.281827,"lng":72.864818,"conf":"exact","tip_en":"One of Mira Road's oldest pujos.","tip_bn":"মীরা রোডের অন্যতম পুরোনো পুজো।"},{"n":[18],"name":"Spandan Powai Sharadotsav","venue":"JVLR–Lake Boulevard junction, Hiranandani Gardens","area":"Powai","region":"Eastern Suburbs","lat":19.12034,"lng":72.907309,"conf":"exact"},{"n":[19,52],"name":"Matribhoomi Sarvajanin Durga Puja, Bhoomi Park","venue":"BMC Ground, Bhoomi Park Phase 2 Road, Jankalyan Nagar","area":"Malad West (Kandivali border)","region":"Western Suburbs","lat":19.202515,"lng":72.82082,"conf":"exact"},{"n":[20],"name":"HRCWA Sarvajanin Durgotsav","venue":"HRCWA Ground, Bhoomi Valley, Thakur Village hillside","area":"Kandivali East","region":"Western Suburbs","lat":19.207019,"lng":72.879988,"conf":"exact"},{"n":[21],"name":"Kallol Durga Puja","venue":"Kallol Kali Mandir hall, Swami Ayyappa Temple Marg, Bangur Nagar","area":"Goregaon West","region":"Western Suburbs","lat":19.165867,"lng":72.831349,"conf":"exact"},{"n":[22,112],"name":"Navi Mumbai Bengali Association (NMBA)","venue":"CIDCO Exhibition Centre, Hall 1, Sector 30","area":"Vashi","region":"Navi Mumbai","lat":19.067912,"lng":72.993469,"conf":"exact"},{"n":[23],"name":"East Parel Sarbojanin Durga Puja","venue":"Lal Maidan, J. Merwanji Street","area":"Parel East","region":"South & Central Mumbai","lat":19.00105,"lng":72.839409,"conf":"exact"},{"n":[24,70],"name":"Parel Sarbojanin Durgotsab Committee","venue":"Nare Park, opp. railway workshop, Dr B.A. Road","area":"Parel","region":"South & Central Mumbai","lat":18.999668,"lng":72.838809,"conf":"venue"},{"n":[26],"name":"Durga Puja at Fidai Baug","venue":"Fidai Baug, opp. Andheri station (West)","area":"Andheri West","region":"Western Suburbs","lat":19.118142,"lng":72.842963,"conf":"venue"},{"n":[27,91],"name":"Banga Maitri Sansad","venue":"Senior Railway Institute, Railway Colony","area":"Santacruz East","region":"Western Suburbs","lat":19.083734,"lng":72.842433,"conf":"exact","tip_en":"One of Mumbai's oldest pujos.","tip_bn":"মুম্বইয়ের অন্যতম পুরোনো পুজো।"},{"n":[28,107],"name":"Seawoods Cultural Welfare Association (SWCWA)","venue":"Sheth Tandel Ground, opp. Orchid International School","area":"Seawoods","region":"Navi Mumbai","lat":19.021604,"lng":73.012719,"conf":"exact"},{"n":[29],"name":"Bengali Welfare Association, Ghansoli","venue":"Ghansoli Kalibari, Sector 5","area":"Ghansoli","region":"Navi Mumbai","lat":19.122659,"lng":73.003014,"conf":"exact"},{"n":[30,95],"name":"Juhu Durga Puja Samiti","venue":"GAC Recreation Ground, Seven Bungalows","area":"Andheri West","region":"Western Suburbs","lat":19.128306,"lng":72.82175,"conf":"venue"},{"n":[31,119],"name":"Mulund Durga Puja","venue":"Mahakavi Kalidas Natya Mandir, P.K. Road","area":"Mulund West","region":"Eastern Suburbs","lat":19.173295,"lng":72.949419,"conf":"venue"},{"n":[32,86],"name":"Bengali Association Antop Hill","venue":"Grih Kalyan Kendra community centre, Sector 7, CGS Colony","area":"Antop Hill","region":"South & Central Mumbai","lat":19.029376,"lng":72.870333,"conf":"venue"},{"n":[33],"name":"New Bengal Club, Thane","venue":"Ground behind Upvan Lake, Upvan Lake Road","area":"Thane West","region":"Thane","lat":19.220505,"lng":72.958102,"conf":"exact","tip_en":"Moved here in 2025.","tip_bn":"২০২৫ সালে এখানে সরে এসেছে।"},{"n":[34],"name":"Bangiya Parishad, Thane","venue":"Highland Gardens Ground, Dhokali Link Road","area":"Thane West","region":"Thane","lat":19.223944,"lng":72.983999,"conf":"exact","tip_en":"Over 60 years old.","tip_bn":"৬০ বছরেরও বেশি পুরোনো।"},{"n":[35],"name":"Navodaya (Nobodoy) Durga Puja","venue":"Near Khewara Road, Manpada","area":"Thane West","region":"Thane","lat":19.229393,"lng":72.970836,"conf":"exact"},{"n":[36],"name":"Mahakali Sarbojanin Durgapuja Seva Samiti (MSDSS)","venue":"MMRDA Colony, Kranti Nagar, off Mahakali Caves Road (Poonam Nagar)","area":"Andheri East / Jogeshwari East","region":"Western Suburbs","lat":19.138679,"lng":72.870965,"conf":"exact"},{"n":[37],"name":"North Bombay Durgotsav, Santacruz East","venue":"Venue not found","area":"Santacruz East","region":"Western Suburbs","lat":19.078981,"lng":72.846905,"conf":"area"},{"n":[38],"name":"Vikhroli Bengali Association Durgotsab","venue":"MHADA Ground near Sai Baba Mandir and Triconi Park, Tagore Nagar","area":"Vikhroli East","region":"Eastern Suburbs","lat":19.114169,"lng":72.933736,"conf":"venue"},{"n":[39],"name":"Bengali Milan Samiti, Palghar","venue":"Venue not found","area":"Palghar","region":"Palghar","lat":19.69768,"lng":72.772058,"conf":"area"},{"n":[40],"name":"Kharghar Bengali Association","venue":"Venue not found","area":"Kharghar","region":"Navi Mumbai","lat":19.026428,"lng":73.059193,"conf":"area"},{"n":[41],"name":"Aikatan Cultural Association","venue":"Country Club, Veera Desai Road","area":"Andheri West","region":"Western Suburbs","lat":19.139545,"lng":72.837102,"conf":"exact"},{"n":[42],"name":"Shivranjani, Versova","venue":"Venue not found","area":"Versova / Yari Road","region":"Western Suburbs","lat":19.139251,"lng":72.809676,"conf":"area"},{"n":[43],"name":"Navo Maa Durga Bengali Foundation","venue":"Bhayandarpada, off Ghodbunder Road","area":"Thane West","region":"Thane","lat":19.284606,"lng":72.955261,"conf":"exact"},{"n":[44,56],"name":"New Dindoshi Sarbojanin Durga Pooja Mandal","venue":"New MHADA Shopping Complex, Dr Ambedkar Marg, New MHADA Colony","area":"Goregaon East (Dindoshi)","region":"Western Suburbs","lat":19.17277,"lng":72.882009,"conf":"exact"},{"n":[45],"name":"Airoli Bengali Association","venue":"Maa Durga Mandir, Plot 112, Sector 8A, behind Vibgyor High School","area":"Airoli","region":"Navi Mumbai","lat":19.143513,"lng":72.999113,"conf":"exact"},{"n":[46],"name":"Agragami Cultural Welfare Association","venue":"Shanti Van, GCC Club Road, Poonam Gardens","area":"Mira Road East","region":"Mira–Bhayandar","lat":19.283409,"lng":72.875153,"conf":"exact"},{"n":[47],"name":"Banga Sangha (Bongo Songho)","venue":"Sweta Park, RNP Park, Neeraj Park","area":"Bhayandar East","region":"Mira–Bhayandar","lat":19.31404,"lng":72.861011,"conf":"exact"},{"n":[48],"name":"Bandhan Cultural Association","venue":"Panchmukhi Road, above Surbhi Banquet, Prem Nagar","area":"Mira Road East","region":"Mira–Bhayandar","lat":19.273792,"lng":72.87347,"conf":"exact"},{"n":[49],"name":"Matree Sangha","venue":"Sagar Complex, opp. Poonam Sagar Road, Shanti Nagar Sector 9","area":"Mira Road East","region":"Mira–Bhayandar","lat":19.272507,"lng":72.864831,"conf":"exact"},{"n":[50,53],"name":"Kanakia Oikataan Cultural Association (KOCA)","venue":"Om Ram Sagar Phase 1, Beverly Park","area":"Mira Road East","region":"Mira–Bhayandar","lat":19.296724,"lng":72.870889,"conf":"exact"},{"n":[51],"name":"Baro Mashe Tero Parbon Foundation (BMTPF)","venue":"GRY Arcade, opp. Lodha Splendora main gate, GB Road","area":"Thane West (Bhayandarpada)","region":"Thane","lat":19.281805,"lng":72.955843,"conf":"exact"},{"n":[54],"name":"Ananda Utsav Cultural Association","venue":"Maheshwari Bhavan, Link Road, near Oshiwara Police Station","area":"Oshiwara","region":"Western Suburbs","lat":19.149222,"lng":72.830787,"conf":"venue"},{"n":[55],"name":"Ulwe Bengali Welfare Trust","venue":"Raj Planet, Sector 3","area":"Ulwe","region":"Panvel & Ulwe","lat":18.98316,"lng":73.025008,"conf":"venue"},{"n":[57],"name":"Durga Maa Foundation","venue":"Renaissance Club, off Juhu–Versova Link Road","area":"Four Bungalows, Versova","region":"Western Suburbs","lat":19.123425,"lng":72.822049,"conf":"venue"},{"n":[58],"name":"Sanskriti Borivali Sarbojanin Durgotsav","venue":"BMC Ground (Meenatai Thackeray Udyan), Kulupwadi, beside SSRVM","area":"Borivali East","region":"Western Suburbs","lat":19.227737,"lng":72.865704,"conf":"exact","tip_en":"Running since 1953.","tip_bn":"১৯৫৩ সাল থেকে চলছে।"},{"n":[59],"name":"Bhandup Durgotsav Samiti","venue":"Sardar Tara Singh Hall, LBS Marg, opp. Jainam Banquets","area":"Bhandup West","region":"Eastern Suburbs","lat":19.154383,"lng":72.938729,"conf":"exact"},{"n":[60],"name":"Aamra Prabasi Charitable Trust, Nerul","venue":"Sector 27, Nerul","area":"Nerul","region":"Navi Mumbai","lat":19.019252,"lng":73.025031,"conf":"area"},{"n":[61,109],"name":"Amra Probashi Seva Mandal","venue":"Vidhi Banquets, Sector 4A","area":"Koparkhairane","region":"Navi Mumbai","lat":19.108094,"lng":73.008461,"conf":"venue"},{"n":[62],"name":"Juhu Cultural Association","venue":"Vile Parle Medical Club hall, Devle Road, JVPD","area":"Juhu","region":"Western Suburbs","lat":19.116015,"lng":72.827515,"conf":"venue"},{"n":[63],"name":"Fulcrum Cultural Foundation","venue":"Dr Kashinath Ghanekar Natyagruha (AC hall), Hiranandani Meadows","area":"Thane West","region":"Thane","lat":19.228663,"lng":72.970154,"conf":"exact","tip_en":"Now held in this AC auditorium.","tip_bn":"এখন এই এসি অডিটোরিয়ামে হয়।"},{"n":[64],"name":"Aamra Prabashi Durgotsav, Thane","venue":"Hiranandani Estate ground, Ghodbunder Road","area":"Thane West","region":"Thane","lat":19.255593,"lng":72.986815,"conf":"exact","tip_en":"Thane's largest pujo by area.","tip_bn":"আয়তনে থানের সবচেয়ে বড় পুজো।"},{"n":[65,102],"name":"Kamothe Bengali Association","venue":"Vista Avenue CHS, Sector 34","area":"Kamothe","region":"Panvel & Ulwe","lat":19.020585,"lng":73.086179,"conf":"venue"},{"n":[66],"name":"Abhinandan Durga Utsav","venue":"Venue not found","area":"Kandivali West","region":"Western Suburbs","lat":19.20587,"lng":72.849985,"conf":"area"},{"n":[67,76],"name":"Bangiya Sanskritik Parishad, Kalyan","venue":"Venue not found","area":"Kalyan West","region":"Kalyan–Dombivli","lat":19.235565,"lng":73.130773,"conf":"area"},{"n":[68,77],"name":"Durga Seva Mandal, Kalyan","venue":"Venue not found","area":"Kalyan","region":"Kalyan–Dombivli","lat":19.235565,"lng":73.130773,"conf":"area"},{"n":[69,100],"name":"Milan Tirtha, New Panvel","venue":"Banthia School playground, Sector 18, opp. post office","area":"New Panvel East","region":"Panvel & Ulwe","lat":18.994446,"lng":73.124025,"conf":"venue"},{"n":[71],"name":"Sarvajanik Puja Mandal, Madhav Srishti","venue":"Madhav Srishti complex, Godrej Hill, Khadakpada","area":"Kalyan West","region":"Kalyan–Dombivli","lat":19.257319,"lng":73.142747,"conf":"venue"},{"n":[72],"name":"Probashee Bengali Association (PBA), Palava","venue":"Casa Rio Road, Sports Arena Gate 2, Nilje","area":"Palava, Dombivli East","region":"Kalyan–Dombivli","lat":19.150931,"lng":73.075738,"conf":"exact"},{"n":[73],"name":"Bengali Foundation Palava","venue":"Downtown parking area, Palava Downtown","area":"Palava, Dombivli East","region":"Kalyan–Dombivli","lat":19.158951,"lng":73.1156,"conf":"venue"},{"n":[74],"name":"Trinoyoni Social & Cultural Foundation","venue":"Vinay Nagar Road, near Pooja Park","area":"Mira Road East","region":"Mira–Bhayandar","lat":19.279401,"lng":72.882514,"conf":"exact"},{"n":[75],"name":"Anandadhara Social & Cultural Foundation","venue":"Bai Ji Lawns, near Kashigaon metro station, opp. Tata Motors","area":"Mira Road East","region":"Mira–Bhayandar","lat":19.278315,"lng":72.881285,"conf":"exact"},{"n":[78],"name":"Airoli Kalibari Association","venue":"AL-1/100, Sector 5","area":"Airoli","region":"Navi Mumbai","lat":19.150239,"lng":72.997428,"conf":"exact"},{"n":[79],"name":"Maangolik Samajik Sanstha (Kandivali West Sarbojanin)","venue":"Ganesh Chowk, RDP 8, Bander Pakhadi","area":"Kandivali West","region":"Western Suburbs","lat":19.215107,"lng":72.834134,"conf":"exact"},{"n":[80],"name":"Bengali Foundation Palava (Lakeshore Greens)","venue":"Lakeshore Greens, Palava Phase 2","area":"Palava, Dombivli East","region":"Kalyan–Dombivli","lat":19.169274,"lng":73.113578,"conf":"venue"},{"n":[81],"name":"Deonar Bongiya Parishad","venue":"New Mandala ground, Anushaktinagar","area":"Anushaktinagar","region":"Eastern Suburbs","lat":19.040258,"lng":72.922469,"conf":"venue","tip_en":"Inside the Anushaktinagar campus; outside entry may be restricted.","tip_bn":"অণুশক্তিনগর ক্যাম্পাসের ভিতরে; বাইরের লোকের ঢোকা সীমিত হতে পারে।"},{"n":[82],"name":"Sharad Parivar Bengali Association","venue":"MBMC Parking, Poonam Garden Road","area":"Mira Road East","region":"Mira–Bhayandar","lat":19.287874,"lng":72.871232,"conf":"exact"},{"n":[83,84],"name":"Zaveri Bazar Sarbojanin (Nar Narayan Mandir)","venue":"Nar Narayan Mandir compound, 227 Javerbaug, Kalbadevi Road","area":"Kalbadevi","region":"South & Central Mumbai","lat":18.950995,"lng":72.829397,"conf":"venue"},{"n":[85],"name":"Durga Puja, Dariasthan Street","venue":"Dariasthan Street, near PNB","area":"Masjid Bunder","region":"South & Central Mumbai","lat":18.952637,"lng":72.835834,"conf":"venue"},{"n":[87],"name":"Durga Puja, Sion Main Road","venue":"Venue not found","area":"Sion East","region":"South & Central Mumbai","lat":19.04651,"lng":72.863262,"conf":"area"},{"n":[88],"name":"Durga Puja near GTB Nagar station","venue":"Near GTB Nagar station, Sion Koliwada","area":"Sion East","region":"South & Central Mumbai","lat":19.037837,"lng":72.864171,"conf":"venue"},{"n":[90],"name":"Udayan","venue":"90 Feet Road, KP Compound, Jarimari","area":"Kurla West","region":"Eastern Suburbs","lat":19.091569,"lng":72.88238,"conf":"area"},{"n":[92],"name":"Oikotan Durga Puja","venue":"AAI Community Centre, New Airport Colony, Hanuman Road","area":"Vile Parle East","region":"Western Suburbs","lat":19.103527,"lng":72.855335,"conf":"venue"},{"n":[93],"name":"Juhu Scheme Sarbojanin Durga Puja","venue":"Opp. IMA ground, behind Chandan Cinema","area":"Juhu","region":"Western Suburbs","lat":19.115818,"lng":72.827555,"conf":"venue"},{"n":[94],"name":"JVPD Durgotsav","venue":"Juhu Circle, near HSBC","area":"JVPD, Juhu","region":"Western Suburbs","lat":19.116031,"lng":72.829935,"conf":"venue"},{"n":[96],"name":"Kumar Sanu's Durgotsav","venue":"Versova Welfare School Ground, Harminder Singh Road, Seven Bungalows","area":"Versova","region":"Western Suburbs","lat":19.131549,"lng":72.815779,"conf":"exact","tip_en":"10 to 15 minutes' walk from Versova metro.","tip_bn":"ভার্সোভা মেট্রো থেকে ১০ থেকে ১৫ মিনিটের হাঁটাপথ।"},{"n":[97],"name":"Andheri Bengal Welfare Society","venue":"Manish Nagar societies' hall, JP Road, Four Bungalows","area":"Andheri West","region":"Western Suburbs","lat":19.128904,"lng":72.827282,"conf":"venue"},{"n":[98],"name":"Unnati Welfare Association, Ulwe","venue":"Plot 69, Sector 10B, Shivaji Nagar","area":"Ulwe","region":"Panvel & Ulwe","lat":18.970024,"lng":73.012238,"conf":"exact"},{"n":[99],"name":"Kalamboli Durgotsav","venue":"Shree Kali Mata Mandir, Sector 8","area":"Kalamboli","region":"Panvel & Ulwe","lat":19.03057,"lng":73.10122,"conf":"venue"},{"n":[101,108],"name":"Bengal Association Nerul","venue":"Plot 12, Ayyappa Temple Road, Sector 5, Dr D.Y. Patil Vidyanagar","area":"Nerul","region":"Navi Mumbai","lat":19.039986,"lng":73.024561,"conf":"exact"},{"n":[103],"name":"Bongo Sammilani Samajik Sanstha","venue":"Swaminarayan Temple, Sector 5","area":"Kharghar","region":"Navi Mumbai","lat":19.034643,"lng":73.058553,"conf":"exact","tip_en":"Parking is tight.","tip_bn":"পার্কিংয়ের জায়গা কম।"},{"n":[104],"name":"Sarbojonin Kharghar Durgotsav","venue":"Behind Kharghar fire station, Sector 12","area":"Kharghar","region":"Navi Mumbai","lat":19.038814,"lng":73.06346,"conf":"venue"},{"n":[105],"name":"Bengali Cultural Association, CBD Belapur","venue":"Kali Mata Mandir Road, Sector 8B (list says near YMCA, Sector 3A)","area":"CBD Belapur","region":"Navi Mumbai","lat":19.034417,"lng":73.044308,"conf":"venue"},{"n":[106],"name":"Bengali Cultural Association, Sanpada","venue":"NMMC open ground, Sector 8","area":"Sanpada","region":"Navi Mumbai","lat":19.061534,"lng":73.010493,"conf":"exact"},{"n":[111],"name":"Maa Durga Puja Association","venue":"18 Gyan Vikas Road, Sector 19","area":"Koparkhairane","region":"Navi Mumbai","lat":19.105625,"lng":73.001726,"conf":"exact"},{"n":[113],"name":"Mumbai Asomiya Sarbojanin Durga Puja","venue":"Assam Bhavan, Pranavanandji Marg, Sector 30","area":"Vashi","region":"Navi Mumbai","lat":19.06725,"lng":72.997333,"conf":"exact","tip_en":"Assamese community pujo, next to Vashi station.","tip_bn":"অসমিয়া সম্প্রদায়ের পুজো, ভাশি স্টেশনের পাশে।"},{"n":[114],"name":"Vithalwadi Bengali Association","venue":"Khadegolwali, Vitthalwadi","area":"Kalyan East","region":"Kalyan–Dombivli","lat":19.221821,"lng":73.149719,"conf":"exact"},{"n":[115],"name":"Kali Bari Temple, Kolsewadi","venue":"Kali Bari Temple, Shivaji Colony, Kolsewadi","area":"Kalyan East","region":"Kalyan–Dombivli","lat":19.229503,"lng":73.138984,"conf":"venue"},{"n":[116],"name":"Kalyan Bengali Cultural Association","venue":"Senior Railway Institute Hall, Valdhuni","area":"Kalyan","region":"Kalyan–Dombivli","lat":19.237279,"lng":73.138074,"conf":"venue"},{"n":[117],"name":"Regency Estate Durga Puja","venue":"Regency Estate, Dnyaneshwar Nagar","area":"Dombivli East","region":"Kalyan–Dombivli","lat":19.199354,"lng":73.10945,"conf":"venue"},{"n":[118],"name":"Kanjurmarg Durga Puja","venue":"Naval Civilian Housing Colony ground, LBS Marg, near Huma Adlabs","area":"Kanjurmarg West","region":"Eastern Suburbs","lat":19.134117,"lng":72.926678,"conf":"venue","tip_en":"Running for over 50 years.","tip_bn":"৫০ বছরেরও বেশি সময় ধরে চলছে।"},{"n":[120],"name":"Mahakali Mandir, Sarvodaya Nagar","venue":"Jangal Mangal Road, near Sarvodaya Nagar gate","area":"Bhandup West","region":"Eastern Suburbs","lat":19.148851,"lng":72.931287,"conf":"exact","tip_en":"Free khichuri bhog.","tip_bn":"বিনামূল্যে খিচুড়ি ভোগ।"},{"n":[121],"name":"Sarbojonin Sharadiya Durgotsav, Bhandup","venue":"BMC ground near Pawar Public School, LBS Marg","area":"Bhandup West","region":"Eastern Suburbs","lat":19.147979,"lng":72.938767,"conf":"venue"},{"n":[122],"name":"Navjagran Bangali Mandal","venue":"Near the gurudwara, Shiv Kripa Chawl","area":"Bhayandar East","region":"Mira–Bhayandar","lat":19.311487,"lng":72.862074,"conf":"exact"},{"n":[123],"name":"Kali Mata Mandir, Dahisar","venue":"CS Link Road, Sambhaji Nagar, Anand Nagar","area":"Dahisar East","region":"Western Suburbs","lat":19.256282,"lng":72.86849,"conf":"venue"},{"n":[124],"name":"Aponjon Cultural Association","venue":"Sonam Pushpa, Golden Nest, Mira–Bhayandar Road","area":"Mira Road East","region":"Mira–Bhayandar","lat":19.304595,"lng":72.864875,"conf":"exact"},{"n":[125],"name":"BPSCO Durga Mondop","venue":"Unique Gardens","area":"Mira Road East","region":"Mira–Bhayandar","lat":19.293686,"lng":72.879609,"conf":"area"},{"n":[126],"name":"YWF Sarbojonin Durga Puja","venue":"Shivar Garden","area":"Mira Road East","region":"Mira–Bhayandar","lat":19.290323,"lng":72.867056,"conf":"area"},{"n":[127],"name":"Krishti","venue":"Whispering Palms, Lokhandwala Township","area":"Kandivali East","region":"Western Suburbs","lat":19.198971,"lng":72.872509,"conf":"venue"},{"n":[128],"name":"Roopayan","venue":"Durga Garden, New Link Road, Eksar Village","area":"Borivali West","region":"Western Suburbs","lat":19.237201,"lng":72.840279,"conf":"venue"},{"n":[129],"name":"Pushpanjali Durgotsav","venue":"Narayan Gardens, opp. Aura Hotel, Link Road","area":"Borivali West","region":"Western Suburbs","lat":19.235207,"lng":72.84044,"conf":"exact"},{"n":[130],"name":"Netaji Subhas Chandra Bose Welfare Association","venue":"Near BMC playground, Anandwadi, Kurar Village","area":"Malad East","region":"Western Suburbs","lat":19.187773,"lng":72.866063,"conf":"exact"},{"n":[],"name":"Kandivali East Bengali Association (KEBA)","venue":"St. Lawrence High School Ground, Thakur Complex","area":"Kandivali East","region":"Western Suburbs","lat":19.21269,"lng":72.862964,"conf":"exact","extra":true},{"n":[],"name":"Indian Bangla Club – Andheri Link Road Durgotsav","venue":"Chitrakoot Ground, behind Fun Republic, Veera Desai Road","area":"Andheri West","region":"Western Suburbs","lat":19.134157,"lng":72.833844,"conf":"venue","extra":true},{"n":[],"name":"Hoyi Choyi Anondo Foundation Pujo","venue":"SNDT Women's College, R.A. Kidwai Marg","area":"Matunga / Antop Hill","region":"South & Central Mumbai","lat":19.028367,"lng":72.859521,"conf":"venue","extra":true},{"n":[],"name":"Bangiya Utsav Committee","venue":"Dosti West County Road, Kolshet","area":"Thane West","region":"Thane","lat":19.226251,"lng":72.995188,"conf":"exact","extra":true},{"n":[],"name":"Kalyan Cultural Association (KCA)","venue":"Birla College Campus Road, Chikan Ghar","area":"Kalyan West","region":"Kalyan–Dombivli","lat":19.249046,"lng":73.142615,"conf":"exact","extra":true},{"n":[],"name":"Marol Durga Puja Association","venue":"Vasant Oasis, Makwana Road","area":"Marol, Andheri East","region":"Western Suburbs","lat":19.114892,"lng":72.885147,"conf":"venue","extra":true}];
+  var LAND = {"type":"MultiPolygon","coordinates":[[[[72.80336,18.8836],[72.80043,18.88006],[72.80218,18.88435],[72.80336,18.8836]]],[[[72.78047,19.13449],[72.78152,19.13525],[72.78207,19.13512],[72.78313,19.13453],[72.78357,19.13359],[72.78284,19.13257],[72.7817,19.13248],[72.78066,19.13325],[72.78047,19.13449]]],[[[72.78769,19.32418],[72.79468,19.32325],[72.79692,19.3196],[72.78833,19.32046],[72.78966,19.31665],[72.78035,19.32199],[72.78769,19.32418]]],[[[72.83484,19.33426],[72.84,19.3379],[72.85385,19.33716],[72.87343,19.32517],[72.861,19.32935],[72.83484,19.33426]]],[[[72.73156,19.45541],[72.72324,19.46713],[72.72637,19.47359],[72.73717,19.46504],[72.7336,19.46222],[72.73491,19.45498],[72.73156,19.45541]]],[[[72.81245,19.5035],[72.82824,19.50705],[72.81709,19.49239],[72.80538,19.49957],[72.81245,19.5035]]],[[[72.85113,19.53719],[72.87352,19.52819],[72.86651,19.52424],[72.85154,19.52664],[72.84223,19.52503],[72.85113,19.53719]]],[[[72.70063,19.7361],[72.7,19.73609],[72.7,19.76],[72.72336,19.76],[72.72287,19.75698],[72.71449,19.75378],[72.70876,19.73621],[72.70192,19.73612],[72.70805,19.73423],[72.70381,19.73096],[72.7,19.73325],[72.7,19.73586],[72.70063,19.7361]]],[[[72.90681,18.95841],[72.90175,18.9547],[72.90309,18.95743],[72.89995,18.96055],[72.9007,18.96412],[72.90681,18.95841]]],[[[72.93146,18.96829],[72.93037,18.97229],[72.93095,18.97245],[72.93159,18.96821],[72.93048,18.9669],[72.93832,18.9718],[72.94252,18.96731],[72.9348,18.95258],[72.92485,18.9602],[72.93026,18.96709],[72.93006,18.96784],[72.93146,18.96829]]],[[[72.99316,19.05731],[72.99231,19.05891],[72.98324,19.06212],[72.99316,19.06212],[72.99316,19.05731]]],[[[72.77636,19.22409],[72.77658,19.22595],[72.77787,19.22661],[72.78064,19.23107],[72.77959,19.23582],[72.77908,19.23698],[72.77941,19.23801],[72.78025,19.23855],[72.78114,19.24043],[72.78101,19.24306],[72.78295,19.24923],[72.7831,19.25334],[72.78167,19.25966],[72.78297,19.26007],[72.78425,19.26211],[72.78452,19.26309],[72.78404,19.26431],[72.78416,19.26478],[72.78831,19.26321],[72.78997,19.26149],[72.7961,19.26222],[72.79972,19.26227],[72.80089,19.26109],[72.80037,19.26037],[72.80098,19.25907],[72.80283,19.2587],[72.8069,19.2558],[72.81272,19.25013],[72.81624,19.24738],[72.81824,19.24669],[72.82707,19.245],[72.82917,19.24718],[72.83524,19.24964],[72.83839,19.25181],[72.8384,19.25228],[72.83617,19.25507],[72.83578,19.25863],[72.83695,19.26338],[72.83873,19.26597],[72.84047,19.26712],[72.84249,19.26745],[72.84523,19.26699],[72.845,19.26703],[72.845,19.2804],[72.8454,19.28061],[72.84497,19.28038],[72.84407,19.27988],[72.84331,19.27941],[72.83883,19.27911],[72.83526,19.27793],[72.83186,19.27585],[72.8297,19.27387],[72.8272,19.27048],[72.8255,19.26706],[72.82402,19.26101],[72.82377,19.2579],[72.8217,19.25825],[72.8156,19.26415],[72.81089,19.26773],[72.8077,19.27125],[72.80614,19.27241],[72.80399,19.27348],[72.80049,19.27424],[72.79356,19.27399],[72.78856,19.27605],[72.78518,19.27676],[72.78278,19.2767],[72.78,19.27602],[72.77862,19.27864],[72.78403,19.28126],[72.78625,19.30628],[72.79311,19.31009],[72.80285,19.30369],[72.81619,19.30201],[72.84064,19.31778],[72.85579,19.31812],[72.89575,19.28986],[72.90704,19.28724],[72.91395,19.27419],[72.91998,19.27979],[72.91252,19.28048],[72.91268,19.28795],[72.93657,19.28629],[72.94786,19.29414],[72.95734,19.29502],[72.97121,19.29182],[72.98778,19.27772],[73.00336,19.22305],[72.98354,19.19579],[72.98264,19.18316],[72.98014,19.165],[72.97858,19.165],[72.97743,19.16188],[72.97618,19.15722],[72.97626,19.1558],[72.97566,19.15266],[72.97303,19.14928],[72.96807,19.14065],[72.96703,19.13973],[72.96565,19.13905],[72.95918,19.13242],[72.95933,19.13175],[72.96121,19.1286],[72.96074,19.12597],[72.9546,19.11694],[72.95374,19.11395],[72.95182,19.11083],[72.94905,19.11136],[72.9453,19.11459],[72.94403,19.11481],[72.9432,19.11442],[72.94614,19.1083],[72.94772,19.1037],[72.94792,19.09211],[72.94906,19.08848],[72.94919,19.08397],[72.9501,19.08233],[72.95114,19.07891],[72.95276,19.07698],[72.95448,19.07257],[72.95439,19.06914],[72.95639,19.06553],[72.95647,19.06362],[72.95765,19.06303],[72.95947,19.06155],[72.96024,19.0602],[72.96051,19.05853],[72.9606,19.05688],[72.95952,19.04921],[72.95967,19.04766],[72.95833,19.04419],[72.95669,19.04175],[72.95384,19.03857],[72.9539,19.03813],[72.95485,19.03751],[72.95396,19.03636],[72.9534,19.03623],[72.95286,19.03569],[72.95152,19.03088],[72.94808,19.02871],[72.93851,19.02479],[72.93826,19.0248],[72.93702,19.02644],[72.93532,19.02617],[72.93348,19.02528],[72.93313,19.0249],[72.9325,19.02283],[72.93096,19.02165],[72.92704,19.01662],[72.92706,19.01547],[72.92063,19.00717],[72.91801,19.0029],[72.91296,18.9974],[72.91019,18.99608],[72.90734,18.99575],[72.90453,18.99401],[72.90035,18.99521],[72.89584,18.99521],[72.8938,18.99458],[72.89128,18.99433],[72.88916,18.99302],[72.8879,18.99172],[72.88741,18.99173],[72.88705,18.99245],[72.88646,19.00109],[72.88538,19.00785],[72.88081,19.01154],[72.87851,19.01161],[72.87762,19.01134],[72.87252,19.00856],[72.86978,19.00765],[72.86238,19.00364],[72.86214,19.00269],[72.86234,19.00194],[72.86105,19.00194],[72.86081,19.00054],[72.86007,18.99904],[72.86008,18.99808],[72.86091,18.99606],[72.86204,18.99552],[72.86136,18.99518],[72.86162,18.9943],[72.85986,18.99362],[72.85995,18.99276],[72.85728,18.99189],[72.85704,18.99156],[72.86119,18.98163],[72.85768,18.97837],[72.85067,18.97997],[72.85023,18.97977],[72.85012,18.97918],[72.8504,18.97889],[72.85564,18.97785],[72.85538,18.97668],[72.85012,18.97776],[72.84945,18.9771],[72.84969,18.97642],[72.85094,18.97618],[72.85148,18.97656],[72.8559,18.97566],[72.8559,18.97538],[72.85541,18.97455],[72.85116,18.97537],[72.85087,18.97486],[72.85107,18.97446],[72.8542,18.97379],[72.85393,18.97262],[72.85368,18.97203],[72.85133,18.97232],[72.85053,18.97283],[72.85007,18.97253],[72.84989,18.97151],[72.8509,18.9701],[72.853,18.96972],[72.85298,18.96929],[72.8522,18.96919],[72.8523,18.96781],[72.85166,18.96778],[72.85119,18.96702],[72.85054,18.96698],[72.85008,18.96606],[72.84808,18.95827],[72.84827,18.95787],[72.84962,18.95742],[72.85051,18.95789],[72.85078,18.9588],[72.85106,18.95876],[72.85082,18.95774],[72.84983,18.95725],[72.84952,18.95587],[72.84911,18.95596],[72.84925,18.95731],[72.84829,18.95766],[72.84792,18.9575],[72.84627,18.95091],[72.84673,18.94761],[72.84366,18.93552],[72.84308,18.93503],[72.84424,18.92901],[72.84299,18.92894],[72.84228,18.93297],[72.84122,18.93337],[72.84003,18.93276],[72.84027,18.93093],[72.83661,18.92821],[72.83691,18.92748],[72.83794,18.92772],[72.83852,18.92691],[72.84039,18.92768],[72.83821,18.92661],[72.83801,18.92626],[72.84,18.92182],[72.84036,18.92151],[72.84078,18.92161],[72.8443,18.92524],[72.84444,18.92608],[72.84469,18.92613],[72.84464,18.92528],[72.84032,18.92068],[72.83953,18.92026],[72.83809,18.92042],[72.83535,18.923],[72.83492,18.92282],[72.83491,18.92195],[72.83452,18.92165],[72.8341,18.92191],[72.83368,18.92179],[72.83226,18.91875],[72.83283,18.91811],[72.83214,18.91804],[72.83186,18.91736],[72.83138,18.91731],[72.82999,18.91609],[72.83019,18.91548],[72.83077,18.91545],[72.83126,18.91504],[72.82942,18.91291],[72.82696,18.9112],[72.82683,18.91037],[72.82503,18.90734],[72.82225,18.91007],[72.81965,18.90716],[72.8186,18.90645],[72.81807,18.90686],[72.81767,18.90677],[72.8175,18.90641],[72.8177,18.90592],[72.81739,18.90527],[72.81784,18.90432],[72.8176,18.90331],[72.8181,18.90242],[72.81878,18.9023],[72.81745,18.9021],[72.81727,18.9006],[72.81471,18.89753],[72.81337,18.89536],[72.81247,18.89492],[72.81091,18.89516],[72.80978,18.89396],[72.80914,18.89412],[72.80698,18.89589],[72.80453,18.89925],[72.80355,18.90409],[72.80399,18.90809],[72.80485,18.91021],[72.80752,18.91403],[72.81103,18.91821],[72.81945,18.92709],[72.82196,18.93027],[72.82339,18.93358],[72.82391,18.93613],[72.82393,18.93912],[72.8233,18.9423],[72.82147,18.9461],[72.81775,18.95078],[72.81388,18.95345],[72.80954,18.95493],[72.80796,18.95485],[72.80722,18.95381],[72.80743,18.95323],[72.80429,18.95115],[72.80394,18.9505],[72.80154,18.9484],[72.79953,18.94787],[72.79913,18.9474],[72.798,18.94733],[72.79768,18.94613],[72.79606,18.94463],[72.79557,18.94381],[72.7952,18.94169],[72.79455,18.94013],[72.79478,18.9397],[72.7933,18.93921],[72.79266,18.93959],[72.79244,18.94007],[72.79336,18.94191],[72.79339,18.94413],[72.79205,18.9457],[72.79156,18.94888],[72.79441,18.95446],[72.7994,18.96249],[72.80023,18.96529],[72.80133,18.97123],[72.802,18.97309],[72.80897,18.98464],[72.81106,18.98988],[72.81185,18.99322],[72.81187,18.99603],[72.81127,18.99818],[72.81137,19.00149],[72.81325,19.0049],[72.81443,19.0085],[72.81639,19.01195],[72.81671,19.01307],[72.81644,19.01486],[72.81582,19.01626],[72.81533,19.02402],[72.81403,19.02668],[72.81465,19.02687],[72.8164,19.02536],[72.81739,19.02398],[72.81867,19.02305],[72.81924,19.02307],[72.81864,19.02206],[72.81896,19.0195],[72.81952,19.01875],[72.82053,19.01845],[72.82114,19.01778],[72.82274,19.01757],[72.82432,19.01799],[72.8283,19.02027],[72.83097,19.0225],[72.83326,19.02484],[72.8347,19.02696],[72.83738,19.03317],[72.83802,19.03724],[72.83792,19.03873],[72.83727,19.04404],[72.83642,19.04621],[72.83625,19.04743],[72.83654,19.04791],[72.83785,19.04827],[72.83801,19.0488],[72.83751,19.04928],[72.83645,19.04904],[72.83535,19.04948],[72.83346,19.04925],[72.83233,19.04858],[72.82986,19.04615],[72.82931,19.04492],[72.82756,19.04422],[72.82486,19.04253],[72.82333,19.04212],[72.82306,19.04107],[72.8226,19.04088],[72.82251,19.04029],[72.82199,19.04068],[72.82201,19.04125],[72.82171,19.04152],[72.81924,19.04086],[72.81847,19.04165],[72.81808,19.04168],[72.81804,19.04238],[72.81719,19.04301],[72.8174,19.04415],[72.81864,19.04557],[72.82109,19.05042],[72.82192,19.05347],[72.82345,19.05527],[72.82284,19.05714],[72.82126,19.05812],[72.82111,19.05865],[72.82053,19.05898],[72.82122,19.06026],[72.82161,19.06237],[72.82205,19.06258],[72.82274,19.06464],[72.82212,19.06767],[72.82239,19.06953],[72.82127,19.07322],[72.82126,19.07385],[72.82187,19.07487],[72.82139,19.07686],[72.82322,19.07933],[72.82267,19.08205],[72.82322,19.08265],[72.82339,19.08369],[72.82414,19.08404],[72.82616,19.08842],[72.82654,19.09032],[72.82626,19.09642],[72.82416,19.10288],[72.82369,19.10612],[72.82196,19.11307],[72.81911,19.11991],[72.81307,19.12985],[72.81138,19.1317],[72.81012,19.13364],[72.8054,19.13863],[72.80494,19.13868],[72.79518,19.13311],[72.79498,19.13262],[72.79516,19.13162],[72.79299,19.1307],[72.79177,19.13132],[72.78972,19.13114],[72.78814,19.12988],[72.7872,19.13006],[72.78801,19.1307],[72.78766,19.13268],[72.78829,19.13488],[72.78855,19.13922],[72.78813,19.14026],[72.78818,19.14156],[72.78768,19.14212],[72.78898,19.14555],[72.78906,19.14868],[72.78751,19.15203],[72.78622,19.15336],[72.78447,19.15439],[72.78426,19.15619],[72.78378,19.15735],[72.78268,19.15792],[72.78171,19.15791],[72.78233,19.15901],[72.78369,19.15965],[72.78375,19.16062],[72.78319,19.16208],[72.78127,19.16406],[72.78112,19.1652],[72.78184,19.16712],[72.78371,19.16706],[72.78484,19.16633],[72.78608,19.16654],[72.78735,19.1677],[72.78864,19.16984],[72.79052,19.17101],[72.79253,19.17141],[72.79317,19.17191],[72.79606,19.18],[72.79574,19.1833],[72.79622,19.18754],[72.79539,19.19072],[72.79653,19.19363],[72.79655,19.19492],[72.7964,19.19587],[72.79611,19.19612],[72.79308,19.19562],[72.79248,19.1952],[72.79128,19.19351],[72.78974,19.19311],[72.78759,19.194],[72.78394,19.19324],[72.78318,19.19378],[72.78235,19.19387],[72.78167,19.19455],[72.78157,19.19503],[72.78241,19.19736],[72.78265,19.19988],[72.78332,19.20072],[72.78507,19.20092],[72.78574,19.20203],[72.78571,19.20374],[72.78503,19.20506],[72.78372,19.20623],[72.782,19.20677],[72.78051,19.20618],[72.78008,19.20642],[72.78044,19.21057],[72.78101,19.2113],[72.78145,19.21269],[72.78147,19.21527],[72.78066,19.21751],[72.77925,19.21878],[72.779,19.22026],[72.7783,19.22043],[72.77769,19.22165],[72.77678,19.22215],[72.77636,19.22409]]],[[[72.95982,19.10084],[72.9598,19.10188],[72.96049,19.10256],[72.95982,19.10084]]],[[[72.72425,19.75571],[72.72977,19.76],[73.12384,19.76],[73.125,19.75924],[73.12548,19.76],[73.25,19.76],[73.25,19.578],[73.23461,19.55979],[73.24701,19.55979],[73.25,19.55858],[73.25,19.1882],[73.24839,19.18668],[73.25,19.18668],[73.25,19.16641],[73.24947,19.16592],[73.25,19.16538],[73.25,19.02239],[73.24805,19.02058],[73.25,19.02058],[73.25,18.94603],[73.23736,18.93746],[73.25,18.92149],[73.25,18.85],[72.99039,18.85],[72.99407,18.85763],[72.98919,18.85784],[72.98843,18.86556],[72.97529,18.86489],[72.9673,18.85597],[72.95362,18.85],[72.93133,18.85],[72.92563,18.85214],[72.92299,18.86576],[72.90604,18.88457],[72.90628,18.90268],[72.91387,18.90305],[72.91802,18.90994],[72.93009,18.91067],[72.94128,18.89829],[72.9423,18.90878],[72.94907,18.91056],[72.95388,18.90714],[72.95882,18.91131],[72.96132,18.92168],[72.94143,18.9438],[72.9555,18.96501],[72.95543,18.97335],[72.97773,18.96346],[72.98568,18.97086],[72.99474,18.96783],[73.01753,18.97722],[73.02253,18.98963],[73.03018,18.98314],[73.03205,18.98574],[73.03622,18.976],[73.04189,18.97735],[73.04114,18.97903],[73.04245,18.97903],[73.04019,18.98117],[73.03744,18.98734],[73.02986,18.98803],[73.03011,18.9998],[73.03711,18.9998],[73.03711,19.00665],[73.03011,19.00003],[73.03019,19.00371],[73.02023,19.0008],[73.02288,19.00624],[73.02283,19.00781],[73.01799,18.99915],[73.00253,19.00208],[72.99997,19.01508],[73.00345,19.0287],[72.99803,19.04819],[72.99681,19.05048],[72.99989,19.06212],[72.99316,19.06847],[72.97945,19.06643],[72.98995,19.08393],[72.98618,19.08599],[72.98436,19.10128],[72.97854,19.10563],[72.9826,19.1419],[72.98572,19.14611],[72.98698,19.14869],[72.9881,19.15388],[72.9884,19.15666],[72.99021,19.16187],[72.99166,19.16759],[72.99167,19.17006],[72.99074,19.17364],[72.98954,19.17579],[72.98679,19.17932],[72.98741,19.18487],[72.98669,19.18668],[72.99316,19.18668],[72.99316,19.19302],[72.98663,19.18685],[72.98431,19.19272],[72.99568,19.2092],[72.99951,19.20861],[72.99857,19.2158],[73.00724,19.21904],[73.00985,19.22448],[73.00461,19.23105],[73.00156,19.25959],[72.99319,19.26654],[72.99307,19.26967],[73.0085,19.26967],[72.99316,19.27455],[72.99295,19.27306],[72.99239,19.28884],[72.95869,19.30455],[72.94207,19.29824],[72.93721,19.28933],[72.92861,19.29456],[72.91619,19.29017],[72.90261,19.29247],[72.88857,19.30852],[72.88485,19.32367],[72.88161,19.3226],[72.87814,19.32925],[72.88603,19.33758],[72.8804,19.34318],[72.88341,19.35145],[72.88645,19.34685],[72.89159,19.34794],[72.88393,19.35287],[72.87429,19.34336],[72.88384,19.33884],[72.8772,19.32873],[72.86734,19.33608],[72.86783,19.3402],[72.86543,19.33695],[72.86048,19.34217],[72.86078,19.3396],[72.85561,19.34083],[72.8555,19.34932],[72.86039,19.34899],[72.86001,19.3468],[72.86207,19.34502],[72.86396,19.3453],[72.86148,19.34836],[72.86421,19.34711],[72.86704,19.3522],[72.85495,19.35009],[72.85585,19.3537],[72.85295,19.35805],[72.8533,19.35187],[72.84814,19.35233],[72.84502,19.3631],[72.85393,19.36591],[72.85443,19.36888],[72.8615,19.36819],[72.85982,19.37151],[72.85443,19.36913],[72.85079,19.3781],[72.84224,19.375],[72.85054,19.37642],[72.85363,19.36809],[72.84635,19.36518],[72.84303,19.37003],[72.84568,19.36439],[72.84179,19.36126],[72.84901,19.34796],[72.85414,19.35021],[72.85479,19.34159],[72.84909,19.34204],[72.84828,19.34654],[72.84694,19.34904],[72.848,19.34254],[72.8442,19.34275],[72.84411,19.3497],[72.83902,19.34501],[72.83759,19.35014],[72.83575,19.346],[72.83133,19.35213],[72.82584,19.35721],[72.83576,19.34523],[72.84339,19.34274],[72.83364,19.34134],[72.81273,19.32549],[72.79741,19.33087],[72.77765,19.35096],[72.77697,19.36048],[72.77444,19.3571],[72.77766,19.34968],[72.77468,19.34964],[72.76851,19.36475],[72.75876,19.37338],[72.75783,19.38238],[72.76219,19.39042],[72.7722,19.39234],[72.77922,19.41508],[72.77475,19.42429],[72.76796,19.42472],[72.77232,19.40393],[72.76612,19.40076],[72.76889,19.39668],[72.76192,19.39538],[72.75986,19.41728],[72.74442,19.45844],[72.74632,19.46562],[72.76708,19.48649],[72.77926,19.49259],[72.79988,19.49657],[72.81176,19.49002],[72.82157,19.4911],[72.83665,19.51511],[72.84616,19.52102],[72.84297,19.52135],[72.87931,19.52079],[72.88279,19.52505],[72.86656,19.53775],[72.85098,19.54082],[72.84247,19.53528],[72.82664,19.51118],[72.78006,19.50533],[72.78625,19.52304],[72.78524,19.52674],[72.77997,19.52907],[72.78431,19.53907],[72.78123,19.54433],[72.7835,19.53842],[72.77945,19.52876],[72.77244,19.52643],[72.76961,19.53521],[72.76536,19.54239],[72.76382,19.54353],[72.77115,19.52659],[72.77508,19.52571],[72.78002,19.52781],[72.78455,19.52433],[72.78277,19.51571],[72.76796,19.50203],[72.74008,19.51781],[72.73855,19.53015],[72.73283,19.53214],[72.73614,19.52832],[72.73182,19.52633],[72.72622,19.53823],[72.71889,19.5384],[72.72314,19.54489],[72.71569,19.5919],[72.75687,19.59949],[72.76423,19.5974],[72.7654,19.59149],[72.76441,19.60396],[72.78829,19.59563],[72.78046,19.60223],[72.78231,19.60611],[72.76899,19.60698],[72.77252,19.61706],[72.77699,19.61789],[72.77259,19.62195],[72.7676,19.60928],[72.75484,19.60873],[72.75218,19.60484],[72.74697,19.60851],[72.73896,19.5985],[72.73078,19.60071],[72.72447,19.62418],[72.72786,19.62174],[72.72632,19.62807],[72.73667,19.62601],[72.74071,19.62876],[72.73365,19.62854],[72.72043,19.64099],[72.71845,19.63723],[72.72609,19.62549],[72.7231,19.62545],[72.71403,19.64207],[72.70868,19.66516],[72.71259,19.66727],[72.71288,19.66873],[72.71028,19.6675],[72.70649,19.67595],[72.70961,19.70482],[72.7,19.72005],[72.7,19.72821],[72.71137,19.72414],[72.71512,19.70952],[72.72184,19.71437],[72.72516,19.71029],[72.72979,19.70945],[72.73111,19.7123],[72.718,19.71676],[72.71957,19.72142],[72.71116,19.73361],[72.71619,19.75244],[72.72595,19.75248],[72.73239,19.75539],[72.7359,19.75843],[72.72425,19.75571]]]]};
+
+  /* ---------- words, in English and Bangla ---------- */
+  var BN_DIGITS = "০১২৩৪৫৬৭৮৯";
+  var LANG = "en";
+  try { LANG = localStorage.getItem("pujo-lang") || ((navigator.language || "").toLowerCase().indexOf("bn") === 0 ? "bn" : "en"); } catch (e) {}
+  function num(x) { var s = String(x); return LANG === "bn" ? s.replace(/[0-9]/g, function (d) { return BN_DIGITS[+d]; }) : s; }
+
+  var DAYS = [
+    { key: "2026-10-16", bn: "পঞ্চমী", en: "Panchami", dEn: "Fri 16 Oct", dBn: "শুক্রবার, ১৬ অক্টোবর", xEn: "Most pandals open", xBn: "বেশির ভাগ মণ্ডপ খুলে যায়" },
+    { key: "2026-10-17", bn: "ষষ্ঠী", en: "Shashthi", dEn: "Sat 17 Oct", dBn: "শনিবার, ১৭ অক্টোবর", xEn: "Bodhon in the evening", xBn: "সন্ধ্যায় বোধন" },
+    { key: "2026-10-18", bn: "সপ্তমী", en: "Saptami", dEn: "Sun 18 Oct", dBn: "রবিবার, ১৮ অক্টোবর", xEn: "Kola bou snan at dawn", xBn: "ভোরে কলাবউ স্নান" },
+    { key: "2026-10-19", bn: "অষ্টমী", en: "Ashtami", dEn: "Mon 19 Oct", dBn: "সোমবার, ১৯ অক্টোবর", xEn: "Anjali; Sandhi Puja 10:27 to 11:15 am", xBn: "অঞ্জলি; সন্ধিপুজো সকাল ১০:২৭ থেকে ১১:১৫" },
+    { key: "2026-10-20", bn: "নবমী", en: "Navami", dEn: "Tue 20 Oct", dBn: "মঙ্গলবার, ২০ অক্টোবর", xEn: "Dhunuchi naach at night", xBn: "রাতে ধুনুচি নাচ" },
+    { key: "2026-10-21", bn: "দশমী", en: "Dashami", dEn: "Wed 21 Oct", dBn: "বুধবার, ২১ অক্টোবর", xEn: "Sindoor khela and bisarjan", xBn: "সিঁদুর খেলা ও বিসর্জন" }
+  ];
+  var AREAS = ["South & Central Mumbai", "Western Suburbs", "Eastern Suburbs", "Mira–Bhayandar", "Thane", "Navi Mumbai", "Panvel & Ulwe", "Kalyan–Dombivli", "Palghar"];
+  var AREA_BN = {
+    "South & Central Mumbai": "দক্ষিণ ও মধ্য মুম্বই", "Western Suburbs": "পশ্চিম শহরতলি", "Eastern Suburbs": "পূর্ব শহরতলি",
+    "Mira–Bhayandar": "মীরা–ভায়ান্দর", "Thane": "থানে", "Navi Mumbai": "নবি মুম্বই", "Panvel & Ulwe": "পানভেল ও উলওয়ে",
+    "Kalyan–Dombivli": "কল্যাণ–ডোম্বিভলি", "Palghar": "পালঘর"
+  };
+  var SITE = "https://somdeepkundu.github.io/";
+  var S = {
+    en: {
+      title: "Mumbai Durga Pujo Map",
+      langBtn: "বাংলা", langAria: "বাংলায় দেখুন",
+      toDark: "Switch to dark mode", toLight: "Switch to light mode",
+      near: "Pujos near me", finding: "Finding you…",
+      searchPh: "Search pujos", searchAria: "Search a pujo, area or list number",
+      allAreas: "All areas", areaAria: "Area",
+      count: function (n) { return n + (n === 1 ? " pujo" : " pujos"); },
+      fromHome: "nearest to IIT Bombay", fromGps: "nearest to you", fromPick: "nearest to your spot",
+      useLoc: "Use my location",
+      approx: "approximate",
+      dirs: "Get directions", copy: "Copy location", copied: "Copied", copyFail: "Copying isn't allowed here. The location is",
+      tapMap: "Tap the map where you are.", cancel: "Cancel",
+      locOff: "Location is off for this page.", locNA: "Your location isn't available right now.",
+      orKeep: 'Tap the map where you are, or <button type="button" data-cancel>keep IIT Bombay</button>.',
+      picked: 'Showing distances from the spot you picked. <button type="button" data-pick>Pick again</button>',
+      empty: function (q) { return "No pujo matches “" + q + "”. Try an area name, like Thane or Chembur."; },
+      footAbout: "How these pujos were located", footRest: ", the puja days, and the data to download.",
+      credit: "Developed by", creditName: "Somdeep Kundu", iitb: "IIT Bombay",
+      btnHome: "Pujos near IIT Bombay", btnAll: "Show every pujo", btnRoute: "Pandal-hopping route",
+      route: function (n, d) { return "Pandal-hopping route: " + n + " pujos close by, about " + d + " in all."; },
+      openGmaps: "Open in Google Maps", hide: "Hide",
+      grabMore: "Show more of the list", grabMap: "Show the map",
+      km: function (v) { return v + " km"; }, m: function (v) { return v + " m"; },
+      today: function (d) { return '<span lang="bn">' + d.bn + "</span>Today is " + d.en + ", " + d.dEn; },
+      before: '<span lang="bn">পুজো আসছে</span>Panchami is Fri 16 Oct',
+      after: '<span lang="bn">শুভ বিজয়া</span>See you next year',
+      aboutTitle: "About this map",
+      counts: function (e, u, a, b, c) { return "The list has " + e + " entries. Some appear twice, so they come to " + u + " pujos: " + a + " with the venue confirmed, " + b + " placed at the venue the list names, and " + c + " placed only approximately."; },
+      howTitle: "How each pin was placed",
+      howExact: "<strong>Venue confirmed:</strong> the pujo's own Google Maps listing, or a venue named in 2024 to 2026 news coverage.",
+      howVenue: "<strong>Venue from the list:</strong> the hall, ground or temple the list names, found on the map.",
+      howArea: "<strong>Approximate:</strong> the venue could not be found, so the pin marks the station or neighbourhood. These show as hollow pins.",
+      notes: function (x) { return "Entries that appear twice are shown once. " + x + " pujos found while searching are added. Venues can change between years, so check with the organiser before a long trip. Distances are in a straight line, from IIT Bombay until you use your own location."; },
+      layers: "The soft red glow shows where pujos cluster, and the thin arcs join you, or IIT Bombay, to the nearest pujos.",
+      daysTitle: "Puja days, 2026", daysToday: ", today",
+      daysSrc: 'Bengal almanac dates, from <a href="https://www.divinehindu.in/blogs/news/durga-puja-2026-dates-sandhi-puja-rituals" target="_blank" rel="noopener">Divine Hindu</a>.',
+      srcTitle: "Sources and data",
+      src: 'Google Maps listings, plus <a href="https://www.freepressjournal.in/mumbai/durga-puja-2025-mumbai-celebrates-bengals-biggest-festival-with-grand-pandals-culture-and-cuisine" target="_blank" rel="noopener">Free Press Journal</a>, <a href="https://www.boldsky.com/insync/durga-puja-pandals-mumbai-2026-7-stunning-celebrations-to-explore-from-matunga-to-juhu-173373.html" target="_blank" rel="noopener">Boldsky</a>, <a href="https://lbb.in/mumbai/durga-pandals-mumbai/" target="_blank" rel="noopener">LBB</a> and <a href="https://www.justdial.com/Mumbai/Aamra-Prabasi-Durga-Puja-Venue-Nerul-Nerul-Sector-27/022PXX22-XX22-220327111649-G8Q4_BZDET" target="_blank" rel="noopener">Justdial</a>. Map © OpenStreetMap contributors; Mumbai ward outline © DataMeet.',
+      dl: 'Download every pin as <a href="mumbai-durga-pujas-2026.csv">CSV</a> or <a href="mumbai-durga-pujas-2026.geojson">GeoJSON</a>.',
+      close: "Close"
+    },
+    bn: {
+      title: "মুম্বই দুর্গাপুজো ম্যাপ",
+      langBtn: "EN", langAria: "View in English",
+      toDark: "ডার্ক মোড চালু করুন", toLight: "লাইট মোড চালু করুন",
+      near: "আমার কাছের পুজো", finding: "খুঁজছি…",
+      searchPh: "ইংরেজিতে খুঁজুন", searchAria: "পুজো, এলাকা বা তালিকার নম্বর দিয়ে খুঁজুন",
+      allAreas: "সব এলাকা", areaAria: "এলাকা",
+      count: function (n) { return num(n) + "টি পুজো"; },
+      fromHome: "আইআইটি বম্বে থেকে দূরত্ব অনুযায়ী", fromGps: "আপনার থেকে দূরত্ব অনুযায়ী", fromPick: "বাছাই করা জায়গা থেকে দূরত্ব অনুযায়ী",
+      useLoc: "আমার লোকেশন ব্যবহার করুন",
+      approx: "আনুমানিক",
+      dirs: "পথ দেখুন", copy: "লোকেশন কপি করুন", copied: "কপি হয়েছে", copyFail: "এখানে কপি করা যাচ্ছে না। লোকেশন:",
+      tapMap: "ম্যাপে আপনার জায়গায় ট্যাপ করুন।", cancel: "বাতিল",
+      locOff: "এই পেজে লোকেশন বন্ধ আছে।", locNA: "এই মুহূর্তে আপনার লোকেশন পাওয়া যাচ্ছে না।",
+      orKeep: 'ম্যাপে আপনার জায়গায় ট্যাপ করুন, অথবা <button type="button" data-cancel>আইআইটি বম্বে থেকেই দেখুন</button>।',
+      picked: 'আপনার বাছাই করা জায়গা থেকে দূরত্ব দেখানো হচ্ছে। <button type="button" data-pick>আবার বাছুন</button>',
+      empty: function (q) { return "“" + q + "” নামে কোনও পুজো পাওয়া যায়নি। ইংরেজিতে এলাকার নাম লিখে দেখুন, যেমন Thane বা Chembur।"; },
+      footAbout: "পুজোগুলো কীভাবে খোঁজা হয়েছে", footRest: ", পুজোর দিনক্ষণ আর ডেটা ডাউনলোড।",
+      credit: "তৈরি করেছেন", creditName: "সোমদীপ কুণ্ডু", iitb: "আইআইটি বম্বে",
+      btnHome: "আইআইটি বম্বের কাছের পুজো", btnAll: "সব পুজো দেখুন", btnRoute: "ঠাকুর দেখার রুট",
+      route: function (n, d) { return "ঠাকুর দেখার রুট: কাছাকাছি " + num(n) + "টি পুজো, মোট প্রায় " + d + "।"; },
+      openGmaps: "গুগল ম্যাপে খুলুন", hide: "লুকান",
+      grabMore: "তালিকা আরও দেখুন", grabMap: "ম্যাপ দেখুন",
+      km: function (v) { return num(v) + " কিমি"; }, m: function (v) { return num(v) + " মিটার"; },
+      today: function (d) { return "আজ " + d.bn + ", " + d.dBn.split(", ")[1]; },
+      before: "পুজো আসছে, পঞ্চমী ১৬ অক্টোবর",
+      after: "শুভ বিজয়া, আসছে বছর আবার হবে",
+      aboutTitle: "এই ম্যাপ সম্পর্কে",
+      counts: function (e, u, a, b, c) { return "মূল তালিকায় " + num(e) + "টি নাম আছে। কয়েকটি নাম দুবার এসেছে, তাই মোট " + num(u) + "টি পুজো: " + num(a) + "টির মণ্ডপের জায়গা নিশ্চিত, " + num(b) + "টি তালিকায় দেওয়া জায়গায় বসানো, আর " + num(c) + "টির জায়গা আনুমানিক।"; },
+      howTitle: "পিনগুলো কীভাবে বসানো হয়েছে",
+      howExact: "<strong>মণ্ডপের জায়গা নিশ্চিত:</strong> গুগল ম্যাপে পুজোর নিজস্ব ঠিকানা, অথবা ২০২৪ থেকে ২০২৬ সালের খবরে উল্লেখ করা জায়গা।",
+      howVenue: "<strong>তালিকায় দেওয়া জায়গা:</strong> তালিকায় যে হল, মাঠ বা মন্দিরের নাম আছে, সেটি ম্যাপে খুঁজে বসানো।",
+      howArea: "<strong>আনুমানিক:</strong> মণ্ডপের ঠিক জায়গা পাওয়া যায়নি, তাই পিনটি স্টেশন বা পাড়া দেখাচ্ছে। এগুলো ফাঁপা পিন হিসেবে দেখায়।",
+      notes: function (x) { return "তালিকায় দুবার থাকা নাম একবারই দেখানো হয়েছে। খোঁজার সময় পাওয়া আরও " + num(x) + "টি পুজো যোগ করা হয়েছে। মণ্ডপের জায়গা বছর বছর বদলাতে পারে, তাই দূরে যাওয়ার আগে উদ্যোক্তাদের সঙ্গে মিলিয়ে নিন। দূরত্ব সোজা লাইনে মাপা, আইআইটি বম্বে থেকে; নিজের লোকেশন চালু করলে আপনার জায়গা থেকে।"; },
+      layers: "হালকা লাল আভা দেখায় কোথায় পুজো বেশি, আর সরু রেখাগুলো আপনার বা আইআইটি বম্বের সঙ্গে কাছের পুজোগুলো জুড়ে দেয়।",
+      daysTitle: "পুজোর দিনক্ষণ, ২০২৬", daysToday: ", আজ",
+      daysSrc: 'পঞ্জিকা অনুযায়ী তারিখ, সূত্র: <a href="https://www.divinehindu.in/blogs/news/durga-puja-2026-dates-sandhi-puja-rituals" target="_blank" rel="noopener">Divine Hindu</a>।',
+      srcTitle: "তথ্যসূত্র ও ডেটা",
+      src: 'গুগল ম্যাপের তথ্য, সঙ্গে <a href="https://www.freepressjournal.in/mumbai/durga-puja-2025-mumbai-celebrates-bengals-biggest-festival-with-grand-pandals-culture-and-cuisine" target="_blank" rel="noopener">Free Press Journal</a>, <a href="https://www.boldsky.com/insync/durga-puja-pandals-mumbai-2026-7-stunning-celebrations-to-explore-from-matunga-to-juhu-173373.html" target="_blank" rel="noopener">Boldsky</a>, <a href="https://lbb.in/mumbai/durga-pandals-mumbai/" target="_blank" rel="noopener">LBB</a> আর <a href="https://www.justdial.com/Mumbai/Aamra-Prabasi-Durga-Puja-Venue-Nerul-Nerul-Sector-27/022PXX22-XX22-220327111649-G8Q4_BZDET" target="_blank" rel="noopener">Justdial</a>। ম্যাপ © OpenStreetMap; মুম্বইয়ের ওয়ার্ড সীমানা © DataMeet।',
+      dl: 'সব পিন <a href="mumbai-durga-pujas-2026.csv">CSV</a> বা <a href="mumbai-durga-pujas-2026.geojson">GeoJSON</a> ফাইলে ডাউনলোড করুন।',
+      close: "বন্ধ করুন"
+    }
+  };
+  function t(k) { var v = S[LANG][k]; return typeof v === "function" ? v.apply(null, [].slice.call(arguments, 1)) : v; }
+  function areaName(a) { return LANG === "bn" ? (AREA_BN[a] || a) : a; }
+
+  var state = { area: "all", q: "", me: null, watchId: null, picking: false, open: null, route: false };
+
+  function $(id) { return document.getElementById(id); }
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function reduced() { return !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches); }
+  function km(a, b) {
+    var r = Math.PI / 180, dLa = (b.lat - a.lat) * r, dLo = (b.lng - a.lng) * r;
+    var s = Math.sin(dLa / 2) * Math.sin(dLa / 2) + Math.cos(a.lat * r) * Math.cos(b.lat * r) * Math.sin(dLo / 2) * Math.sin(dLo / 2);
+    return 12742 * Math.asin(Math.sqrt(s));
+  }
+  function fmtKm(d) { return d < 1 ? t("m", Math.max(10, Math.round(d * 100) * 10)) : t("km", d < 10 ? d.toFixed(1) : Math.round(d)); }
+  var tt;
+  function toast(html, ms) { var el = $("toast"); el.innerHTML = html; el.hidden = false; clearTimeout(tt); tt = setTimeout(function () { el.hidden = true; }, ms || 2600); }
+
+  /* the alpona: lotus petals, a ring of dots and an outer petal border */
+  function alpona() {
+    var g = "", i;
+    for (i = 0; i < 8; i++) g += '<path transform="rotate(' + (i * 45) + ')" d="M0-7C6-13 6-25 0-33C-6-25-6-13 0-7Z"/>';
+    for (i = 0; i < 8; i++) g += '<circle transform="rotate(' + (i * 45 + 22.5) + ')" cy="-24" r="2.6"/>';
+    for (i = 0; i < 16; i++) g += '<path transform="rotate(' + (i * 22.5) + ')" d="M0-40C3-42.5 3.4-45.5 0-48.5C-3.4-45.5-3-42.5 0-40Z"/>';
+    return '<svg viewBox="-50 -50 100 100" fill="currentColor"><circle r="4.2"/>' + g + '<circle r="37" fill="none" stroke="currentColor" stroke-width="2.2"/></svg>';
+  }
+  var ALPONA = alpona();
+  document.querySelectorAll("[data-alpona]").forEach(function (el) { el.innerHTML = ALPONA; });
+  var ICON = {
+    moon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>',
+    sun: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>',
+    house: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M3.5 11 12 4l8.5 7"/><path d="M6 9.5V20h12V9.5"/><path d="M10 20v-5.5h4V20"/></svg>',
+    expand: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>',
+    route: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="18.5" r="2.3"/><circle cx="18" cy="5.5" r="2.3"/><path d="M8.3 18.5H15a3.2 3.2 0 0 0 0-6.4H9a3.2 3.2 0 0 1 0-6.6h6.7"/></svg>',
+    go: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M3 11 21 3l-8 18-2-8-8-2z"/></svg>',
+    copy: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h8"/></svg>'
+  };
+
+  /* ---------- theme ---------- */
+  function isDark() {
+    var a = document.documentElement.getAttribute("data-theme");
+    if (a === "dark") return true; if (a === "light") return false;
+    return !!(window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches);
+  }
+  try { var savedTheme = localStorage.getItem("pujo-theme"); if (savedTheme) document.documentElement.setAttribute("data-theme", savedTheme); } catch (e) {}
+  function paintThemeBtn() {
+    var b = $("themeBtn"), dark = isDark();
+    b.innerHTML = dark ? ICON.sun : ICON.moon;
+    b.setAttribute("aria-label", dark ? t("toLight") : t("toDark")); b.title = b.getAttribute("aria-label");
+    if (document.documentElement.hasAttribute("data-theme")) document.querySelectorAll('meta[name="theme-color"]').forEach(function (m) { m.content = dark ? "#1C1617" : "#FFFFFF"; });
+  }
+  $("themeBtn").addEventListener("click", function () {
+    var next = isDark() ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    try { localStorage.setItem("pujo-theme", next); } catch (e) {}
+    paintThemeBtn(); updateDeck();
+  });
+  try { window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function () { paintThemeBtn(); updateDeck(); }); } catch (e) {}
+
+  /* ---------- data ---------- */
+  var today;
+  try { today = new Date().toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" }); } catch (e) { today = new Date().toISOString().slice(0, 10); }
+  PUJAS.forEach(function (p, i) { p.i = i; });
+  var listed = PUJAS.filter(function (p) { return !p.extra; });
+  var entries = listed.reduce(function (s, p) { return s + p.n.length; }, 0);
+  var cnt = { exact: 0, venue: 0, area: 0 };
+  listed.forEach(function (p) { cnt[p.conf]++; });
+
+  /* ---------- sheet: on phones the list slides over the map and snaps to three heights ---------- */
+  var phone = window.matchMedia("(max-width: 899px)");
+  var app = document.querySelector(".app"), sheet = $("sheet"), headEl = $("head");
+  var sheetAt = "half";
+  function snaps() {
+    var h = app.clientHeight, top = headEl.offsetHeight;
+    return { peek: Math.round(Math.min(190, h * 0.28)), half: Math.round(h * 0.46), full: Math.max(240, h - top - 6) };
+  }
+  function setSheet(name) {
+    if (!phone.matches) return;
+    sheetAt = name; sheet.style.height = snaps()[name] + "px";
+    $("grab").setAttribute("aria-label", name === "full" ? t("grabMap") : t("grabMore"));
+  }
+  function sheetH() { return phone.matches ? sheet.offsetHeight : 0; }
+  function layout() {
+    app.style.setProperty("--head-h", headEl.offsetHeight + "px");
+    if (phone.matches) setSheet(sheetAt); else sheet.style.height = "";
+    if (window.pujoMap) pujoMap.invalidateSize();
+  }
+  var drag = null;
+  function dragStart(e, tapToggles) {
+    if (!phone.matches || (e.button !== undefined && e.button !== 0)) return;
+    drag = { y: e.clientY, h: sheet.offsetHeight, moved: false, tap: tapToggles };
+    sheet.classList.add("dragging");
+  }
+  window.addEventListener("pointermove", function (e) {
+    if (!drag) return;
+    var dy = drag.y - e.clientY, s = snaps();
+    if (Math.abs(dy) > 6) drag.moved = true;
+    if (drag.moved) sheet.style.height = Math.max(s.peek - 40, Math.min(s.full, drag.h + dy)) + "px";
+  });
+  function dragEnd(e) {
+    if (!drag) return;
+    sheet.classList.remove("dragging");
+    var s = snaps(), order = ["peek", "half", "full"];
+    if (!drag.moved) {
+      if (drag.tap) setSheet(sheetAt === "full" ? "half" : sheetAt === "half" ? "full" : "half");
+      else setSheet(sheetAt);
+    } else {
+      var h = sheet.offsetHeight, dy = drag.y - e.clientY;
+      var best = order.reduce(function (a, b) { return Math.abs(s[b] - h) < Math.abs(s[a] - h) ? b : a; });
+      if (best === sheetAt && Math.abs(dy) > 40) best = order[Math.max(0, Math.min(2, order.indexOf(sheetAt) + (dy > 0 ? 1 : -1)))];
+      setSheet(best);
+    }
+    drag = null;
+  }
+  window.addEventListener("pointerup", dragEnd);
+  window.addEventListener("pointercancel", dragEnd);
+  $("grab").addEventListener("pointerdown", function (e) { dragStart(e, true); });
+  $("listHead").addEventListener("pointerdown", function (e) { if (!e.target.closest("button")) dragStart(e, false); });
+  $("grab").addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setSheet(sheetAt === "full" ? "half" : "full"); } });
+
+  /* ---------- map ---------- */
+  var map = L.map("map", { zoomControl: !phone.matches, minZoom: 9, maxZoom: 18 });
+  window.pujoMap = map;
+  if (phone.matches) map.attributionControl.setPosition("topright");
+  map.createPane("land").style.zIndex = 250;
+  var glowPane = map.createPane("glow"); glowPane.style.zIndex = 350; glowPane.style.pointerEvents = "none";
+  function showPoint(ll, z) {
+    var off = sheetH() / 2, target = off ? map.unproject(map.project(ll, z).add([0, off]), z) : L.latLng(ll);
+    reduced() ? map.setView(target, z) : map.flyTo(target, z, { duration: 0.7 });
+  }
+  function showBounds(b, pad) {
+    pad = pad || 28;
+    var o = { paddingTopLeft: [pad, pad], paddingBottomRight: [pad, sheetH() + pad], maxZoom: 15 };
+    if (reduced()) map.fitBounds(b, o); else { o.duration = 0.8; map.flyToBounds(b, o); }
+  }
+  var land = LAND ? L.geoJSON(LAND, { pane: "land", style: { className: "land", weight: 1, fillOpacity: 1, opacity: 1 }, interactive: false, attribution: phone.matches ? "© OpenStreetMap, DataMeet" : "© OpenStreetMap contributors, DataMeet" }).addTo(map) : null;
+  var places = L.layerGroup();
+  [["Colaba", 18.915, 72.823], ["Dadar", 19.021, 72.843], ["Bandra", 19.058, 72.84], ["Andheri", 19.12, 72.85], ["Goregaon", 19.165, 72.85],
+   ["Borivali", 19.235, 72.855], ["Mira Road", 19.285, 72.87], ["Powai", 19.12, 72.905], ["Chembur", 19.06, 72.9], ["Mulund", 19.172, 72.955],
+   ["Thane", 19.2, 72.97], ["Airoli", 19.155, 73.0], ["Vashi", 19.075, 72.998], ["Nerul", 19.033, 73.02], ["Kharghar", 19.045, 73.068],
+   ["Panvel", 18.99, 73.115], ["Dombivli", 19.2, 73.09], ["Kalyan", 19.243, 73.13]].forEach(function (p) {
+    places.addLayer(L.marker([p[1], p[2]], { interactive: false, keyboard: false, icon: L.divIcon({ className: "place", html: p[0], iconSize: null }) }));
+  });
+  var tilesOn = false;
+  function syncPlaces() { var show = !tilesOn && map.getZoom() >= 11; if (show !== map.hasLayer(places)) show ? places.addTo(map) : map.removeLayer(places); }
+  map.on("zoomend", syncPlaces);
+  function useTiles() {
+    var tl = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 19, attribution: phone.matches ? "© OpenStreetMap" : "© OpenStreetMap contributors" });
+    var ok = false, bad = 0;
+    tl.on("tileload", function () { if (!ok) { ok = true; tilesOn = true; if (land) map.removeLayer(land); syncPlaces(); } });
+    tl.on("tileerror", function () { if (!ok && ++bad > 3) map.removeLayer(tl); });
+    tl.addTo(map);
+  }
+  (function probe() {
+    var done = false, img = new Image();
+    var timer = setTimeout(function () { done = true; }, 5000);
+    img.onload = function () { if (!done) { done = true; clearTimeout(timer); useTiles(); } };
+    img.onerror = function () { done = true; clearTimeout(timer); };
+    img.src = "https://tile.openstreetmap.org/10/719/456.png";
+  })();
+
+  /* pins; pins sharing a spot are spread a little so each can be tapped. An invisible finger-sized circle takes the tap */
+  var spots = {};
+  PUJAS.forEach(function (p) { var k = p.lat.toFixed(4) + "," + p.lng.toFixed(4); (spots[k] = spots[k] || []).push(p); });
+  Object.keys(spots).forEach(function (k) {
+    var g = spots[k];
+    g.forEach(function (p, j) { var a = 2 * Math.PI * j / g.length, r = g.length > 1 ? 0.0003 : 0; p.y = p.lat + r * Math.sin(a); p.x = p.lng + r * Math.cos(a); });
+  });
+  var pins = L.featureGroup().addTo(map), hits = L.featureGroup().addTo(map);
+  var hitR = phone.matches ? 16 : 10;
+  var markers = PUJAS.map(function (p) {
+    var dot = L.circleMarker([p.y, p.x], { radius: p.conf === "area" ? 5.5 : 6.5, className: p.conf === "area" ? "pin pin-approx" : "pin", fillOpacity: 1, opacity: 1, weight: 2, interactive: false });
+    var hit = L.circleMarker([p.y, p.x], { radius: hitR, className: "hit", stroke: false, fill: true, fillColor: "#000", fillOpacity: 0, bubblingMouseEvents: false });
+    if (!phone.matches) hit.bindTooltip(esc(p.name), { direction: "top", offset: [0, -6], className: "name-tip" });
+    hit.on("click", function () {
+      if (state.picking) { setMe(p.lat, p.lng, 0, "picked"); return; }
+      hit.closeTooltip();
+      openRow(p.i, { fromMap: true });
+    });
+    dot.hit = hit;
+    return dot;
+  });
+  var selMarker = null, meMarker = null, meAcc = null;
+
+  /* ---------- list ---------- */
+  var shown = [];
+  function matches(p) {
+    if (state.area !== "all" && p.region !== state.area) return false;
+    var q = state.q.trim().toLowerCase();
+    if (!q) return true;
+    var n = q.replace(/^#/, "").replace(/[০-৯]/g, function (d) { return BN_DIGITS.indexOf(d); });
+    if (/^\d{1,3}$/.test(n)) return p.n.indexOf(+n) !== -1;
+    var hay = (p.name + " " + p.venue + " " + p.area + " " + p.region + " " + (AREA_BN[p.region] || "")).toLowerCase();
+    return q.split(/\s+/).every(function (w) { return hay.indexOf(w) !== -1; });
+  }
+  function dirUrl(p) {
+    var u = "https://www.google.com/maps/dir/?api=1&destination=" + p.lat + "," + p.lng;
+    if (state.me && state.me.source !== "gps") u += "&origin=" + state.me.lat.toFixed(6) + "," + state.me.lng.toFixed(6);
+    return u;
+  }
+  function rowHtml(p) {
+    var open = state.open === p.i;
+    var dist = state.me ? '<span class="row-dist">' + fmtKm(p.d) + "</span>" : "<span></span>";
+    var hasArea = p.venue.toLowerCase().indexOf(p.area.toLowerCase()) !== -1;
+    var where = esc(p.venue === "Venue not found" ? p.area : (hasArea ? p.venue : p.venue + ", " + p.area));
+    var html = '<li class="row' + (open ? " is-open" : "") + '" data-i="' + p.i + '">' +
+      '<button class="row-btn" type="button" aria-expanded="' + open + '"><span class="row-name">' + esc(p.name) + "</span>" + dist +
+      '<span class="row-where">' + where + (p.conf === "area" ? ' <span class="approx">(' + t("approx") + ")</span>" : "") + "</span></button>";
+    if (open) {
+      var tip = LANG === "bn" ? p.tip_bn : p.tip_en;
+      html += '<div class="row-more">' + (tip ? "<p>" + esc(tip) + "</p>" : "") +
+        '<div class="acts"><a class="go" href="' + dirUrl(p) + '" target="_blank" rel="noopener">' + ICON.go + t("dirs") + "</a>" +
+        '<button class="copy" type="button" data-copy>' + ICON.copy + t("copy") + "</button></div></div>";
+    }
+    return html + "</li>";
+  }
+  function render() {
+    PUJAS.forEach(function (p) { p.d = state.me ? km(state.me, p) : 0; });
+    shown = PUJAS.filter(matches);
+    shown.sort(state.me ? function (a, b) { return a.d - b.d; } : function (a, b) { return (a.n[0] || 999) - (b.n[0] || 999); });
+    PUJAS.forEach(function (p) {
+      var on = shown.indexOf(p) !== -1, m = markers[p.i];
+      if (on !== pins.hasLayer(m)) { if (on) { pins.addLayer(m); hits.addLayer(m.hit); } else { pins.removeLayer(m); hits.removeLayer(m.hit); } }
+    });
+    var from = !state.me ? "" : state.me.source === "gps" ? t("fromGps") : state.me.source === "home" ? t("fromHome") : t("fromPick");
+    var where = state.area === "all" ? "" : ", " + esc(areaName(state.area));
+    var head = "<span><strong>" + t("count", shown.length) + "</strong>" + where + (from ? ", " + from : "") + "</span>";
+    if (!state.me || state.me.source === "home") head += '<button type="button" data-locate>' + t("useLoc") + "</button>";
+    $("listHead").innerHTML = head;
+    $("rows").innerHTML = shown.length ? shown.map(rowHtml).join("") : '<li class="empty">' + ALPONA + "<span>" + esc(t("empty", state.q)) + "</span></li>";
+    if (state.open !== null && shown.indexOf(PUJAS[state.open]) === -1) closeRow();
+    if (state.route) drawRoute(); else updateDeck();
+  }
+  function openRow(i, o) {
+    o = o || {};
+    if (state.open === i && !o.fromMap) { closeRow(); render(); return; }
+    state.open = i;
+    render();
+    var p = PUJAS[i];
+    if (selMarker) map.removeLayer(selMarker);
+    selMarker = L.marker([p.y, p.x], { zIndexOffset: 800, keyboard: false, icon: L.divIcon({ className: "sel-icon", html: ALPONA, iconSize: [34, 34], iconAnchor: [17, 17] }) })
+      .bindTooltip(esc(p.name), { permanent: true, direction: "top", offset: [0, -16], className: "name-tip" }).addTo(map);
+    selMarker.on("click", function () { closeRow(); render(); });
+    if (o.fromMap) {
+      if (sheetAt === "peek") setSheet("half");
+      setTimeout(function () { scrollToRow(i); }, 240);
+    } else {
+      if (sheetAt === "full") setSheet("half");
+      setTimeout(function () { showPoint([p.y, p.x], Math.max(map.getZoom(), 15)); }, sheetAt === "half" ? 240 : 0);
+      if (phone.matches) scrollToRow(i);
+    }
+  }
+  function scrollToRow(i) {
+    var row = document.querySelector('.row[data-i="' + i + '"]'), wrap = $("listWrap");
+    if (!row) return;
+    var top = wrap.scrollTop + row.getBoundingClientRect().top - wrap.getBoundingClientRect().top - $("listHead").offsetHeight;
+    wrap.scrollTo({ top: Math.max(0, top), behavior: reduced() ? "auto" : "smooth" });
+  }
+  function closeRow() { state.open = null; if (selMarker) { map.removeLayer(selMarker); selMarker = null; } }
+
+  /* ---------- deck.gl: soft glow where pujos cluster, arcs to the nearest pujos, and a route trail on request.
+     Loaded after the map is ready so the page stays quick; the map works the same without it ---------- */
+  var deckLayer = null, deckOK = false, routeData = null, raf = 0;
+  function loadScript(src) {
+    return new Promise(function (res, rej) { var s = document.createElement("script"); s.src = src; s.async = true; s.onload = res; s.onerror = rej; document.head.appendChild(s); });
+  }
+  function startDeck() {
+    if (!window.WebGL2RenderingContext || !window.Promise) return;
+    loadScript("https://cdn.jsdelivr.net/npm/deck.gl@9.4.0/dist.min.js")
+      .then(function () { return loadScript("https://cdn.jsdelivr.net/npm/deck.gl-leaflet@1.3.1/dist/deck.gl-leaflet.umd.min.js"); })
+      .then(function () {
+        deckLayer = new DeckGlLeaflet.LeafletLayer({ layers: [] });
+        deckLayer.options = L.extend({}, deckLayer.options, { pane: "glow" });
+        map.addLayer(deckLayer);
+        deckOK = true;
+        if (state.route) drawRoute(); else updateDeck();
+      })
+      .catch(function () { deckOK = false; });
+  }
+  function deckColors() {
+    var dark = isDark();
+    return {
+      alta: dark ? [234, 74, 81] : [176, 21, 31],
+      glow: dark ? [[234, 74, 81, 0], [234, 74, 81, 50], [238, 96, 82, 90], [242, 128, 86, 125], [246, 160, 92, 155], [250, 190, 104, 180]]
+                 : [[176, 21, 31, 0], [176, 21, 31, 22], [186, 36, 38, 45], [198, 54, 46, 70], [208, 76, 56, 92], [218, 98, 66, 110]],
+      glowOpacity: dark ? 0.6 : 0.5
+    };
+  }
+  var baseLayers = [];
+  function pushLayers(t0) {
+    if (!deckOK || !deckLayer) return;
+    var layers = baseLayers;
+    if (state.route && routeData && !reduced()) layers = baseLayers.concat(new deck.TripsLayer({
+      id: "route-trail", data: [routeData], getPath: function (d) { return d.path; }, getTimestamps: function (d) { return d.times; },
+      getColor: deckColors().alta, widthMinPixels: 5, capRounded: true, jointRounded: true, fadeTrail: true,
+      trailLength: routeData.total * 0.4, currentTime: t0 || 0, updateTriggers: { getColor: isDark() }
+    }));
+    deckLayer.setProps({ layers: layers });
+  }
+  function updateDeck(t0) {
+    if (!deckOK || !deckLayer) return;
+    var c = deckColors(), dark = isDark(), layers = [];
+    layers.push(new deck.HeatmapLayer({
+      id: "glow", data: shown, getPosition: function (p) { return [p.x, p.y]; }, getWeight: 1,
+      radiusPixels: 55, intensity: 1, threshold: 0.05, colorRange: c.glow, opacity: c.glowOpacity
+    }));
+    if (state.me && !state.route) {
+      var o = [state.me.lng, state.me.lat];
+      layers.push(new deck.ArcLayer({
+        id: "arcs", data: shown.slice(0, 8), getSourcePosition: function () { return o; }, getTargetPosition: function (p) { return [p.x, p.y]; },
+        getSourceColor: c.alta.concat([dark ? 150 : 130]), getTargetColor: c.alta.concat([dark ? 50 : 35]), getWidth: 1.5, widthUnits: "pixels",
+        getHeight: 0.22, getTilt: 90, updateTriggers: { getSourcePosition: o.join(","), getSourceColor: dark, getTargetColor: dark }
+      }));
+    }
+    if (state.route && routeData) layers.push(new deck.PathLayer({
+      id: "route-base", data: [routeData], getPath: function (d) { return d.path; }, getColor: c.alta.concat([reduced() ? 170 : 70]),
+      widthUnits: "pixels", getWidth: 3, capRounded: true, jointRounded: true, updateTriggers: { getColor: dark }
+    }));
+    baseLayers = layers;
+    pushLayers(t0);
+  }
+
+  /* ---------- pandal-hopping route: nearest pujos in walking order from where you are ---------- */
+  var routeExtras = L.layerGroup().addTo(map), routeFallback = null;
+  /* the shortest walk from where you are through 4 of the 8 nearest pujos */
+  function buildRoute() {
+    var o = { lat: state.me.lat, lng: state.me.lng }, pool = shown.slice(0, 8), need = Math.min(4, pool.length), best = null;
+    (function walk(done, d, prev) {
+      if (best && d >= best.total) return;
+      if (done.length === need) { best = { stops: done, total: d }; return; }
+      pool.forEach(function (p) { if (done.indexOf(p) === -1) walk(done.concat(p), d + km(prev, p), p); });
+    })([], 0, o);
+    var path = [[o.lng, o.lat]], times = [0], acc = 0, prev = o;
+    best.stops.forEach(function (p) { acc += km(prev, p); path.push([p.x, p.y]); times.push(acc); prev = p; });
+    best.path = path; best.times = times;
+    return best;
+  }
+  function routeUrl(r) {
+    var s = r.stops, u = "https://www.google.com/maps/dir/?api=1&destination=" + s[s.length - 1].lat + "," + s[s.length - 1].lng;
+    if (state.me.source !== "gps") u += "&origin=" + state.me.lat.toFixed(6) + "," + state.me.lng.toFixed(6);
+    if (s.length > 1) u += "&waypoints=" + s.slice(0, -1).map(function (p) { return p.lat + "," + p.lng; }).join("%7C");
+    return u;
+  }
+  function drawRoute() {
+    cancelAnimationFrame(raf);
+    routeExtras.clearLayers();
+    if (routeFallback) { map.removeLayer(routeFallback); routeFallback = null; }
+    if (!state.route || !state.me || !shown.length) { routeData = null; $("routeNote").hidden = true; updateDeck(); return; }
+    routeData = buildRoute();
+    routeData.stops.forEach(function (s, k) {
+      routeExtras.addLayer(L.marker([s.y, s.x], { interactive: false, keyboard: false, zIndexOffset: 700,
+        icon: L.divIcon({ className: "stop-num", html: "<span>" + num(k + 1) + "</span>", iconSize: [22, 22], iconAnchor: [-4, 26] }) }));
+    });
+    if (!deckOK) routeFallback = L.polyline(routeData.path.map(function (c) { return [c[1], c[0]]; }), { className: "route-line", interactive: false }).addTo(map);
+    var n = $("routeNote");
+    n.innerHTML = esc(t("route", routeData.stops.length, fmtKm(routeData.total))) + ' <a href="' + routeUrl(routeData) + '" target="_blank" rel="noopener">' + t("openGmaps") + '</a> · <button type="button" data-hide-route>' + t("hide") + "</button>";
+    n.hidden = false;
+    updateDeck(0);
+    if (deckOK && !reduced()) {
+      var start = performance.now(), loop = routeData.total * 1.4, speed = routeData.total / 3.2;
+      var tick = function (now) {
+        if (!state.route || !routeData) return;
+        pushLayers(((now - start) / 1000 * speed) % loop);
+        raf = requestAnimationFrame(tick);
+      };
+      raf = requestAnimationFrame(tick);
+    }
+  }
+  function setRoute(on) {
+    state.route = on;
+    var b = document.querySelector(".map-btns [data-route]"); if (b) b.setAttribute("aria-pressed", String(on));
+    drawRoute();
+    if (on && routeData) {
+      var b2 = L.latLngBounds(routeData.path.map(function (c) { return [c[1], c[0]]; }));
+      if (sheetAt === "full") setSheet("half");
+      setTimeout(function () { showBounds(b2, 56); }, 240);
+      $("listWrap").scrollTop = 0;
+    }
+  }
+
+  /* ---------- home: IIT Bombay. Distances count from here until you use your own location ---------- */
+  var HOME = { lat: 19.13205, lng: 72.91373 };
+  var homeMarker = L.marker([HOME.lat, HOME.lng], { zIndexOffset: 900, title: "IIT Bombay", alt: "IIT Bombay",
+      icon: L.divIcon({ className: "home-icon", html: "<span>" + ICON.house + "</span>", iconSize: [30, 30], iconAnchor: [15, 15] }) })
+    .bindTooltip("IIT Bombay", { permanent: true, direction: "top", offset: [0, -16], className: "name-tip home-tip" })
+    .addTo(map);
+  homeMarker.on("click", function () { if (state.picking) { setMe(HOME.lat, HOME.lng, 0, "picked"); return; } goHome(); });
+
+  function notice(html) { var n = $("notice"); if (html) { n.innerHTML = html; n.hidden = false; } else n.hidden = true; }
+  function stopWatch() { if (state.watchId !== null) { try { navigator.geolocation.clearWatch(state.watchId); } catch (e) {} state.watchId = null; } $("nearBtn").classList.remove("busy"); }
+  function nearView(ll) { var b = L.latLngBounds([ll]); shown.slice(0, 6).forEach(function (p) { b.extend([p.y, p.x]); }); showBounds(b); }
+  function setMe(lat, lng, acc, source, fit) {
+    var prev = state.me;
+    if (prev && source === "gps" && prev.source === "gps" && km(prev, { lat: lat, lng: lng }) < 0.03) { prev.acc = acc; if (meAcc && acc > 20) meAcc.setRadius(acc); return; }
+    if (source !== "gps") stopWatch(); else $("nearBtn").classList.remove("busy");
+    state.me = { lat: lat, lng: lng, acc: acc, source: source };
+    setPicking(false);
+    var mine = source !== "home";
+    $("nearBtn").setAttribute("aria-pressed", String(mine));
+    var ll = [lat, lng];
+    if (mine) {
+      if (!meMarker) meMarker = L.marker(ll, { interactive: false, keyboard: false, zIndexOffset: 1000, icon: L.divIcon({ className: "me-icon", html: "<span></span>", iconSize: [20, 20], iconAnchor: [10, 10] }) }).addTo(map);
+      else meMarker.setLatLng(ll);
+      if (acc > 20) { if (!meAcc) meAcc = L.circle(ll, { radius: acc, className: "me-acc", interactive: false }).addTo(map); else meAcc.setLatLng(ll).setRadius(acc); }
+      else if (meAcc) { map.removeLayer(meAcc); meAcc = null; }
+    } else {
+      if (meMarker) { map.removeLayer(meMarker); meMarker = null; }
+      if (meAcc) { map.removeLayer(meAcc); meAcc = null; }
+    }
+    notice(source === "picked" ? t("picked") : "");
+    render();
+    if (fit || (source === "gps" && (!prev || prev.source !== "gps"))) {
+      setSheet("half"); $("listWrap").scrollTop = 0;
+      setTimeout(function () { nearView(ll); }, 240);
+    }
+  }
+  function goHome() {
+    if (state.me && state.me.source === "gps") { showPoint([HOME.lat, HOME.lng], 14); return; }
+    setMe(HOME.lat, HOME.lng, 0, "home", true);
+  }
+  function clearMe() { stopWatch(); setMe(HOME.lat, HOME.lng, 0, "home", false); }
+  function setPicking(on) {
+    state.picking = on;
+    document.body.classList.toggle("picking", on);
+    if (on) notice(t("tapMap") + ' <button type="button" data-cancel>' + t("cancel") + "</button>");
+  }
+  function locate() {
+    if (!("geolocation" in navigator)) { setPicking(true); return; }
+    $("nearBtn").classList.add("busy");
+    try {
+      state.watchId = navigator.geolocation.watchPosition(function (pos) {
+        setMe(pos.coords.latitude, pos.coords.longitude, pos.coords.accuracy || 0, "gps");
+      }, function (err) {
+        if (state.me && state.me.source === "gps") return;
+        stopWatch();
+        setPicking(true);
+        notice((err && err.code === 1 ? t("locOff") : t("locNA")) + " " + t("orKeep"));
+      }, { enableHighAccuracy: true, maximumAge: 10000, timeout: 20000 });
+    } catch (e) { stopWatch(); setPicking(true); }
+  }
+  function nearToggle() {
+    if (state.picking) { setPicking(false); notice(""); return; }
+    if (state.watchId !== null || (state.me && state.me.source !== "home")) { clearMe(); return; }
+    locate();
+  }
+  map.on("click", function (e) { if (state.picking) setMe(e.latlng.lat, e.latlng.lng, 0, "picked"); });
+
+  /* map buttons: back to IIT Bombay, every pujo, and the pandal-hopping route */
+  function showAll() { showBounds(L.latLngBounds(PUJAS.filter(function (p) { return p.region !== "Palghar"; }).map(function (p) { return [p.lat, p.lng]; }))); }
+  var btnBox;
+  var Buttons = L.Control.extend({
+    options: { position: "topleft" },
+    onAdd: function () {
+      btnBox = L.DomUtil.create("div", "leaflet-bar map-btns");
+      L.DomEvent.disableClickPropagation(btnBox);
+      btnBox.addEventListener("click", function (e) {
+        var a = e.target.closest("a"); if (!a) return;
+        e.preventDefault();
+        if (a.hasAttribute("data-home")) goHome();
+        else if (a.hasAttribute("data-all")) showAll();
+        else setRoute(!state.route);
+      });
+      return btnBox;
+    }
+  });
+  new Buttons().addTo(map);
+  function paintButtons() {
+    btnBox.innerHTML = '<a href="#" role="button" data-home title="' + t("btnHome") + '" aria-label="' + t("btnHome") + '">' + ICON.house + "</a>" +
+      '<a href="#" role="button" data-all title="' + t("btnAll") + '" aria-label="' + t("btnAll") + '">' + ICON.expand + "</a>" +
+      '<a href="#" role="button" data-route aria-pressed="' + state.route + '" title="' + t("btnRoute") + '" aria-label="' + t("btnRoute") + '">' + ICON.route + "</a>";
+  }
+
+  /* ---------- language ---------- */
+  function paintToday() {
+    var d = DAYS.filter(function (x) { return x.key === today; })[0], el = $("today");
+    el.innerHTML = d ? t("today", d) : (today < DAYS[0].key ? t("before") : t("after"));
+  }
+  function paintAbout() {
+    var x = PUJAS.length - listed.length;
+    var days = DAYS.map(function (d) {
+      var c = d.key === today ? ' class="is-today"' : "";
+      return '<dt lang="bn"' + c + ">" + d.bn + "</dt><dd" + c + ">" + (LANG === "bn" ? d.dBn : d.dEn) + (d.key === today ? t("daysToday") : "") + "</dd><dd" + c + ">" + (LANG === "bn" ? d.xBn : d.xEn) + "</dd>";
+    }).join("");
+    $("aboutBody").innerHTML =
+      '<h2 id="aboutTitle"><span aria-hidden="true">' + ALPONA + "</span>" + t("aboutTitle") + "</h2>" +
+      "<p>" + t("counts", entries, listed.length, cnt.exact, cnt.venue, cnt.area) + "</p>" +
+      "<h3>" + t("howTitle") + "</h3><ul><li>" + t("howExact") + "</li><li>" + t("howVenue") + "</li><li>" + t("howArea") + "</li></ul>" +
+      "<p>" + t("notes", x) + "</p><p>" + t("layers") + "</p>" +
+      "<h3>" + t("daysTitle") + '</h3><dl class="days">' + days + "</dl>" +
+      '<p class="muted">' + t("daysSrc") + "</p>" +
+      "<h3>" + t("srcTitle") + "</h3><p>" + t("src") + "</p><p>" + t("dl") + "</p>" +
+      '<p class="muted">' + t("credit") + ' <a href="' + SITE + '" target="_blank" rel="noopener">' + t("creditName") + "</a>, " + t("iitb") + "</p>" +
+      '<button class="close" type="button" id="aboutClose">' + t("close") + "</button>";
+  }
+  function applyLang() {
+    document.documentElement.lang = LANG;
+    $("title").textContent = t("title");
+    var lb = $("langBtn"); lb.textContent = t("langBtn"); lb.setAttribute("aria-label", t("langAria")); lb.title = t("langAria");
+    lb.setAttribute("lang", LANG === "bn" ? "en" : "bn"); lb.classList.toggle("lang-bn", LANG === "en");
+    paintThemeBtn(); paintToday();
+    $("q").placeholder = t("searchPh"); $("q").setAttribute("aria-label", t("searchAria"));
+    var opts = '<option value="all">' + t("allAreas") + "</option>";
+    AREAS.forEach(function (a) {
+      var n = PUJAS.filter(function (p) { return p.region === a; }).length;
+      if (n) opts += '<option value="' + esc(a) + '"' + (state.area === a ? " selected" : "") + ">" + esc(areaName(a)) + " (" + num(n) + ")</option>";
+    });
+    $("area").innerHTML = opts; $("area").setAttribute("aria-label", t("areaAria"));
+    $("nearBtn").setAttribute("aria-label", t("near")); $("nearBtn").title = t("near");
+    $("grab").setAttribute("aria-label", sheetAt === "full" ? t("grabMap") : t("grabMore"));
+    $("sheet").setAttribute("aria-label", t("title")); $("map").setAttribute("aria-label", t("title"));
+    $("foot").innerHTML = '<p><button type="button" id="aboutBtn">' + t("footAbout") + "</button>" + t("footRest") + "</p>" +
+      '<p class="credit">' + t("credit") + ' <a href="' + SITE + '" target="_blank" rel="noopener">' + t("creditName") + "</a>, " + t("iitb") + "</p>";
+    map.attributionControl.setPrefix(t("credit") + ' <a href="' + SITE + '" target="_blank" rel="noopener">' + t("creditName") + "</a>, " + t("iitb"));
+    homeMarker.setTooltipContent(t("iitb"));
+    paintButtons(); paintAbout();
+    render();
+    if (state.open !== null && phone.matches) scrollToRow(state.open);
+    if (state.picking) setPicking(true); else if (state.me && state.me.source === "picked") notice(t("picked"));
+  }
+  $("langBtn").addEventListener("click", function () {
+    LANG = LANG === "bn" ? "en" : "bn";
+    try { localStorage.setItem("pujo-lang", LANG); } catch (e) {}
+    applyLang();
+  });
+
+  /* ---------- events ---------- */
+  $("nearBtn").addEventListener("click", nearToggle);
+  $("listHead").addEventListener("click", function (e) { if (e.target.closest("[data-locate]")) locate(); });
+  $("notice").addEventListener("click", function (e) {
+    if (e.target.closest("[data-cancel]")) { setPicking(false); notice(""); }
+    if (e.target.closest("[data-pick]")) setPicking(true);
+  });
+  $("routeNote").addEventListener("click", function (e) { if (e.target.closest("[data-hide-route]")) setRoute(false); });
+  $("q").addEventListener("input", function (e) { state.q = e.target.value; render(); $("listWrap").scrollTop = 0; });
+  $("q").addEventListener("focus", function () { if (sheetAt !== "full") setSheet("full"); });
+  $("q").addEventListener("keydown", function (e) { if (e.key === "Enter") { e.target.blur(); setSheet("half"); fitShown(); } });
+  $("area").addEventListener("change", function (e) { state.area = e.target.value; closeRow(); render(); $("listWrap").scrollTop = 0; fitShown(); });
+  $("rows").addEventListener("click", function (e) {
+    var row = e.target.closest(".row"); if (!row) return;
+    var i = +row.getAttribute("data-i");
+    if (e.target.closest("[data-copy]")) {
+      var p = PUJAS[i], txt = p.lat.toFixed(6) + ", " + p.lng.toFixed(6);
+      var fail = function () { toast(t("copyFail") + " <b>" + txt + "</b>", 6000); };
+      try { navigator.clipboard.writeText(txt).then(function () { toast(t("copied") + " " + txt); }, fail); } catch (err) { fail(); }
+      return;
+    }
+    if (e.target.closest(".row-btn")) openRow(i);
+  });
+  var dlg = $("about");
+  $("foot").addEventListener("click", function (e) { if (e.target.closest("#aboutBtn")) { if (dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", ""); } });
+  dlg.addEventListener("click", function (e) { if (e.target === dlg || e.target.closest("#aboutClose")) { dlg.close ? dlg.close() : dlg.removeAttribute("open"); } });
+
+  function fitShown() {
+    var pts = shown.filter(function (p) { return state.area === "Palghar" || p.region !== "Palghar" || shown.length === 1; }).map(function (p) { return [p.y, p.x]; });
+    if (state.me && state.me.source !== "home") pts.push([state.me.lat, state.me.lng]);
+    if (!pts.length) return;
+    if (pts.length === 1) showPoint(pts[0], 15); else showBounds(L.latLngBounds(pts));
+  }
+
+  /* ---------- start: open around IIT Bombay with the nearest pujos in view ---------- */
+  state.me = { lat: HOME.lat, lng: HOME.lng, acc: 0, source: "home" };
+  applyLang();
+  layout();
+  var start = L.latLngBounds([[HOME.lat, HOME.lng]]);
+  shown.slice(0, 8).forEach(function (p) { start.extend([p.y, p.x]); });
+  map.fitBounds(start, { paddingTopLeft: [28, 28], paddingBottomRight: [28, sheetH() + 28], maxZoom: 14 });
+  syncPlaces();
+  var rt;
+  window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(layout, 120); });
+  try { phone.addEventListener("change", function () { location.reload(); }); } catch (e) {}
+  if (document.readyState === "complete") setTimeout(startDeck, 600);
+  else window.addEventListener("load", function () { setTimeout(startDeck, 600); });
+})();
+</script>
+
+</body>
+</html>

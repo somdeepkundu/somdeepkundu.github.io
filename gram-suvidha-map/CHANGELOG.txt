@@ -1,0 +1,27 @@
+Gram Suvidha Map changelog
+
+1.2.1 (2026-11-05)
+- Village names on/off button on the map. Names appear for villages in view from zoom 12, the selected
+  village in bold, up to 350 at a time (largest first). The choice is remembered in this browser.
+- OSM amenity markers now always draw on top of village colours, outlines and names.
+
+1.2.0 (2026-11-05)
+- Village boundaries from the viewer's own file: drop india_villages_2021_22states.geojson.zip (loni-private-data
+  release) and a worker streams it line by line into IndexedDB, split by district. Nothing is uploaded or published.
+- Search finds your villages by name (village, taluka, district); a tap on the map selects the village under it.
+- Amenities are counted inside the actual village boundary, with services up to 3 km outside shown as "nearby".
+- Village facts (population, households, area, density, household size) and a District tab with seaborn-style
+  interactive charts: population histogram + KDE linked to the map, population vs area scatter, and a district
+  scan of basic services (share of villages with each service mapped). Villages coloured by metric with a legend.
+- District villages CSV export, with scan results when available. fflate 0.8.2 vendored (MIT).
+
+1.1.0 (2026-11-02)
+- Restructured to the house pattern: assets/css, assets/js, vendored Leaflet 1.9.4, self-hosted fonts (OFL), strict CSP.
+- Installable and offline: service worker caches the app, map tiles (up to 3000) and the last 60 OSM answers.
+- Overpass queries use GET so they can be cached; a newer search can no longer be overwritten by a slow older one.
+- CSV export neutralises spreadsheet formulas; every OSM string is escaped or set as text.
+- Link preview (Open Graph card), app icons, Auto/Light/Dark theme toggle, 16 px text on phones.
+
+1.0.0 (2026-11-02)
+- First release: village search (Nominatim), amenities from Overpass by village boundary or radius,
+  basic-services scorecard, 11 layers, list by distance, GeoJSON/CSV export, shareable links.
