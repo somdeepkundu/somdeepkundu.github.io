@@ -10,6 +10,18 @@ A selection of my geospatial and AI projects. Click any card to explore.
 <div class="grid" markdown>
 
 <div class="project-card" markdown>
+![](../assets/images/road-check-card.png)
+
+**[Road Check](road-check.md)**
+
+Ride a road and see how rough it is. The phone's shake becomes a score for every 20 m, with sharp bumps and a coloured map. Validated on a bench test and a first ride; the ZIP comes with a brief for an LLM to look up road types and draw a report poster. Works offline.
+
+`PWA` `Accelerometer` `GPS` `Road roughness` `Leaflet` `LLM-ready`
+
+[View Project →](road-check.md){ .md-button } [Launch App →](https://somdeepkundu.github.io/geo-dev-skills-bysomdeep/apps/road-check/){ .md-button }
+</div>
+
+<div class="project-card" markdown>
 ![](../assets/images/epidemic-sim-card.jpg)
 
 **[Mumbai Epidemic Simulator](epidemic-sim.md)**

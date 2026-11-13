@@ -71,6 +71,7 @@ nav:
   - Home: index.md
   - Projects:
     - "All Projects": projects/index.md
+    - "Road Check": projects/road-check.md
     - "Mumbai Durga Pujo Map": projects/pujo-map.md
     - "CropView": projects/cropview.md
     - "FloodView": projects/floodview.md
