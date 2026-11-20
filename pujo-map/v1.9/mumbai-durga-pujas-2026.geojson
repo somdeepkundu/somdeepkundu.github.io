@@ -1,0 +1,2765 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "1",
+    "name": "Powai Bengali Welfare Association (PBWA)",
+    "venue": "MCGM Ground opp. Jal Vayu Vihar, next to BEST bus depot, Hiranandani Gardens",
+    "locality": "Powai",
+    "region": "Eastern Suburbs",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "",
+    "on_your_list": true,
+    "instagram": "https://www.instagram.com/powaibengaliwelfareassociation/",
+    "facebook": "https://www.facebook.com/pbwaofficial/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.905346,
+     19.118234
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "2, 89",
+    "name": "Chembur Durga Puja Association (CDPA)",
+    "venue": "RCF Ground near Ashish Cinema, Mahul Road, Chembur",
+    "locality": "Chembur",
+    "region": "Eastern Suburbs",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "Pin is the puja's own Google Maps listing. 2024–25 coverage names RCF Ground; your list also mentions Angan/Chandan Lawns on Sion–Trombay Road, an older venue.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/officialcdpa/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.896491,
+     19.039148
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "3",
+    "name": "Ramakrishna Math & Mission",
+    "venue": "Ramakrishna Mission, 12th Road, Khar West",
+    "locality": "Khar West",
+    "region": "Western Suburbs",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "Traditional puja with Kumari Puja on Ashtami.",
+    "on_your_list": true,
+    "instagram": "https://www.instagram.com/mumbairkm/",
+    "facebook": null,
+    "website": "https://belurmath.org/ramakrishna-math-and-ramakrishna-mission-mumbai/"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.834909,
+     19.07485
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "4",
+    "name": "North Bombay Sarbojanin Durga Puja Samity",
+    "venue": "SNDT University Ground, Juhu Tara Road, Daulat Nagar",
+    "locality": "Santacruz West / Juhu",
+    "region": "Western Suburbs",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "The Mukherjee family puja. Moved here from Tulip Star.",
+    "on_your_list": true,
+    "instagram": "https://www.instagram.com/northbombaydurgapuja/",
+    "facebook": "https://www.facebook.com/NBDurgapuja/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.832425,
+     19.08627
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "5",
+    "name": "Bengal Club Durgotsab",
+    "venue": "Bengal Club, Veer Savarkar Marg, Shivaji Park",
+    "locality": "Dadar West",
+    "region": "South & Central Mumbai",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/BengalClub1922/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.837487,
+     19.028127
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "6",
+    "name": "Lokhandwala Durgotsav",
+    "venue": "Maharana Pratap Road, opp. Celebration Club, Lokhandwala Complex",
+    "locality": "Andheri West",
+    "region": "Western Suburbs",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "Organised by Abhijeet Bhattacharya and family.",
+    "on_your_list": true,
+    "instagram": "https://www.instagram.com/lokhandwaladurgotsav/",
+    "facebook": "https://www.facebook.com/lokhandwaladurgapuja/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.827265,
+     19.145924
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "7",
+    "name": "Bombay Durgabari Samiti",
+    "venue": "Mathuradas Vissanji Hall / Tejpal Hall, August Kranti Maidan",
+    "locality": "Gowalia Tank",
+    "region": "South & Central Mumbai",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "One of the oldest pujas in Mumbai.",
+    "on_your_list": true,
+    "instagram": "https://www.instagram.com/bombaydurgabarisamiti/",
+    "facebook": "https://www.facebook.com/bombaydurgabari/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.808909,
+     18.962529
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "8",
+    "name": "Malad West Sarbojanin Durgotsav",
+    "venue": "Closest match: Maitree Sarbojanin, Rajora Banquet Hall, off Link Road",
+    "locality": "Malad West",
+    "region": "Western Suburbs",
+    "pin_type": "area",
+    "pin_type_meaning": "Area only (locality/station)",
+    "note": "No listing found under this exact name. The pin is the nearest Malad West sarbojanin puja found (Maitree); it may be a different puja.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/mcamalad/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.834654,
+     19.177702
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "9",
+    "name": "Vashi Cultural Association (VCA)",
+    "venue": "Ground opp. ICL School, next to Modern College, Sector 15",
+    "locality": "Vashi",
+    "region": "Navi Mumbai",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "",
+    "on_your_list": true,
+    "instagram": "https://www.instagram.com/vca.durgotsav/",
+    "facebook": "https://www.facebook.com/VCA4everyone/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.001818,
+     19.078694
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "10",
+    "name": "Natun Palli (Shakti Samanta)",
+    "venue": "Behind Patwardhan Park, near Link Road",
+    "locality": "Bandra West",
+    "region": "Western Suburbs",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "",
+    "on_your_list": true,
+    "instagram": "https://www.instagram.com/bandradurgapujansdc/",
+    "facebook": "https://www.facebook.com/BandraDurgaPuja/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.833489,
+     19.064627
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "11",
+    "name": "Thakur Village Bengali Association (TVBA)",
+    "venue": "Evershine Club Ground, Thakur Village",
+    "locality": "Kandivali East",
+    "region": "Western Suburbs",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "2025 coverage puts the puja at Evershine Club. The association's own pin is on Ram Singh Road (19.2037, 72.8762).",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.875818,
+     19.211379
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "12",
+    "name": "Durga Puja Thane",
+    "venue": "No organiser or venue given in the list",
+    "locality": "Thane",
+    "region": "Thane",
+    "pin_type": "area",
+    "pin_type_meaning": "Area only (locality/station)",
+    "note": "Listed without details. The pin marks Thane station only.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.975468,
+     19.186459
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "13, 25",
+    "name": "Kalbadevi Sarbojanin Durga Puja Committee",
+    "venue": "Madhav Baug, C.P. Tank Road, Charni Road East",
+    "locality": "Bhuleshwar / Kalbadevi",
+    "region": "South & Central Mumbai",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "Venue confirmed in 2026 listings. Entries #13 and #25 are the same puja.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.826333,
+     18.955426
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "14",
+    "name": "Lodha Splendora Durga Puja",
+    "venue": "Lodha Splendora township, Ghodbunder Road, Bhayandarpada",
+    "locality": "Thane West",
+    "region": "Thane",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "Housing-society puja; the pin is the township.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.955734,
+     19.285703
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "15",
+    "name": "Beverly Park Socio & Cultural Organisation",
+    "venue": "Beverly Park",
+    "locality": "Mira Road East",
+    "region": "Mira–Bhayandar",
+    "pin_type": "area",
+    "pin_type_meaning": "Area only (locality/station)",
+    "note": "Exact venue not found; pin is the Beverly Park locality.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.871486,
+     19.293624
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "16, 110",
+    "name": "Koparkhairane Bengali Association",
+    "venue": "Shetkari Samaj Hall, Sector 4A, near railway station",
+    "locality": "Koparkhairane",
+    "region": "Navi Mumbai",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "Visitors confirm a yearly Bengali Durga Puja in this hall. Entries #16 and #110 are the same.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.009541,
+     19.105502
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "17",
+    "name": "Bengali Welfare Association, Mira Road (Amader Committee)",
+    "venue": "Ground at Archies Lane, opp. Cosmopolitan School, Sheetal Nagar",
+    "locality": "Mira Road East",
+    "region": "Mira–Bhayandar",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "One of the oldest pujas in Mira Road.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/bwamirard/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.864818,
+     19.281827
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "18",
+    "name": "Spandan Powai Sharadotsav",
+    "venue": "JVLR–Lake Boulevard junction, Hiranandani Gardens",
+    "locality": "Powai",
+    "region": "Eastern Suburbs",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "",
+    "on_your_list": true,
+    "instagram": "https://www.instagram.com/spandanmumbai/",
+    "facebook": null,
+    "website": "https://www.spandanmumbai.org/"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.907309,
+     19.12034
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "19, 52",
+    "name": "Matribhoomi Sarvajanin Durga Puja, Bhoomi Park",
+    "venue": "BMC Ground, Bhoomi Park Phase 2 Road, Jankalyan Nagar",
+    "locality": "Malad West (Kandivali border)",
+    "region": "Western Suburbs",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "Entries #19 (Bhoomi Park) and #52 (Matribhoomi) are the same puja.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.82082,
+     19.202515
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "20",
+    "name": "HRCWA Sarvajanin Durgotsav",
+    "venue": "HRCWA Ground, Bhoomi Valley, Thakur Village hillside",
+    "locality": "Kandivali East",
+    "region": "Western Suburbs",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/1099108206851509/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.879988,
+     19.207019
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "21",
+    "name": "Kallol Durga Puja",
+    "venue": "Kallol Kali Mandir hall, Swami Ayyappa Temple Marg, Bangur Nagar",
+    "locality": "Goregaon West",
+    "region": "Western Suburbs",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.831349,
+     19.165867
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "22, 112",
+    "name": "Navi Mumbai Bengali Association (NMBA)",
+    "venue": "CIDCO Exhibition Centre, Hall 1, Sector 30",
+    "locality": "Vashi",
+    "region": "Navi Mumbai",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "2025 coverage confirms CIDCO Exhibition Centre. The association's office is at Sector 6. Entries #22 and #112 are the same.",
+    "on_your_list": true,
+    "instagram": "https://www.instagram.com/nmba.vashi/",
+    "facebook": "https://www.facebook.com/navimumbaibengaliassociation/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.993469,
+     19.067912
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "23",
+    "name": "East Parel Sarbojanin Durga Puja",
+    "venue": "Lal Maidan, J. Merwanji Street",
+    "locality": "Parel East",
+    "region": "South & Central Mumbai",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.839409,
+     19.00105
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "24, 70",
+    "name": "Parel Sarbojanin Durgotsab Committee",
+    "venue": "Nare Park, opp. railway workshop, Dr B.A. Road",
+    "locality": "Parel",
+    "region": "South & Central Mumbai",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "Entries #24 (Nare Park) and #70 (opp. railway workshop) point to the same ground.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.838809,
+     18.999668
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "26",
+    "name": "Durga Puja at Fidai Baug",
+    "venue": "Fidai Baug, opp. Andheri station (West)",
+    "locality": "Andheri West",
+    "region": "Western Suburbs",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.842963,
+     19.118142
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "27, 91",
+    "name": "Banga Maitri Sansad",
+    "venue": "Senior Railway Institute, Railway Colony",
+    "locality": "Santacruz East",
+    "region": "Western Suburbs",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "One of the older pujas in Mumbai. Entries #27 and #91 are the same.",
+    "on_your_list": true,
+    "instagram": "https://www.instagram.com/bangamaitrisansad/",
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.842433,
+     19.083734
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "28, 107",
+    "name": "Seawoods Cultural Welfare Association (SWCWA)",
+    "venue": "Sheth Tandel Ground, opp. Orchid International School",
+    "locality": "Seawoods",
+    "region": "Navi Mumbai",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "Your list gives Sector 40 and Sector 38; the current pin is listed under Sector 26, close to Seawoods station.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/SWCWASeawoods/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.012719,
+     19.021604
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "29",
+    "name": "Bengali Welfare Association, Ghansoli",
+    "venue": "Ghansoli Kalibari, Sector 5",
+    "locality": "Ghansoli",
+    "region": "Navi Mumbai",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.003014,
+     19.122659
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "30, 95",
+    "name": "Juhu Durga Puja Samiti",
+    "venue": "GAC Recreation Ground, Seven Bungalows",
+    "locality": "Andheri West",
+    "region": "Western Suburbs",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "Entry #30 ('Seven bungalows') has no organiser, so it is grouped here.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/juhudurgapuja/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.82175,
+     19.128306
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "31, 119",
+    "name": "Mulund Durga Puja",
+    "venue": "Mahakavi Kalidas Natya Mandir, P.K. Road",
+    "locality": "Mulund West",
+    "region": "Eastern Suburbs",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "Entries #31 and #119 are the same venue.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/MulundDurgaPuja/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.949419,
+     19.173295
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "32, 86",
+    "name": "Bengali Association Antop Hill",
+    "venue": "Grih Kalyan Kendra community centre, Sector 7, CGS Colony",
+    "locality": "Antop Hill",
+    "region": "South & Central Mumbai",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "Google's own pin for this puja (19.0258, 72.8702) is reported wrong by visitors, so the community centre is used. Entries #32 and #86 are the same.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/antophilldurgapuja/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.870333,
+     19.029376
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "33",
+    "name": "New Bengal Club, Thane",
+    "venue": "Ground behind Upvan Lake, Upvan Lake Road",
+    "locality": "Thane West",
+    "region": "Thane",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "Shifted here in 2025.",
+    "on_your_list": true,
+    "instagram": "https://www.instagram.com/newbengalclub/",
+    "facebook": "https://www.facebook.com/newbengalclub/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.958102,
+     19.220505
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "34",
+    "name": "Bangiya Parishad, Thane",
+    "venue": "Highland Gardens Ground, Dhokali Link Road",
+    "locality": "Thane West",
+    "region": "Thane",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "Over 60 years old.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/bangiyaparishad.thane/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.983999,
+     19.223944
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "35",
+    "name": "Navodaya (Nobodoy) Durga Puja",
+    "venue": "Near Khewara Road, Manpada",
+    "locality": "Thane West",
+    "region": "Thane",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.970836,
+     19.229393
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "36",
+    "name": "Mahakali Sarbojanin Durgapuja Seva Samiti (MSDSS)",
+    "venue": "MMRDA Colony, Kranti Nagar, off Mahakali Caves Road (Poonam Nagar)",
+    "locality": "Andheri East / Jogeshwari East",
+    "region": "Western Suburbs",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/msdss/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.870965,
+     19.138679
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "37",
+    "name": "North Bombay Durgotsav, Santacruz East",
+    "venue": "Venue not found",
+    "locality": "Santacruz East",
+    "region": "Western Suburbs",
+    "pin_type": "area",
+    "pin_type_meaning": "Area only (locality/station)",
+    "note": "No listing found. The pin marks Santacruz station. It may be the same as #4 or #27.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.846905,
+     19.078981
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "38",
+    "name": "Vikhroli Bengali Association Durgotsab",
+    "venue": "MHADA Ground near Sai Baba Mandir and Triconi Park, Tagore Nagar",
+    "locality": "Vikhroli East",
+    "region": "Eastern Suburbs",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "Venue from 2026 listings; the pin is the Sai Baba Mandir next to the ground.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/VikhroliDurgapuja/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.933736,
+     19.114169
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "39",
+    "name": "Bengali Milan Samiti, Palghar",
+    "venue": "Venue not found",
+    "locality": "Palghar",
+    "region": "Palghar",
+    "pin_type": "area",
+    "pin_type_meaning": "Area only (locality/station)",
+    "note": "No listing found. The pin marks Palghar station.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.772058,
+     19.69768
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "40",
+    "name": "Kharghar Bengali Association",
+    "venue": "Venue not found",
+    "locality": "Kharghar",
+    "region": "Navi Mumbai",
+    "pin_type": "area",
+    "pin_type_meaning": "Area only (locality/station)",
+    "note": "No listing found. The pin marks Kharghar station.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.059193,
+     19.026428
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "41",
+    "name": "Aikatan Cultural Association",
+    "venue": "Country Club, Veera Desai Road",
+    "locality": "Andheri West",
+    "region": "Western Suburbs",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/AikatanCultural/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.837102,
+     19.139545
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "42",
+    "name": "Shivranjani, Versova",
+    "venue": "Venue not found",
+    "locality": "Versova / Yari Road",
+    "region": "Western Suburbs",
+    "pin_type": "area",
+    "pin_type_meaning": "Area only (locality/station)",
+    "note": "No listing found. The pin marks Yari Road, Versova.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.809676,
+     19.139251
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "43",
+    "name": "Navo Maa Durga Bengali Foundation",
+    "venue": "Bhayandarpada, off Ghodbunder Road",
+    "locality": "Thane West",
+    "region": "Thane",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.955261,
+     19.284606
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "44, 56",
+    "name": "New Dindoshi Sarbojanin Durga Pooja Mandal",
+    "venue": "New MHADA Shopping Complex, Dr Ambedkar Marg, New MHADA Colony",
+    "locality": "Goregaon East (Dindoshi)",
+    "region": "Western Suburbs",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "Entries #44 and #56 are the same.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/ndsdpm/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.882009,
+     19.17277
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "45",
+    "name": "Airoli Bengali Association",
+    "venue": "Maa Durga Mandir, Plot 112, Sector 8A, behind Vibgyor High School",
+    "locality": "Airoli",
+    "region": "Navi Mumbai",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/airolibengaliassociation/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.999113,
+     19.143513
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "46",
+    "name": "Agragami Cultural Welfare Association",
+    "venue": "Shanti Van, GCC Club Road, Poonam Gardens",
+    "locality": "Mira Road East",
+    "region": "Mira–Bhayandar",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.875153,
+     19.283409
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "47",
+    "name": "Banga Sangha (Bongo Songho)",
+    "venue": "Sweta Park, RNP Park, Neeraj Park",
+    "locality": "Bhayandar East",
+    "region": "Mira–Bhayandar",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.861011,
+     19.31404
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "48",
+    "name": "Bandhan Cultural Association",
+    "venue": "Panchmukhi Road, above Surbhi Banquet, Prem Nagar",
+    "locality": "Mira Road East",
+    "region": "Mira–Bhayandar",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.87347,
+     19.273792
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "49",
+    "name": "Matree Sangha",
+    "venue": "Sagar Complex, opp. Poonam Sagar Road, Shanti Nagar Sector 9",
+    "locality": "Mira Road East",
+    "region": "Mira–Bhayandar",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.864831,
+     19.272507
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "50, 53",
+    "name": "Kanakia Oikataan Cultural Association (KOCA)",
+    "venue": "Om Ram Sagar Phase 1, Beverly Park",
+    "locality": "Mira Road East",
+    "region": "Mira–Bhayandar",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "Entries #50 and #53 are the same.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.870889,
+     19.296724
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "51",
+    "name": "Baro Mashe Tero Parbon Foundation (BMTPF)",
+    "venue": "GRY Arcade, opp. Lodha Splendora main gate, GB Road",
+    "locality": "Thane West (Bhayandarpada)",
+    "region": "Thane",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "",
+    "on_your_list": true,
+    "instagram": "https://www.instagram.com/bmtpf/",
+    "facebook": "https://www.facebook.com/bmtpf/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.955843,
+     19.281805
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "54",
+    "name": "Ananda Utsav Cultural Association",
+    "venue": "Maheshwari Bhavan, Link Road, near Oshiwara Police Station",
+    "locality": "Oshiwara",
+    "region": "Western Suburbs",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "The organiser's Google pin is in Motilal Nagar I, Goregaon West (19.1585, 72.8426). Check which venue is current.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.830787,
+     19.149222
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "55",
+    "name": "Ulwe Bengali Welfare Trust",
+    "venue": "Raj Planet, Sector 3",
+    "locality": "Ulwe",
+    "region": "Panvel & Ulwe",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "Pin is the trust's listed address.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/UlweBengaliWelfareTrustNaviMumbai/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.025008,
+     18.98316
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "57",
+    "name": "Durga Maa Foundation",
+    "venue": "Renaissance Club, off Juhu–Versova Link Road",
+    "locality": "Four Bungalows, Versova",
+    "region": "Western Suburbs",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.822049,
+     19.123425
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "58",
+    "name": "Sanskriti Borivali Sarbojanin Durgotsav",
+    "venue": "BMC Ground (Meenatai Thackeray Udyan), Kulupwadi, beside SSRVM",
+    "locality": "Borivali East",
+    "region": "Western Suburbs",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "Running since 1953.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/borivalisanskriti/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.865704,
+     19.227737
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "59",
+    "name": "Bhandup Durgotsav Samiti",
+    "venue": "Sardar Tara Singh Hall, LBS Marg, opp. Jainam Banquets",
+    "locality": "Bhandup West",
+    "region": "Eastern Suburbs",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.938729,
+     19.154383
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "60",
+    "name": "Aamra Prabasi Charitable Trust, Nerul",
+    "venue": "Sector 27, Nerul",
+    "locality": "Nerul",
+    "region": "Navi Mumbai",
+    "pin_type": "area",
+    "pin_type_meaning": "Area only (locality/station)",
+    "note": "Justdial lists the puja venue in Nerul Sector 27; the pin is the sector centre.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.025031,
+     19.019252
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "61, 109",
+    "name": "Amra Probashi Seva Mandal",
+    "venue": "Vidhi Banquets, Sector 4A",
+    "locality": "Koparkhairane",
+    "region": "Navi Mumbai",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "Entries #61 and #109 are the same.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/AmraSobaiProbasiKKNM/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.008461,
+     19.108094
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "62",
+    "name": "Juhu Cultural Association",
+    "venue": "Vile Parle Medical Club hall, Devle Road, JVPD",
+    "locality": "Juhu",
+    "region": "Western Suburbs",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "",
+    "on_your_list": true,
+    "instagram": "https://www.instagram.com/juhuculturalassociation/",
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.827515,
+     19.116015
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "63",
+    "name": "Fulcrum Cultural Foundation",
+    "venue": "Dr Kashinath Ghanekar Natyagruha (AC hall), Hiranandani Meadows",
+    "locality": "Thane West",
+    "region": "Thane",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "Moved from Khewra Circle to this auditorium.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.970154,
+     19.228663
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "64",
+    "name": "Aamra Prabashi Durgotsav, Thane",
+    "venue": "Hiranandani Estate ground, Ghodbunder Road",
+    "locality": "Thane West",
+    "region": "Thane",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "Thane's largest puja by area.",
+    "on_your_list": true,
+    "instagram": "https://www.instagram.com/aamraprabashithane/",
+    "facebook": "https://www.facebook.com/AamraPrabashiThane/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.986815,
+     19.255593
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "65, 102",
+    "name": "Kamothe Bengali Association",
+    "venue": "Vista Avenue CHS, Sector 34",
+    "locality": "Kamothe",
+    "region": "Panvel & Ulwe",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "Entries #65 and #102 are the same.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.086179,
+     19.020585
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "66",
+    "name": "Abhinandan Durga Utsav",
+    "venue": "Venue not found",
+    "locality": "Kandivali West",
+    "region": "Western Suburbs",
+    "pin_type": "area",
+    "pin_type_meaning": "Area only (locality/station)",
+    "note": "No listing found. The pin marks Kandivali station (West).",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.849985,
+     19.20587
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "67, 76",
+    "name": "Bangiya Sanskritik Parishad, Kalyan",
+    "venue": "Venue not found",
+    "locality": "Kalyan West",
+    "region": "Kalyan–Dombivli",
+    "pin_type": "area",
+    "pin_type_meaning": "Area only (locality/station)",
+    "note": "No listing found. The pin marks Kalyan station. Entries #67 and #76 are the same.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.130773,
+     19.235565
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "68, 77",
+    "name": "Durga Seva Mandal, Kalyan",
+    "venue": "Venue not found",
+    "locality": "Kalyan",
+    "region": "Kalyan–Dombivli",
+    "pin_type": "area",
+    "pin_type_meaning": "Area only (locality/station)",
+    "note": "No listing found. The pin marks Kalyan station. Entries #68 and #77 are the same.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.130773,
+     19.235565
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "69, 100",
+    "name": "Milan Tirtha, New Panvel",
+    "venue": "Banthia School playground, Sector 18, opp. post office",
+    "locality": "New Panvel East",
+    "region": "Panvel & Ulwe",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "The club's own address is Sector 13 (18.9956, 73.1272); visitors say the puja is held at the school ground by the post office. Entries #69 and #100 are the same.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/milantirtha000/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.124025,
+     18.994446
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "71",
+    "name": "Sarvajanik Puja Mandal, Madhav Srishti",
+    "venue": "Madhav Srishti complex, Godrej Hill, Khadakpada",
+    "locality": "Kalyan West",
+    "region": "Kalyan–Dombivli",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.142747,
+     19.257319
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "72",
+    "name": "Probashee Bengali Association (PBA), Palava",
+    "venue": "Casa Rio Road, Sports Arena Gate 2, Nilje",
+    "locality": "Palava, Dombivli East",
+    "region": "Kalyan–Dombivli",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.075738,
+     19.150931
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "73",
+    "name": "Bengali Foundation Palava",
+    "venue": "Downtown parking area, Palava Downtown",
+    "locality": "Palava, Dombivli East",
+    "region": "Kalyan–Dombivli",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "Same organiser as #80, listed at two venues.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/BFPalava/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.1156,
+     19.158951
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "74",
+    "name": "Trinoyoni Social & Cultural Foundation",
+    "venue": "Vinay Nagar Road, near Pooja Park",
+    "locality": "Mira Road East",
+    "region": "Mira–Bhayandar",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.882514,
+     19.279401
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "75",
+    "name": "Anandadhara Social & Cultural Foundation",
+    "venue": "Bai Ji Lawns, near Kashigaon metro station, opp. Tata Motors",
+    "locality": "Mira Road East",
+    "region": "Mira–Bhayandar",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.881285,
+     19.278315
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "78",
+    "name": "Airoli Kalibari Association",
+    "venue": "AL-1/100, Sector 5",
+    "locality": "Airoli",
+    "region": "Navi Mumbai",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/100085395856614/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.997428,
+     19.150239
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "79",
+    "name": "Maangolik Samajik Sanstha (Kandivali West Sarbojanin)",
+    "venue": "Ganesh Chowk, RDP 8, Bander Pakhadi",
+    "locality": "Kandivali West",
+    "region": "Western Suburbs",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.834134,
+     19.215107
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "80",
+    "name": "Bengali Foundation Palava (Lakeshore Greens)",
+    "venue": "Lakeshore Greens, Palava Phase 2",
+    "locality": "Palava, Dombivli East",
+    "region": "Kalyan–Dombivli",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "Same organiser as #73, listed at two venues.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/BFPalava/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.113578,
+     19.169274
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "81",
+    "name": "Deonar Bongiya Parishad",
+    "venue": "New Mandala ground, Anushaktinagar",
+    "locality": "Anushaktinagar",
+    "region": "Eastern Suburbs",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "Visitors report the puja is inside the Anushaktinagar campus, so outside entry may be restricted.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.922469,
+     19.040258
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "82",
+    "name": "Sharad Parivar Bengali Association",
+    "venue": "MBMC Parking, Poonam Garden Road",
+    "locality": "Mira Road East",
+    "region": "Mira–Bhayandar",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.871232,
+     19.287874
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "83, 84",
+    "name": "Zaveri Bazar Sarbojanin (Nar Narayan Mandir)",
+    "venue": "Nar Narayan Mandir compound, 227 Javerbaug, Kalbadevi Road",
+    "locality": "Kalbadevi",
+    "region": "South & Central Mumbai",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "Entries #83 (Javerbaug) and #84 (Nar Narayan Temple) share this address.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.829397,
+     18.950995
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "85",
+    "name": "Durga Puja, Dariasthan Street",
+    "venue": "Dariasthan Street, near PNB",
+    "locality": "Masjid Bunder",
+    "region": "South & Central Mumbai",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "Pin is the street.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.835834,
+     18.952637
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "87",
+    "name": "Durga Puja, Sion Main Road",
+    "venue": "Venue not found",
+    "locality": "Sion East",
+    "region": "South & Central Mumbai",
+    "pin_type": "area",
+    "pin_type_meaning": "Area only (locality/station)",
+    "note": "No listing found. The pin marks Sion station.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.863262,
+     19.04651
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "88",
+    "name": "Durga Puja near GTB Nagar station",
+    "venue": "Near GTB Nagar station, Sion Koliwada",
+    "locality": "Sion East",
+    "region": "South & Central Mumbai",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "Pin is the station named in the list.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.864171,
+     19.037837
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "90",
+    "name": "Udayan",
+    "venue": "90 Feet Road, KP Compound, Jarimari",
+    "locality": "Kurla West",
+    "region": "Eastern Suburbs",
+    "pin_type": "area",
+    "pin_type_meaning": "Area only (locality/station)",
+    "note": "Pin is Jarimari; the exact compound was not found.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/share/1GekbS51Am/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.88238,
+     19.091569
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "92",
+    "name": "Oikotan Durga Puja",
+    "venue": "AAI Community Centre, New Airport Colony, Hanuman Road",
+    "locality": "Vile Parle East",
+    "region": "Western Suburbs",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.855335,
+     19.103527
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "93",
+    "name": "Juhu Scheme Sarbojanin Durga Puja",
+    "venue": "Opp. IMA ground, behind Chandan Cinema",
+    "locality": "Juhu",
+    "region": "Western Suburbs",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.827555,
+     19.115818
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "94",
+    "name": "JVPD Durgotsav",
+    "venue": "Juhu Circle, near HSBC",
+    "locality": "JVPD, Juhu",
+    "region": "Western Suburbs",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.829935,
+     19.116031
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "96",
+    "name": "Kumar Sanu's Durgotsav",
+    "venue": "Versova Welfare School Ground, Harminder Singh Road, Seven Bungalows",
+    "locality": "Versova",
+    "region": "Western Suburbs",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "10–15 minutes' walk from Versova metro.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.815779,
+     19.131549
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "97",
+    "name": "Andheri Bengal Welfare Society",
+    "venue": "Manish Nagar societies' hall, JP Road, Four Bungalows",
+    "locality": "Andheri West",
+    "region": "Western Suburbs",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.827282,
+     19.128904
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "98",
+    "name": "Unnati Welfare Association, Ulwe",
+    "venue": "Plot 69, Sector 10B, Shivaji Nagar",
+    "locality": "Ulwe",
+    "region": "Panvel & Ulwe",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.012238,
+     18.970024
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "99",
+    "name": "Kalamboli Durgotsav",
+    "venue": "Shree Kali Mata Mandir, Sector 8",
+    "locality": "Kalamboli",
+    "region": "Panvel & Ulwe",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.10122,
+     19.03057
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "101, 108",
+    "name": "Bengal Association Nerul",
+    "venue": "Plot 12, Ayyappa Temple Road, Sector 5, Dr D.Y. Patil Vidyanagar",
+    "locality": "Nerul",
+    "region": "Navi Mumbai",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "Entries #101 and #108 are the same.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/banerul1985/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.024561,
+     19.039986
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "103",
+    "name": "Bongo Sammilani Samajik Sanstha",
+    "venue": "Swaminarayan Temple, Sector 5",
+    "locality": "Kharghar",
+    "region": "Navi Mumbai",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "Parking is tight; temples across the road draw crowds too.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.058553,
+     19.034643
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "105",
+    "name": "Bengali Cultural Association, CBD Belapur",
+    "venue": "Kali Mata Mandir Road, Sector 8B (list says near YMCA, Sector 3A)",
+    "locality": "CBD Belapur",
+    "region": "Navi Mumbai",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "Pin is the association's listed address.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.044308,
+     19.034417
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "106",
+    "name": "Bengali Cultural Association, Sanpada",
+    "venue": "NMMC open ground, Sector 8",
+    "locality": "Sanpada",
+    "region": "Navi Mumbai",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.010493,
+     19.061534
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "111",
+    "name": "Maa Durga Puja Association",
+    "venue": "18 Gyan Vikas Road, Sector 19",
+    "locality": "Koparkhairane",
+    "region": "Navi Mumbai",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.001726,
+     19.105625
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "113",
+    "name": "Mumbai Asomiya Sarbojanin Durga Puja",
+    "venue": "Assam Bhavan, Pranavanandji Marg, Sector 30",
+    "locality": "Vashi",
+    "region": "Navi Mumbai",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "Assamese community puja next to Vashi station.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.997333,
+     19.06725
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "114",
+    "name": "Vithalwadi Bengali Association",
+    "venue": "Khadegolwali, Vitthalwadi",
+    "locality": "Kalyan East",
+    "region": "Kalyan–Dombivli",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.149719,
+     19.221821
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "115",
+    "name": "Kali Bari Temple, Kolsewadi",
+    "venue": "Kali Bari Temple, Shivaji Colony, Kolsewadi",
+    "locality": "Kalyan East",
+    "region": "Kalyan–Dombivli",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.138984,
+     19.229503
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "116",
+    "name": "Kalyan Bengali Cultural Association",
+    "venue": "Senior Railway Institute Hall, Valdhuni",
+    "locality": "Kalyan",
+    "region": "Kalyan–Dombivli",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/kalyanbengalculturalassociation/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.138074,
+     19.237279
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "117",
+    "name": "Regency Estate Durga Puja",
+    "venue": "Regency Estate, Dnyaneshwar Nagar",
+    "locality": "Dombivli East",
+    "region": "Kalyan–Dombivli",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "Housing-complex puja; the pin is the estate.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.10945,
+     19.199354
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "118",
+    "name": "Kanjurmarg Durga Puja",
+    "venue": "Naval Civilian Housing Colony ground, LBS Marg, near Huma Adlabs",
+    "locality": "Kanjurmarg West",
+    "region": "Eastern Suburbs",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "The NCH Colony puja has run for over 50 years.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.926678,
+     19.134117
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "120",
+    "name": "Mahakali Mandir, Sarvodaya Nagar",
+    "venue": "Jangal Mangal Road, near Sarvodaya Nagar gate",
+    "locality": "Bhandup West",
+    "region": "Eastern Suburbs",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "Free khichuri bhog reported during the puja.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.931287,
+     19.148851
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "121",
+    "name": "Sarbojonin Sharadiya Durgotsav, Bhandup",
+    "venue": "Dreams Complex, LBS Marg, near Bhandup station",
+    "locality": "Bhandup West",
+    "region": "Eastern Suburbs",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "Venue from the pujo's own Facebook page: Dreams Complex, LBS Road, Bhandup West.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/100077455310739/",
+    "website": "https://ujjalsevasangha.com/"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.938949,
+     19.146435
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "122",
+    "name": "Navjagran Bangali Mandal",
+    "venue": "Near the gurudwara, Shiv Kripa Chawl",
+    "locality": "Bhayandar East",
+    "region": "Mira–Bhayandar",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.862074,
+     19.311487
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "123",
+    "name": "Kali Mata Mandir, Dahisar",
+    "venue": "CS Link Road, Sambhaji Nagar, Anand Nagar",
+    "locality": "Dahisar East",
+    "region": "Western Suburbs",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.86849,
+     19.256282
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "124",
+    "name": "Aponjon Cultural Association",
+    "venue": "Sonam Pushpa, Golden Nest, Mira–Bhayandar Road",
+    "locality": "Mira Road East",
+    "region": "Mira–Bhayandar",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.864875,
+     19.304595
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "125",
+    "name": "BPSCO Durga Mondop",
+    "venue": "Unique Gardens",
+    "locality": "Mira Road East",
+    "region": "Mira–Bhayandar",
+    "pin_type": "area",
+    "pin_type_meaning": "Area only (locality/station)",
+    "note": "Pin is the Unique Gardens locality.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.879609,
+     19.293686
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "126",
+    "name": "YWF Sarbojonin Durga Puja",
+    "venue": "Shivar Garden",
+    "locality": "Mira Road East",
+    "region": "Mira–Bhayandar",
+    "pin_type": "area",
+    "pin_type_meaning": "Area only (locality/station)",
+    "note": "Pin is the Shivar Garden locality.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.867056,
+     19.290323
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "127",
+    "name": "Krishti",
+    "venue": "Whispering Palms, Lokhandwala Township",
+    "locality": "Kandivali East",
+    "region": "Western Suburbs",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "Housing-complex puja; the pin is the complex.",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.872509,
+     19.198971
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "128",
+    "name": "Roopayan",
+    "venue": "Durga Garden, New Link Road, Eksar Village",
+    "locality": "Borivali West",
+    "region": "Western Suburbs",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/Roopayan.org/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.840279,
+     19.237201
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "129",
+    "name": "Pushpanjali Durgotsav",
+    "venue": "Narayan Gardens, opp. Aura Hotel, Link Road",
+    "locality": "Borivali West",
+    "region": "Western Suburbs",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/Pushpanjali.Borivali/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.84044,
+     19.235207
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "130",
+    "name": "Netaji Subhas Chandra Bose Welfare Association",
+    "venue": "Near BMC playground, Anandwadi, Kurar Village",
+    "locality": "Malad East",
+    "region": "Western Suburbs",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "",
+    "on_your_list": true,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.866063,
+     19.187773
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "not on list",
+    "name": "Kandivali East Bengali Association (KEBA)",
+    "venue": "St. Lawrence High School Ground, Thakur Complex",
+    "locality": "Kandivali East",
+    "region": "Western Suburbs",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "Not on your list; found while searching.",
+    "on_your_list": false,
+    "instagram": null,
+    "facebook": "https://www.facebook.com/kebaconnect/",
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.862964,
+     19.21269
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "not on list",
+    "name": "Indian Bangla Club – Andheri Link Road Durgotsav",
+    "venue": "Chitrakoot Ground, behind Fun Republic, Veera Desai Road",
+    "locality": "Andheri West",
+    "region": "Western Suburbs",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "Not on your list; named in 2025 news coverage.",
+    "on_your_list": false,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.833844,
+     19.134157
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "not on list",
+    "name": "Hoyi Choyi Anondo Foundation Pujo",
+    "venue": "SNDT Women's College, R.A. Kidwai Marg",
+    "locality": "Matunga / Antop Hill",
+    "region": "South & Central Mumbai",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "Not on your list; named in 2026 listings.",
+    "on_your_list": false,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.859521,
+     19.028367
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "not on list",
+    "name": "Bangiya Utsav Committee",
+    "venue": "Dosti West County Road, Kolshet",
+    "locality": "Thane West",
+    "region": "Thane",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "Not on your list; found while searching.",
+    "on_your_list": false,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.995188,
+     19.226251
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "not on list",
+    "name": "Kalyan Cultural Association (KCA)",
+    "venue": "Birla College Campus Road, Chikan Ghar",
+    "locality": "Kalyan West",
+    "region": "Kalyan–Dombivli",
+    "pin_type": "exact",
+    "pin_type_meaning": "Exact (pujo listing or confirmed venue)",
+    "note": "Not on your list; found while searching.",
+    "on_your_list": false,
+    "instagram": null,
+    "facebook": null,
+    "website": null
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     73.142615,
+     19.249046
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "list_numbers": "not on list",
+    "name": "Marol Durga Puja Association",
+    "venue": "Vasant Oasis, Makwana Road",
+    "locality": "Marol, Andheri East",
+    "region": "Western Suburbs",
+    "pin_type": "venue",
+    "pin_type_meaning": "Venue named in list",
+    "note": "Not on your list; found while searching. The pin is the association's listed address.",
+    "on_your_list": false,
+    "instagram": "https://www.instagram.com/marol_durga_puja_association/",
+    "facebook": null,
+    "website": "https://maroldurgapuja.com/"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     72.885147,
+     19.114892
+    ]
+   }
+  }
+ ]
+}
