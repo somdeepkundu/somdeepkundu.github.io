@@ -14,7 +14,7 @@ A selection of my geospatial and AI projects. Click any card to explore.
 
 **[Road Check](road-check.md)**
 
-Ride a road and see how rough it is. The phone's shake becomes a score for every 20 m, with sharp bumps and a coloured map. Validated on a bench test and a first ride; the ZIP comes with a brief for an LLM to look up road types and draw a report poster. Works offline.
+Ride a road and see how rough it is. The phone's shake becomes a score for every 20 m, with sharp bumps and a coloured map. Validated in rural Bengal and Mumbai, with Delhi–Noida under way. Built for road planners and engineers: an LLM-ready export and it works offline.
 
 `PWA` `Accelerometer` `GPS` `Road roughness` `Leaflet` `LLM-ready`
 

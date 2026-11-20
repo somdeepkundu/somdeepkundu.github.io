@@ -224,8 +224,6 @@ Tap “Copy LLM prompt”, or hand over the ZIP. The brief asks for a road-type 
 
 ## Validation
 
-<p class="rc-sub">Checked three ways: automated tests, a bench test against known vibration, and a first real ride.</p>
-
 <div class="rc-steps rc-3" markdown>
 
 <div class="rc-step" markdown>
@@ -233,7 +231,7 @@ Tap “Copy LLM prompt”, or hand over the ZIP. The brief asks for a road-type 
 
 **Automated tests pass**
 
-77 checks on the maths (segments, classes, export columns, prompt) and 92 in a real browser, including a full ride with the network switched off.
+Checks on the maths and in a real browser, including a full ride with the network switched off.
 </div>
 
 <div class="rc-step" markdown>
@@ -241,43 +239,32 @@ Tap “Copy LLM prompt”, or hand over the ZIP. The brief asks for a road-type 
 
 **Any phone angle**
 
-Known vibration from 0.5 to 7 m/s² RMS, phone tilted six ways: Road Check reads it within 4.6% (median 3.1%).
+Against known vibration, with the phone tilted six ways, readings stay within 5%.
 </div>
 
 <div class="rc-step" markdown>
-<span class="rc-num">2.9 km</span> :material-road-variant:
+<span class="rc-num">3</span> :material-map-marker-path:
 
-**First field ride**
+**Field rides**
 
-13 minutes in Adra, Purulia, phone in a pocket. About 60 readings a second and GPS speed throughout.
+Validated in rural Bengal and Mumbai. Rides in Delhi–Noida are going on.
 </div>
 
 </div>
-
-<div class="rc-figs rc-2" markdown>
 
 <figure markdown>
-![Bench test: measured against true vibration](../assets/images/road-check-bench.png)
-<figcaption>Bench test. Every dot sits on the 1:1 line whatever the angle, so the shake reading doesn't depend on how the phone is mounted.</figcaption>
+![Bench test: measured against true vibration](../assets/images/road-check-bench.png){ style="max-width:460px" }
+<figcaption>Bench test: every reading sits on the 1:1 line whatever the phone's angle.</figcaption>
 </figure>
 
-<figure markdown>
-![Field ride: speed effect and spectrum](../assets/images/road-check-field.png)
-<figcaption>First ride. Shake barely rises with speed (slope 0.21, not 1.0), and most energy sits below 10 Hz: the rider, not the road.</figcaption>
-</figure>
+## Who it helps
 
-</div>
-
-<div class="rc-safety" markdown>
-:material-flask-outline:
-
-**What the field ride taught us.** With the phone in a pocket the classes overstate roughness: the speed adjustment inflates slow stretches, and the 4 m/s² bump rule fires on body movement. Ranking stretches by raw `rms_v` within one ride still works. Next: handlebar rides, the same road ridden twice, and a speed exponent fitted from data.
-</div>
-
-<figure class="rc-poster" markdown>
-![Report poster for the first ride](../assets/images/road-check-poster.png)
-<figcaption>The report poster from the first ride, made with seaborn from the exported ZIP. <code>PROMPT.md</code> now asks an LLM for the same poster on a faint OpenStreetMap basemap.</figcaption>
-</figure>
+| | |
+|---|---|
+| **Road policy makers & PWD / PMGSY engineers** | A cheap, repeatable roughness map to rank repairs and check new roads after handover. |
+| **Municipalities & panchayats** | Evidence for budget asks, ward by ward or village by village. |
+| **Researchers** | Open, explained data for road, transport and rural-access studies. |
+| **Riders & citizens** | Rough stretches and speed breakers mapped from an everyday phone. |
 
 ## In the ZIP
 
@@ -289,7 +276,7 @@ Known vibration from 0.5 to 7 m/s² RMS, phone tilted six ways: Road Check reads
 `data/*_segments.geojson` `data/*_segments.csv` `data/*_bumps.geojson` `raw/*_raw.csv` `ride.json` `datapackage.json` `PROMPT.md` `README.txt`
 
 <span class="rc-label">The LLM brief asks for</span>
-`OSM road type & surface` `speed breakers` `rain` `speed-exponent check` `bump-count check` `ranked stretches` `report poster`
+`OSM road type & surface` `speed breakers` `rain` `ranked stretches` `report poster`
 </div>
 
 <div class="rc-qr" markdown>
