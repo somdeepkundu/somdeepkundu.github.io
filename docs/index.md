@@ -26,7 +26,7 @@ body[data-md-color-scheme="slate"]{
   background-repeat:repeat,no-repeat,no-repeat}
 @media print,(prefers-contrast:more),(forced-colors:active){body[data-md-color-scheme]{background-image:none}}
 /* CropView pill styles removed from the home page; the project page still has its own */
-/* home page only: launch announcement (Pujo Map + FloodView), each in its own app palette */
+/* home page only: launch announcement (Road Check + FloodView), each in its own app palette */
 .ann{margin:0 0 1.4rem}
 .md-typeset .ann-label{display:flex;align-items:center;gap:.7rem;margin:0 0 .6rem;font-family:'Comfortaa',system-ui,sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#8a7a66}
 .ann-label::before,.ann-label::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,currentColor);opacity:.45}
@@ -48,15 +48,15 @@ body[data-md-color-scheme="slate"]{
 .ann-mark{flex:none;width:46px;height:46px}
 .ann-arrow{margin-left:auto;flex:none;font-size:1.05rem;transition:transform .3s ease}
 .ann-card:hover .ann-arrow{transform:translateX(4px)}
-/* pujo: laal paar shada, white with an alta-red double border */
-.md-typeset .ann a.ann-pujo,.md-typeset .ann a.ann-pujo:hover{background:linear-gradient(180deg,#fff,#fdf3f2);border:1px solid #ecd9d8;color:#241e1f!important;box-shadow:0 8px 22px -14px rgba(176,21,31,.45)}
-.ann-pujo::after{content:"";position:absolute;left:0;right:0;bottom:0;height:7px;background:linear-gradient(#b0151f 0 3px,transparent 3px 4px,#b0151f 4px)}
-.ann-pujo .ann-mark{color:#b0151f}.ann-pujo .ann-tag,.ann-pujo .ann-arrow{color:#b0151f}.ann-pujo .ann-sub{color:#6f6668}
-.md-typeset .ann a.ann-pujo:hover{box-shadow:0 14px 28px -14px rgba(176,21,31,.55)}
-[data-md-color-scheme="slate"] .md-typeset .ann a.ann-pujo,[data-md-color-scheme="slate"] .md-typeset .ann a.ann-pujo:hover{background:linear-gradient(180deg,#241a1b,#1a1314);border-color:#4a3436;color:#f3ecec!important}
-[data-md-color-scheme="slate"] .ann-pujo .ann-mark,[data-md-color-scheme="slate"] .ann-pujo .ann-tag,[data-md-color-scheme="slate"] .ann-pujo .ann-arrow{color:#ea4a51}
-[data-md-color-scheme="slate"] .ann-pujo::after{background:linear-gradient(#ea4a51 0 3px,transparent 3px 4px,#ea4a51 4px)}
-[data-md-color-scheme="slate"] .ann-pujo .ann-sub{color:#aba0a2}
+/* road: forest green with an amber road line */
+.md-typeset .ann a.ann-road,.md-typeset .ann a.ann-road:hover{background:linear-gradient(180deg,#fff,#f6f2e8);border:1px solid #d9d3c3;color:#1b1d1a!important;box-shadow:0 8px 22px -14px rgba(31,77,58,.45)}
+.ann-road::after{content:"";position:absolute;left:0;right:0;bottom:0;height:7px;background:linear-gradient(#1f4d3a 0 3px,transparent 3px 4px,#1f4d3a 4px)}
+.ann-road .ann-mark{color:#1f4d3a}.ann-road .ann-tag,.ann-road .ann-arrow{color:#1f4d3a}.ann-road .ann-sub{color:#5f665e}
+.md-typeset .ann a.ann-road:hover{box-shadow:0 14px 28px -14px rgba(31,77,58,.55)}
+[data-md-color-scheme="slate"] .md-typeset .ann a.ann-road,[data-md-color-scheme="slate"] .md-typeset .ann a.ann-road:hover{background:linear-gradient(180deg,#1c221d,#151a16);border-color:#34443a;color:#ece9e0!important}
+[data-md-color-scheme="slate"] .ann-road .ann-mark,[data-md-color-scheme="slate"] .ann-road .ann-tag,[data-md-color-scheme="slate"] .ann-road .ann-arrow{color:#f2b84b}
+[data-md-color-scheme="slate"] .ann-road::after{background:linear-gradient(#f2b84b 0 3px,transparent 3px 4px,#f2b84b 4px)}
+[data-md-color-scheme="slate"] .ann-road .ann-sub{color:#a9b3a0}
 /* floodview: monsoon navy, sky glow, water-to-silt band */
 .md-typeset .ann a.ann-flood,.md-typeset .ann a.ann-flood:hover{background:radial-gradient(130% 160% at 0% 0%,#16274d,#0b1430 60%,#070d1c);border:1px solid rgba(125,211,252,.28);color:#e8f0fe!important;box-shadow:0 8px 22px -14px rgba(7,13,28,.8)}
 .ann-flood::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg,#1d4ed8,#38bdf8,#14b8a6,#8a6a45)}
@@ -64,34 +64,23 @@ body[data-md-color-scheme="slate"]{
 .ann-flood .ann-tag,.ann-flood .ann-arrow{color:#38bdf8}.ann-flood .ann-sub{color:#b9cadb}
 .md-typeset .ann a.ann-flood:hover{box-shadow:0 14px 30px -14px rgba(56,189,248,.5)}
 .md-typeset .ann a.ann-card,.md-typeset .ann a.ann-card *{text-decoration:none!important;border-bottom:0!important}
-.md-typeset .ann a.ann-pujo .ann-title{color:#241e1f!important}.md-typeset .ann a.ann-pujo .ann-tag,.md-typeset .ann a.ann-pujo .ann-arrow{color:#b0151f!important}.md-typeset .ann a.ann-pujo .ann-sub{color:#6f6668!important}
+.md-typeset .ann a.ann-road .ann-title{color:#1b1d1a!important}.md-typeset .ann a.ann-road .ann-tag,.md-typeset .ann a.ann-road .ann-arrow{color:#1f4d3a!important}.md-typeset .ann a.ann-road .ann-sub{color:#5f665e!important}
 .md-typeset .ann a.ann-flood .ann-title{color:#fff!important}.md-typeset .ann a.ann-flood .ann-tag,.md-typeset .ann a.ann-flood .ann-arrow{color:#38bdf8!important}.md-typeset .ann a.ann-flood .ann-sub{color:#b9cadb!important}
-[data-md-color-scheme="slate"] .md-typeset .ann a.ann-pujo .ann-title{color:#f3ecec!important}[data-md-color-scheme="slate"] .md-typeset .ann a.ann-pujo .ann-tag,[data-md-color-scheme="slate"] .md-typeset .ann a.ann-pujo .ann-arrow{color:#ea4a51!important}[data-md-color-scheme="slate"] .md-typeset .ann a.ann-pujo .ann-sub{color:#aba0a2!important}
+[data-md-color-scheme="slate"] .md-typeset .ann a.ann-road .ann-title{color:#ece9e0!important}[data-md-color-scheme="slate"] .md-typeset .ann a.ann-road .ann-tag,[data-md-color-scheme="slate"] .md-typeset .ann a.ann-road .ann-arrow{color:#f2b84b!important}[data-md-color-scheme="slate"] .md-typeset .ann a.ann-road .ann-sub{color:#a9b3a0!important}
 @keyframes annIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @keyframes annPulse{70%,100%{box-shadow:0 0 0 7px rgba(226,85,74,0)}}
-/* siuli (shiuli, night jasmine): a few blossoms drift down the page; decorative only */
-.siuli-layer{position:fixed;inset:0;z-index:1;overflow:hidden;pointer-events:none}
-.siuli{position:absolute;top:-40px;will-change:transform}
-.siuli i{display:block;will-change:transform}
-.siuli svg{display:block;width:100%;height:100%;filter:drop-shadow(0 1px 1.5px rgba(90,60,30,.35))}
-.siuli{animation:siuliFall var(--d) linear var(--l) infinite}
-.siuli i{animation:siuliSway var(--s) ease-in-out var(--l) infinite alternate}
-.siuli svg{animation:siuliSpin var(--r) linear var(--l) infinite}
-@keyframes siuliFall{from{transform:translate3d(0,-6vh,0)}to{transform:translate3d(var(--x),112vh,0)}}
-@keyframes siuliSway{from{transform:translateX(-18px)}to{transform:translateX(18px)}}
-@keyframes siuliSpin{from{transform:rotate(var(--a)) rotateY(0)}to{transform:rotate(calc(var(--a) + 360deg)) rotateY(360deg)}}
-@media (prefers-reduced-motion:reduce){.siuli-layer{display:none}.md-typeset .ann a.ann-card{animation:none;opacity:1}.ann-label span::before{animation:none}}
+@media (prefers-reduced-motion:reduce){.md-typeset .ann a.ann-card{animation:none;opacity:1}.ann-label span::before{animation:none}}
 </style>
 
 <section class="ann" aria-label="Latest launches">
   <p class="ann-label"><span>Now live</span></p>
   <div class="ann-row">
-    <a class="ann-card ann-pujo" href="projects/pujo-map/">
-      <svg class="ann-mark" viewBox="-50 -50 100 100" fill="currentColor" aria-hidden="true"><circle r="4.2"/><g><path d="M0-7C6-13 6-25 0-33C-6-25-6-13 0-7Z"/><path transform="rotate(45)" d="M0-7C6-13 6-25 0-33C-6-25-6-13 0-7Z"/><path transform="rotate(90)" d="M0-7C6-13 6-25 0-33C-6-25-6-13 0-7Z"/><path transform="rotate(135)" d="M0-7C6-13 6-25 0-33C-6-25-6-13 0-7Z"/><path transform="rotate(180)" d="M0-7C6-13 6-25 0-33C-6-25-6-13 0-7Z"/><path transform="rotate(225)" d="M0-7C6-13 6-25 0-33C-6-25-6-13 0-7Z"/><path transform="rotate(270)" d="M0-7C6-13 6-25 0-33C-6-25-6-13 0-7Z"/><path transform="rotate(315)" d="M0-7C6-13 6-25 0-33C-6-25-6-13 0-7Z"/></g><circle r="37" fill="none" stroke="currentColor" stroke-width="2.4"/></svg>
+    <a class="ann-card ann-road" href="projects/road-check/">
+      <img class="ann-mark" src="assets/images/road-check-icon.png" alt="">
       <span class="ann-body">
-        <span class="ann-tag">Durga Puja 2026</span>
-        <span class="ann-title">Mumbai Durga Pujo Map</span>
-        <span class="ann-sub">115 pujos, nearest first, with a walking compass, in English and <span lang="bn">বাংলা</span></span>
+        <span class="ann-tag">New · field app</span>
+        <span class="ann-title">Road Check</span>
+        <span class="ann-sub">Ride a road and map how rough it is, every 20 m. Works offline.</span>
       </span>
       <span class="ann-arrow">→</span>
     </a>
@@ -107,38 +96,7 @@ body[data-md-color-scheme="slate"]{
   </div>
 </section>
 
-<div class="siuli-layer" aria-hidden="true"></div>
 
-
-<script>
-(function(){
-  function go(){
-    var L=document.querySelector('.siuli-layer');
-    if(!L||L.dataset.on)return; L.dataset.on=1;
-    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-    var ns='http://www.w3.org/2000/svg',n=innerWidth<700?9:16;
-    var svg='<svg viewBox="-50 -50 100 100" aria-hidden="true">';
-    for(var k=0;k<5;k++)svg+='<ellipse cx="0" cy="-24" rx="10" ry="25" transform="rotate('+(k*72)+')" fill="#fffdf8" stroke="#e8ddcb" stroke-width="1.4"/>';
-    svg+='<circle r="9" fill="#f08a2c"/><circle r="4" fill="#d96a12"/></svg>';
-    for(var i=0;i<n;i++){
-      var w=document.createElement('div'),b=document.createElement('i'),z=14+Math.random()*16;
-      w.className='siuli';
-      w.style.left=(Math.random()*100)+'vw';
-      w.style.width=w.style.height=z+'px';
-      w.style.opacity=(.55+Math.random()*.4).toFixed(2);
-      w.style.setProperty('--d',(14+Math.random()*12).toFixed(1)+'s');
-      w.style.setProperty('--l',(-Math.random()*26).toFixed(1)+'s');
-      w.style.setProperty('--s',(2.8+Math.random()*3).toFixed(1)+'s');
-      w.style.setProperty('--r',(7+Math.random()*9).toFixed(1)+'s');
-      w.style.setProperty('--a',Math.floor(Math.random()*360)+'deg');
-      w.style.setProperty('--x',(Math.random()*120-60).toFixed(0)+'px');
-      b.style.width=b.style.height='100%';
-      b.innerHTML=svg; w.appendChild(b); L.appendChild(w);
-    }
-  }
-  if(typeof document$!=='undefined')document$.subscribe(go); else if(document.readyState!=='loading')go(); else document.addEventListener('DOMContentLoaded',go);
-})();
-</script>
 
 <div class="hero">
   <img src="assets/images/profile.png" alt="Somdeep Kundu" class="profile-photo">
